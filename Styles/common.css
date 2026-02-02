@@ -1,0 +1,21 @@
+:root {
+    --primary-color: #FF8C00;
+    --secondary-color: #2E8B57;
+
+    --primary-accent-color: #007BFF;
+    --secondary-accent-color: #E63946;
+
+    --primary-font-color: #1A1A1B;
+    --primary-background-color: #F9F9F9;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100svh;
+}
