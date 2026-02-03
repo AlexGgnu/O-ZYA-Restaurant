@@ -1,21 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
 
 :root {
-    --primary-color: #FF8C00;
-    --secondary-color: #2E8B57;
+    --primary-color: #044BD9;
+    --secondary-color: #0476D9;
+    --tertiary-color: #71A8D9;
 
-    --primary-accent-color: #007BFF;
-    --secondary-accent-color: #E63946;
+    --primary-font-color: #0476D9;
+    --secondary-font-color: #F2E5D5;
 
-    --primary-font-color: #1A1A1B;
-    --primary-background-color: #F9F9F9;
+    --primary-background-color: #F2E5D5;
 }
 
+/* MARK: - Common Style */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Luckiest Guy", cursive;
+    font-family: "Playpen Sans", cursive;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
 }
@@ -23,25 +25,35 @@
 body {
     width: 100%;
     height: 100svh;
+    background-color: var(--primary-background-color);
 }
 
 a {
     text-decoration: none;
 }
 
+.hidden {
+    display: none;
+}
+
+/* MARK: - Header Style */
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     width: 100%;
     height: 80px;
     padding: 0 20px;
+    font-size: 1.3rem;
     background-color: var(--secondary-color);
 }
 header a {
-    color: var(--primary-color);
+    color: var(--secondary-font-color);
+    font-weight: bold;
 }
+
 .header__menu {
     display: flex;
     flex-direction: row;
@@ -57,11 +69,41 @@ header a {
     bottom: 0;
     width: 0%;
     opacity: 0;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--secondary-font-color);
     transition: all .3s ease-in-out;
 }
 .header__menu a#active__menu::after,
 .header__menu a:hover::after {
     opacity: 1;
     width: 100%
+}
+.header__right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+.header__right .account__button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 1rem;
+    color: var(--secondary-font-color);
+    border-radius: 12px;
+    border: 3px solid var(--secondary-font-color);
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.header__right .account__button:hover {
+    color: var(--primary-font-color);
+    background-color: var(--primary-background-color);
+}
+
+/* MARK: - Footer Style */
+footer {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: var(--secondary-color);
 }
