@@ -1,5 +1,0 @@
-main section {
-    height: calc((100svh - 80px) / 2);
-
-    border: 1px solid red; /* NOTE: For debugging */
-}

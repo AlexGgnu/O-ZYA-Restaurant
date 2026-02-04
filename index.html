@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr-FR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>O'ZYA Restaurant</title>
 
-        <link rel="stylesheet" href="Styles/common.css">
-        <link rel="stylesheet" href="Styles/style.css">
+        <link rel="stylesheet" href="./styles/common.css">
+        <link rel="stylesheet" href="./styles/style.css">
     </head>
     <body>
         <header>
@@ -21,15 +21,38 @@
                 <a href="/">Commander</a>
             </div>
             <div class="header__right">
-                <input id="search-bar" type="text" placeholder="Rechercher vos plats favoris ici..." />
-                <a class="account__button" href="/profil.html">Mon compte</a>
+                <div class="search-wrapper">
+                    <input class="" id="search-bar" type="text" placeholder="Rechercher vos plats favoris ici..." />
+                </div>
+                <a class="primary-button" href="/profil.html">
+                    Mon compte
+                </a>
             </div>
         </header>
 
         <main>
-            <section></section>
+            <section id="daily-special">
+                <div class="special-content">
+                    <h1>Voyage du jour</h1>
+                    <div>
+                        <h4>{DISHES_NAME}</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    </div>
+                    <button class="primary-button" type="button">Commander</button>
+                </div>
+                <div class="special-image">
+                    <svg viewBox="-70 -70 140 140" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M20.7,-39.6C27.6,-31.8,34.6,-27.9,42.6,-22C50.5,-16,59.5,-8,62,1.5C64.5,10.9,60.6,21.8,51.7,26.2C42.9,30.6,29,28.5,19.6,32.5C10.1,36.5,5.1,46.6,-2.1,50.3C-9.3,54,-18.7,51.3,-30.6,48.7C-42.5,46.1,-56.9,43.6,-62.1,35.5C-67.2,27.5,-63.1,13.7,-62.1,0.6C-61.2,-12.6,-63.4,-25.2,-59.2,-35.1C-55.1,-45,-44.6,-52.1,-33.7,-57.5C-22.8,-62.9,-11.4,-66.7,-2.3,-62.7C6.9,-58.8,13.8,-47.3,20.7,-39.6Z" />
+                    </svg>
+                    <img src="./images/__test__/burger.png" alt="Burger">
+                </div>
+            </section>
+            <section id="signature-dishes">
+                    <h1>Ils font notre succès</h1>
+            </section>
+            <section id="find-us"></section>
         </main>
 
-        <footer class="hidden"> </footer>
+        <footer></footer>
     </body>
 </html>

@@ -1,0 +1,42 @@
+main {
+    width: 100%;
+    padding: 0 40px;
+}
+
+#daily-special {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+    padding: 120px 0;
+}
+#daily-special > .special-content {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    width: calc(2*(100% - 2*80px) / 3);
+}
+
+#daily-special > .special-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: calc((100% - 2*80px) / 3);
+}
+#daily-special > .special-image svg { color: var(--tertiary-color); }
+#daily-special > .special-image img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.80));
+}
+
+#signature-dishes {
+    height: 400px;
+
+    border: 1px solid orange; /* NOTE: For debugging */
+}
