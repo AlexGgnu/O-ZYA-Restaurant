@@ -1,0 +1,52 @@
+.rating-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.rating-page h1 {
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.ratings {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.rating-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stars {
+    font-size: 2.2rem;
+    color: var(--tertiary-color);
+    letter-spacing: 8px;
+    cursor: pointer;
+}
+
+.comment-section {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.comment-section textarea {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--tertiary-color);
+    resize: none;
+}
+
