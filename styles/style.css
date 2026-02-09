@@ -1,4 +1,7 @@
 main {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 120px;
     width: 100%;
     padding: 0 40px;
 }
@@ -9,7 +12,7 @@ main {
     align-items: center;
     gap: 80px;
     width: 100%;
-    padding: 120px 0;
+    padding-top: 120px;
 }
 #daily-special > .special-content {
     display: grid;

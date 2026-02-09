@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playpen+Sans:wght@100..800&display=swap');
 
 :root {
+    /* Colors */
     --primary-color: #0476D9;
     --secondary-color: #044BD9;
     --tertiary-color: #71A8D9;
@@ -9,6 +10,11 @@
     --secondary-font-color: #F2E5D5;
 
     --primary-background-color: #F2E5D5;
+
+    /* Sizes */
+    --header-height: 80px;
+
+    --footer-height: 200px;
 }
 
 /* MARK: - Common Style */
@@ -60,18 +66,25 @@ p {
 
 /* MARK: - Header Style */
 header {
+    position: relative;
+    width: 100%;
+    height: var(--header-height);
+}
+
+.header__container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: relative;
     width: 100%;
-    height: 80px;
+    height: var(--header-height);
     padding: 0 20px;
     font-size: 1.3rem;
     background-color: var(--primary-color);
+    z-index: 1;
 }
-header a {
+.header__container a {
     color: var(--secondary-font-color);
     font-weight: bold;
 }
@@ -103,21 +116,50 @@ header a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
-}
-.header__right > .primary-button {
+    gap: 24px;
     color: var(--secondary-font-color);
-    border: 3px solid var(--secondary-font-color);
 }
+.header__right > #search__button {
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.header__right > #search__button svg {
+    width: 24px;
+    height: 24px;
+    color: var(--secondary-font-color);
+}
+.header__right > .primary-button { border: 3px solid var(--secondary-font-color); }
 .header__right > .primary-button:hover {
     color: var(--primary-font-color);
     background-color: var(--primary-background-color);
+}
+
+.header__search-bar, .header__search-bar input {
+    width: 100%;
+    height: 40px;
+    background: white;
+    text-align: center;
+    font-size: 1rem;
+}
+.header__search-bar {
+    position: absolute;
+    bottom: 0;
+    transition: bottom .3s ease-out;
+}
+.header__search-bar.active { bottom: -40px; }
+.header__search-bar input {
+    outline: none;
+    border: none;
 }
 
 /* MARK: - Footer Style */
 footer {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: var(--footer-height);
     background-color: var(--primary-color);
 }

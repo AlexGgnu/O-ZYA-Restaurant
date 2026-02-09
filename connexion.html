@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion – O'ZYA Restaurant</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion – O'ZYA Restaurant</title>
 
-    <link rel="stylesheet" href="./styles/common.css">
-    <link rel="stylesheet" href="./styles/connexion.css">
-</head>
+        <link rel="stylesheet" href="./styles/common.css">
+        <link rel="stylesheet" href="./styles/connexion.css">
+    </head>
 
-<body>
+    <body>
+        <header>
+            <section class="header__container">
+                <a href="./index.html">
+                    <img src="Images/Logo.png" alt="Restaurant Logo" />
+                </a>
+                <div class="header__menu">
+                    <a href="./index.html">Accueil</a>
+                    <a href="/">Nos produits</a>
+                    <a href="/">Réserver</a>
+                    <a href="/">Commander</a>
+                </div>
+            </section>
+        </header>
 
-<header>
-    <a href="/">
-        <img src="Images/Logo.png" alt="Restaurant Logo" />
-    </a>
+        <main>
+            <form class="login-form" method="post" action="">
+                <h1>Connexion</h1>
 
-    <div class="header__menu">
-        <a href="/">Accueil</a>
-        <a href="/">Nos produits</a>
-        <a href="/">Réserver</a>
-        <a href="/">Commander</a>
-    </div>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Mot de passe" required>
 
-    <div class="header__right">
-        <a class="primary-button" href="/connexion.html">
-            Connexion
-        </a>
-    </div>
-</header>
+                <button class="primary-button" type="submit">Se connecter</button>
+            </form>
+        </main>
 
-<main class="login-page">
-    <form class="login-form" method="post" action="">
-        <h1>Connexion</h1>
-
-        <input type="email" placeholder="E-mail" required>
-        <input type="password" placeholder="Mot de passe" required>
-
-        <button class="primary-button" type="submit">
-            Se connecter
-        </button>
-    </form>
-</main>
-
-<footer></footer>
-
-</body>
+        <footer></footer>
+    </body>
 </html>
