@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="inscription.css">
+    <link rel="stylesheet" href="common.css">
+    <title>Inscription</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="/">
+            <img src="Images/Logo.png" alt="Restaurant Logo" />
+        </a>
+
+        <div class="header__menu">
+            <a href="/">Accueil</a>
+            <a href="/">Nos produits</a>
+            <a href="/">Réserver</a>
+            <a href="/">Commander</a>
+        </div>
+
+        <div class="header__right">
+            <a class="primary-button" href="/connexion.html">
+                Connexion
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <form method="post" action="">
+            <h1>Inscription</h1>
+            
+            <label for="surname"></label>
+            <input type="text" id="surname" required placeholder="Votre nom">
+
+            <label for="forname"></label>
+            <input type="text" id="forname" required placeholder="Votre prénom">
+
+            <label for="email"></label>
+            <input type="email" id="email" required placeholder="Votre e-mail">
+
+            <label for="password"></label>
+            <input type="password" id="password" required placeholder="Votre mot de passe">
+
+            <label for="password"></label>
+            <input type="password" id="password" required placeholder="Confirmer mot de passe">
+
+            <label for="tel"></label>
+            <input type="tel" id="tel" required placeholder="Numéro téléphone">
+
+            <div class="genre">
+                <label for="genre">Genre:</label>
+                Homme<input type="radio" name="genre" required>
+                Femme<input type="radio" name="genre" required>
+                Autres<input type="radio" name="genre" required>
+            </div>
+
+            <div class="date">
+                <label for="date">Date de naissance:</label>
+                <input type="date" id="date" required>
+            </div>
+
+                <label for="address-postal"></label>
+                <input type="number" id="address-postal" required placeholder="Code postale">
+
+                <label for="city-name"></label>
+                <input type="text" id="adress" required placeholder="Le nom de la ville">
+
+                <label for="road-name"></label>
+                <input type="text" id="road-name" required placeholder="Le nom de la rue">
+
+                <label for="address-number"></label>
+                <input type="number" id="address-number" required placeholder="Numéro de rue">
+
+
+        </form>
+
+    </main>
+    <footer></footer>
+</body>
+
+</html>
