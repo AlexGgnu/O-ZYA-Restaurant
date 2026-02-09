@@ -13,8 +13,6 @@
 
     /* Sizes */
     --header-height: 80px;
-
-    --footer-height: 200px;
 }
 
 /* MARK: - Common Style */
@@ -158,8 +156,34 @@ header {
 
 /* MARK: - Footer Style */
 footer {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 20px;
     position: relative;
+    padding: 14px 20px;
     width: 100%;
-    height: var(--footer-height);
+    color: var(--secondary-font-color);
     background-color: var(--primary-color);
+}
+footer .footer__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 120px;
+}
+footer .footer__container .site__map > div {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+footer > hr {
+    border: 0;
+    border-top: 1px solid var(--secondary-font-color);
+}
+footer > .legacy {
+    width: 100%;
+    padding: 0 20px;
+    text-align: right;
+    font-size: 0.8rem;
+    opacity: 0.5;
 }
