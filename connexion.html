@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Connexion – O'ZYA Restaurant</title>
 
-        <link rel="stylesheet" href="./styles/common.css">
-        <link rel="stylesheet" href="./styles/connexion.css">
+        <link rel="stylesheet" href="common.css">
+        <link rel="stylesheet" href="connexion.css">
     </head>
 
     <body>
@@ -16,20 +16,36 @@
                     <img src="Images/Logo.png" alt="Restaurant Logo" />
                 </a>
                 <div class="header__menu">
-                    <a href="./index.html">Accueil</a>
+                    <a href="./index.html" id="active__menu">Accueil</a>
                     <a href="/">Nos produits</a>
                     <a href="/">Réserver</a>
                     <a href="/">Commander</a>
                 </div>
+                <div class="header__right">
+                    <button id="search__button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z"/>
+                        </svg>
+                    </button>
+                    <a class="primary-button" href="./connexion.html">
+                        Se connecter
+                    </a>
+                </div>
+            </section>
+            <section class="header__search-bar" id="search__container">
+                <input type="text" placeholder="Rechercher vos plats favoris ci..." />
             </section>
         </header>
 
         <main>
-            <form class="login-form" method="post" action="">
+            <form method="post" action="">
                 <h1>Connexion</h1>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
 
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Mot de passe" required>
+                <label for="mdp">Mot de passe</label>
+                <input type="password" id="mdp" name="mdp" required>
 
                 <button class="primary-button" type="submit">Se connecter</button>
             </form>
