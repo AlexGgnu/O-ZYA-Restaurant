@@ -4,6 +4,8 @@ main {
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
+    font-family: "Inter", sans-serif;
+    color: var(--primary-color);
 }
 
 form {
