@@ -3,82 +3,90 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="inscription.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" type="text/css" href="common.css">
     <title>Inscription</title>
 </head>
 
 <body>
 
     <header>
-        <a href="/">
-            <img src="Images/Logo.png" alt="Restaurant Logo" />
-        </a>
-
-        <div class="header__menu">
-            <a href="/">Accueil</a>
-            <a href="/">Nos produits</a>
-            <a href="/">Réserver</a>
-            <a href="/">Commander</a>
-        </div>
-
-        <div class="header__right">
-            <a class="primary-button" href="/connexion.html">
-                Connexion
-            </a>
-        </div>
-    </header>
+            <section class="header__container">
+                <a href="./index.html">
+                    <img src="Images/Logo.png" alt="Restaurant Logo" />
+                </a>
+                <div class="header__menu">
+                    <a href="./index.html" id="active__menu">Accueil</a>
+                    <a href="/">Nos produits</a>
+                    <a href="/">Réserver</a>
+                    <a href="/">Commander</a>
+                </div>
+                <div class="header__right">
+                    <button id="search__button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z"/>
+                        </svg>
+                    </button>
+                    <a class="primary-button" href="./connexion.html">
+                        Se connecter
+                    </a>
+                </div>
+            </section>
+            <section class="header__search-bar" id="search__container">
+                <input type="text" placeholder="Rechercher vos plats favoris ci..." />
+            </section>
+        </header>
 
     <main>
 
-        <form method="post" action="">
-            <h1>Inscription</h1>
-            
-            <label for="surname"></label>
-            <input type="text" id="surname" required placeholder="Votre nom">
+    <form method="post" action="">
+        <h1>Inscription</h1>
 
-            <label for="forname"></label>
-            <input type="text" id="forname" required placeholder="Votre prénom">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" maxlength="100" required>
 
-            <label for="email"></label>
-            <input type="email" id="email" required placeholder="Votre e-mail">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" maxlength="100" required>
 
-            <label for="password"></label>
-            <input type="password" id="password" required placeholder="Votre mot de passe">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" maxlength="100" required>
 
-            <label for="password"></label>
-            <input type="password" id="password" required placeholder="Confirmer mot de passe">
+        <label for="mdp">Mot de passe</label>
+        <input type="password" id="mdp" name="mdp" minlength="8" required>
 
-            <label for="tel"></label>
-            <input type="tel" id="tel" required placeholder="Numéro téléphone">
+        <label for="confirme-mdp">Confirmer mot de passe</label>
+        <input type="password" id="confirme-mdp" name="confirme-mdp" minlength="8" required>
 
-            <div class="genre">
-                <label for="genre">Genre:</label>
-                Homme<input type="radio" name="genre" required>
-                Femme<input type="radio" name="genre" required>
-                Autres<input type="radio" name="genre" required>
-            </div>
+        <label for="tel">Téléphone</label>
+        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required>
 
-            <div class="date">
-                <label for="date">Date de naissance:</label>
-                <input type="date" id="date" required>
-            </div>
+        <div class="genre">
+            <p>Genre :</p>
+            <label><input type="radio" name="genre" value="homme" required> Homme</label>
+            <label><input type="radio" name="genre" value="femme"> Femme</label>
+            <label><input type="radio" name="genre" value="autres"> Autres</label>
+        </div>
 
-                <label for="address-postal"></label>
-                <input type="number" id="address-postal" required placeholder="Code postale">
+        <label for="date">Date de naissance</label>
+        <input type="date" id="date" name="date" required>
 
-                <label for="city-name"></label>
-                <input type="text" id="adress" required placeholder="Le nom de la ville">
+        <label for="code-postale">Code postal</label>
+        <input type="text" id="code-postale" name="code-postale" maxlength="5">
 
-                <label for="road-name"></label>
-                <input type="text" id="road-name" required placeholder="Le nom de la rue">
+        <label for="ville">Ville</label>
+        <input type="text" id="ville" name="ville" required>
 
-                <label for="address-number"></label>
-                <input type="number" id="address-number" required placeholder="Numéro de rue">
+        <label for="nom-rue">Nom de rue</label>
+        <input type="text" id="nom-rue" name="nom-rue" required>
 
+        <label for="numéro-rue">Numéro de rue</label>
+        <input type="number" id="numéro-rue" name="numéro-rue" required>
 
-        </form>
+        <button type="submit" class="primary-button">
+            S'inscrire
+        </button>
+</form>
+
 
     </main>
     <footer></footer>
