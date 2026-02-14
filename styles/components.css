@@ -1,0 +1,90 @@
+/* MARK: - Buttons */
+.btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--secondary-font-color);
+    background-color: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    outline: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.btn-svg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-primary {
+    color: var(--primary-font-color);
+    border: 3px solid var(--tertiary-color);
+}
+.btn-primary:hover {
+    background: var(--tertiary-color);
+    color: var(--secondary-font-color);
+}
+
+.btn-inverse {
+    color: var(--secondary-font-color);
+    border: 3px solid var(--secondary-font-color);
+}
+.btn-inverse:hover {
+    color: var(--primary-font-color);
+    background: var(--primary-background-color);
+}
+
+/* MARK: - Forms */
+.form-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: var(--max-width-form);
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: var(--radius-hg);
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.form-card label, .form-card p { font-size: 0.9rem; }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+.form-group label { font-weight: bold; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+}
+main input, main select, main textarea {
+    border: 2px solid var(--tertiary-color);
+    border-radius: var(--radius-md);
+}
+main input:focus, main textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+main textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* MARK: - Daily special section (index page) */
+.special-dishe { width: calc(2*(100% - 2*80px) / 3); }
+.special-dishe-image {
+    position: relative;
+    width: calc((100% - 2*80px) / 3);
+}
+.special-dishe-image svg { color: var(--tertiary-color); }
+.special-dishe-image img { position: absolute; }
