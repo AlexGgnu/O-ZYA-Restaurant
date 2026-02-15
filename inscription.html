@@ -37,57 +37,54 @@
             </section>
         </header>
 
-    <main>
+    <main class="main">
+        <form class="form" method="post" action="">
+            <h1>Inscription</h1>
 
-    <form method="post" action="">
-        <h1>Inscription</h1>
+            <label for="nom">Nom</label>
+            <input class="input-style" type="text" id="nom" name="nom" maxlength="100" required>
 
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" maxlength="100" required>
+            <label for="prenom">Prénom</label>
+            <input class="input-style" type="text" id="prenom" name="prenom" maxlength="100" required>
 
-        <label for="prenom">Prénom</label>
-        <input type="text" id="prenom" name="prenom" maxlength="100" required>
+            <label for="email">E-mail</label>
+            <input class="input-style" type="email" id="email" name="email" maxlength="100" required>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" maxlength="100" required>
+            <label for="mdp">Mot de passe</label>
+            <input class="input-style" type="password" id="mdp" name="mdp" minlength="8" required>
 
-        <label for="mdp">Mot de passe</label>
-        <input type="password" id="mdp" name="mdp" minlength="8" required>
+            <label for="confirme-mdp">Confirmer mot de passe</label>
+            <input class="input-style" type="password" id="confirme-mdp" name="confirme-mdp" minlength="8" required>
 
-        <label for="confirme-mdp">Confirmer mot de passe</label>
-        <input type="password" id="confirme-mdp" name="confirme-mdp" minlength="8" required>
+            <label for="tel">Téléphone</label>
+            <input class="input-style" type="tel" id="tel" name="tel" pattern="[0-9]{10}" required>
 
-        <label for="tel">Téléphone</label>
-        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required>
+            <div class="genre">
+                <p>Genre :</p>
+                <label><input class="input-style" type="radio" name="genre" value="homme" required> Homme</label>
+                <label><input class="input-style" type="radio" name="genre" value="femme"> Femme</label>
+                <label><input class="input-style" type="radio" name="genre" value="autres"> Autres</label>
+            </div>
 
-        <div class="genre">
-            <p>Genre :</p>
-            <label><input type="radio" name="genre" value="homme" required> Homme</label>
-            <label><input type="radio" name="genre" value="femme"> Femme</label>
-            <label><input type="radio" name="genre" value="autres"> Autres</label>
-        </div>
+            <label for="date">Date de naissance</label>
+            <input class="input-style" type="date" id="date" name="date" required>
 
-        <label for="date">Date de naissance</label>
-        <input type="date" id="date" name="date" required>
+            <label for="code-postale">Code postal</label>
+            <input class="input-style" type="text" id="code-postale" name="code-postale" pattern="[0-9]{5}" required>
 
-        <label for="code-postale">Code postal</label>
-        <input type="text" id="code-postale" name="code-postale" maxlength="5">
+            <label for="ville">Ville</label>
+            <input class="input-style" type="text" id="ville" name="ville" required>
 
-        <label for="ville">Ville</label>
-        <input type="text" id="ville" name="ville" required>
+            <label for="nom-rue">Nom de rue</label>
+            <input class="input-style" type="text" id="nom-rue" name="nom-rue" required>
 
-        <label for="nom-rue">Nom de rue</label>
-        <input type="text" id="nom-rue" name="nom-rue" required>
+            <label for="numéro-rue">Numéro de rue</label>
+            <input class="input-style" type="number" id="numéro-rue" name="numéro-rue" min="1" required>
 
-        <label for="numéro-rue">Numéro de rue</label>
-        <input type="number" id="numéro-rue" name="numéro-rue" required>
-
-        <button type="submit" class="primary-button">
-            S'inscrire
-        </button>
-</form>
-
-
+            <button type="submit" class="primary-button">
+                S'inscrire
+            </button>
+        </form>
     </main>
     <footer></footer>
 </body>
