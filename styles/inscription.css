@@ -1,42 +1,12 @@
-
-main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    font-family: "Inter", sans-serif;
-    color: var(--primary-color);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-    max-width: 500px;
-    padding: 40px;
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-form h1 {
+.form h1 {
     text-align: center;
     color: var(--primary-color);
 }
 
-form label {
+.form label {
     font-size: 16px;
     font-weight: 600;
     color: var(--primary-color);
-}
-
-form input {
-    padding: 10px 14px;
-    font-size: 14px;
-    border: 2px solid var(--tertiary-color);
-    border-radius: 10px;
 }
 
 .genre p {
@@ -53,12 +23,7 @@ form input {
 }
 
 
-form button {
+.form button {
     align-self: center;
 }
 
-
-form input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
