@@ -98,8 +98,9 @@ header {
     align-items: center;
     gap: 32px;
 }
-.header__menu a { position: relative; }
-.header__menu a::after {
+.header__menu a, .footer__left > div a { position: relative; }
+.header__menu a::after,
+.footer__left > div a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -110,7 +111,8 @@ header {
     transition: all .3s ease-in-out;
 }
 .header__menu a#active__menu::after,
-.header__menu a:hover::after {
+.header__menu a:hover::after,
+.footer__left > div a:hover::after {
     opacity: 1;
     width: 100%
 }
@@ -134,6 +136,7 @@ header {
     height: 24px;
     color: var(--secondary-font-color);
 }
+.header__right > .primary-button span { font-weight: bold; }
 .header__right > .primary-button, .footer__right > .primary-button { border: 3px solid var(--secondary-font-color); }
 .header__right > .primary-button:hover, .footer__right > .primary-button:hover {
     color: var(--primary-font-color);
@@ -174,6 +177,7 @@ footer .footer__container {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 0 80px;
 }
 footer .footer__container .restaurant__identity {
     display: flex;
@@ -197,11 +201,19 @@ footer .footer__container button svg {
     height: 100%;
 }
 
-footer .footer__container .site__map > div {
+footer .footer__container .footer__left {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    gap: 80px;
 }
+footer .footer__container .footer__left > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+footer .footer__container .footer__left > div h3 { font-weight: 900; }
+footer .footer__container .footer__left > div ul { list-style: none; }
+footer .footer__container .footer__left > div a { color: var(--secondary-font-color); }
 footer > hr {
     border: 0;
     border-top: 1px solid var(--secondary-font-color);

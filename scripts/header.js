@@ -5,3 +5,6 @@ searchButton.addEventListener("click", () => {
     if(searchBar_class.contains("active")) searchBar_class.remove("active");
     else searchBar_class.add("active");
 })
+
+const topButton = document.getElementById("top__button");
+topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }))
