@@ -89,6 +89,8 @@ header {
     font-weight: bold;
 }
 
+.header__container a, .header__container a img { height: 100%; }
+
 .header__menu {
     display: flex;
     flex-direction: row;
@@ -132,8 +134,8 @@ header {
     height: 24px;
     color: var(--secondary-font-color);
 }
-.header__right > .primary-button { border: 3px solid var(--secondary-font-color); }
-.header__right > .primary-button:hover {
+.header__right > .primary-button, .footer__right > .primary-button { border: 3px solid var(--secondary-font-color); }
+.header__right > .primary-button:hover, .footer__right > .primary-button:hover {
     color: var(--primary-font-color);
     background-color: var(--primary-background-color);
 }
@@ -160,7 +162,7 @@ header {
 footer {
     display: inline-flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
     position: relative;
     padding: 14px 20px;
     width: 100%;
@@ -170,9 +172,31 @@ footer {
 footer .footer__container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 120px;
 }
+footer .footer__container .restaurant__identity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+footer .footer__container .restaurant__identity img { width: 200px; }
+footer .footer__container button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    height: 44px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--secondary-font-color);
+}
+footer .footer__container button svg {
+    width: auto;
+    height: 100%;
+}
+
 footer .footer__container .site__map > div {
     display: flex;
     flex-direction: row;
@@ -190,7 +214,7 @@ footer > .legacy {
     opacity: 0.5;
 }
 
-/* MARK: -input style */
+/* MARK: - input style */
 .input-style{
     padding: 10px 14px;
     font-size: 14px;
@@ -203,8 +227,8 @@ footer > .legacy {
     border-color: var(--primary-color);
 }
 
-/* MARK: -form style */
-.form{
+/* MARK: - form style */
+.form {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -216,7 +240,7 @@ footer > .legacy {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/*MARK: -main style */
+/*MARK: - main style */
 .main {
     display: flex;
     justify-content: center;
