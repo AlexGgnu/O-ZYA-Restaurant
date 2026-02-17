@@ -1,10 +1,6 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #eeeeee;
-  margin: 0;
-  color: #333;
-}
 
+
+/* MENU DU HAUT */
 .menu_haut {
   background: #ffffff;
   position: sticky;
@@ -39,6 +35,7 @@ body {
   color: #2563eb;
 }
 
+/* CONTENU */
 .contenu {
   width: 80%;
   margin: 30px auto;
@@ -48,12 +45,14 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* BLOC PRINCIPAL */
 .bloc {
   background: white;
   padding: 15px;
   border: 1px solid #ddd;
 }
 
+/* TABLEAU */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -70,6 +69,7 @@ td {
   border-top: 1px solid #ddd;
 }
 
+/* BOUTON */
 .bouton {
   background: #2563eb;
   color: white;
