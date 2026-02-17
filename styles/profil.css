@@ -1,62 +1,120 @@
-.profile-page {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  padding-top: 60px;
 }
 
-.profile-page h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
 }
 
-.profile-card {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-bottom: 30px;
+.topbar-container {
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.profile-card h2 {
-    margin-bottom: 20px;
-    color: #555;
-    font-size: 1.2rem;
+.logo {
+  margin: 0;
+  font-size: 22px;
 }
 
-.profile-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+.menu a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
 }
 
-.profile-row:last-child {
-    border-bottom: none;
+.menu a:hover {
+  color: #007bff;
 }
 
-.profile-row span:first-child {
-    font-weight: bold;
+.contenu {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
 }
 
-.edit {
-    cursor: pointer;
-    color: #007bff;
+.contenu h2 {
+  text-align: center;
+  margin-bottom: 25px;
 }
 
-.orders-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.bloc {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
-.orders-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+.bloc h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
 }
 
-.orders-list li:last-child {
-    border-bottom: none;
+.bloc p {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bloc p:last-child {
+  border-bottom: none;
+}
+
+.bouton {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.bouton:hover {
+  background: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f0f0f0;
+}
+
+tr:hover td {
+  background: #fafafa;
+}
+  table {
+    font-size: 14px;
+  }
 }
