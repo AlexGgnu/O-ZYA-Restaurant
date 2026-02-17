@@ -1,63 +1,75 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
-    <link rel="stylesheet" href="./styles/amdin.css">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="common.css">
 </head>
 <body>
 
-<nav>
-    <h1>Admin Panel ⚙️</h1>
-    <div>
-        <a href="index.html">Accueil</a>
-        <a href="admin.html">Admin</a>
+<nav class="menu_haut">
+    <div class="menu_contenu">
+        <h1>Administrateur</h1>
+        <div class="liens">
+            <a href="index.html">Accueil</a>
+        </div>
     </div>
 </nav>
 
-<div class="container">
+<div class="contenu">
+    <center>
+        <h2>Gestion des utilisateurs</h2>
+    </center>
 
-    <h2>Gestion des utilisateurs</h2>
-
-    <div class="card">
+    <div class="bloc">
+        <p class="texte_gris">Liste des utilisateurs enregistrés sur la plateforme</p>
 
         <table>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Commandes</th>
-                <th>Action</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Commandes</th>
+                    <th style="text-align:right;">Action</th>
+                </tr>
+            </thead>
 
-            <tr>
-                <td>1</td>
-                <td>Dupont</td>
-                <td>dupont@mail.com</td>
-                <td>5</td>
-                <td><button class="btn">Voir profil</button></td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dupont</td>
+                    <td>dupont@mail.com</td>
+                    <td>5</td>
+                    <td style="text-align:right;">
+                        <button class="bouton">Voir profil</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>2</td>
-                <td>Martin</td>
-                <td>martin@mail.com</td>
-                <td>2</td>
-                <td><button class="btn">Voir profil</button></td>
-            </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Martin</td>
+                    <td>martin@mail.com</td>
+                    <td>2</td>
+                    <td style="text-align:right;">
+                        <button class="bouton">Voir profil</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>3</td>
-                <td>Durand</td>
-                <td>durand@mail.com</td>
-                <td>0</td>
-                <td><button class="btn">Voir profil</button></td>
-            </tr>
-
+                <tr>
+                    <td>3</td>
+                    <td>Durand</td>
+                    <td>durand@mail.com</td>
+                    <td>0</td>
+                    <td style="text-align:right;">
+                        <button class="bouton">Voir profil</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-
     </div>
-
 </div>
 
 </body>
