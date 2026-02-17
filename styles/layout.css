@@ -1,8 +1,10 @@
 /* MARK: - Header Style */
 header {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     height: var(--header-height);
+    z-index: 10;
 }
 
 .header__container {
