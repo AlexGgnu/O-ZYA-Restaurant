@@ -1,4 +1,11 @@
-/* ADMIN CSS */
+/* BASE */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .menu_haut {
   background: #ffffff;
   position: sticky;
@@ -7,50 +14,47 @@
   padding: 15px;
   border-bottom: 1px solid #ccc;
 }
-/* MENU HAUT */
+
 .menu_haut h1 {
   margin: 0;
   font-size: 22px;
   display: inline;
 }
-/* LIENS */
+
 .liens {
   float: right;
 }
-/* LIENS */
+
 .liens a {
   text-decoration: none;
   color: #333;
   margin-left: 10px;
 }
-/* LIENS HOVER */
+
 .liens a:hover {
   text-decoration: underline;
 }
-/* LIENS ACTIF */
+
 .liens .current {
   font-weight: bold;
   color: #2563eb;
 }
 
-/* CONTENU */
 .contenu {
   width: 80%;
   margin: 30px auto;
 }
 
-h2 {
-  margin-bottom: 10px;
-}
+h2 { margin: 0 0 8px; }
+h3 { margin: 18px 0 10px; }
 
-/* BLOC PRINCIPAL */
 .bloc {
   background: white;
   padding: 15px;
   border: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
-/* TABLEAU */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -67,7 +71,8 @@ td {
   border-top: 1px solid #ddd;
 }
 
-/* BOUTON */
+
+
 .bouton {
   background: #2563eb;
   color: white;
@@ -79,4 +84,8 @@ td {
 .bouton:hover {
   background: #1d4ed8;
 }
->>>>>>> 42bb21d (version 2 : admin commande et profil (html et css))
+
+.bouton:disabled {
+  background: #9db5f3;
+  cursor: not-allowed;
+}
