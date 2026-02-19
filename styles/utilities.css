@@ -1,56 +1,54 @@
 /* Mark: - Margin & Padding */
+.m-0 { margin: 0; }
 .mb-24 { margin-bottom: 24px; }
 .ml-40 { margin-left: 40px; }
-.mv-80 { margin: 80px 0; }
+.mv-80 { margin-top: 80px; margin-bottom: 80px; }
+.p-0 { padding: 0; }
 .pt-100 { padding-top: 100px; }
-.pv-16 { padding: 16px 0; }
-.ph-40 { padding: 0 40px; }
-.ph-60 { padding: 0 80px; }
+.pv-16 { padding-top: 16px; padding-bottom: 16px; }
+.pv-20 { padding-top: 20px; padding-bottom: 20px; }
+.ph-40 { padding-right: 40px; padding-left: 40px; }
+.ph-60 { padding-right: 60px; padding-left: 60px; }
 
 /* Mark: - Text */
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .text-base { font-size: 1rem; }
-.text-lg { font-size: 1.25rem; }
-.text-xl { font-size: 1.5rem; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
 .font-600 { font-weight: 600; }
 .font-bold { font-weight: bold; }
 .text-primary { color: var(--primary-color); }
-.svg-24 {
-    width: 24px;
-    height: 24px;
-}
+.svg-24 { width: 24px; height: 24px; }
 
 /* Mark: - Flexbox */
 .flex { display: flex; }
-.flex-col {
-    display: flex;
-    flex-direction: column;
-}
-.flex-row {
-    display: flex;
-    flex-direction: row;
-}
-.flex-row-rev {
-    display: flex;
-    flex-direction: row-reverse;
-}
+.flex-1 { flex: 1; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-row-rev { display: flex; flex-direction: row-reverse; }
 .justify-between { justify-content: space-between; }
 .justify-center { justify-content: center; }
 .items-center { align-items: center; }
+.items-stretch { align-items: stretch; }
 .gap-4 { gap: 4px; }
 .gap-12 { gap: 12px; }
+.gap-14 { gap: 14px; }
 .gap-16 { gap: 16px; }
 .gap-20 { gap: 20px; }
 .gap-24 { gap: 24px; }
 .gap-32 { gap: 32px; }
+.gap-40 { gap: 40px; }
 .gap-80 { gap: 80px; }
 
 /* Mark: - Visibility */
 .hidden { display: none; }
 .w-full { width: 100%; }
+.max-w-full { max-width: 100%; }
 .h-full { height: 100%; }
 .h-full-screen { height: 100svh; }
+.min-h-0 { min-height: 0; }
 
 /* Mark: - Object */
 .object-contain { object-fit: contain; }

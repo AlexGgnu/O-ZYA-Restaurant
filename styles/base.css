@@ -5,10 +5,17 @@
     --primary-color: #0476D9;
     --secondary-color: #044BD9;
     --tertiary-color: #71A8D9;
+
     --primary-font-color: #0476D9;
     --secondary-font-color: #F2E5D5;
+
     --primary-background-color: #F2E5D5;
+    --secondary-background-color: #FFFFFF;
+
     --star-color: #DB9F36;
+    --separator-color: #DDDDDD;
+    --table-header-background-color: #F5F5F5;
+    --table-hover-background-color: #FAFAFA;
     
     /* Sizes */
     --header-height: 80px;
@@ -32,13 +39,7 @@ body {
     background-color: var(--primary-background-color);
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+a { text-decoration: none; color: inherit; }
 p { font-family: "Inter", sans-serif; }
 ul { list-style: none; }
-hr {
-    border: 0;
-    border-top: 1px solid var(--secondary-font-color);
-}
+hr { border: 0; border-top: 1px solid var(--separator-color); }
