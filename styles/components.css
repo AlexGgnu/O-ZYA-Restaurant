@@ -175,12 +175,17 @@ main textarea {
     bottom: 0;
     left: 0;
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--tertiary-color) transparent;
 }
 #order-history-container table th {
     position: sticky;
     top: 0;
     z-index: 1;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.scrollbar-primary {
+    scrollbar-width: thin;
+    -webkit-scrollbar-width: thin;
+    scrollbar-color: var(--tertiary-color) transparent;
+    -webkit-scrollbar-color: var(--tertiary-color) transparent;
 }
