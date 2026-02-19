@@ -46,6 +46,8 @@ p {
     display: none;
 }
 
+
+
 .primary-button {
     display: inline-flex;
     align-items: center;
@@ -179,13 +181,7 @@ footer .footer__container {
     align-items: center;
     padding: 0 80px;
 }
-footer .footer__container .restaurant__identity {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-}
-footer .footer__container .restaurant__identity img { width: 200px; }
+footer .footer__container .restaurant__identity img { width: 200px; } */
 footer .footer__container button {
     display: flex;
     flex-direction: row;
@@ -227,14 +223,14 @@ footer > .legacy {
 }
 
 /* MARK: - input style */
-.input-style{
+.input-style {
     padding: 10px 14px;
     font-size: 14px;
     border: 2px solid var(--tertiary-color);
     border-radius: 10px;
 }
 
-.input-style:focus{
+.input-style:focus {
     outline: none;
     border-color: var(--primary-color);
 }
