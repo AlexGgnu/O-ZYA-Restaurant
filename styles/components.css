@@ -40,17 +40,52 @@
 }
 
 /* MARK: - Cards */
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
+.cards__wrapper {
+    position: relative;
     width: 100%;
-    border: 1px solid #eee;
+    overflow: hidden;
 }
-.card h2, .card h3 {
-    margin-bottom: 15px;
+.cards__wrapper::after,
+.cards__wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: calc(100% - 8px); /* NOTE: 8px <=> scrollbar-width: thin; */
+    width: 40px;
+}
+.cards__wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--primary-background-color), transparent);
+}
+.cards__wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--primary-background-color), transparent);
+}
+.cards__track {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 24px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tertiary-color) transparent;
+}
+.dishe__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 280px;
+    max-width: 280px;
+    height: 400px;
+    padding: 24px;
+    background: white;
+    border-radius: var(--radius-hg);
+    box-shadow: 0 4px 15px rgba(0, 0 , 0, 0.05);
+}
+.dishe__card h3 {
     color: var(--primary-color);
 }
 
@@ -95,12 +130,6 @@ main textarea {
     resize: vertical;
     min-height: 100px;
 }
-
-/* --- 4. TABLES (Pour Admin et Profil) --- */
-.table-wrapper { overflow-x: auto; width: 100%; }
-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
-th { color: var(--primary-color); font-weight: bold; }
 
 /* MARK: - Stars (index & notation pages) */
 .rating-stars {

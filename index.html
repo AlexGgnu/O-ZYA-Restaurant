@@ -41,7 +41,7 @@
         </header>
 
         <main class="gap-20">
-            <section class="w-full flex-row items-center gap-80 pt-100">
+            <section class="w-full flex-row items-center gap-80 mv-80 ph-40">
                 <div class="special-dishe flex-col gap-24">
                     <h1>Voyage du jour</h1>
                     <div>
@@ -58,24 +58,31 @@
             </section>
 
             <section id="signature-dishes" class="w-full">
-                <h1>Ils font notre succès</h1>
-                <div class="dishes__container flex-row gap-20 justify-between">
-                    <div class="card">
-                        <h3>Burger Paris</h3>
-                        <p>Le classique indémodable.</p>
-                        <button class="btn btn-primary">12€</button>
-                    </div>
-                    <div class="card">
-                        <h3>Burger Dakar</h3>
-                        <p>Une explosion de saveurs.</p>
-                        <button class="btn btn-primary">15€</button>
+                <h1 class="mb-24 ml-40">Ils font notre succès</h1>
+                <div class="cards__wrapper">
+                    <div class="cards__track flex-row gap-24 ph-40">
+                        <!-- NOTE: Script for debug -->
+                        <script>
+                            for(let i = 0; i < 10; i++) {
+                                const card = document.createElement('div');
+                                card.classList.add('dishe__card');
+                                card.innerHTML = `
+                                    <h3>Burger Paris</h3>
+                                    <img class="w-full object-contain object-center filter-drop-shadow" src="./images/__test__/burger.png" alt="Burger">
+                                    <p>Le classique indémodable.</p>
+                                    <button class="btn btn-primary">JE COMMANDE • ${12 + 3*i}€</button>
+                                `;
+
+                                document.querySelector('.cards__track').appendChild(card);
+                            }
+                        </script>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <section class="flex-row justify-between items-center ph-60">
+            <section class="flex-row justify-between items-center ph-80">
                 <div class="flex-col justify-center items-center gap-24 pv-16">
                     <a href="./index.html" style="width: 200px;">
                         <img class="w-full" src="./images/icons/logo.png" alt="Restaurant Logo" />

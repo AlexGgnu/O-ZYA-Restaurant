@@ -1,6 +1,10 @@
 /* Mark: - Margin & Padding */
+.mb-24 { margin-bottom: 24px; }
+.ml-40 { margin-left: 40px; }
+.mv-80 { margin: 80px 0; }
 .pt-100 { padding-top: 100px; }
 .pv-16 { padding: 16px 0; }
+.ph-40 { padding: 0 40px; }
 .ph-60 { padding: 0 80px; }
 
 /* Mark: - Text */
