@@ -68,9 +68,6 @@
     gap: 24px;
     max-width: 100%;
     overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: var(--tertiary-color) transparent;
 }
 .dishe__card {
     display: flex;
@@ -162,13 +159,13 @@ main textarea {
 .special-dishe-image svg { color: var(--tertiary-color); }
 .special-dishe-image img { position: absolute; }
 
-/* MARK: - Order History Table Wrapper */
-#order-history-wrapper {
+/* MARK: - Scrollable container */
+.scrollable-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
 }
-#order-history-container {
+.scrollable-container {
     position: absolute;
     top: 0;
     right: 0;
@@ -176,16 +173,9 @@ main textarea {
     left: 0;
     overflow-y: auto;
 }
-#order-history-container table th {
+.scrollable-container table th {
     position: sticky;
     top: 0;
     z-index: 1;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-}
-
-.scrollbar-primary {
-    scrollbar-width: thin;
-    -webkit-scrollbar-width: thin;
-    scrollbar-color: var(--tertiary-color) transparent;
-    -webkit-scrollbar-color: var(--tertiary-color) transparent;
 }

@@ -29,6 +29,10 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Playpen Sans", cursive;
+    scrollbar-width: thin;
+    -webkit-scrollbar-width: thin;
+    scrollbar-color: var(--tertiary-color) transparent;
+    -webkit-scrollbar-color: var(--tertiary-color) transparent;
 }
 
 body {

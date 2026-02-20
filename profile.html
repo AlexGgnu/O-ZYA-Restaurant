@@ -19,7 +19,7 @@
                 </a>
                 <div class="header__menu flex-row justify-between items-center gap-32">
                     <a href="./index.html">Accueil</a>
-                    <a href="./products.html">Nos produits</a>
+                    <a href="./products.html">La carte</a>
                 </div>
                 <div class="header__right flex-row items-center gap-24">
                     <a class="btn btn-primary" href="./index.html">
@@ -118,14 +118,15 @@
                     <div class="form-card h-full gap-24 max-w-full m-0">
                         <h2 class="text-primary font-600">Historique des commandes</h2>
 
-                        <div id="order-history-wrapper">
-                            <div id="order-history-container" class="scrollbar-primary">
+                        <div class="scrollable-wrapper">
+                            <div class="scrollable-container">
                                 <table class="w-full text-sm">
                                     <thead>
                                         <tr>
                                             <th>Date</th>
-                                            <th>Commande</th>
-                                            <th>Prix</th>
+                                            <th>ID Commande</th>
+                                            <th>Detail</th>
+                                            <th>Total</th>
                                             <th>Statut</th>
                                         </tr>
                                     </thead>
@@ -136,6 +137,7 @@
                                                 document.write(`
                                                     <tr>
                                                         <td>28/01/2025</td>
+                                                        <td>#XXXXXXX</td>
                                                         <td>Burger Karachi</td>
                                                         <td>14€</td>
                                                         <td>Livrée</td>
@@ -171,12 +173,12 @@
                         <div>
                             <ul>
                                 <li><a href="./index.html">Accueil</a></li>
-                                <li><a href="./products.html">Nos produits</a></li>
+                                <li><a href="./products.html">La carte</a></li>
                                 <li><a href="./connection.html">Connexion</a></li>
                                 <li><a href="./registration.html">Inscription</a></li>
                                 <!-- NOTE: Debug buttons -->
                                 <li><a href="./profile.html">Profil</a></li>
-                                <li><a href="./admin.html">Administrateur</a></li>
+                                <li><a href="./administrator.html">Administrateur</a></li>
                                 <li><a href="./commander.html">Commandes</a></li>
                                 <li><a href="./delivery.html">Livraisons</a></li>
                             </ul>
