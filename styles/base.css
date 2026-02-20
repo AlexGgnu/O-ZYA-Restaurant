@@ -16,7 +16,7 @@
     --separator-color: #DDDDDD;
     --table-header-background-color: #F5F5F5;
     --table-hover-background-color: #FAFAFA;
-    
+
     --star-color: #DB9F36;
     --preparing-status-color: #F6CF71;
     --delivery-status-color: #66C5CC;
@@ -55,3 +55,9 @@ p { font-family: "Inter", sans-serif; }
 ul { list-style: none; }
 hr { border: 0; border-top: 1px solid var(--separator-color); }
 button[disabled] { pointer-events: none; cursor: default; }
+
+/* MARK: - Animations */
+@keyframes spin {
+    from { transform: translateX(33.33%) rotate(0deg); }
+    to { transform: translateX(33.33%) rotate(360deg); }
+}
