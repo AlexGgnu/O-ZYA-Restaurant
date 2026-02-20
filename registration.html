@@ -26,21 +26,37 @@
         <main class="justify-center">
             <form class="form-card" method="post" action="">
                 <h1 class="text-center text-primary">Inscription</h1>
+                
+                <div class="form-group flex-row justify-between">
+                    <label>Genre</label>
+                    <div class="flex-row-rev gap-4">
+                        <label for="men-gender">Homme</label>
+                        <input type="radio" id="men-gender" name="gender" value="homme" required>
+                    </div>
+                    <div class="flex-row-rev gap-4">
+                        <label for="women-gender">Femme</label>
+                        <input type="radio" id="women-gender" name="gender" value="femme" required>
+                    </div>
+                    <div class="flex-row-rev gap-4">
+                        <label for="other-gender">Autre</label>
+                        <input type="radio" id="other-gender" name="gender" value="autre" required>
+                    </div>
+                </div>
 
                 <div class="flex-row gap-20">
                     <div class="form-group">
                         <label for="nom">Nom</label>
-                        <input type="text" id="nom" name="nom" required placeholder="Tom">
+                        <input type="text" id="nom" name="nom" placeholder="Tom" required>
                     </div>
                     <div class="form-group">
                         <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" name="prenom" required placeholder="Nook">
+                        <input type="text" id="prenom" name="prenom" placeholder="Nook" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required placeholder="exemple@mail.com">
+                    <input type="email" id="email" name="email" placeholder="exemple@mail.com" required>
                 </div>
 
                 <div class="flex flex-row gap-20">
@@ -53,21 +69,15 @@
                         <input type="password" id="confirme-pwd" name="confirme-pwd" minlength="8" required>
                     </div>
                 </div>
-
-                <div class="form-group flex-row gap-20">
-                    <label>Genre :</label>
-                    <div class="flex-row-rev gap-4">
-                        <label for="men-gender">Homme</label>
-                        <input type="radio" id="men-gender" name="gender" value="homme">
-                    </div>
-                    <div class="flex-row-rev gap-4">
-                        <label for="women-gender">Femme</label>
-                        <input type="radio" id="women-gender" name="gender" value="femme">
-                    </div>
-                    <div class="flex-row-rev gap-4">
-                        <label for="other-gender">Autre</label>
-                        <input type="radio" id="other-gender" name="gender" value="femme">
-                    </div>
+                
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" minlength="10" maxlength="14" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required-field" for="address">Adresse</label>
+                    <input type="text" id="address" name="address" placeholder="123 Rue de la Paix" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">S'inscrire</button>

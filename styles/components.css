@@ -126,9 +126,14 @@
     gap: 16px;
 }
 
-.form-group label, .form-group-line label {
+.form-group > label, .form-group-line > label {
     min-width: max-content;
     font-weight: bold;
+}
+.form-group:has(input:required) > label::after, .form-group-line:has(input:required) > label::after {
+    content: '*';
+    color: #BF0000;
+    font-size: 1rem;
 }
 
 input, select, textarea {
