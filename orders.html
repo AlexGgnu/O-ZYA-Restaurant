@@ -8,9 +8,6 @@
 
         <link rel="icon" type="image/x-icon" href="./images/icons/favicon.ico">
         <link rel="stylesheet" href="./styles/main.css">
-        
-    <!-- <link rel="stylesheet" href="./styles/common.css"> -->
-    <link rel="stylesheet" href="./styles/commander.css">
 
         <script src="./scripts/common.js" defer></script>
     </head>
@@ -58,12 +55,14 @@
                                         document.write(`
                                             <tr>
                                                 <td>#XXXXXXX</td>
-                                                <td>Burger Karachi</td>
+                                                <td>John Doe</td>
                                                 <td>123 Rue Exemple, Paris</td>
                                                 <td>Burger Karachi</td>
                                                 <td>14€</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary" ${i%3===0 ? 'disabled' : ''}></button>
+                                                    <button class="btn btn-status" data-status="${i%3 === 0 ? 'preparing' : i%5 === 0 ? 'delivery' : 'finished'}" disabled>
+                                                        ${i%3 === 0 ? 'En cours de préparation' : i%5 === 0 ? 'En cours de livraison' : 'Livrée'}
+                                                    </button>
                                                 </td>
                                             </tr>
                                         `);

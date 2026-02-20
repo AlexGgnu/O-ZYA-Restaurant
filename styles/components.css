@@ -39,6 +39,17 @@
     background: var(--primary-background-color);
 }
 
+.btn-status {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: var(--tertiary-font-color);
+    background-color: var(--status-color);
+    border-radius: var(--radius-xs);
+}
+.btn-status[data-status="preparing"] { --status-color: var(--preparing-status-color); }
+.btn-status[data-status="delivery"] { --status-color: var(--delivery-status-color); }
+.btn-status[data-status="finished"] { --status-color: var(--finished-status-color); }
+
 /* MARK: - Cards */
 .cards__wrapper {
     position: relative;
