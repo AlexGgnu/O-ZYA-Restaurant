@@ -39,6 +39,17 @@
     background: var(--primary-background-color);
 }
 
+.btn-secondary {
+    padding: 0;
+    font-size: 1.3rem;
+    font-family: "inter", sans-serif;
+    text-transform: uppercase;
+    color: var(--tertiary-font-color);
+    border: none;
+    opacity: 0.5;
+}
+.btn-secondary.active, .btn-secondary:hover { opacity: 1; }
+
 .btn-status {
     font-size: 0.8rem;
     font-weight: normal;

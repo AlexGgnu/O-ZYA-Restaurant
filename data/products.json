@@ -79,6 +79,86 @@
                     "isSuccessed": false
                 }
             ]
+        },
+        "Londres": {
+            "dishes": [
+                {
+                    "id": 1,
+                    "name": "Product A",
+                    "image": "./assets/products/burger.png",
+                    "price": 19.99,
+                    "description": "A high-quality product that meets your needs.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 2,
+                    "name": "Product B",
+                    "image": "./assets/products/burger.png",
+                    "price": 29.99,
+                    "description": "An excellent choice for those looking for value.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 3,
+                    "name": "Product C",
+                    "image": "./assets/products/burger.png",
+                    "price": 39.99,
+                    "description": "A premium product for discerning customers.",
+                    "isSuccessed": false
+                }
+            ],
+            "drinks": [
+                {
+                    "id": 1,
+                    "name": "Drink A",
+                    "image": "./assets/products/burger.png",
+                    "price": 4.99,
+                    "description": "A refreshing beverage to complement your meal.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 2,
+                    "name": "Drink B",
+                    "image": "./assets/products/burger.png",
+                    "price": 5.99,
+                    "description": "A delicious drink that pairs well with our dishes.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 3,
+                    "name": "Drink C",
+                    "image": "./assets/products/burger.png",
+                    "price": 6.99,
+                    "description": "A premium drink for a special occasion.",
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": 1,
+                    "name": "Dessert A",
+                    "image": "./assets/products/burger.png",
+                    "price": 7.99,
+                    "description": "A sweet treat to end your meal on a high note.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 2,
+                    "name": "Dessert B",
+                    "image": "./assets/products/burger.png",
+                    "price": 8.99,
+                    "description": "A decadent dessert for those with a sweet tooth.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 3,
+                    "name": "Dessert C",
+                    "image": "./assets/products/burger.png",
+                    "price": 9.99,
+                    "description": "A luxurious dessert for a special indulgence.",
+                    "isSuccessed": false
+                }
+            ]
         }
     }
 }

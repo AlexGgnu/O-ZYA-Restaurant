@@ -1,3 +1,5 @@
+let allProductsData = null;
+
 function createCountrySection(country) {
     const countrySection = document.createElement('section');
     countrySection.classList.add('w-full');
@@ -20,48 +22,76 @@ function createCard(product) {
     card.innerHTML = `
         <h3>${product.name}</h3>
         <img class="w-full object-contain object-center filter-drop-shadow" src="${product.image}" alt="${product.name}">
-        <p>${product.description}</p>
+        <p class="text-sm text-center">${product.description}</p>
         <button class="btn btn-primary">JE COMMANDE • ${product.price}€</button>
     `;
 
     return card;
 }
 
-async function displayingProducts() {
+function renderCategory(productsCategory) {
     const productsCard = document.getElementById("products__card");
-    const successedDishes = document.getElementById('successed__dishes');
+    if (!productsCard) return;
 
-    fetch("./data/products.json")
-        .then(response => response.json())
-        .then(data => {
-            if(successedDishes) {
-                const cardsTrack = successedDishes.querySelector('.cards__track');
-                const allProducts = Object.values(data.products).flatMap(country => Object.values(country).flat()).flat();
-                const successedProducts = allProducts.filter(product => product.isSuccessed === true);
+    productsCard.innerHTML = '';
 
-                successedProducts.forEach(product => {
-                    const card = createCard(product);
-                    cardsTrack.appendChild(card);
-                });
-            }
-            else if(productsCard) {
-                for (const country in data.products) {
-                    const countrySection = createCountrySection(country);
-                    const cardsTrack = countrySection.querySelector('.cards__track');
-                    
-                    productsCard.appendChild(countrySection);
+    for (const country in allProductsData.products) {
+        const selectedProducts = allProductsData.products[country][productsCategory];
 
-                    for (const category in data.products[country]) {
-                        data.products[country][category].forEach(product => {
-                            const card = createCard(product);
-                            cardsTrack.appendChild(card);
-                        });
-                    }
+        if (selectedProducts && selectedProducts.length > 0) {
+            const countrySection = createCountrySection(country);
+            const cardsTrack = countrySection.querySelector('.cards__track');
 
-                    productsCard.appendChild(cardsTrack);
-                }
-            }
-        });
+            selectedProducts.forEach(product => {
+                const card = createCard(product);
+                cardsTrack.appendChild(card);
+            });
+
+            productsCard.appendChild(countrySection);
+        }
+    }
 }
 
-displayingProducts();
+function setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter__button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (element) => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            const clickedBtn = element.currentTarget;
+            const clickedBtnAttr = clickedBtn.getAttribute('data-products-category');
+
+            clickedBtn.classList.add('active');
+            if (clickedBtnAttr) renderCategory(clickedBtnAttr);
+        });
+    });
+}
+
+async function initProducts() {
+    const successedDishes = document.getElementById('successed__dishes');
+    const productsCard = document.getElementById("products__card");
+
+    try {
+        const response = await fetch("./data/products.json");
+        allProductsData = await response.json();
+
+        if (successedDishes) {
+            const cardsTrack = successedDishes.querySelector('.cards__track');
+            const allProducts = Object.values(allProductsData.products).flatMap(country => Object.values(country).flat()).flat();
+            const successedProducts = allProducts.filter(product => product.isSuccessed === true);
+
+            successedProducts.forEach(product => {
+                const card = createCard(product);
+                cardsTrack.appendChild(card);
+            });
+        } else if (productsCard) {
+            renderCategory('dishes');
+            setupFilters();
+        }
+    } catch (error) {
+        console.error("[ERROR] - Products data loading: ", error);
+    }
+}
+
+initProducts();
