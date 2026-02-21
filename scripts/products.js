@@ -15,10 +15,11 @@ function createCountrySection(country) {
 
     return countrySection;
 }
-function createOrderButton(price) {
+function createOrderButton(id, price) {
     const button = document.createElement('button');
     button.classList.add('btn', 'btn-primary');
     button.textContent = `JE COMMANDE • ${price}€`;
+    button.setAttribute('data-product-id', id);
 
     return button;
 }
@@ -27,9 +28,9 @@ function createCard(product) {
     card.classList.add('dish__card');
     card.innerHTML = `
         <h3>${product.name}</h3>
-        <img class="w-full object-contain object-center filter-drop-shadow" src="${product.image}" alt="${product.name}">
+        <img class="w-full min-h-0 object-contain object-center filter-drop-shadow" src="${product.image}" alt="${product.name}">
         <p class="text-sm text-center">${product.shortDescription}</p>
-        ${createOrderButton(product.price).outerHTML}
+        ${createOrderButton(product.id, product.price).outerHTML}
     `;
 
     return card;
@@ -112,7 +113,7 @@ async function initProducts() {
             const specialDish = allProducts.find(product => product.isSpecialDish);
 
             specialDishDetails.appendChild(createSpecialDishDetails(specialDish));
-            specialDishDetails.appendChild(createOrderButton(specialDish.price));
+            specialDishDetails.appendChild(createOrderButton(specialDish.id, specialDish.price));
             specialDishImage.appendChild(createSpecialDishImage(specialDish));
         }
         

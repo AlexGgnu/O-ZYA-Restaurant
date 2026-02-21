@@ -1,196 +1,758 @@
 {
     "products": {
-        "France": {
+        "Espagne": {
             "dishes": [
                 {
-                    "id": 1,
-                    "name": "Product A",
-                    "image": "./assets/products/burger.png",
-                    "price": 19.99,
-                    "shortDescription": "A high-quality product that meets your needs.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "ES_DI_01",
+                    "name": "Paella Royale",
+                    "image": "./assets/products/es/paella.png",
+                    "price": 22.50,
+                    "shortDescription": "L'icône de la gastronomie ibérique, riche et colorée.",
+                    "longDescription": "Un riz safrané cuit dans son grand plat rond, infusé des sucs de gambas, calamars, moules, morceaux de poulet et de chorizo piquant.",
                     "isSpecialDish": false,
-                    "isSuccessed": true
-                },
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [
                 {
-                    "id": 2,
-                    "name": "Product B",
-                    "image": "./assets/products/burger.png",
-                    "price": 29.99,
-                    "shortDescription": "An excellent choice for those looking for value.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
-                    "isSpecialDish": false,
-                    "isSuccessed": true
-                },
-                {
-                    "id": 3,
-                    "name": "Product C",
-                    "image": "./assets/products/burger.png",
-                    "price": 39.99,
-                    "shortDescription": "A premium product for discerning customers.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "ES_SI_01",
+                    "name": "Patatas Bravas",
+                    "image": "./assets/products/es/patatas_bravas.png",
+                    "price": 6.90,
+                    "shortDescription": "La reine des tapas : cubes de pommes de terre frits et sauce piquante.",
+                    "longDescription": "De gros dés de pommes de terre croustillants à l'extérieur et moelleux à l'intérieur, nappés d'une sauce bravas relevée au piment doux et paprika fumé.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
             "drinks": [
                 {
-                    "id": 1,
-                    "name": "Drink A",
-                    "image": "./assets/products/burger.png",
-                    "price": 4.99,
-                    "shortDescription": "A refreshing beverage to complement your meal.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "ES_DR_01",
+                    "name": "Gin Tonic Copa",
+                    "image": "./assets/products/es/gin_tonic.png",
+                    "price": 9.50,
+                    "shortDescription": "L'incontournable rafraîchissant servi dans les règles de l'art.",
+                    "longDescription": "Un gin botanique premium allongé d'un tonic artisanal très frais. Servi à l'espagnole dans un grand verre ballon avec baies de genièvre et zeste d'agrumes.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
-                    "id": 2,
-                    "name": "Drink B",
-                    "image": "./assets/products/burger.png",
-                    "price": 5.99,
-                    "shortDescription": "A delicious drink that pairs well with our dishes.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
-                    "isSpecialDish": false,
-                    "isSuccessed": false
-                },
-                {
-                    "id": 3,
-                    "name": "Drink C",
-                    "image": "./assets/products/burger.png",
-                    "price": 6.99,
-                    "shortDescription": "A premium drink for a special occasion.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "ES_DR_02",
+                    "name": "Sangria Zéro (Sans Alcool)",
+                    "image": "./assets/products/es/sangria.png",
+                    "price": 6.50,
+                    "shortDescription": "Un mocktail fruité aux airs de fêtes espagnoles.",
+                    "longDescription": "Une macération de fruits de saison dans un mélange de jus de raisin rouge et d'épices douces, rafraîchissante et conviviale.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
             "desserts": [
                 {
-                    "id": 1,
-                    "name": "Dessert A",
-                    "image": "./assets/products/burger.png",
-                    "price": 7.99,
-                    "shortDescription": "A sweet treat to end your meal on a high note.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "ES_DE_01",
+                    "name": "Crème Catalane",
+                    "image": "./assets/products/es/creme_catalane.png",
+                    "price": 7.50,
+                    "shortDescription": "Le dessert du soleil, infusé d'agrumes et de cannelle.",
+                    "longDescription": "Une onctueuse crème aux œufs parfumée aux zestes d'orange et à la cannelle, recouverte d'une fine couche de sucre brûlé.",
                     "isSpecialDish": false,
-                    "isSuccessed": true
-                },
-                {
-                    "id": 2,
-                    "name": "Dessert B",
-                    "image": "./assets/products/burger.png",
-                    "price": 8.99,
-                    "shortDescription": "A decadent dessert for those with a sweet tooth.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
-                    "isSpecialDish": false,
-                    "isSuccessed": false
-                },
-                {
-                    "id": 3,
-                    "name": "Dessert C",
-                    "image": "./assets/products/burger.png",
-                    "price": 9.99,
-                    "shortDescription": "A luxurious dessert for a special indulgence.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
-                    "isSpecialDish": true,
                     "isSuccessed": false
                 }
             ]
         },
-        "Londres": {
+        "Etats-Unis": {
             "dishes": [
                 {
-                    "id": 1,
-                    "name": "Product A",
-                    "image": "./assets/products/burger.png",
-                    "price": 19.99,
-                    "shortDescription": "A high-quality product that meets your needs.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DI_01",
+                    "name": "Smash Burger New York",
+                    "image": "./assets/products/us/smash_burger.png",
+                    "price": 16.90,
+                    "shortDescription": "La révolution du burger avec un steak caramélisé à l'extrême.",
+                    "longDescription": "Deux steaks écrasés sur une plaque brûlante pour une croûte croustillante, double cheddar fondu, pickles et sauce secrète.",
                     "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
-                    "id": 2,
-                    "name": "Product B",
-                    "image": "./assets/products/burger.png",
-                    "price": 29.99,
-                    "shortDescription": "An excellent choice for those looking for value.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DI_02",
+                    "name": "BBQ Burger Texas",
+                    "image": "./assets/products/us/bbq_burger.png",
+                    "price": 18.90,
+                    "shortDescription": "Des saveurs fumées intenses dignes du grand Sud américain.",
+                    "longDescription": "Généreux steak de bœuf, bacon croustillant, onion rings intégrés, cheddar affiné et notre sauce barbecue fumée.",
                     "isSpecialDish": false,
-                    "isSuccessed": true
+                    "isSuccessed": false
                 },
                 {
-                    "id": 3,
-                    "name": "Product C",
-                    "image": "./assets/products/burger.png",
-                    "price": 39.99,
-                    "shortDescription": "A premium product for discerning customers.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DI_03",
+                    "name": "Hot Dog Chicago",
+                    "image": "./assets/products/us/hot_dog.png",
+                    "price": 12.50,
+                    "shortDescription": "L'icône de la street-food de Chicago, richement garni.",
+                    "longDescription": "Saucisse pur bœuf dans un pain brioché aux graines de pavot, garnie de moutarde jaune, d'oignons hachés, et relish.",
+                    "isSpecialDish": true,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_DI_04",
+                    "name": "Fried Chicken Kentucky",
+                    "image": "./assets/products/us/fried_chicken.png",
+                    "price": 17.00,
+                    "shortDescription": "Morceaux de poulet marinés et frits à la perfection.",
+                    "longDescription": "Un poulet juteux à l'intérieur et ultra-croustillant à l'extérieur, pané avec un mélange secret d'herbes et épices.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_DI_05",
+                    "name": "Mac & Cheese Classic",
+                    "image": "./assets/products/us/mac_cheese.png",
+                    "price": 14.00,
+                    "shortDescription": "Le plat réconfortant américain suprême.",
+                    "longDescription": "Macaronis enrobés d'une sauce crémeuse aux trois fromages, gratinés au four avec une fine chapelure.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_DI_06",
+                    "name": "Ribs Tennessee",
+                    "image": "./assets/products/us/ribs.png",
+                    "price": 22.90,
+                    "shortDescription": "Travers de porc confits et laqués, la viande qui se détache de l'os.",
+                    "longDescription": "Cuits à basse température, ces travers de porc sont badigeonnés d'une sauce BBQ au whisky du Tennessee.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [
+                {
+                    "id": "US_SI_01",
+                    "name": "Onion Rings",
+                    "image": "./assets/products/us/onion_rings.png",
+                    "price": 6.50,
+                    "shortDescription": "Rondelles d'oignons doux dans une panure à la bière.",
+                    "longDescription": "De gros anneaux d'oignons frais, trempés dans une pâte légère et frits jusqu'à obtenir une texture dorée.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_SI_02",
+                    "name": "Nuggets",
+                    "image": "./assets/products/us/nuggets.png",
+                    "price": 7.00,
+                    "shortDescription": "Filets de poulet tendre, panure dorée et croustillante.",
+                    "longDescription": "Fait à partir de véritables blancs de poulet, enrobés d'une chapelure savoureuse.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_SI_03",
+                    "name": "Salade César",
+                    "image": "./assets/products/us/cesar.png",
+                    "price": 8.50,
+                    "shortDescription": "Fraîcheur, croquant et sauce crémeuse authentique.",
+                    "longDescription": "Cœurs de laitue romaine, croûtons à l'ail, copeaux de parmesan affiné et sauce César maison.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
             "drinks": [
                 {
-                    "id": 1,
-                    "name": "Drink A",
-                    "image": "./assets/products/burger.png",
-                    "price": 4.99,
-                    "shortDescription": "A refreshing beverage to complement your meal.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DR_01",
+                    "name": "Cola Americano",
+                    "image": "./assets/products/us/cola.png",
+                    "price": 3.90,
+                    "shortDescription": "Le soda mythique, rafraîchissant et pétillant.",
+                    "longDescription": "Servi très frais avec beaucoup de glaçons, la boisson indispensable pour accompagner votre burger.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
-                    "id": 2,
-                    "name": "Drink B",
-                    "image": "./assets/products/burger.png",
-                    "price": 5.99,
-                    "shortDescription": "A delicious drink that pairs well with our dishes.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DR_02",
+                    "name": "Milkshake Vanille",
+                    "image": "./assets/products/us/milkshake.png",
+                    "price": 6.90,
+                    "shortDescription": "Gourmand, épais et couronné de crème fouettée.",
+                    "longDescription": "Un mélange onctueux de glace à la vanille bourbon et de lait frais, mixé à la perfection.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
-                    "id": 3,
-                    "name": "Drink C",
-                    "image": "./assets/products/burger.png",
-                    "price": 6.99,
-                    "shortDescription": "A premium drink for a special occasion.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DR_03",
+                    "name": "Iced Tea Pêche",
+                    "image": "./assets/products/us/iced_tea.png",
+                    "price": 4.50,
+                    "shortDescription": "Thé glacé doux et fruité, désaltérant à souhait.",
+                    "longDescription": "Infusion de thé noir relevée par la douceur de la pêche, servie très fraîche.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
             "desserts": [
                 {
-                    "id": 1,
-                    "name": "Dessert A",
-                    "image": "./assets/products/burger.png",
-                    "price": 7.99,
-                    "shortDescription": "A sweet treat to end your meal on a high note.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DE_01",
+                    "name": "Cheesecake New York",
+                    "image": "./assets/products/us/cheesecake.png",
+                    "price": 8.50,
+                    "shortDescription": "Crémeux, riche, avec une base biscuitée au beurre.",
+                    "longDescription": "Un appareil dense et soyeux au cream cheese sur un fond de sablé Graham croustillant.",
                     "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
-                    "id": 2,
-                    "name": "Dessert B",
-                    "image": "./assets/products/burger.png",
-                    "price": 8.99,
-                    "shortDescription": "A decadent dessert for those with a sweet tooth.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DE_02",
+                    "name": "Brownie au Chocolat",
+                    "image": "./assets/products/us/brownie.png",
+                    "price": 7.50,
+                    "shortDescription": "Fondant à cœur, généreux en chocolat et éclats de noix.",
+                    "longDescription": "Un gâteau dense et terriblement chocolaté, servi tiède pour un cœur coulant.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
-                    "id": 3,
-                    "name": "Dessert C",
-                    "image": "./assets/products/burger.png",
-                    "price": 9.99,
-                    "shortDescription": "A luxurious dessert for a special indulgence.",
-                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "id": "US_DE_03",
+                    "name": "Donuts Glacés",
+                    "image": "./assets/products/us/donuts.png",
+                    "price": 6.00,
+                    "shortDescription": "Fun, coloré, moelleux et terriblement sucré.",
+                    "longDescription": "Un assortiment de deux beignets aériens recouverts d'un glaçage fondant et de vermicelles.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ]
+        },
+        "France": {
+            "dishes": [
+                {
+                    "id": "FR_DI_01",
+                    "name": "Steak Frites Paris",
+                    "image": "./assets/products/fr/steak_frites.png",
+                    "price": 24.90,
+                    "shortDescription": "L'incontournable des brasseries parisiennes, tendre et savoureux.",
+                    "longDescription": "Une belle pièce de bœuf sélectionnée pour sa tendreté, saisie à la perfection et accompagnée d'une sauce onctueuse au poivre.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DI_02",
+                    "name": "Burger Camembert Normand",
+                    "image": "./assets/products/fr/burger_camembert.png",
+                    "price": 18.50,
+                    "shortDescription": "L'alliance parfaite entre le street-food et le terroir français.",
+                    "longDescription": "Un steak haché pur bœuf généreux surmonté d'un demi-camembert rôti au lait cru, le tout dans un pain brioché artisanal.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DI_03",
+                    "name": "Croque-Monsieur Lyonnais",
+                    "image": "./assets/products/fr/croque_monsieur.png",
+                    "price": 14.90,
+                    "shortDescription": "Le classique bistro, gratiné et ultra-réconfortant.",
+                    "longDescription": "Pain de mie artisanal toasté, jambon blanc supérieur, béchamel onctueuse à la muscade et emmental fondu.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DI_04",
+                    "name": "Boeuf Bourguignon Maison",
+                    "image": "./assets/products/fr/bourguignon.png",
+                    "price": 26.00,
+                    "shortDescription": "Notre plat signature, mijoté lentement selon la tradition.",
+                    "longDescription": "Des morceaux de bœuf fondants ayant mijoté pendant de longues heures dans une sauce au vin rouge de Bourgogne, accompagnés de champignons de Paris et lardons.",
+                    "isSpecialDish": false,
+                    "isSuccessed": true
+                },
+                {
+                    "id": "FR_DI_05",
+                    "name": "Quiche Lorraine Tradition",
+                    "image": "./assets/products/fr/quiche_lorraine.png",
+                    "price": 13.50,
+                    "shortDescription": "L'authentique recette lorraine, riche et dorée à souhait.",
+                    "longDescription": "Une pâte brisée pur beurre garnie d'un appareil crémeux aux œufs frais et de généreux lardons paysans.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [
+                {
+                    "id": "FR_SI_01",
+                    "name": "Frites Maison",
+                    "image": "./assets/products/fr/frites.png",
+                    "price": 5.50,
+                    "shortDescription": "Pommes de terre fraîches, coupées et cuites sur place.",
+                    "longDescription": "Nos frites sont préparées quotidiennement à partir de pommes de terre de saison, pour un extérieur parfaitement croustillant.",
+                    "isSpecialDish": false,
+                    "isSuccessed": true
+                }
+            ],
+            "drinks": [
+                {
+                    "id": "FR_DR_01",
+                    "name": "Limonade Artisanale",
+                    "image": "./assets/products/fr/limonade.png",
+                    "price": 4.50,
+                    "shortDescription": "Pétillante, fraîche et subtilement citronnée.",
+                    "longDescription": "Une limonade pur sucre de canne aux arômes naturels de citron, idéale pour rafraîchir le palais.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DR_02",
+                    "name": "Diabolo Menthe",
+                    "image": "./assets/products/fr/diabolo.png",
+                    "price": 4.00,
+                    "shortDescription": "Le rafraîchissement doux et iconique des terrasses.",
+                    "longDescription": "L'association parfaite d'un sirop de menthe poivrée intense et de notre limonade artisanale très pétillante.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": "FR_DE_01",
+                    "name": "Crème Brûlée",
+                    "image": "./assets/products/fr/creme_brulee.png",
+                    "price": 8.00,
+                    "shortDescription": "Classique, élégante et craquante.",
+                    "longDescription": "Une crème onctueuse infusée à la vanille, surmontée d'une fine croûte de sucre caramélisée à la minute.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DE_02",
+                    "name": "Éclair au Chocolat",
+                    "image": "./assets/products/fr/eclair.png",
+                    "price": 6.50,
+                    "shortDescription": "La pâtisserie gourmande par excellence.",
+                    "longDescription": "Pâte à choux moelleuse garnie d'une crème pâtissière riche au chocolat noir grand cru, recouverte d'un glaçage brillant.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DE_03",
+                    "name": "Tarte Tatin",
+                    "image": "./assets/products/fr/tarte_tatin.png",
+                    "price": 8.50,
+                    "shortDescription": "Des pommes caramélisées fondantes sur une pâte croustillante.",
+                    "longDescription": "Une tarte renversée traditionnelle où les pommes confites dans le beurre se marient avec une pâte feuilletée pur beurre.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "FR_DE_04",
+                    "name": "Assortiments de Macarons",
+                    "image": "./assets/products/fr/macarons.png",
+                    "price": 9.00,
+                    "shortDescription": "Un assortiment coloré de 4 macarons raffinés.",
+                    "longDescription": "Des coques lisses et croquantes renfermant des ganaches fondantes aux parfums de saison.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ]
+        },
+        "Italie": {
+            "dishes": [
+                {
+                    "id": "IT_DI_01",
+                    "name": "Pizza Margherita Roma",
+                    "image": "./assets/products/it/pizza_margherita.png",
+                    "price": 14.00,
+                    "shortDescription": "La simplicité de l'excellence, l'emblème de l'Italie.",
+                    "longDescription": "Pâte à fermentation lente, sauce tomate San Marzano gorgée de soleil, mozzarella fior di latte fondante et basilic frais.",
+                    "isSpecialDish": false,
+                    "isSuccessed": true
+                },
+                {
+                    "id": "IT_DI_02",
+                    "name": "Pizza Pepperoni Milano",
+                    "image": "./assets/products/it/pizza_pepperoni.png",
+                    "price": 16.50,
+                    "shortDescription": "Généreuse, relevée et délicieusement régressive.",
+                    "longDescription": "Base tomate et mozzarella recouverte de fines tranches de pepperoni légèrement épicé qui croustillent à la cuisson.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "IT_DI_03",
+                    "name": "Pasta Carbonara",
+                    "image": "./assets/products/it/carbonara.png",
+                    "price": 15.50,
+                    "shortDescription": "La vraie recette romaine : guanciale, pecorino et poivre.",
+                    "longDescription": "Pâtes al dente enrobées d'une émulsion crémeuse à base de jaunes d'œufs et de pecorino romano, agrémentées de guanciale.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "IT_DI_04",
+                    "name": "Lasagnes Bologna",
+                    "image": "./assets/products/it/lasagnes.png",
+                    "price": 17.00,
+                    "shortDescription": "Des couches de bonheur et de tradition bolognaise.",
+                    "longDescription": "Une superposition de pâtes fraîches maison, d'un ragoût de bœuf mijoté 5 heures et d'une sauce béchamel onctueuse.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [
+                {
+                    "id": "IT_SI_01",
+                    "name": "Mozza Sticks",
+                    "image": "./assets/products/it/mozza_sticks.png",
+                    "price": 7.50,
+                    "shortDescription": "Bâtonnets de mozzarella filante dans une panure croustillante.",
+                    "longDescription": "De généreux cœurs de mozzarella fondante protégés par une croûte dorée et épicée à l'italienne.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "drinks": [
+                {
+                    "id": "IT_DR_01",
+                    "name": "Limonata Siciliana",
+                    "image": "./assets/products/it/limonata.png",
+                    "price": 4.50,
+                    "shortDescription": "Le soleil de l'Italie mis en bouteille.",
+                    "longDescription": "Une limonade piquante et vive, préparée avec le jus de citrons mûris sous le soleil de Sicile.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "IT_DR_02",
+                    "name": "Spritz Zéro (Sans Alcool)",
+                    "image": "./assets/products/it/spritz.png",
+                    "price": 6.90,
+                    "shortDescription": "L'aperitivo chic et amérisant, sans modération.",
+                    "longDescription": "Les notes caractéristiques d'orange amère et de rhubarbe mariées à une eau très pétillante.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "IT_DR_03",
+                    "name": "San Pellegrino Aranciata",
+                    "image": "./assets/products/it/aranciata.png",
+                    "price": 4.00,
+                    "shortDescription": "Boisson pétillante aux oranges gorgées de soleil.",
+                    "longDescription": "Le goût authentique des oranges italiennes dans une boisson finement pétillante.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": "IT_DE_01",
+                    "name": "Tiramisu Classique",
+                    "image": "./assets/products/it/tiramisu.png",
+                    "price": 8.00,
+                    "shortDescription": "Le dessert qui vous remonte le moral.",
+                    "longDescription": "L'authentique recette avec ses biscuits cuillère imbibés d'un expresso corsé, sa crème au mascarpone légère.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "IT_DE_02",
+                    "name": "Panna Cotta Coulis Framboise",
+                    "image": "./assets/products/it/panna_cotta.png",
+                    "price": 7.00,
+                    "shortDescription": "Fraîcheur, douceur et délicatesse vanillée.",
+                    "longDescription": "Une crème cuite fondante parfumée à la vanille, relevée par l'acidité maîtrisée d'un coulis de framboises fraîches.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ]
+        },
+        "Japon": {
+            "dishes": [
+                {
+                    "id": "JP_DI_01",
+                    "name": "Chicken Teriyaki Tokyo",
+                    "image": "./assets/products/jp/teriyaki.png",
+                    "price": 16.50,
+                    "shortDescription": "Poulet caramélisé sucré-salé sur un lit de riz blanc.",
+                    "longDescription": "Des dés de poulet grillés puis laqués avec notre sauce teriyaki maison brillante et savoureuse.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "JP_DI_02",
+                    "name": "Sushi Mix Osaka",
+                    "image": "./assets/products/jp/sushi_mix.png",
+                    "price": 22.00,
+                    "shortDescription": "Un assortiment premium de sushis et makis frais du jour.",
+                    "longDescription": "Une sélection de 14 pièces travaillées par notre maître sushi : nigiris, makis avocat, et california rolls croustillants.",
+                    "isSpecialDish": false,
+                    "isSuccessed": true
+                },
+                {
+                    "id": "JP_DI_03",
+                    "name": "Ramen Kyoto",
+                    "image": "./assets/products/jp/ramen.png",
+                    "price": 18.00,
+                    "shortDescription": "Un bouillon riche et réconfortant pour l'âme.",
+                    "longDescription": "Nouilles fraîches plongées dans un bouillon tonkotsu intense, surmontées de porc chashu fondant et œuf mariné.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [],
+            "drinks": [
+                {
+                    "id": "JP_DR_01",
+                    "name": "Thé Vert Matcha Glacé",
+                    "image": "./assets/products/jp/matcha.png",
+                    "price": 5.00,
+                    "shortDescription": "L'énergie pure du thé vert japonais premium.",
+                    "longDescription": "Un matcha de cérémonie finement fouetté et servi sur glace, aux notes végétales intenses.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "JP_DR_02",
+                    "name": "Ramune Litchi",
+                    "image": "./assets/products/jp/ramune.png",
+                    "price": 4.50,
+                    "shortDescription": "La célèbre limonade japonaise à la bille de verre.",
+                    "longDescription": "Une boisson douce et pétillante au parfum délicat de l'exotique litchi.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "JP_DR_03",
+                    "name": "Limonade Yuzu",
+                    "image": "./assets/products/jp/yuzu.png",
+                    "price": 5.50,
+                    "shortDescription": "L'acidité élégante de l'agrume star du Japon.",
+                    "longDescription": "L'alliance parfaite entre des bulles fines et le jus de yuzu, offrant des notes complexes.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": "JP_DE_01",
+                    "name": "Mochi Glacé Assortiment",
+                    "image": "./assets/products/jp/mochi.png",
+                    "price": 8.50,
+                    "shortDescription": "Boules de riz gluant renfermant une glace onctueuse.",
+                    "longDescription": "Un trio de textures surprenantes où une enveloppe de pâte de riz douce cache un cœur de crème glacée fondante.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "JP_DE_02",
+                    "name": "Dorayaki Haricot Rouge",
+                    "image": "./assets/products/jp/dorayaki.png",
+                    "price": 6.50,
+                    "shortDescription": "Pancakes japonais moelleux fourrés d'une pâte sucrée.",
+                    "longDescription": "Deux petits pancakes très aériens qui emprisonnent une généreuse couche de 'anko', une pâte de haricots rouges.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "JP_DE_03",
+                    "name": "Taiyaki Crème Pâtissière",
+                    "image": "./assets/products/jp/taiyaki.png",
+                    "price": 7.00,
+                    "shortDescription": "Gâteau chaud et ludique en forme de poisson.",
+                    "longDescription": "Une pâte cuite dans un moule en forme de daurade, avec un cœur généreux de crème pâtissière à la vanille.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ]
+        },
+        "Maroc": {
+            "dishes": [
+                {
+                    "id": "MA_DI_01",
+                    "name": "Tajine Poulet Citron Confit",
+                    "image": "./assets/products/ma/tajine.png",
+                    "price": 19.50,
+                    "shortDescription": "Les saveurs de l'Atlas mijotées lentement.",
+                    "longDescription": "Poulet fermier tendre imprégné d'épices douces, cuit à l'étouffée avec des olives violettes et du citron beldi confit.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MA_DI_02",
+                    "name": "Couscous Royal",
+                    "image": "./assets/products/ma/couscous.png",
+                    "price": 24.00,
+                    "shortDescription": "Le plat de partage festif, copieux et parfumé.",
+                    "longDescription": "Semoule fine travaillée à la main, bouillon riche aux sept légumes, merguez grillées, poulet et agneau.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [
+                {
+                    "id": "MA_SI_01",
+                    "name": "Brick à l'Œuf et Thon",
+                    "image": "./assets/products/ma/brick.png",
+                    "price": 6.50,
+                    "shortDescription": "Un chausson croustillant au cœur coulant parfumé.",
+                    "longDescription": "Une pâte très fine pliée en triangle, emprisonnant une garniture de thon, de câpres, d'herbes et un œuf mollet.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "drinks": [
+                {
+                    "id": "MA_DR_01",
+                    "name": "Thé à la Menthe Fraîche",
+                    "image": "./assets/products/ma/the_menthe.png",
+                    "price": 4.50,
+                    "shortDescription": "Le rituel d'hospitalité, chaud, doux et réconfortant.",
+                    "longDescription": "Thé vert infusé avec une généreuse poignée de menthe fraîche et sucré selon la pure tradition marocaine.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MA_DR_02",
+                    "name": "Jus d'Orange Pressé à la Minute",
+                    "image": "./assets/products/ma/jus_orange.png",
+                    "price": 5.50,
+                    "shortDescription": "L'énergie naturelle des oranges marocaines.",
+                    "longDescription": "Un jus pur et gorgé de vitamines, pressé à la commande avec des oranges douces.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MA_DR_03",
+                    "name": "Lait Amande et Fleur d'Oranger",
+                    "image": "./assets/products/ma/lait_amande.png",
+                    "price": 6.00,
+                    "shortDescription": "Une boisson veloutée aux arômes envoûtants.",
+                    "longDescription": "Un élixir onctueux où la douceur du lait d'amande rencontre les notes florales de la fleur d'oranger.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": "MA_DE_01",
+                    "name": "Corne de Gazelle",
+                    "image": "./assets/products/ma/corne_gazelle.png",
+                    "price": 6.00,
+                    "shortDescription": "La pâtisserie emblématique à la pâte fine et parfumée.",
+                    "longDescription": "Un croissant de pâte sablée d'une incroyable finesse, renfermant un cœur tendre de pâte d'amandes.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MA_DE_02",
+                    "name": "Chebakia",
+                    "image": "./assets/products/ma/chebakia.png",
+                    "price": 5.50,
+                    "shortDescription": "Une gourmandise tressée frite, plongée dans le miel.",
+                    "longDescription": "Une tresse de pâte parfumée, frite pour un croquant parfait, enrobée d'un sirop de miel doré.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MA_DE_03",
+                    "name": "Baklava Marocain",
+                    "image": "./assets/products/ma/baklava.png",
+                    "price": 7.00,
+                    "shortDescription": "Un mille-feuille croustillant aux fruits secs et au miel.",
+                    "longDescription": "Superposition de couches de pâte filo garnies d'un riche mélange de noix, généreusement imbibé de miel chaud.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ]
+        },
+        "Mexique": {
+            "dishes": [
+                {
+                    "id": "MX_DI_01",
+                    "name": "Tortilla Mexicana",
+                    "image": "./assets/products/mx/tortilla.png",
+                    "price": 14.50,
+                    "shortDescription": "Généreuse galette de blé garnie de saveurs latines.",
+                    "longDescription": "Une tortilla enveloppant du bœuf effiloché, du riz mexicain, des haricots noirs, du pico de gallo et du guacamole.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DI_02",
+                    "name": "Tacos El Paso",
+                    "image": "./assets/products/mx/tacos.png",
+                    "price": 16.00,
+                    "shortDescription": "Trio de tacos croustillants, le vrai goût de la street-food.",
+                    "longDescription": "Trois coquilles de maïs garnies de poulet grillé aux épices, coriandre fraîche, oignons rouges et citron vert.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DI_03",
+                    "name": "Quesadillas Guadalajara",
+                    "image": "./assets/products/mx/quesadillas.png",
+                    "price": 15.00,
+                    "shortDescription": "Fondantes à l'intérieur, grillées à l'extérieur.",
+                    "longDescription": "Tortillas toastées renfermant un mélange de fromages fondus, poivrons grillés et porc mariné al pastor.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "sides": [],
+            "drinks": [
+                {
+                    "id": "MX_DR_01",
+                    "name": "Agua Fresca Hibiscus",
+                    "image": "./assets/products/mx/agua_fresca.png",
+                    "price": 4.50,
+                    "shortDescription": "L'infusion florale mexicaine typique et désaltérante.",
+                    "longDescription": "Une boisson traditionnelle froide à base de fleurs d'hibiscus infusées, subtilement sucrée et parfumée.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DR_02",
+                    "name": "Soda Jarritos Mangue",
+                    "image": "./assets/products/mx/jarritos.png",
+                    "price": 4.90,
+                    "shortDescription": "Le soda fruité incontournable du Mexique.",
+                    "longDescription": "Un soda pétillant au pur sucre de canne avec un intense et naturel goût de mangue tropicale.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DR_03",
+                    "name": "Margarita Zéro (Sans Alcool)",
+                    "image": "./assets/products/mx/margarita_zero.png",
+                    "price": 7.50,
+                    "shortDescription": "Le cocktail signature, en version mocktail festif.",
+                    "longDescription": "Jus de citron vert pressé, sirop d'agave et un trait d'orange amère, servi sur glace dans un verre givré au sel.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": "MX_DE_01",
+                    "name": "Churros au Chocolat",
+                    "image": "./assets/products/mx/churros.png",
+                    "price": 7.50,
+                    "shortDescription": "Croustillants, dorés, saupoudrés de sucre et de cannelle.",
+                    "longDescription": "Des beignets allongés frits à la minute, parfaits pour être trempés dans leur bol de chocolat chaud.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DE_02",
+                    "name": "Flan Mexicain",
+                    "image": "./assets/products/mx/flan.png",
+                    "price": 6.50,
+                    "shortDescription": "Un dessert soyeux nappé d'un caramel riche.",
+                    "longDescription": "Un flan aux œufs dense et crémeux, délicatement parfumé à la vanille et recouvert d'un caramel brun miroir.",
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "MX_DE_03",
+                    "name": "Tres Leches Cake",
+                    "image": "./assets/products/mx/tres_leches.png",
+                    "price": 8.00,
+                    "shortDescription": "Un gâteau éponge ultra-moelleux imbibé de douceur.",
+                    "longDescription": "Un biscuit aérien généreusement baigné dans un mélange de trois laits, surmonté d'une légère meringue.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 }
