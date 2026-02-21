@@ -76,6 +76,8 @@
 
 .justify-between { justify-content: space-between; }
 .justify-center { justify-content: center; }
+
+.items-start { align-items: start; }
 .items-center { align-items: center; }
 .items-stretch { align-items: stretch; }
 

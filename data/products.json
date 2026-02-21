@@ -7,7 +7,9 @@
                     "name": "Product A",
                     "image": "./assets/products/burger.png",
                     "price": 19.99,
-                    "description": "A high-quality product that meets your needs.",
+                    "shortDescription": "A high-quality product that meets your needs.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -15,7 +17,9 @@
                     "name": "Product B",
                     "image": "./assets/products/burger.png",
                     "price": 29.99,
-                    "description": "An excellent choice for those looking for value.",
+                    "shortDescription": "An excellent choice for those looking for value.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -23,7 +27,9 @@
                     "name": "Product C",
                     "image": "./assets/products/burger.png",
                     "price": 39.99,
-                    "description": "A premium product for discerning customers.",
+                    "shortDescription": "A premium product for discerning customers.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
@@ -33,7 +39,9 @@
                     "name": "Drink A",
                     "image": "./assets/products/burger.png",
                     "price": 4.99,
-                    "description": "A refreshing beverage to complement your meal.",
+                    "shortDescription": "A refreshing beverage to complement your meal.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -41,7 +49,9 @@
                     "name": "Drink B",
                     "image": "./assets/products/burger.png",
                     "price": 5.99,
-                    "description": "A delicious drink that pairs well with our dishes.",
+                    "shortDescription": "A delicious drink that pairs well with our dishes.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -49,7 +59,9 @@
                     "name": "Drink C",
                     "image": "./assets/products/burger.png",
                     "price": 6.99,
-                    "description": "A premium drink for a special occasion.",
+                    "shortDescription": "A premium drink for a special occasion.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
@@ -59,7 +71,9 @@
                     "name": "Dessert A",
                     "image": "./assets/products/burger.png",
                     "price": 7.99,
-                    "description": "A sweet treat to end your meal on a high note.",
+                    "shortDescription": "A sweet treat to end your meal on a high note.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -67,7 +81,9 @@
                     "name": "Dessert B",
                     "image": "./assets/products/burger.png",
                     "price": 8.99,
-                    "description": "A decadent dessert for those with a sweet tooth.",
+                    "shortDescription": "A decadent dessert for those with a sweet tooth.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -75,7 +91,9 @@
                     "name": "Dessert C",
                     "image": "./assets/products/burger.png",
                     "price": 9.99,
-                    "description": "A luxurious dessert for a special indulgence.",
+                    "shortDescription": "A luxurious dessert for a special indulgence.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": true,
                     "isSuccessed": false
                 }
             ]
@@ -87,7 +105,9 @@
                     "name": "Product A",
                     "image": "./assets/products/burger.png",
                     "price": 19.99,
-                    "description": "A high-quality product that meets your needs.",
+                    "shortDescription": "A high-quality product that meets your needs.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -95,7 +115,9 @@
                     "name": "Product B",
                     "image": "./assets/products/burger.png",
                     "price": 29.99,
-                    "description": "An excellent choice for those looking for value.",
+                    "shortDescription": "An excellent choice for those looking for value.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -103,7 +125,9 @@
                     "name": "Product C",
                     "image": "./assets/products/burger.png",
                     "price": 39.99,
-                    "description": "A premium product for discerning customers.",
+                    "shortDescription": "A premium product for discerning customers.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
@@ -113,7 +137,9 @@
                     "name": "Drink A",
                     "image": "./assets/products/burger.png",
                     "price": 4.99,
-                    "description": "A refreshing beverage to complement your meal.",
+                    "shortDescription": "A refreshing beverage to complement your meal.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -121,7 +147,9 @@
                     "name": "Drink B",
                     "image": "./assets/products/burger.png",
                     "price": 5.99,
-                    "description": "A delicious drink that pairs well with our dishes.",
+                    "shortDescription": "A delicious drink that pairs well with our dishes.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -129,7 +157,9 @@
                     "name": "Drink C",
                     "image": "./assets/products/burger.png",
                     "price": 6.99,
-                    "description": "A premium drink for a special occasion.",
+                    "shortDescription": "A premium drink for a special occasion.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ],
@@ -139,7 +169,9 @@
                     "name": "Dessert A",
                     "image": "./assets/products/burger.png",
                     "price": 7.99,
-                    "description": "A sweet treat to end your meal on a high note.",
+                    "shortDescription": "A sweet treat to end your meal on a high note.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": true
                 },
                 {
@@ -147,7 +179,9 @@
                     "name": "Dessert B",
                     "image": "./assets/products/burger.png",
                     "price": 8.99,
-                    "description": "A decadent dessert for those with a sweet tooth.",
+                    "shortDescription": "A decadent dessert for those with a sweet tooth.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 },
                 {
@@ -155,7 +189,9 @@
                     "name": "Dessert C",
                     "image": "./assets/products/burger.png",
                     "price": 9.99,
-                    "description": "A luxurious dessert for a special indulgence.",
+                    "shortDescription": "A luxurious dessert for a special indulgence.",
+                    "longDescription": "This product is made with the finest ingredients and is prepared to the highest standards.",
+                    "isSpecialDish": false,
                     "isSuccessed": false
                 }
             ]
