@@ -1,0 +1,84 @@
+{
+    "products": {
+        "France": {
+            "dishes": [
+                {
+                    "id": 1,
+                    "name": "Product A",
+                    "image": "https://example.com/images/product_a.jpg",
+                    "price": 19.99,
+                    "description": "A high-quality product that meets your needs.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 2,
+                    "name": "Product B",
+                    "image": "https://example.com/images/product_b.jpg",
+                    "price": 29.99,
+                    "description": "An excellent choice for those looking for value.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 3,
+                    "name": "Product C",
+                    "image": "https://example.com/images/product_c.jpg",
+                    "price": 39.99,
+                    "description": "A premium product for discerning customers.",
+                    "isSuccessed": false
+                }
+            ],
+            "drinks": [
+                {
+                    "id": 1,
+                    "name": "Drink A",
+                    "image": "https://example.com/images/drink_a.jpg",
+                    "price": 4.99,
+                    "description": "A refreshing beverage to complement your meal.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 2,
+                    "name": "Drink B",
+                    "image": "https://example.com/images/drink_b.jpg",
+                    "price": 5.99,
+                    "description": "A delicious drink that pairs well with our dishes.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 3,
+                    "name": "Drink C",
+                    "image": "https://example.com/images/drink_c.jpg",
+                    "price": 6.99,
+                    "description": "A premium drink for a special occasion.",
+                    "isSuccessed": false
+                }
+            ],
+            "desserts": [
+                {
+                    "id": 1,
+                    "name": "Dessert A",
+                    "image": "https://example.com/images/dessert_a.jpg",
+                    "price": 7.99,
+                    "description": "A sweet treat to end your meal on a high note.",
+                    "isSuccessed": true
+                },
+                {
+                    "id": 2,
+                    "name": "Dessert B",
+                    "image": "https://example.com/images/dessert_b.jpg",
+                    "price": 8.99,
+                    "description": "A decadent dessert for those with a sweet tooth.",
+                    "isSuccessed": false
+                },
+                {
+                    "id": 3,
+                    "name": "Dessert C",
+                    "image": "https://example.com/images/dessert_c.jpg",
+                    "price": 9.99,
+                    "description": "A luxurious dessert for a special indulgence.",
+                    "isSuccessed": false
+                }
+            ]
+        }
+    }
+}

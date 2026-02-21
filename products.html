@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/products.js" defer></script>
     </head>
     <body>
         <header>
@@ -41,39 +42,7 @@
             </section>
         </header>
 
-        <main class="gap-20">
-            <!-- NOTE: The scrpit ise just for debug and test -->
-            <script>
-                for(let c = 0; c < 4; c++) {
-                    const countrySection = document.createElement('section');
-                    countrySection.classList.add('w-full');
-                    countrySection.innerHTML = `<h1 class="mb-24 ml-40">${c === 0 ? 'France' : c === 1 ? 'Espagne' : c === 2 ? 'Angleterre' : 'Canada'}</h1> `;
-
-                    const cardsWrapper = document.createElement('div');
-                    cardsWrapper.classList.add('cards__wrapper');
-                    countrySection.appendChild(cardsWrapper);
-
-                    const cardsTrack = document.createElement('div');
-                    cardsTrack.classList.add('cards__track', 'flex-row', 'gap-24', 'ph-40');
-                    cardsWrapper.appendChild(cardsTrack);
-
-                    for(let i = 0; i < Math.floor(Math.random() * 10 - 1); i++) {
-                        const card = document.createElement('div');
-                        card.classList.add('dishe__card');
-                        card.innerHTML = `
-                            <h3>Burger ${c === 0 ? 'Paris' : c === 1 ? 'Madrid' : c === 2 ? 'Londres' : 'Toronto'}</h3>
-                            <img class="w-full object-contain object-center filter-drop-shadow" src="./assets/__test__/burger.png" alt="Burger">
-                            <p>Le classique indémodable.</p>
-                            <button class="btn btn-primary">JE COMMANDE • ${12 + 3*i}€</button>
-                        `;
-
-                        cardsTrack.appendChild(card);
-                    }
-
-                    document.querySelector('main').appendChild(countrySection);
-                }
-            </script>
-        </main>
+        <main id="products__card" class="gap-20"></main>
 
         <footer>
             <section class="flex-row justify-between items-center ph-80">

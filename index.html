@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/products.js" defer></script>
     </head>
     <body>
         <header>
@@ -75,26 +76,11 @@
                 </div>
             </section>
 
-            <section class="flex-col justify-center w-full h-content">
+            <section id="successed__dishes" class="flex-col justify-center w-full h-content">
                 <h1 class="mb-24 ml-40">Ils font notre succès</h1>
-                <div class="cards__wrapper">
-                    <div class="cards__track flex-row gap-24 ph-40">
-                        <!-- NOTE: Script for debug -->
-                        <script>
-                            for(let i = 0; i < Math.floor(Math.random() * 10 - 1); i++) {
-                                const card = document.createElement('div');
-                                card.classList.add('dishe__card');
-                                card.innerHTML = `
-                                    <h3>Burger Paris</h3>
-                                    <img class="w-full object-contain object-center filter-drop-shadow" src="./assets/__test__/burger.png" alt="Burger">
-                                    <p>Le classique indémodable.</p>
-                                    <button class="btn btn-primary">JE COMMANDE • ${12 + 3*i}€</button>
-                                `;
 
-                                document.querySelector('.cards__track').appendChild(card);
-                            }
-                        </script>
-                    </div>
+                <div class="cards__wrapper">
+                    <div class="cards__track flex-row gap-24 ph-40"></div>
                 </div>
             </section>
         </main>
