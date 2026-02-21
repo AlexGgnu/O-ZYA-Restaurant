@@ -29,6 +29,12 @@
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-hg: 16px;
+    
+    /*  Responsive references:
+        Mobile  : 480px;
+        Tablets : 768px;
+        Laptops : 1024px;
+    */
 }
 
 * {
@@ -60,4 +66,17 @@ button[disabled] { pointer-events: none; cursor: default; }
 @keyframes spin {
     from { transform: translateX(33.33%) rotate(0deg); }
     to { transform: translateX(33.33%) rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+    @keyframes spin {
+        from { transform: translateX(50%) rotate(0deg); }
+        to { transform: translateX(50%) rotate(360deg); }
+    }
+}
+@media (max-width: 480px) {
+    @keyframes spin {
+        from { transform: translateX(66.66%) rotate(0deg); }
+        to { transform: translateX(66.66%) rotate(360deg); }
+    }
 }

@@ -10,7 +10,7 @@ function createCountrySection(country) {
     countrySection.appendChild(cardsWrapper);
 
     const cardsTrack = document.createElement('div');
-    cardsTrack.classList.add('cards__track', 'flex-row', 'gap-24', 'ph-40');
+    cardsTrack.classList.add('cards__track', 'gap-24', 'ph-40', 'lg-grid-cols-2');
     cardsWrapper.appendChild(cardsTrack);
 
     return countrySection;

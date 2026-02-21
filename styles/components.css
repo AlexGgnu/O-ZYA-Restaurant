@@ -72,8 +72,9 @@
     content: '';
     position: absolute;
     top: 0;
-    height: calc(100% - 8px); /* NOTE: 8px <=> scrollbar-width: thin; */
+    height: 100%;
     width: 40px;
+    z-index: 0;
 }
 .cards__wrapper::after {
     right: 0;
@@ -84,9 +85,10 @@
     background: linear-gradient(to right, var(--primary-background-color), transparent);
 }
 .cards__track {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-auto-flow: column;
     align-items: baseline;
+    justify-content: start;
     gap: 24px;
     max-width: 100%;
     overflow-x: auto;
@@ -130,11 +132,19 @@
     gap: 4px;
     width: 100%;
 }
-.form-group-line {
+.form-group-line, .form-group-line__input-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
     gap: 16px;
+}
+@media (max-width: 480px) {
+    .form-group-line { gap: 4px; }
+    .form-group-line {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
 .form-group > label, .form-group-line > label {
