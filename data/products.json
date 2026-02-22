@@ -663,11 +663,11 @@
             "dishes": [
                 {
                     "id": "MX_DI_01",
-                    "name": "Tortilla Mexicana",
-                    "image": "./assets/products/mx/tortilla.png",
+                    "name": "Fajitas de Bœuf Guadalajara",
+                    "image": "./assets/products/mx/fajitas.png",
                     "price": 14.50,
                     "shortDescription": "Généreuse galette de blé garnie de saveurs latines.",
-                    "longDescription": "Une tortilla enveloppant du bœuf effiloché, du riz mexicain, des haricots noirs, du pico de gallo et du guacamole.",
+                    "longDescription": "Une galette de blé enveloppant du bœuf effiloché, du riz mexicain, des haricots noirs, du pico de gallo et du guacamole.",
                     "isSpecialDish": false,
                     "isSuccessed": false
                 },
