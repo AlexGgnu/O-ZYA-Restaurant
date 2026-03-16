@@ -1,3 +1,7 @@
+<?php
+require_once('./php/fonction_orders.php');
+$commandes = lireCommandes('./data/orders.json');
+?>
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -49,25 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- NOTE: Script just for debug -->
-                                <script>
-                                    for (let i = 0; i < 20; i++) {
-                                        document.write(`
-                                            <tr>
-                                                <td>#XXXXXXX</td>
-                                                <td>John Doe</td>
-                                                <td>123 Rue Exemple, Paris</td>
-                                                <td>Burger Karachi</td>
-                                                <td>14€</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-status" data-status="${i%3 === 0 ? 'preparing' : i%5 === 0 ? 'delivery' : 'finished'}" disabled>
-                                                        ${i%3 === 0 ? 'En cours de préparation' : i%5 === 0 ? 'En cours de livraison' : 'Livrée'}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        `);
-                                    }
-                                </script>
+                                <?php afficherLignesCommandes($commandes); ?>
                             </tbody>
                         </table>
                     </div>
