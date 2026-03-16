@@ -1,4 +1,4 @@
-<?php require('./php/products.php'); ?>
+<?php require('./php/function_products.php'); ?>
 
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -19,11 +19,11 @@
     <body>
         <header>
             <section class="header__container flex-row justify-between items-center w-full h-full">
-                <a class="h-full" href="./index.html">
+                <a class="h-full" href="/">
                     <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
                 </a>
                 <div class="header__menu flex-row justify-between items-center gap-32">
-                    <a href="./index.html" id="active__menu">Accueil</a>
+                    <a href="/" id="active__menu">Accueil</a>
                     <a href="./products.html">La carte</a>
                 </div>
                 <div class="header__right flex-row items-center gap-24">
@@ -93,7 +93,7 @@
         <footer>
             <section class="flex-row justify-between items-center ph-80 lg-ph-20 sm-flex-col sm-gap-40 sm-pv-16">
                 <div class="flex-col justify-center items-center gap-24 pv-16 sm-gap-0 sm-pv-0">
-                    <a href="./index.html" style="width: 200px;">
+                    <a href="/" style="width: 200px;">
                         <img class="w-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
                     </a>
                     <button class="btn btn-svg btn-inverse" id="top__button">
@@ -108,14 +108,14 @@
                         <h3>Plan du site</h3>
                         <div>
                             <ul>
-                                <li><a href="./index.html">Accueil</a></li>
+                                <li><a href="/">Accueil</a></li>
                                 <li><a href="./products.html">La carte</a></li>
                                 <li><a href="./connection.html">Connexion</a></li>
                                 <li><a href="./registration.html">Inscription</a></li>
                                 <!-- NOTE: Debug buttons -->
                                 <li><a href="./profile.html">Profil</a></li>
                                 <li><a href="./administrator.html">Administrateur</a></li>
-                                <li><a href="./orders.html">Commandes</a></li>
+                                <li><a href="./orders.php">Commandes</a></li>
                                 <li><a href="./delivery.html">Livraisons</a></li>
                             </ul>
                         </div>

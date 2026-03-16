@@ -1,5 +1,5 @@
 <?php
-require_once('./php/fonction_orders.php');
+require_once('./php/function_orders.php');
 $commandes = lireCommandes('./data/orders.json');
 ?>
 <!DOCTYPE html>
@@ -18,11 +18,11 @@ $commandes = lireCommandes('./data/orders.json');
     <body>
         <header>
             <section class="header__container flex-row justify-between items-center w-full h-full">
-                <a class="h-full" href="./index.html">
+                <a class="h-full" href="/">
                     <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
                 </a>
                 <div class="header__right flex-row items-center gap-24">
-                    <a class="btn btn-primary" href="./index.html">
+                    <a class="btn btn-primary" href="/">
                         <span class="font-bold">Se déconnecter</span>
 
                         <svg class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
