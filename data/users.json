@@ -1,0 +1,34 @@
+[
+ {
+  "id":1,
+  "nom":"nom1",
+  "prenom":"prenom1",
+  "email":"admin1@gmail.com",
+  "password":"admin1",
+  "role":"admin"
+ },
+ {
+  "id":2,
+  "nom":"nom2",
+  "prenom":"prenom2",
+  "email":"admin2@gmail.com",
+  "password":"admin2",
+  "role":"admin"
+ },
+ {
+  "id":3,
+  "nom":"nom3",
+  "prenom":"prenom3",
+  "email":"admin3@gmail.com",
+  "password":"admin3",
+  "role":"client"
+ },
+ {
+  "id":4,
+  "nom":"nom4",
+  "prenom":"prenom4",
+  "email":"admin4@gmail.com",
+  "password":"admin4",
+  "role":"client"
+ }
+]
