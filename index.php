@@ -1,3 +1,5 @@
+<?php require('./php/products.php'); ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -11,8 +13,8 @@
 
         <script src="./scripts/common.js" defer></script>
         
-        <script src="./data/products.js" defer></script>
-        <script src="./scripts/products.js" defer></script>
+        <!-- <script src="./data/products.js" defer></script>
+        <script src="./scripts/products.js" defer></script> -->
     </head>
     <body>
         <header>
@@ -67,11 +69,13 @@
             <section class="w-full flex-row items-center gap-80 h-content ph-40 lg-flex-col lg-justify-center">
                 <div id="special-dish" class="flex-col items-start gap-24 lg-w-full">
                     <h1>Voyage du jour</h1>
+                    <?php echo display_special_dish(); ?>
                 </div>
                 <div id="special-dish-image" class="flex justify-center items-center lg-w-75 sm-w-90">
                     <svg viewBox="-70 -70 140 140" xmlns="http://www.w3.org/2000/svg">
                         <path fill="currentColor" d="M20.7,-39.6C27.6,-31.8,34.6,-27.9,42.6,-22C50.5,-16,59.5,-8,62,1.5C64.5,10.9,60.6,21.8,51.7,26.2C42.9,30.6,29,28.5,19.6,32.5C10.1,36.5,5.1,46.6,-2.1,50.3C-9.3,54,-18.7,51.3,-30.6,48.7C-42.5,46.1,-56.9,43.6,-62.1,35.5C-67.2,27.5,-63.1,13.7,-62.1,0.6C-61.2,-12.6,-63.4,-25.2,-59.2,-35.1C-55.1,-45,-44.6,-52.1,-33.7,-57.5C-22.8,-62.9,-11.4,-66.7,-2.3,-62.7C6.9,-58.8,13.8,-47.3,20.7,-39.6Z" />
                     </svg>
+                    <img class="w-full object-contain object-center filter-drop-shadow" src="<?php echo get_special_dish_data()['image'] ?>" alt="<?php echo get_special_dish_data()['name'] ?>">
                 </div>
             </section>
 
@@ -79,7 +83,9 @@
                 <h1 class="mb-24 ml-40">Ils font notre succès</h1>
 
                 <div class="cards__wrapper">
-                    <div class="cards__track gap-24 ph-40 lg-grid-cols-2 sm-grid-cols-1"></div>
+                    <div class="cards__track gap-24 ph-40 lg-grid-cols-2 sm-grid-cols-1">
+                        <?php echo display_successed_dish(); ?>
+                    </div>
                 </div>
             </section>
         </main>
