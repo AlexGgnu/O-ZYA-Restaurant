@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "client": "Gabriel Tom",
+    "adresse": "123 Rue Exemple, Paris",
+    "details": ["Burger Karachi", "Frites", "Coca"],
+    "total": 14,
+    "statut": "preparing",
+    "statut_paiement": "paye",
+    "date_heure": "15/03/2026 14:30"
+  },
+  {
+    "id": 2,
+    "client": "Sarah Lemoine",
+    "adresse": "À Emporté ",
+    "details": ["Menu Tandoori"],
+    "total": 19,
+    "statut": "delivery",
+    "statut_paiement": "paye",
+    "date_heure": "16/03/2026 23:00"
+  },
+  {
+    "id": 3,
+    "client": "Yanis Dupont",
+    "adresse": "21 Rue du Temple, Paris",
+    "details": ["Wrap Poulet"],
+    "total": 11,
+    "statut": "finished",
+    "statut_paiement": "paye",
+    "date_heure": "16/03/2026 15:23:20"
+  }
+]
