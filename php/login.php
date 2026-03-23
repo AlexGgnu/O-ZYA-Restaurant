@@ -1,4 +1,13 @@
 <?php
+    function create_session($uuid, $role, $redirection = "/") {
+        $_SESSION['uuid'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['logged_in'] = true;
+
+        header("Location: " . $redirection);
+        exit();
+    }
+
     $data = file_get_contents("../data/users.json");
     $users = json_decode($data, true);
 
@@ -9,20 +18,7 @@
             $_SESSION["user"] = $user;
             $trouve = true;
 
-            switch ($user["role"]) {
-                case "admin":
-                    header("Location: ../administrator.php");
-                    exit();
-                case "restaurateur":
-                    header("Location: ../orders.php");
-                    exit();
-                case "livreur":
-                    header("Location: ../delivery.php");
-                    exit();
-                default:
-                    header("Location: ../profile.php");
-                    exit();
-            }
+            create_session($user["id"], $user["role"]);
         }
     }
 
