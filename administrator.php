@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin") {
-    header("Location: ../connection.html");
-    exit();
-}
-
-$data = file_get_contents("./data/users.json");
-$users = json_decode($data, true);
-?>
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -55,9 +44,9 @@ $users = json_decode($data, true);
                                     <p>Email: <?= $user["email"] ?> | Role: <?= $user["role"] ?></p>
                                 </div>
                                 <div class="flex-row gap-8">
-                                    <button class="btn btn-primary" disabled>Bloquer / Désactiver</button>
-                                    <button class="btn btn-primary" disabled>Modifier Statut (VIP, Premium)</button>
-                                    <button class="btn btn-primary" disabled>Accorder remise</button>
+                                    <button class="btn btn-primary" >Bloquer / Désactiver</button>
+                                    <button class="btn btn-primary" >Modifier Statut (VIP, Premium)</button>
+                                    <button class="btn btn-primary" >Accorder remise</button>
                                 </div>
                             </div>
                             <hr />
