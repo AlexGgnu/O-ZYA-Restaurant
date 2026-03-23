@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if ($_SESSION["logged_in"] && $_SESION['uuid']) {
+    // TODO: Récupérer info user dans json avec uuid
+    header("Location: ./connection.html");
+    exit();
+}
+
+$user = $_SESSION["user"];
+?>
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -194,8 +205,8 @@
                                 <li><a href="./connection.html">Connexion</a></li>
                                 <li><a href="./registration.html">Inscription</a></li>
                                 <!-- NOTE: Debug buttons -->
-                                <li><a href="./profile.php">Profil</a></li>
-                                <li><a href="./administrator.php">Administrateur</a></li>
+                                <li><a href="./profile.html">Profil</a></li>
+                                <li><a href="./administrator.html">Administrateur</a></li>
                                 <li><a href="./orders.php">Commandes</a></li>
                                 <li><a href="./delivery.html">Livraisons</a></li>
                             </ul>
