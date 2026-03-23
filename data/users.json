@@ -1,45 +1,57 @@
 [
     {
-        "id": 1,
-        "nom": "nom1",
-        "prenom": "prenom1",
-        "email": "admin1@gmail.com",
-        "password": "admin1",
-        "role": "admin"
-    },
-    {
-        "id": 2,
-        "nom": "nom2",
-        "prenom": "prenom2",
-        "email": "admin2@gmail.com",
-        "password": "admin2",
-        "role": "admin"
-    },
-    {
-        "id": 3,
-        "nom": "nom3",
-        "prenom": "prenom3",
-        "email": "admin3@gmail.com",
-        "password": "admin3",
-        "role": "client"
-    },
-    {
-        "id": 4,
-        "nom": "nom4",
-        "prenom": "prenom4",
-        "email": "admin4@gmail.com",
-        "password": "admin4",
-        "role": "client"
-    },
-    {
-        "id": 5,
+        "id": "69c14cd0601c5",
         "gender": "homme",
-        "nom": "nom5",
-        "prenom": "prenom5",
-        "email": "a5@gmail.com",
-        "password": "azerty10",
-        "phone": "06 00 00 00 00",
-        "address": "123 rue de la *",
+        "nom": "N\u00b01",
+        "prenom": "Admin",
+        "email": "admin1@gmail.com",
+        "password": "$2y$10$hhohrGYS1LJsmD9b4L2uL.GM8X8GdegGtVekogEJ8GxPlXI0Btohu",
+        "phone": "0600000000",
+        "address": "123 rue de la Paix, 75001 Paris",
+        "role": "admin"
+    },
+    {
+        "id": "69c14cb0bbb3d",
+        "gender": "homme",
+        "nom": "N\u00b02",
+        "prenom": "Admin",
+        "email": "admin2@gmail.com",
+        "password": "$2y$10$IGCDaa3e1hDYLoFCg2qSWeVbAVSxOAlmRvxiWRzR7L5UFR\/vGKsDC",
+        "phone": "0600000000",
+        "address": "123 rue de la Paix, 75001 Paris",
+        "role": "admin"
+    },
+    {
+        "id": "69c14f0fe5cef",
+        "gender": "homme",
+        "nom": "NOOK",
+        "prenom": "Tom",
+        "email": "nook.tom@gmail.com",
+        "password": "$2y$10$5rgg950RHCVMDkATD7E3Ruj8xIEdUgCEw88gAnPdutDkwQRaC9qXa",
+        "phone": "06 21874365",
+        "address": "47 boulevard du port, 95000 Cergy",
+        "role": "client"
+    },
+    {
+        "id": "69c14dac77a47",
+        "gender": "femme",
+        "nom": "BERNIQUE",
+        "prenom": "Matilde",
+        "email": "mat.ber@yahoo.com",
+        "password": "$2y$10$4PM52da5mADVf.CK6ZDh6.\/8eNvPqeMv18dptnxfDCdyDAsABeEI.",
+        "phone": "0612345678",
+        "address": "1 avenue du Parc, 95000 Cergy",
+        "role": "client"
+    },
+    {
+        "id": "69c14eabe22f6",
+        "gender": "femme",
+        "nom": "TURACT",
+        "prenom": "Silvy",
+        "email": "silvy87@etu.cyu.fr",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0687654321",
+        "address": "7 boulevard du march\u00e9, 87000 Limoges",
         "role": "client"
     }
 ]

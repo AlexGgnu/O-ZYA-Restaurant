@@ -12,9 +12,6 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
-        
-        <!-- <script src="./data/products.js" defer></script>
-        <script src="./scripts/products.js" defer></script> -->
     </head>
     <body>
         <header>
