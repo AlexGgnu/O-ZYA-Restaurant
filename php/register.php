@@ -1,4 +1,6 @@
 <?php
+    require_once("./login.php");
+
     $data = file_get_contents("../data/users.json");
     $users = json_decode($data, true);
 
@@ -29,9 +31,7 @@
     ];
 
     $users[] = $newUser;
-
     file_put_contents("../data/users.json", json_encode($users, JSON_PRETTY_PRINT));
 
-    header("Location: ../connection.html");
-    exit();
+    create_session($user['id'], $user['role']);
 ?>
