@@ -24,7 +24,7 @@
                 </a>
                 <div class="header__menu flex-row justify-between items-center gap-32">
                     <a href="/" id="active__menu">Accueil</a>
-                    <a href="./products.html">La carte</a>
+                    <a href="./products.php">La carte</a>
                 </div>
                 <div class="header__right flex-row items-center gap-24">
                     <button class="btn btn-svg" id="search__button">
@@ -69,7 +69,7 @@
             <section class="w-full flex-row items-center gap-80 h-content ph-40 lg-flex-col lg-justify-center">
                 <div id="special-dish" class="flex-col items-start gap-24 lg-w-full">
                     <h1>Voyage du jour</h1>
-                    <?php echo display_special_dish(); ?>
+                    <?php echo render_special_dish(); ?>
                 </div>
                 <div id="special-dish-image" class="flex justify-center items-center lg-w-75 sm-w-90">
                     <svg viewBox="-70 -70 140 140" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@
 
                 <div class="cards__wrapper">
                     <div class="cards__track gap-24 ph-40 lg-grid-cols-2 sm-grid-cols-1">
-                        <?php echo display_successed_dish(); ?>
+                        <?php echo render_successed_dishes(); ?>
                     </div>
                 </div>
             </section>
@@ -109,7 +109,7 @@
                         <div>
                             <ul>
                                 <li><a href="/">Accueil</a></li>
-                                <li><a href="./products.html">La carte</a></li>
+                                <li><a href="./products.php">La carte</a></li>
                                 <li><a href="./connection.html">Connexion</a></li>
                                 <li><a href="./registration.html">Inscription</a></li>
                                 <!-- NOTE: Debug buttons -->
