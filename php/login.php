@@ -1,23 +1,34 @@
 <?php
-
 session_start();
 
-$data = file_get_contents("./data/users.json");
+$data = file_get_contents("../data/users.json");
 $users = json_decode($data, true);
 
-foreach($users as $user){
+$trouve = false;
 
- if($user["email"] == $_POST["email"] &&
-    $user["password"] == $_POST["password"]) {
+foreach ($users as $user) {
+    if ($user["email"] == $_POST["email"] && $user["password"] == $_POST["password"]) {
+        $_SESSION["user"] = $user;
+        $found = true;
 
-    $_SESSION["user"] = $user;
-
-    echo "Connexion réussie";
-    exit();
- }
-
+        switch ($user["role"]) {
+            case "admin":
+                header("Location: ../administrator.php");
+                exit();
+            case "restaurateur":
+                header("Location: ../orders.php");
+                exit();
+            case "livreur":
+                header("Location: ../delivery.php");
+                exit();
+            default:
+                header("Location: ../profile.php");
+                exit();
+        }
+    }
 }
 
-echo "Email ou mot de passe incorrect";
-
+if (!$trouve) {
+    echo "Email ou mot de passe incorrect";
+}
 ?>
