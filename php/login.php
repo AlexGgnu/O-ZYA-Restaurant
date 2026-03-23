@@ -7,7 +7,7 @@
     foreach ($users as $user) {
         if ($user["email"] == $_POST["email"] && password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user"] = $user;
-            $found = true;
+            $trouve = true;
 
             switch ($user["role"]) {
                 case "admin":
