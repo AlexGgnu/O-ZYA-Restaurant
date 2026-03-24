@@ -1,7 +1,7 @@
 <?php
     require_once("./login.php");
 
-    $data = file_get_contents("../data/users.json");
+    $data = file_get_contents("../data/accounts.json");
     $users = json_decode($data, true);
 
     $hash_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
@@ -21,8 +21,8 @@
     $newUser = [
         "id" => uniqid(),
         "gender" => $_POST["gender"],
-        "nom" => $_POST["nom"],
-        "prenom" => $_POST["prenom"],
+        "lastname" => $_POST["lastname"],
+        "firstname" => $_POST["firstname"],
         "email" => $_POST["email"],
         "password" => $hash_password,
         "phone" => $_POST["phone"],
@@ -31,7 +31,7 @@
     ];
 
     $users[] = $newUser;
-    file_put_contents("../data/users.json", json_encode($users, JSON_PRETTY_PRINT));
+    file_put_contents("../data/accounts.json", json_encode($users, JSON_PRETTY_PRINT));
 
     create_session($user['id'], $user['role']);
 ?>

@@ -1,14 +1,10 @@
 <?php
-session_start();
+    require_once('./php/function_account.php');
 
-if (!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin") {
-    header("Location: ../connection.html");
-    exit();
-}
-
-$data = file_get_contents("./data/users.json");
-$users = json_decode($data, true);
+    if(!get_access("admin", true)) exit();
+    $accounts_data = get_accounts_data();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -48,11 +44,11 @@ $users = json_decode($data, true);
                     <div class="scrollable-container flex-col gap-14">
                         <hr />
                         <div class="scrollable-container flex-col gap-14">
-                        <?php foreach ($users as $user): ?>
+                        <?php foreach ($accounts_datas as $account) { ?>
                             <div class="flex-row justify-between items-center">
                                 <div>
-                                    <p><?= $user["nom"] . " " . $user["prenom"] ?></p>
-                                    <p>Email: <?= $user["email"] ?> | Role: <?= $user["role"] ?></p>
+                                    <p><?= $account["lastname"] . " " . $account["firstname"] ?></p>
+                                    <p>Email: <?= $account["email"] ?> | Role: <?= $account["role"] ?></p>
                                 </div>
                                 <div class="flex-row gap-8">
                                     <button class="btn btn-primary" disabled>Bloquer / Désactiver</button>
@@ -61,7 +57,7 @@ $users = json_decode($data, true);
                                 </div>
                             </div>
                             <hr />
-                        <?php endforeach; ?>
+                        <?php } ?>
                         </div>
                     </div>
                 </div>
