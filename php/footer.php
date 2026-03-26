@@ -30,10 +30,10 @@
                                 }
                                 if(is_logged()) echo '<li><a href="./profile.php">Profil</a></li>';
                                 if(get_access("admin")) echo '<li><a href="./administrator.php">Administrateur</a></li>';
+                                if(get_access("restaurateur")) echo '<li><a href="./orders.php">Commandes</a></li>';
+                                if(get_access("delivery")) echo '<li><a href="./delivery.php">Livraisons</a></li>';
 
         echo '
-                                <li><a href="./orders.php">Commandes</a></li>
-                                <li><a href="./delivery.html">Livraisons</a></li>
                             </ul>
                         </div>
                     </div>

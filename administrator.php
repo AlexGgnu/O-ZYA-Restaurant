@@ -24,7 +24,7 @@
                     <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
                 </a>
                 <div class="header__right flex-row items-center gap-24">
-                    <a class="btn btn-svg btn-primary" href="/">
+                    <a class="btn btn-svg btn-primary" href="/php/function_account.php?auth_method=log_out">
                         <span class="font-bold sm-hidden">Se déconnecter</span>
 
                         <svg class="hidden svg-24 sm-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">

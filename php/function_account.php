@@ -10,6 +10,15 @@
         $datas = file_get_contents(__DIR__ . "/../data/accounts.json");
         return json_decode($datas, true);
     }
+    function get_account_by_id($id) {
+        $accounts_data = get_accounts_data();
+
+        foreach ($accounts_data as $account) {
+            if ($account["id"] == $id) return $account;
+        }
+
+        return null;
+    }
 
     function create_session($uuid, $role, $redirection = "/") {
         $_SESSION['uuid'] = $uuid;
@@ -19,10 +28,14 @@
         header("Location: " . $redirection);
     }
     function get_access($autorized_role, $redirect = false) {
-        if (!is_logged() || $_SESSION["role"] !== $autorized_role) {
+        if (!is_logged() || $_SESSION["role"] !== $autorized_role && $_SESSION["role"] !== "admin") {
             if($redirect) header("Location: /");
             return false;
         } else return true;
+    }
+    function log_out() {
+        session_destroy();
+        header("Location: /");
     }
 
     function sign_up() {
@@ -75,4 +88,5 @@
 
     if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in();
     else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "sign_up") sign_up();
+    else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_out") log_out();
 ?>

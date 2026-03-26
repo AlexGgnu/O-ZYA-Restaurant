@@ -1,5 +1,8 @@
 <?php
+    require_once('./php/function_account.php');
     require_once('./php/function_orders.php');
+
+    get_access("restaurateur", true);
 
     $commandes = lireCommandes('./data/orders.json');
 ?>
@@ -24,7 +27,7 @@
                     <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
                 </a>
                 <div class="header__right flex-row items-center gap-24">
-                    <a class="btn btn-primary" href="/">
+                    <a class="btn btn-primary" href="/php/function_account.php?auth_method=log_out">
                         <span class="font-bold">Se déconnecter</span>
 
                         <svg class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">

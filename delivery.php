@@ -1,3 +1,9 @@
+<?php
+    require_once('./php/function_account.php');
+
+    get_access("delivery", true);
+?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
