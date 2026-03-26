@@ -1,14 +1,12 @@
 <?php
-session_start();
+    require_once('./php/function_account.php');
 
-if (!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin") {
-    header("Location: ../connection.html");
-    exit();
-}
+    get_access("admin");
 
-$data = file_get_contents("./data/users.json");
-$users = json_decode($data, true);
+    $data = file_get_contents("./data/users.json");
+    $users = json_decode($data, true);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>

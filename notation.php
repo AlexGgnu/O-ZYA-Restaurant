@@ -1,3 +1,7 @@
+<?php
+    require_once('./php/footer.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -46,10 +50,6 @@
             </div>
         </main>
 
-        <footer>
-            <section class="legacy w-full pv-16 text-right sm-text-center">
-                <p>Copyright © 2026 O'ZYA Restaurant • Tous droits réservés</p>
-            </section>
-        </footer>
+        <?php echo get_footer(true); ?>
     </body>
 </html>

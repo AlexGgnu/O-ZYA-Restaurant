@@ -1,6 +1,8 @@
 <?php
     require_once('./php/function_products.php');
     require_once('./php/function_account.php');
+
+    require_once('./php/footer.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,7 @@
                             <path d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z"/>
                         </svg>
                     </button>
-                    <a class="btn btn-svg btn-primary" href="./connection.html">
+                    <a class="btn btn-svg btn-primary" href="./connection.php">
                         <span class="font-bold sm-hidden">Se connecter</span>
 
                         <svg class="hidden svg-24 sm-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
@@ -90,5 +92,6 @@
             </section>
         </main>
 
+        <?php echo get_footer(); ?>
     </body>
 </html>

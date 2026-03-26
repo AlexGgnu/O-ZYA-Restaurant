@@ -1,3 +1,7 @@
+<?php
+    require_once('./php/footer.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -40,15 +44,11 @@
                 <button class="btn btn-primary w-full mt-20" type="submit">Se connecter</button>
                 
                 <p class="text-center mt-10">
-                    Pas encore de compte ? <a href="./registration.html" class="font-bold text-primary">S'inscrire</a>
+                    Pas encore de compte ? <a href="./registration.php" class="font-bold text-primary">S'inscrire</a>
                 </p>
             </form>
         </main>
 
-        <footer>
-            <section class="legacy w-full pv-16 text-right sm-text-center">
-                <p>Copyright © 2026 O'ZYA Restaurant • Tous droits réservés</p>
-            </section>
-        </footer>
+        <?php echo get_footer(true); ?>
     </body>
 </html>

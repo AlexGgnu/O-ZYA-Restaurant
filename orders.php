@@ -1,7 +1,9 @@
 <?php
-require_once('./php/function_orders.php');
-$commandes = lireCommandes('./data/orders.json');
+    require_once('./php/function_orders.php');
+
+    $commandes = lireCommandes('./data/orders.json');
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>

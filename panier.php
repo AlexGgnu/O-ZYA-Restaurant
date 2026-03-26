@@ -1,3 +1,7 @@
+<?php
+    require_once('./php/footer.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -135,5 +139,7 @@
                 </section>
             </div>
         </main>
+        
+        <?php echo get_footer(true); ?>
     </body>
 </html>

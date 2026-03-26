@@ -21,14 +21,14 @@
                                 <li><a href="/">Accueil</a></li>
                                 <li><a href="./products.php">La carte</a></li>
         ';
-    
+
                                 if(!is_logged()) {
                                     echo '
-                                        <li><a href="./connection.html">Connexion</a></li>
-                                        <li><a href="./registration.html">Inscription</a></li>
+                                        <li><a href="./connection.php">Connexion</a></li>
+                                        <li><a href="./registration.php">Inscription</a></li>
                                     ';
                                 }
-                                if(is_logged()) echo '<li><a href="./profil.php">Profil</a></li>';
+                                if(is_logged()) echo '<li><a href="./profile.php">Profil</a></li>';
                                 if(get_access("admin")) echo '<li><a href="./administrator.php">Administrateur</a></li>';
 
         echo '
@@ -56,11 +56,15 @@
         ';
     }
 
-    // echo '<footer>';
-    // if($_GET['legacy_part'] == true)
-            
-    //         <hr />
-            
-    //     </footer>
-    // ';
+    function get_footer($only_legacy = false) {
+        echo '<footer>';
+
+        if(!$only_legacy) {
+            main_part();
+            echo '<hr />';
+        }
+        legacy_part();
+
+        echo '</footer>';
+    }
 ?>
