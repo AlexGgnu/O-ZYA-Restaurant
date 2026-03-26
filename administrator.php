@@ -1,10 +1,9 @@
 <?php
     require_once('./php/function_account.php');
 
-    get_access("admin");
+    get_access("admin", true);
 
-    $data = file_get_contents("./data/users.json");
-    $users = json_decode($data, true);
+    $accounts_data = get_accounts_data();
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,7 @@
                     <div class="scrollable-container flex-col gap-14">
                         <hr />
                         <div class="scrollable-container flex-col gap-14">
-                        <?php foreach ($accounts_datas as $account) { ?>
+                        <?php foreach ($accounts_data as $account) { ?>
                             <div class="flex-row justify-between items-center">
                                 <div>
                                     <p><?= $account["lastname"] . " " . $account["firstname"] ?></p>

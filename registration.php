@@ -1,5 +1,8 @@
 <?php
+    require_once('./php/function_account.php');
     require_once('./php/footer.php');
+    
+    if(is_logged()) header("Location: /");
 ?>
 
 <!DOCTYPE html>

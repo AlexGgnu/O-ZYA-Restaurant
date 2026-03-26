@@ -7,8 +7,8 @@
     }
 
     function get_accounts_data() {
-        $data = file_get_contents("../data/accounts.json");
-        return json_decode($data, true);
+        $datas = file_get_contents(__DIR__ . "/../data/accounts.json");
+        return json_decode($datas, true);
     }
 
     function create_session($uuid, $role, $redirection = "/") {
@@ -17,21 +17,19 @@
         $_SESSION['logged_in'] = true;
 
         header("Location: " . $redirection);
-        exit();
     }
     function get_access($autorized_role, $redirect = false) {
         if (!is_logged() || $_SESSION["role"] !== $autorized_role) {
-            if($redirect) header("Location: ". $_SERVER['HTTP_REFERER']);
+            if($redirect) header("Location: /");
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     function sign_up() {
-        $account_data = get_accounts_data();
+        $accounts_data = get_accounts_data();
         $hash_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-        foreach ($account_data as $account) {
+        foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"]) {
                 echo "Email déjà utilisé";
                 exit();
@@ -55,8 +53,8 @@
             "role" => "client"
         ];
 
-        array_push($account_data, $new_account_data);
-        file_put_contents("../data/accounts.json", json_encode($account_data, JSON_PRETTY_PRINT));
+        array_push($accounts_data, $new_account_data);
+        file_put_contents(__DIR__ . "/../data/accounts.json", json_encode($accounts_data, JSON_PRETTY_PRINT));
 
         create_session($new_account_data['id'], $new_account_data['role']);
     }
@@ -66,7 +64,7 @@
 
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"] && password_verify($_POST["password"], $account["password"])) {
-                create_session($account["id"], $account["role"], $_SERVER['HTTP_REFERER']);
+                create_session($account["id"], $account["role"]);
                 $founded_account = true;
                 exit();
             }

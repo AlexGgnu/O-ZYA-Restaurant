@@ -40,7 +40,7 @@
                     <div class="flex-col gap-20 sm-gap-12">
                         <h3>Autres</h3>
                         <ul>
-                            <li><a href="./notation.html">Je donne mon avis</a></li>
+                            <li><a href="./notation.php">Je donne mon avis</a></li>
                         </ul>
                     </div>
                 </div>
