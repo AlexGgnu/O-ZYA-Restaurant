@@ -12,15 +12,15 @@
     }
 
     function create_session($uuid, $role, $redirection = "/") {
-        $_SESSION['uuid'] = $user['id'];
-        $_SESSION['role'] = $user['role'];
+        $_SESSION['uuid'] = $uuid;
+        $_SESSION['role'] = $role;
         $_SESSION['logged_in'] = true;
 
         header("Location: " . $redirection);
         exit();
     }
     function get_access($autorized_role, $redirect = false) {
-        if (!is_logged() || $_SESSION["role"] !== "admin") {
+        if (!is_logged() || $_SESSION["role"] !== $autorized_role) {
             if($redirect) header("Location: ". $_SERVER['HTTP_REFERER']);
             return false;
         }
@@ -43,7 +43,7 @@
             exit();
         }
 
-        $newAccount = [
+        $new_account_data = [
             "id" => uniqid(),
             "gender" => $_POST["gender"],
             "lastname" => $_POST["lastname"],
@@ -54,9 +54,11 @@
             "address" => $_POST["address"],
             "role" => "client"
         ];
-        file_put_contents("../data/accounts.json", json_encode($newAccount, JSON_PRETTY_PRINT));
 
-        create_session($user['id'], $user['role']);
+        array_push($account_data, $new_account_data);
+        file_put_contents("../data/accounts.json", json_encode($account_data, JSON_PRETTY_PRINT));
+
+        create_session($new_account_data['id'], $new_account_data['role']);
     }
     function log_in() {
         $accounts_data = get_accounts_data();
@@ -73,6 +75,6 @@
         if (!$founded_account) echo "Email ou mot de passe incorrect";
     }
 
-    if($_GET['auth_method'] == "log_in") log_in();
-    else if($_GET['auth_method'] == "sign_up") log_up();
+    if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in();
+    else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "sign_up") sign_up();
 ?>
