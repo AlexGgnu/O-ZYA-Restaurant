@@ -1,5 +1,7 @@
 <?php
     require_once('./php/function_account.php');
+
+    require_once('./php/header.php');
     require_once('./php/footer.php');
     
     if(is_logged()) header("Location: /");
@@ -18,17 +20,7 @@
     </head>
 
     <body>
-        <header>
-            <section class="header__container flex-row justify-between items-center w-full h-full">
-                <a class="h-full" href="/">
-                    <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
-                </a>
-                <div class="header__menu flex-row justify-between items-center gap-32">
-                    <a href="/">Accueil</a>
-                    <a href="./products.php">La carte</a>
-                </div>
-            </section>
-        </header>
+        <?php echo get_header(false, false); ?>
 
         <main class="justify-center sm-p-0">
             <form class="form-card sm-flex-1 sm-justify-center sm-rounded-none" method="post" action="./php/function_account.php?auth_method=sign_up">

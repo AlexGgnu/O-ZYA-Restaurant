@@ -1,4 +1,5 @@
 <?php
+    require_once('./php/header.php');
     require_once('./php/footer.php');
 ?>
 
@@ -14,22 +15,7 @@
         <link rel="stylesheet" href="./styles/main.css">
     </head>
     <body>
-        <header>
-            <section class="header__container flex-row justify-between items-center w-full h-full">
-                <a class="h-full" href="/">
-                    <img class="h-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
-                </a>
-                <div class="header__right flex-row items-center gap-24">
-                    <a class="btn btn-svg btn-primary" href="./menu.html">
-                        <span class="font-bold sm-hidden">Retour au menu</span>
-
-                        <svg class="hidden svg-24 sm-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
-                            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 105.4-105.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-                        </svg>
-                    </a>
-                </div>
-            </section>
-        </header>
+        <?php echo get_header(false, false); ?>
 
         <main class="flex-col gap-40 ph-40">
             <h1 class="w-full">Mon panier</h1>
