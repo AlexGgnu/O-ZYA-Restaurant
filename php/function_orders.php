@@ -48,7 +48,8 @@
 
         foreach ($commandes as $commande) {
             $id = htmlspecialchars((string)($commande['id'] ?? ''));
-            $client = htmlspecialchars((string)($commande['client'] ?? ''));
+            $account_data = get_account_by_id($commande['id_client']);
+            $account = $account_data['lastname'] . ' ' . $account_data['firstname'];
 
             $adresse = !empty($commande['adresse'])
                 ? htmlspecialchars((string)$commande['adresse'])
@@ -74,7 +75,7 @@
             echo "
                 <tr>
                     <td>#{$id}</td>
-                    <td>{$client}</td>
+                    <td>{$account}</td>
                     <td>{$adresse}</td>
                     <td>{$detailComplet}</td>
                     <td>{$total}€</td>
