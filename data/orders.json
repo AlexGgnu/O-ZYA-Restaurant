@@ -1,6 +1,6 @@
 [
   {
-    "id": "69ca8134447cb",
+    "id_order": "69ca8134447cb",
     "id_client": "69c14f0fe5cef",
     "adresse": "123 Rue Exemple, Paris",
     "details": ["Burger Karachi", "Frites", "Coca"],
@@ -10,7 +10,7 @@
     "date_heure": "15/03/2026 14:30"
   },
   {
-    "id": "69ca8134447cb",
+    "id_order": "69ca8134447cb",
     "id_client": "69c14eabe22f6",
     "adresse": "À Emporté ",
     "details": ["Menu Tandoori"],
@@ -20,7 +20,7 @@
     "date_heure": "16/03/2026 23:00"
   },
   {
-    "id": "69ca8134447cb",
+    "id_order": "69ca8134447cb",
     "id_client": "69c14f0fe5cef",
     "adresse": "21 Rue du Temple, Paris",
     "details": ["Wrap Poulet"],
