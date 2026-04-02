@@ -36,6 +36,15 @@
         }
     }
 
+    function format_status($status) {
+    switch ($status) {
+        case "preparing": return "En préparation";
+        case "delivery": return "En livraison";
+        case "finished": return "Livrée";
+        default: return $status;
+    }
+    }
+
     function afficherLignesCommandes(array $commandes): void {
         if (empty($commandes)) {
             echo '

@@ -3,7 +3,7 @@
 
     function is_logged() {
         if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) return true;
-        else false;
+        else return false;
     }
 
     function get_accounts_data() {
@@ -18,6 +18,24 @@
         }
 
         return null;
+    }
+
+    function get_orders_data() {
+        $datas = file_get_contents(__DIR__ . "/../data/order.json");
+    return json_decode($datas, true);
+    }
+
+    function get_orders_by_user($user_id) {
+        $orders = get_orders_data();
+        $result = [];
+
+        foreach ($orders as $order) {
+            if ($order["id_client"] == $user_id) {
+                $result[] = $order;
+            }
+        }
+
+        return $result;
     }
 
     function create_session($uuid, $role, $redirection = "/") {
