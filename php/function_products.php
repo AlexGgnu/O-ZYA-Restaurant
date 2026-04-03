@@ -40,9 +40,9 @@
                 <h3>' . $product['name'] . '</h3>
                 <img class="w-full min-h-0 object-contain object-center filter-drop-shadow" src="' . $product['image'] . '" alt="' . $product['name'] . '">
                 <p class="text-sm text-center">' . $product['shortDescription'] . '</p>
-                <button class="btn btn-primary" data-product-id="' . $product['id'] . '">
+                <a class="btn btn-primary" href="./php/function_basket.php?dish_id=' . $product['id'] . '">
                     JE COMMANDE • ' . $product['price'] . '€
-                </button>
+                </a>
             </div>
         ';
     }
@@ -57,9 +57,9 @@
                 <h2 class="text-primary font-600">' . $special_dish['name'] . '</h2>
                 <p>' . $desc . '</p>
             </div>
-            <button class="btn btn-primary" data-product-id="' . $special_dish['id'] . '">
+            <a class="btn btn-primary" href="./php/function_basket.php?dish_id=' . $special_dish['id'] . '">
                 JE COMMANDE • ' . $special_dish['price'] . '€
-            </button>
+            </a>
         ';
     }
     function render_successed_dishes() {
