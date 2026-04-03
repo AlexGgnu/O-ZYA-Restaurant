@@ -1,14 +1,9 @@
 <?php
     require_once('./php/function_panier.php');
     require_once('./php/footer.php');
-<<<<<<< HEAD
     require_once('./php/function_paiments.php');
 
     $params = get_paiment_params();
-=======
-    require_once('./php/function_basket.php');
-
->>>>>>> 6edd888 (new fonction order + ajout resquire dans la fonction panier.php)
 ?>
 
 <!DOCTYPE html>

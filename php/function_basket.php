@@ -27,12 +27,18 @@
         $_SESSION['basket'] = $basket;
     }
 
-    function empty_basket() {
-        $_SESSION['basket'] = [];
-    }
+function empty_basket() {
+$_SESSION['basket'] = [];
+}
 
-    if(isset($_GET['dish_id'])) add_to_basket($_GET['dish_id']);
-    
-    header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/'));
-    exit();
+if (isset($_GET['dish_id'])) {
+    if (isset($_GET['action']) && $_GET['action'] == 'remove') {
+        remove_from_basket($_GET['dish_id']);
+    } else {
+        add_to_basket($_GET['dish_id']);
+    }
+}
+
+header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/'));
+exit();
 ?>
