@@ -16,3 +16,22 @@
         <link rel="stylesheet" href="./styles/main.css">
     </head>
     <body>
+        <?php echo get_header(false, false); ?>
+
+        <main class="flex-col gap-40 ph-40">
+            <h1 class="w-full">Mon panier</h1>
+
+            <div class="flex-row items-stretch gap-20 w-full">
+                <section class="flex-1 w-full min-h-0">
+                    <div class="form-card h-full gap-24 max-w-full m-0">
+                        <h2 class="text-primary font-600">Articles commandés</h2>
+
+                        <div class="scrollable-wrapper flex-1">
+                            <div class="scrollable-container flex-col gap-14">
+                                <?php afficher_panier(); ?>
+                            </div>
+                        </div>
+                    </div>
+
+  </body>
+</html>
