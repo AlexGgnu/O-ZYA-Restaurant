@@ -1,6 +1,9 @@
 <?php
     require_once('./php/header.php');
     require_once('./php/footer.php');
+    require_once('./php/function_paiments.php');
+
+    $params = get_paiment_params();
 ?>
 
 <!DOCTYPE html>
@@ -118,9 +121,14 @@
                             <button class="btn btn-secondary" type="button">Appliquer</button>
                         </div>
 
-                        <div class="flex-col gap-10">
-                            <button class="btn btn-primary" type="button">Valider le panier</button>
-                        </div>
+                        <form class="flex-col gap-10" action='https://www.plateforme-smc.fr/cybank/index.php' method='POST'>
+                            <input type='hidden' name='transaction' value='UINIQUE_TRANSACTION_ID'>
+                            <input type='hidden' name='montant' value='TOTAL_AMOUNT'>
+                            <input type='hidden' name='vendeur' value='MI-3_C'>
+                            <input type='hidden' name='retour' value='http://localhost/retour_paiement.php?session=s'>
+                            <input type='hidden' name='control' value='01c06955b2d4ad0ccdedd4aad0ab68bf'>
+                            <input class="btn btn-primary" type='submit' value="Valider et payer">
+                        </form>
                     </div>
                 </section>
             </div>
