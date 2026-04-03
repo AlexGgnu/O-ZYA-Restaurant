@@ -1,6 +1,6 @@
     <?php
         require_once('./php/function_account.php');
-
+        require_once('./php/function_order.php');
         require_once('./php/header.php');
         require_once('./php/footer.php');
 
@@ -141,12 +141,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if (empty($orders)) : ?>
+                                            <?php  if (empty($orders)) {?>
                                                 <tr>
                                                     <td colspan="5">Aucune commande</td>
                                                 </tr>
-                                            <?php else : ?>
-                                                <?php foreach ($orders as $order) : ?>
+                                            <?php } else {foreach ($orders as $order) {?>
                                                     <tr>
                                                         <td><?= $order['date_heure'] ?></td>
                                                         <td>#<?= $order['id_order'] ?></td>
@@ -156,10 +155,9 @@
                                                             <button class="btn btn-status" data-status="<?= $order['statut'] ?>">
                                                                 <?= format_status($order['statut']) ?>
                                                             </button>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                            <?php endif; ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php} } ?>
                                         </tbody>
                                     </table>
                                 </div>
