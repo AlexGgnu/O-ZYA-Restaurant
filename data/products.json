@@ -16,7 +16,7 @@
             "sides": [
                 {
                     "id": "ES_SI_01",
-                    "name": "Patatas Bravas",
+                    "name": "Patatas Bravas",  
                     "image": "./assets/products/es/patatas_bravas.png",
                     "price": 6.90,
                     "shortDescription": "La reine des tapas : cubes de pommes de terre frits et sauce piquante.",
