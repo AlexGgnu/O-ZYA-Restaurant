@@ -2,7 +2,7 @@
     require_once('./php/function_panier.php');
     require_once('./php/footer.php');
     require_once('./php/function_paiments.php');
-
+    require_once('./php/function_basket.php');
     $params = get_paiment_params();
 ?>
 
