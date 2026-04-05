@@ -21,7 +21,7 @@
     }
 
     function get_orders_data() {
-        $datas = file_get_contents(__DIR__ . "/../data/order.json");
+        $datas = file_get_contents(__DIR__ . "/../data/orders.json");
     return json_decode($datas, true);
     }
 
@@ -62,13 +62,13 @@
 
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"]) {
-                echo "Email déjà utilisé";
+                header("Location: /registration.php?error=" . urlencode("Email deja utilise"));
                 exit();
             }
         }
 
         if (!password_verify($_POST["confirme-pwd"], $hash_password)) {
-            echo "Les mots de passe ne correspondent pas";
+            header("Location: /registration.php?error=" . urlencode("Les mots de passe ne correspondent pas"));
             exit();
         }
 
@@ -101,7 +101,10 @@
             }
         }
 
-        if (!$founded_account) echo "Email ou mot de passe incorrect";
+        if (!$founded_account) {
+            header("Location: /connection.php?error=" . urlencode("Email ou mot de passe incorrect"));
+            exit();
+        }
     }
 
     if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in();

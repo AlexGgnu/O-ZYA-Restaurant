@@ -1,7 +1,7 @@
 <?php
     // MARK: - Data processing
     function get_decoded_products_data() {
-        $products_data_json = file_get_contents('./data/products.json');
+        $products_data_json = file_get_contents(__DIR__ . '/../data/products.json');
         return json_decode($products_data_json, true);
     }
     function get_special_dish_data() {

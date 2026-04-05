@@ -5,6 +5,11 @@
     require_once('./php/footer.php');
     
     if(is_logged()) header("Location: /");
+
+    $error_message = '';
+    if (isset($_GET['error']) && $_GET['error'] != '') {
+        $error_message = htmlspecialchars(urldecode($_GET['error']));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -80,6 +85,10 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+                <?php if ($error_message != ''): ?>
+                    <p class="text-center text-primary mt-10"><?php echo $error_message; ?></p>
+                <?php endif; ?>
 
                 <p class="text-center mt-10">
                     Déjà un compte ? <a href="./connection.php" class="font-bold text-primary">Se connecter</a>
