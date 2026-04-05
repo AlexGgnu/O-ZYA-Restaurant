@@ -86,9 +86,9 @@
 
                 <button type="submit" class="btn btn-primary">S'inscrire</button>
 
-                <?php if ($error_message != ''): ?>
-                    <p class="text-center text-primary mt-10"><?php echo $error_message; ?></p>
-                <?php endif; ?>
+                <?php if ($error_message != '') { ?>
+                    <p class="text-center text-error mt-10"><?php echo $error_message; ?></p>
+                <?php } ?>
 
                 <p class="text-center mt-10">
                     Déjà un compte ? <a href="./connection.php" class="font-bold text-primary">Se connecter</a>

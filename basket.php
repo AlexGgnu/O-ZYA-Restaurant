@@ -5,7 +5,9 @@
     require_once('./php/header.php');
     require_once('./php/footer.php');
 
-    $params = get_paiment_params();
+    $promo_code = get_promo_code_from_post();
+    $params = get_paiment_params($promo_code);
+    $payment_error_message = get_payment_error_message();
 ?>
 
 <!DOCTYPE html>
@@ -54,12 +56,16 @@
 
                         <div class="flex-1"></div>
 
-                        <form class="flex-col gap-10" action='https://www.plateforme-smc.fr/cybank/index.php' method='POST'>
-                            <input type='hidden' name='transaction' value='UINIQUE_TRANSACTION_ID'>
-                            <input type='hidden' name='montant' value='TOTAL_AMOUNT'>
-                            <input type='hidden' name='vendeur' value='MI-3_C'>
-                            <input type='hidden' name='retour' value='http://localhost/retour_paiement.php?session=s'>
-                            <input type='hidden' name='control' value='01c06955b2d4ad0ccdedd4aad0ab68bf'>
+                        <form class="flex-col gap-10" action='<?php echo htmlspecialchars($params['action_url']); ?>' method='POST'>
+                            <?php if ($payment_error_message != '') { ?>
+                                <p class="text-center text-error mb-24"><?php echo $payment_error_message; ?></p>
+                            <?php } ?>
+
+                            <input type='hidden' name='transaction' value='<?php echo htmlspecialchars($params['transaction']); ?>'>
+                            <input type='hidden' name='montant' value='<?php echo htmlspecialchars($params['montant']); ?>'>
+                            <input type='hidden' name='vendeur' value='<?php echo htmlspecialchars($params['vendeur']); ?>'>
+                            <input type='hidden' name='retour' value='<?php echo htmlspecialchars($params['retour']); ?>'>
+                            <input type='hidden' name='control' value='<?php echo htmlspecialchars($params['control']); ?>'>
                             <input class="btn btn-primary" type='submit' value="Valider et payer">
                         </form>
                     </div>

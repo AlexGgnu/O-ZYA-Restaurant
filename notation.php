@@ -1,6 +1,17 @@
 <?php
+    require_once('./php/function_account.php');
     require_once('./php/header.php');
     require_once('./php/footer.php');
+
+    $notation_error = '';
+    if (isset($_GET['error']) && $_GET['error'] != '') {
+        $notation_error = htmlspecialchars(urldecode($_GET['error']));
+    }
+
+    $notation_success = '';
+    if (isset($_GET['success']) && $_GET['success'] != '') {
+        $notation_success = htmlspecialchars(urldecode($_GET['success']));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +29,7 @@
         <?php echo get_header(false, false); ?>
         
         <main class="justify-center sm-p-0">
-            <div class="rating-form form-card sm-flex-1 sm-justify-center sm-gap-40 sm-ph-20 sm-rounded-none">
+            <form class="rating-form form-card sm-flex-1 sm-justify-center sm-gap-40 sm-ph-20 sm-rounded-none" method="post" action="./php/function_notation.php">
                 <h1 class="text-center text-primary">Donnez votre avis</h1>
 
                 <div class="flex-col gap-12">
@@ -35,11 +46,19 @@
 
                 <div class="form-group">
                     <label>Commentaire</label>
-                    <textarea placeholder="Dites-nous ce que vous en avez pensé..."></textarea>
+                    <textarea name="commentaire" placeholder="Dites-nous ce que vous en avez pensé..." required></textarea>
                 </div>
 
+                <?php if ($notation_error != '') { ?>
+                    <p class="text-center text-error"><?php echo $notation_error; ?></p>
+                <?php } ?>
+
+                <?php if ($notation_success != '') { ?>
+                    <p class="text-center text-primary"><?php echo $notation_success; ?></p>
+                <?php } ?>
+
                 <button class="btn btn-primary w-full mt-20" type="submit">Envoyer mon avis</button>
-            </div>
+            </form>
         </main>
 
         <?php echo get_footer(true); ?>

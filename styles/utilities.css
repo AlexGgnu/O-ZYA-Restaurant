@@ -50,6 +50,7 @@
 .font-bold { font-weight: bold; }
 
 .text-primary { color: var(--primary-color); }
+.text-error { color: red; }
 
 .leading-none { line-height: 1; }
 .uppercase { text-transform: uppercase; }

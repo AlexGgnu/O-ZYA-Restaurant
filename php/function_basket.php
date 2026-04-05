@@ -46,12 +46,40 @@
         return 0;
     }
 
-    function afficher_panier() {
+    function get_basket_totals($code_promo = '') {
         $panier = get_basket();
         $frais_livraison = 2.99;
+        $sous_total = 0;
+
+        foreach ($panier as $id => $quantite) {
+            $produit = get_product_by_id($id);
+            if ($produit != null) {
+                $sous_total = $sous_total + ($produit['price'] * $quantite);
+            }
+        }
+
+        $reduction = 0;
+        if (trim((string) $code_promo) !== '') {
+            $reduction = appliquer_coupon($code_promo, $sous_total);
+        }
+
+        $total = $sous_total + $frais_livraison - $reduction;
+        if ($total < 0) {
+            $total = 0;
+        }
+
+        return [
+            'sous_total' => $sous_total,
+            'frais_livraison' => $frais_livraison,
+            'reduction' => $reduction,
+            'total' => $total,
+        ];
+    }
+
+    function afficher_panier() {
+        $panier = get_basket();
 
         $code_promo = '';
-        $reduction = 0;
 
         if (isset($_POST['code_promo'])) {
             $code_promo = $_POST['code_promo'];
@@ -78,11 +106,9 @@
             }
         }
 
-        if ($code_promo != '') {
-            $reduction = appliquer_coupon($code_promo, $sous_total);
-        }
-
-        $total = $sous_total + $frais_livraison - $reduction;
+        $totaux = get_basket_totals($code_promo);
+        $reduction = $totaux['reduction'];
+        $total = $totaux['total'];
 
         foreach ($articles as $article) {
             $produit = $article['produit'];
