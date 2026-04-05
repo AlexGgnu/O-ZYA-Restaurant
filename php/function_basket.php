@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     function get_product_by_id($id) {
         $json = file_get_contents(__DIR__ . '/../data/products.json');
         $data = json_decode($json, true);

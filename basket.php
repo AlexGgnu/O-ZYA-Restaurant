@@ -1,9 +1,15 @@
 <?php
+    require_once('./php/function_account.php');
     require_once('./php/function_basket.php');
     require_once('./php/function_paiments.php');
     
     require_once('./php/header.php');
     require_once('./php/footer.php');
+
+    if (!is_logged()) {
+        header("Location: ./connection.php");
+        exit();
+    }
 
     $promo_code = get_promo_code_from_post();
     $params = get_paiment_params($promo_code);
