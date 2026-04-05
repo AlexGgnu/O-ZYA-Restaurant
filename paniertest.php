@@ -5,6 +5,7 @@
 
     $params = get_paiment_params();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
