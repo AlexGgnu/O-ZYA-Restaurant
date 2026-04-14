@@ -1,7 +1,7 @@
 <?php
     function main_part() {
         echo '
-            <section class="flex-row justify-between items-center ph-80 lg-ph-20 sm-flex-col sm-gap-40 sm-pv-16">
+            <section class="flex-row justify-between items-center ph-80 lg-ph-20 sm-flex-col sm-items-start sm-gap-24 sm-pv-16">
                 <div class="flex-col justify-center items-center gap-24 pv-16 sm-gap-0 sm-pv-0">
                     <a href="/" style="width: 200px;">
                         <img class="w-full" src="./assets/icons/logo.png" alt="Restaurant Logo" />
@@ -13,7 +13,7 @@
                         Retourner en haut
                     </button>
                 </div>
-                <div class="flex-row gap-80 sm-flex-col sm-gap-40">
+                <div class="flex-row gap-80 sm-flex-col sm-items-start sm-gap-24">
                     <div class="flex-col gap-20 sm-gap-12">
                         <h3>Plan du site</h3>
                         <div>

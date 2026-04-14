@@ -50,6 +50,29 @@
 }
 .btn-secondary.active, .btn-secondary:hover { opacity: 1; }
 
+@media (max-width: 768px) {
+    .btn-secondary {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-secondary {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+
+    .products__filters {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .dish__card .btn {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+}
+
 .btn-status {
     font-size: 0.8rem;
     font-weight: normal;
@@ -243,6 +266,10 @@ main textarea {
     .cards__wrapper::before,
     .cards__wrapper::after {
         width: 24px;
+    }
+
+    #special-dish {
+        width: 100%;
     }
 }
 

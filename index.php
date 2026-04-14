@@ -42,7 +42,7 @@
                     </defs>
                 </svg>
             </section>
-            <section class="w-full flex-row items-center gap-80 h-content ph-40 lg-flex-col lg-justify-center">
+            <section class="w-full flex-row items-center gap-80 h-content ph-40 lg-flex-col lg-justify-center sm-h-fit sm-pv-40 sm-ph-20 sm-gap-40">
                 <div id="special-dish" class="flex-col items-start gap-24 lg-w-full">
                     <h1>Voyage du jour</h1>
                     <?php echo render_special_dish(); ?>

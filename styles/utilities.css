@@ -104,9 +104,11 @@
     .sm-flex-col { display: flex; flex-direction: column; }
 
     .sm-justify-center { justify-content: center; }
+    .sm-items-start { align-items: flex-start; }
 
     .sm-gap-0 { gap: 0; }
     .sm-gap-12 { gap: 12px; }
+    .sm-gap-24 { gap: 24px; }
     .sm-gap-40 { gap: 40px; }
 }
 
