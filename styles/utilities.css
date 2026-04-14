@@ -104,6 +104,7 @@
     .sm-flex-col { display: flex; flex-direction: column; }
 
     .sm-justify-center { justify-content: center; }
+    .sm-items-center { align-items: center; }
     .sm-items-start { align-items: flex-start; }
 
     .sm-gap-0 { gap: 0; }

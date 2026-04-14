@@ -68,8 +68,8 @@
     }
 
     .dish__card .btn {
-        padding: 8px 10px;
-        font-size: 0.85rem;
+        padding: 7px 10px;
+        font-size: 0.8rem;
     }
 }
 
@@ -274,6 +274,10 @@ main textarea {
 }
 
 @media (max-width: 480px) {
+    .cards__wrapper {
+        overflow: visible;
+    }
+
     .cards__track {
         grid-template-columns: minmax(0, 1fr);
         gap: 16px;
@@ -283,6 +287,8 @@ main textarea {
     .dish__card {
         min-height: auto;
         padding: 20px 16px;
+        max-width: none;
+        width: 100%;
     }
 
     .form-card {

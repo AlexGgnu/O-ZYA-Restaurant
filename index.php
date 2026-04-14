@@ -23,7 +23,7 @@
         <?php echo get_header(); ?>
 
         <main class="gap-20 pt-0">
-            <section class="flex-col justify-between relative w-full max-w-full h-content color-tertiary bg-primary overflow-hidden">
+            <section class="flex-col justify-between relative w-full max-w-full h-content color-tertiary bg-primary overflow-hidden sm-h-fit sm-pv-40">
                 <h1 class="flex-1 flex justify-center items-center text-5xl lg-text-center">VENEZ FAIRE VOYAGER VOS PAPILLES !!!</h1>
 
                 <svg class="absolute r-0 h-full pv-16 opacity-50 translate-x-33 animation-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
