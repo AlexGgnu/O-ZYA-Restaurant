@@ -213,6 +213,74 @@ main textarea {
 #special-dish-image svg { color: var(--tertiary-color); }
 #special-dish-image img { position: absolute; }
 
+@media (max-width: 1024px) {
+    .cards__track {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow-x: visible;
+    }
+
+    .dish__card {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+    }
+
+    #special-dish {
+        width: 100%;
+    }
+
+    #special-dish-image {
+        width: min(75%, 420px);
+    }
+}
+
+@media (max-width: 768px) {
+    .form-card {
+        padding: 28px;
+    }
+
+    .cards__wrapper::before,
+    .cards__wrapper::after {
+        width: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards__track {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        padding: 0;
+    }
+
+    .dish__card {
+        min-height: auto;
+        padding: 20px 16px;
+    }
+
+    .form-card {
+        padding: 22px 18px;
+    }
+
+    .form-group-line {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-group-line__input-wrapper {
+        width: 100%;
+    }
+
+    #special-dish-image {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #special-dish-image img {
+        max-width: 100%;
+    }
+}
+
 /* MARK: - Scrollable container */
 .scrollable-wrapper {
     position: relative;

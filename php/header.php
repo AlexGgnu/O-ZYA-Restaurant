@@ -11,7 +11,7 @@
         $active = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
 
         echo '
-            <div class="header__menu flex-row justify-between items-center gap-32">
+            <div class="header__menu flex-row justify-between items-center gap-32 sm-gap-12">
                 <a href="/" ' . ($active === "index" ? 'id="active__menu"' : '') . '>Accueil</a>
                 <a href="./products.php" ' . ($active === "products" ? 'id="active__menu"' : '') . '>La carte</a>
             </div>
@@ -36,7 +36,7 @@
     }
 
     function right_part($searchbar) {
-        echo '<div class="header__right flex-row items-center gap-24">';
+        echo '<div class="header__right flex-row items-center gap-24 sm-gap-12">';
 
         if ($searchbar) {
             echo searchbar_button();

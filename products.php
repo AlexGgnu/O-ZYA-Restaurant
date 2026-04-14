@@ -32,8 +32,8 @@
                     <span class="text-7xl font-bold sm-text-4xl">le meilleur choix</span>
                 </h1>
                 
-                <div class="w-75 bg-tertiary rounded-full ph-80 pv-20 lg-ph-40 md-w-90">
-                    <ul class="flex-row justify-between items-center">
+                <div class="w-75 bg-tertiary rounded-full ph-80 pv-20 lg-ph-40 md-w-90 sm-w-90 sm-ph-20 sm-pv-16">
+                    <ul class="flex-row justify-between items-center sm-gap-12">
                         <li>
                             <a href="?category=dishes" class="filter__button btn btn-secondary btn-svg <?= $currentCategory === 'dishes' ? 'active' : '' ?>">
                                 <svg class="svg-24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
