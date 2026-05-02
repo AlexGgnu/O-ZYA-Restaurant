@@ -1,6 +1,6 @@
 <?php
-    require_once('./php/function_products.php');
     require_once('./php/function_account.php');
+    require_once('./php/function_products.php');
 
     require_once('./php/header.php');
     require_once('./php/footer.php');

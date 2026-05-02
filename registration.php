@@ -10,6 +10,9 @@
     if (isset($_GET['error']) && $_GET['error'] != '') {
         $error_message = htmlspecialchars(urldecode($_GET['error']));
     }
+
+    if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = $_GET['redirection'];
+    else $redirection = "/";
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +31,7 @@
         <?php echo get_header(false, false); ?>
 
         <main class="justify-center sm-p-0">
-            <form class="form-card sm-flex-1 sm-justify-center sm-rounded-none" method="post" action="./php/function_account.php?auth_method=sign_up">
+            <form class="form-card sm-flex-1 sm-justify-center sm-rounded-none" method="post" action="./php/function_account.php?auth_method=sign_up&redirection=<?php echo urlencode($redirection); ?>">
                 <h1 class="text-center text-primary">Inscription</h1>
                 
                 <div class="form-group flex-row justify-between">
@@ -91,7 +94,7 @@
                 <?php } ?>
 
                 <p class="text-center mt-10">
-                    Déjà un compte ? <a href="./connection.php" class="font-bold text-primary">Se connecter</a>
+                    Déjà un compte ? <a href="./connection.php?redirection=<?php echo urlencode($redirection); ?>" class="font-bold text-primary">Se connecter</a>
                 </p>
             </form>
         </main>

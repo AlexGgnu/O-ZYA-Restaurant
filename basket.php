@@ -5,14 +5,11 @@
     
     require_once('./php/header.php');
     require_once('./php/footer.php');
-
-    if (!is_logged()) {
-        header("Location: ./connection.php");
-        exit();
-    }
-
+    
     $promo_code = get_promo_code_from_post();
-    $params = get_paiment_params($promo_code);
+    $basket = get_basket();
+    $basket_is_empty = empty($basket);
+    $params = $basket_is_empty ? null : get_paiment_params($promo_code);
     $payment_error_message = get_payment_error_message();
 ?>
 
@@ -62,18 +59,24 @@
 
                         <div class="flex-1"></div>
 
-                        <form class="flex-col gap-10" action='<?php echo htmlspecialchars($params['action_url']); ?>' method='POST'>
-                            <?php if ($payment_error_message != '') { ?>
-                                <p class="text-center text-error mb-24"><?php echo $payment_error_message; ?></p>
-                            <?php } ?>
+                        <?php if (is_logged()) { ?>
+                            <form class="flex-col gap-10" action='<?php echo $basket_is_empty ? '' : htmlspecialchars($params['action_url']); ?>' method='POST'>
+                                <?php if ($payment_error_message != '') { ?>
+                                    <p class="text-center text-error mb-24"><?php echo $payment_error_message; ?></p>
+                                <?php } ?>
 
-                            <input type='hidden' name='transaction' value='<?php echo htmlspecialchars($params['transaction']); ?>'>
-                            <input type='hidden' name='montant' value='<?php echo htmlspecialchars($params['montant']); ?>'>
-                            <input type='hidden' name='vendeur' value='<?php echo htmlspecialchars($params['vendeur']); ?>'>
-                            <input type='hidden' name='retour' value='<?php echo htmlspecialchars($params['retour']); ?>'>
-                            <input type='hidden' name='control' value='<?php echo htmlspecialchars($params['control']); ?>'>
-                            <input class="btn btn-primary" type='submit' value="Valider et payer">
-                        </form>
+                                <?php if (!$basket_is_empty) { ?>
+                                    <input type='hidden' name='transaction' value='<?php echo htmlspecialchars($params['transaction']); ?>'>
+                                    <input type='hidden' name='montant' value='<?php echo htmlspecialchars($params['montant']); ?>'>
+                                    <input type='hidden' name='vendeur' value='<?php echo htmlspecialchars($params['vendeur']); ?>'>
+                                    <input type='hidden' name='retour' value='<?php echo htmlspecialchars($params['retour']); ?>'>
+                                    <input type='hidden' name='control' value='<?php echo htmlspecialchars($params['control']); ?>'>
+                                <?php } ?>
+                                <input class="btn btn-primary" type='submit' value="Valider et payer" <?php echo $basket_is_empty ? 'disabled' : ''; ?>>
+                            </form>
+                        <?php } else { ?>
+                            <a class="btn btn-primary" href="./connection.php?redirection=basket">Se connecter avant de payer</a>
+                        <?php } ?>
                     </div>
                 </section>
             </div>

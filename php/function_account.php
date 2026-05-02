@@ -56,7 +56,7 @@
         header("Location: /");
     }
 
-    function sign_up() {
+    function sign_up($redirection = "/") {
         $accounts_data = get_accounts_data();
         $hash_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
@@ -87,15 +87,15 @@
         array_push($accounts_data, $new_account_data);
         file_put_contents(__DIR__ . "/../data/accounts.json", json_encode($accounts_data, JSON_PRETTY_PRINT));
 
-        create_session($new_account_data['id'], $new_account_data['role']);
+        create_session($new_account_data['id'], $new_account_data['role'], $redirection);
     }
-    function log_in() {
+    function log_in($redirection = "/") {
         $accounts_data = get_accounts_data();
         $founded_account = false;
 
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"] && password_verify($_POST["password"], $account["password"])) {
-                create_session($account["id"], $account["role"]);
+                create_session($account["id"], $account["role"], $redirection);
                 $founded_account = true;
                 exit();
             }
@@ -107,7 +107,10 @@
         }
     }
 
-    if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in();
-    else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "sign_up") sign_up();
+    if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = '/' . $_GET['redirection'] . '.php';
+    else $redirection = "/";
+
+    if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in($redirection);
+    else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "sign_up") sign_up($redirection);
     else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_out") log_out();
 ?>

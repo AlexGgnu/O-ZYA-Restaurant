@@ -13,6 +13,11 @@
     transition: all .3s ease-in-out;
 }
 
+.btn[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .btn-svg {
     display: flex;
     flex-direction: row;

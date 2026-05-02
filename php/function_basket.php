@@ -1,4 +1,13 @@
 <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    function get_basket() {
+        if(!isset($_SESSION['basket']) || !is_array($_SESSION['basket'])) return [];
+        return $_SESSION['basket'];
+    }
+
     function get_product_by_id($id) {
         $json = file_get_contents(__DIR__ . '/../data/products.json');
         $data = json_decode($json, true);
@@ -57,7 +66,7 @@
         }
 
         $reduction = 0;
-        if (trim((string) $code_promo) !== '') {
+        if (trim($code_promo) !== '') {
             $reduction = appliquer_coupon($code_promo, $sous_total);
         }
 
@@ -166,11 +175,6 @@
         ";
     }
 
-    function get_basket() {
-        if(!isset($_SESSION['basket']) || !is_array($_SESSION['basket'])) return [];
-        return $_SESSION['basket'];
-    }
-
     function add_to_basket($dish_id) {
         $basket = get_basket();
         
@@ -203,6 +207,10 @@
             remove_from_basket($_GET['dish_id']);
         } else {
             add_to_basket($_GET['dish_id']);
+            
+            foreach (get_basket() as $id => $quantite) {
+                echo $id . " => " . $quantite . "<br>";
+            }
         }
 
         header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '/'));
