@@ -27,7 +27,7 @@
 
     function get_payment_amount($promo_code = '') {
         $totaux = get_basket_totals($promo_code);
-        return number_format((float) $totaux['total'], 2, '.', '');
+        return number_format($totaux['total'], 2, '.', '');
     }
 
     function build_payment_control($api_key, $transaction, $montant, $vendeur, $retour) {
@@ -56,7 +56,7 @@
 
         foreach ($status_keys as $key) {
             if (isset($_GET[$key]) && $_GET[$key] !== '') {
-                return strtolower(trim((string) $_GET[$key]));
+                return strtolower(trim($_GET[$key]));
             }
         }
 

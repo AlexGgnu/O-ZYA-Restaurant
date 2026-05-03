@@ -22,17 +22,29 @@
         }
     }
 
-    function getLibelleStatut($statut) {
-        if ($statut == 'preparing') {
-            return 'En cours de préparation';
-        } else if ($statut == 'delivery') {
-            return 'En cours de livraison';
-        } else if ($statut == 'finished') {
-            return 'Livrée';
-        } else if ($statut == 'waiting') {
-            return 'En attente';
+    function getLibelleStatut($statut, $isTakeaway = false) {
+        if ($isTakeaway) {
+            if ($statut == 'preparing') {
+                return 'En cours de préparation';
+            } else if ($statut == 'waiting') {
+                return 'En attente de récupération';
+            } else if ($statut == 'finished') {
+                return 'Récupéré';
+            } else {
+                return 'Statut inconnu';
+            }
         } else {
-            return 'Statut inconnu';
+            if ($statut == 'preparing') {
+                return 'En cours de préparation';
+            } else if ($statut == 'delivery') {
+                return 'En cours de livraison';
+            } else if ($statut == 'finished') {
+                return 'Livrée';
+            } else if ($statut == 'waiting') {
+                return 'En attente';
+            } else {
+                return 'Statut inconnu';
+            }
         }
     }
 
@@ -43,6 +55,139 @@
             return 'En attente';
         } else {
             return 'Non renseigné';
+        }
+    }
+
+    function getOrderStatusOptions() {
+        return [
+            'waiting' => 'En attente',
+            'preparing' => 'En cours de préparation',
+            'delivery' => 'En cours de livraison',
+            'finished' => 'Livrée',
+        ];
+    }
+
+    function getTakeawayStatusOptions() {
+        return [
+            'waiting' => 'En attente de récupération',
+            'preparing' => 'En cours de préparation',
+            'finished' => 'Récupéré',
+        ];
+    }
+
+    function isTakeawayOrder($commande) {
+        if (!isset($commande['adresse'])) {
+            return true;
+        }
+
+        $adresse = trim(strtolower($commande['adresse']));
+        return $adresse === '' || $adresse === 'à emporter' || $adresse === 'à emporté';
+    }
+
+    function isDeliveryOrder($commande) {
+        return !isTakeawayOrder($commande);
+    }
+
+    function get_available_livreurs($commandes, $currentLivreurId = '') {
+        $accounts = get_accounts_data();
+        $busyLivreurs = [];
+
+        foreach ($commandes as $commande) {
+            if (!isset($commande['statut']) || $commande['statut'] !== 'preparing') {
+                continue;
+            }
+
+            if (isset($commande['id_livreur']) && !empty($commande['id_livreur'])) {
+                $busyLivreurs[$commande['id_livreur']] = true;
+            }
+        }
+
+        $availableLivreurs = [];
+
+        foreach ($accounts as $account) {
+            if (!isset($account['role'])) {
+                continue;
+            }
+
+            $role = strtolower($account['role']);
+            if ($role !== 'delivery' && $role !== 'livreur') {
+                continue;
+            }
+
+            $accountId = isset($account['id']) ? $account['id'] : '';
+            if ($accountId === '') {
+                continue;
+            }
+
+            if (isset($busyLivreurs[$accountId]) && $accountId !== $currentLivreurId) {
+                continue;
+            }
+
+            $lastname = isset($account['lastname']) ? $account['lastname'] : '';
+            $firstname = isset($account['firstname']) ? $account['firstname'] : '';
+            $label = trim($lastname . ' ' . $firstname);
+
+            if ($label === '') {
+                $label = $accountId;
+            }
+
+            $availableLivreurs[$accountId] = $label;
+        }
+
+        return $availableLivreurs;
+    }
+
+    function updateOrderAdminData($orderId, $status, $livreurId = '') {
+        $commandes = lireCommandes('');
+        $livreurId = trim($livreurId);
+
+        $found = false;
+        foreach ($commandes as &$commande) {
+            if (!isset($commande['id_order']) || $commande['id_order'] !== $orderId) {
+                continue;
+            }
+
+            $isTakeaway = isTakeawayOrder($commande);
+            
+            if ($isTakeaway) {
+                $statusOptions = getTakeawayStatusOptions();
+            } else {
+                $statusOptions = getOrderStatusOptions();
+            }
+            
+            $status = isset($statusOptions[$status]) ? $status : 'waiting';
+            $commande['statut'] = $status;
+
+            if ($isTakeaway) {
+                if (isset($commande['id_livreur'])) {
+                    unset($commande['id_livreur']);
+                }
+            } else {
+                if ($status !== 'delivery') {
+                    if (isset($commande['id_livreur'])) {
+                        unset($commande['id_livreur']);
+                    }
+                } else {
+                    if ($livreurId !== '') {
+                        $commande['id_livreur'] = $livreurId;
+                    } else if (!isset($commande['id_livreur'])) {
+                        $commande['id_livreur'] = '';
+                    }
+                }
+            }
+            $found = true;
+            break;
+        }
+        unset($commande);
+
+        if ($found) {
+            $fichier_commandes = __DIR__ . '/../data/orders.json';
+            $json_content = json_encode($commandes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            $result = file_put_contents($fichier_commandes, $json_content);
+            
+            if ($result === false) {
+                error_log("Erreur lors de l'écriture du fichier orders.json: " . json_last_error_msg());
+            }
         }
     }
 
@@ -78,7 +223,7 @@
 
     function afficherLignesCommandes($commandes, $contexte = 'orders') {
         if (empty($commandes)) {
-            $colspan = ($contexte === 'profile') ? 5 : 6;
+            $colspan = ($contexte === 'profile') ? 5 : 7;
 
             echo '
                 <tr>
@@ -149,7 +294,38 @@
                 $statut = 'preparing';
             }
 
-            $libelleStatut = htmlspecialchars(getLibelleStatut($statut));
+            $isTakeaway = isTakeawayOrder($commande);
+            $libelleStatut = htmlspecialchars(getLibelleStatut($statut, $isTakeaway));
+            
+            if ($isTakeaway) {
+                $statusOptions = getTakeawayStatusOptions();
+            } else {
+                $statusOptions = getOrderStatusOptions();
+            }
+            
+            $isDeliveryOrder = !$isTakeaway;
+            $currentLivreurId = '';
+            $availableLivreurs = [];
+
+            if ($contexte === 'orders') {
+                $currentLivreurId = isset($commande['id_livreur']) ? $commande['id_livreur'] : '';
+                $availableLivreurs = $isDeliveryOrder ? get_available_livreurs($commandes, $currentLivreurId) : [];
+
+                if ($isDeliveryOrder && $currentLivreurId !== '' && !isset($availableLivreurs[$currentLivreurId])) {
+                    $currentLivreur = get_account_by_id($currentLivreurId);
+                    if (is_array($currentLivreur)) {
+                        $lastname = isset($currentLivreur['lastname']) ? $currentLivreur['lastname'] : '';
+                        $firstname = isset($currentLivreur['firstname']) ? $currentLivreur['firstname'] : '';
+                        $currentLivreurLabel = trim($lastname . ' ' . $firstname);
+
+                        if ($currentLivreurLabel === '') {
+                            $currentLivreurLabel = $currentLivreurId;
+                        }
+
+                        $availableLivreurs = [$currentLivreurId => $currentLivreurLabel] + $availableLivreurs;
+                    }
+                }
+            }
 
             if ($contexte === 'profile') {
                 echo "
@@ -166,20 +342,51 @@
                     </tr>
                 ";
             } else {
-                echo "
+                $statusSelectHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
+                $statusSelectHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
+                $statusSelectHtml .= '<input type="hidden" name="id_livreur" value="' . htmlspecialchars($currentLivreurId) . '">';
+                $statusSelectHtml .= '<select class="form-control" name="statut" onchange="this.form.submit()">';
+
+                foreach ($statusOptions as $statusKey => $statusLabel) {
+                    $selected = ($statusKey === $statut) ? ' selected' : '';
+                    $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . '>' . htmlspecialchars($statusLabel) . '</option>';
+                }
+
+                $statusSelectHtml .= '</select>';
+                $statusSelectHtml .= '</form>';
+
+                $livreurHtml = '<span>-</span>';
+                if ($isDeliveryOrder) {
+                    $livreurHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
+                    $livreurHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
+                    $livreurHtml .= '<input type="hidden" name="statut" value="' . htmlspecialchars($statut) . '">';
+                    $livreurHtml .= '<select class="form-control" name="id_livreur" onchange="this.form.submit()">';
+                    $livreurHtml .= '<option value="">Sélectionner un livreur</option>';
+
+                    if (empty($availableLivreurs)) {
+                        $livreurHtml .= '<option value="" disabled>Aucun livreur disponible</option>';
+                    }
+
+                    foreach ($availableLivreurs as $livreurId => $livreurLabel) {
+                        $selected = ($livreurId === $currentLivreurId) ? ' selected' : '';
+                        $livreurHtml .= '<option value="' . htmlspecialchars($livreurId) . '"' . $selected . '>' . htmlspecialchars($livreurLabel) . '</option>';
+                    }
+
+                    $livreurHtml .= '</select>';
+                    $livreurHtml .= '</form>';
+                }
+
+                echo '
                     <tr>
-                        <td>#{$idCommande}</td>
-                        <td>{$account}</td>
-                        <td>{$adresse}</td>
-                        <td>{$detailComplet}</td>
-                        <td>{$total}€</td>
-                        <td class=\"text-center\">
-                            <button class=\"btn btn-status\" data-status=\"{$statut}\" disabled>
-                                {$libelleStatut}
-                            </button>
-                        </td>
+                        <td>#' . $idCommande . '</td>
+                        <td>' . $account . '</td>
+                        <td>' . $adresse . '</td>
+                        <td>' . $detailComplet . '</td>
+                        <td>' . $total . '€</td>
+                        <td class="text-center">' . $statusSelectHtml . '</td>
+                        <td class="text-center">' . $livreurHtml . '</td>
                     </tr>
-                ";
+                ';
             }
         }
     }

@@ -6,6 +6,16 @@
 
     get_access("restaurateur", true);
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id']) && $_POST['order_id'] !== '') {
+        $orderId = $_POST['order_id'];
+        $statut = isset($_POST['statut']) ? $_POST['statut'] : 'waiting';
+        $idLivreur = isset($_POST['id_livreur']) ? $_POST['id_livreur'] : '';
+
+        updateOrderAdminData($orderId, $statut, $idLivreur);
+        header('Location: ./orders.php');
+        exit();
+    }
+
     $commandes = lireCommandes('./data/orders.json');
 ?>
 
@@ -23,7 +33,7 @@
         <script src="./scripts/common.js" defer></script>
     </head>
     <body>
-        <?php echo get_header(false, false); ?>
+        <?php get_header(false, false); ?>
 
         <main class="flex-col gap-40 ph-40">
             <h1 class="w-full">Commandes</h1>
@@ -42,6 +52,7 @@
                                     <th>Detail</th>
                                     <th>Total</th>
                                     <th class="text-center">Statut</th>
+                                    <th class="text-center">Livreur</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -2,7 +2,7 @@
     {
         "id_order": "69f716d7d53e6",
         "id_client": "69c14f0fe5cef",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "US_DI_01": 3
         },
@@ -14,7 +14,7 @@
     {
         "id_order": "69f7189d909c0",
         "id_client": "69c14f0fe5cef",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "ES_DI_01": 1,
             "US_DI_02": 2
@@ -27,7 +27,7 @@
     {
         "id_order": "69f719b1a88f3",
         "id_client": "69c14dac77a47",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "FR_DI_04": 1
         },
