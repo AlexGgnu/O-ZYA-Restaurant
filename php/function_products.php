@@ -4,6 +4,25 @@
         $products_data_json = file_get_contents(__DIR__ . '/../data/products.json');
         return json_decode($products_data_json, true);
     }
+    function get_product_by_id($id) {
+        $products_data = get_decoded_products_data();
+
+        foreach ($products_data['products'] as $country) {
+            foreach ($country as $category => $dishes) {
+                if (!is_array($dishes)) {
+                    continue;
+                }
+
+                foreach ($dishes as $dish) {
+                    if (isset($dish['id']) && $dish['id'] == $id) {
+                        return $dish;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
     function get_special_dish_data() {
         $products_data = get_decoded_products_data();
 
@@ -66,7 +85,7 @@
         $special_dishes = get_successed_dish_data();
 
         foreach($special_dishes as $dish) {
-            echo render_dish_card($dish);
+            render_dish_card($dish);
         }
     }
     function render_category_dish($category) {
@@ -83,7 +102,7 @@
                 ';
 
                 foreach ($country_data[$category] as $item) {
-                    echo render_dish_card($item);
+                    render_dish_card($item);
                 }
 
                 echo '

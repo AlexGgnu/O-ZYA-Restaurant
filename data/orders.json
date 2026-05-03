@@ -1,52 +1,39 @@
 [
     {
-        "id_order": "69ca8134447cb",
+        "id_order": "69f716d7d53e6",
         "id_client": "69c14f0fe5cef",
-        "adresse": "123 Rue Exemple, Paris",
-        "details": [
-            "Burger Karachi",
-            "Frites",
-            "Coca"
-        ],
-        "total": 14,
+        "adresse": "\u00c0 Emport\u00e9",
+        "details": {
+            "US_DI_01": 3
+        },
+        "total": "53.69",
         "statut": "preparing",
         "statut_paiement": "paye",
-        "date_heure": "15\/03\/2026 14:30"
+        "date_heure": "03\/05\/2026 09:35:19"
     },
     {
-        "id_order": "69ca8134447cb",
-        "id_client": "69c14eabe22f6",
-        "adresse": "\u00c0 Emport\u00e9 ",
-        "details": [
-            "Menu Tandoori"
-        ],
-        "total": 19,
-        "statut": "delivery",
-        "statut_paiement": "paye",
-        "date_heure": "16\/03\/2026 23:00"
-    },
-    {
-        "id_order": "69ca8134447cb",
+        "id_order": "69f7189d909c0",
         "id_client": "69c14f0fe5cef",
-        "adresse": "21 Rue du Temple, Paris",
-        "details": [
-            "Wrap Poulet"
-        ],
-        "total": 11,
-        "statut": "finished",
+        "adresse": "\u00c0 Emport\u00e9",
+        "details": {
+            "ES_DI_01": 1,
+            "US_DI_02": 2
+        },
+        "total": "63.29",
+        "statut": "preparing",
         "statut_paiement": "paye",
-        "date_heure": "16\/03\/2026 15:23:20"
+        "date_heure": "03\/05\/2026 09:42:53"
     },
     {
-        "id_order": "69f714e253db9",
-        "id_client": "69c14f0fe5cef",
-        "adresse": "47 boulevard du port, 95000 Cergy",
-        "details": [
-            "Hot Dog Chicago"
-        ],
-        "total": "15.49",
-        "statut": "waiting",
+        "id_order": "69f719b1a88f3",
+        "id_client": "69c14dac77a47",
+        "adresse": "\u00c0 Emport\u00e9",
+        "details": {
+            "FR_DI_04": 1
+        },
+        "total": "28.99",
+        "statut": "preparing",
         "statut_paiement": "paye",
-        "date_heure": "03\/05\/2026 09:26:58"
+        "date_heure": "03\/05\/2026 09:47:29"
     }
 ]

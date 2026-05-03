@@ -1,27 +1,11 @@
 <?php
     if (session_status() === PHP_SESSION_NONE) session_start();
 
+    require_once(__DIR__ . '/function_products.php');
+
     function get_basket() {
         if(!isset($_SESSION['basket']) || !is_array($_SESSION['basket'])) return [];
         return $_SESSION['basket'];
-    }
-
-    function get_product_by_id($id) {
-        $json = file_get_contents(__DIR__ . '/../data/products.json');
-        $data = json_decode($json, true);
-
-        foreach ($data['products'] as $pays => $categories) {
-            foreach ($categories as $categorie => $produits) {
-                if (is_array($produits)) {
-                    foreach ($produits as $produit) {
-                        if (isset($produit['id']) && $produit['id'] == $id) {
-                            return $produit;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     function get_coupons() {

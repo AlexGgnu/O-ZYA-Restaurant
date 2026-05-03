@@ -1,4 +1,5 @@
 <?php
+    require_once(__DIR__ . '/function_products.php');
     require_once(__DIR__ . '/function_basket.php');
     require_once(__DIR__ . '/function_account.php');
 
@@ -45,26 +46,71 @@
         }
     }
 
-    function afficherLignesCommandes($commandes) {
+    function formatDetailsCommande($details) {
+        if (!is_array($details) || empty($details)) {
+            return 'Aucun menu';
+        }
+
+        $lignes = [];
+        $isSequential = array_keys($details) === range(0, count($details) - 1);
+
+        if ($isSequential) {
+            foreach ($details as $detail) {
+                if (is_string($detail) && trim($detail) !== '') {
+                    $lignes[] = $detail;
+                }
+            }
+        } else {
+            foreach ($details as $dishId => $quantite) {
+                $dish = get_product_by_id($dishId);
+                if ($dish != null) {
+                    $lignes[] = $dish['name'] . ' x' . max(1, intval($quantite));
+                }
+            }
+        }
+
+        if (empty($lignes)) {
+            return 'Aucun menu';
+        }
+
+        return implode(', ', $lignes);
+    }
+
+    function afficherLignesCommandes($commandes, $contexte = 'orders') {
         if (empty($commandes)) {
+            $colspan = ($contexte === 'profile') ? 5 : 6;
+
             echo '
                 <tr>
-                    <td colspan="5" class="text-center">Vous n\'avez aucune commande dans votre historique</td>
+                    <td colspan="' . $colspan . '" class="text-center">Vous n\'avez aucune commande dans votre historique</td>
                 </tr>
             ';
             return;
         }
 
         foreach ($commandes as $commande) {
-
-            if (isset($commande['id'])) {
-                $id = htmlspecialchars($commande['id']);
-            } else {
-                $id = '';
+            $idCommande = '';
+            if (isset($commande['id_order'])) {
+                $idCommande = htmlspecialchars($commande['id_order']);
+            } else if (isset($commande['id'])) {
+                $idCommande = htmlspecialchars($commande['id']);
             }
 
-            $account_data = get_account_by_id($commande['id_client']);
-            $account = $account_data['lastname'] . ' ' . $account_data['firstname'];
+            $account = '';
+            if (isset($commande['id_client'])) {
+                $account_data = get_account_by_id($commande['id_client']);
+                if (is_array($account_data)) {
+                    $lastname = isset($account_data['lastname']) ? $account_data['lastname'] : '';
+                    $firstname = isset($account_data['firstname']) ? $account_data['firstname'] : '';
+                    $account = trim($lastname . ' ' . $firstname);
+                }
+            }
+
+            if ($account === '') {
+                $account = 'Client inconnu';
+            } else {
+                $account = htmlspecialchars($account);
+            }
 
             if (!empty($commande['adresse'])) {
                 $adresse = htmlspecialchars($commande['adresse']);
@@ -72,10 +118,7 @@
                 $adresse = 'À emporter';
             }
 
-            $details = 'Aucun menu';
-            if (isset($commande['details']) && is_array($commande['details']) && !empty($commande['details'])) {
-                $details = implode(', ', $commande['details']);
-            }
+            $details = isset($commande['details']) ? formatDetailsCommande($commande['details']) : 'Aucun menu';
 
             if (isset($commande['statut_paiement'])) {
                 $statutPaiement = getLibellePaiement($commande['statut_paiement']);
@@ -103,25 +146,41 @@
             if (isset($commande['statut'])) {
                 $statut = htmlspecialchars($commande['statut']);
             } else {
-                $statut = 'waiting';
+                $statut = 'preparing';
             }
 
             $libelleStatut = htmlspecialchars(getLibelleStatut($statut));
 
-            echo "
-                <tr>
-                    <td>#{$id}</td>
-                    <td>{$account}</td>
-                    <td>{$adresse}</td>
-                    <td>{$detailComplet}</td>
-                    <td>{$total}€</td>
-                    <td class=\"text-center\">
-                        <button class=\"btn btn-status\" data-status=\"{$statut}\" disabled>
-                            {$libelleStatut}
-                        </button>
-                    </td>
-                </tr>
-            ";
+            if ($contexte === 'profile') {
+                echo "
+                    <tr>
+                        <td>{$dateHeure}</td>
+                        <td>#{$idCommande}</td>
+                        <td>{$detailComplet}</td>
+                        <td>{$total}€</td>
+                        <td class=\"text-center\">
+                            <button class=\"btn btn-status\" data-status=\"{$statut}\" disabled>
+                                {$libelleStatut}
+                            </button>
+                        </td>
+                    </tr>
+                ";
+            } else {
+                echo "
+                    <tr>
+                        <td>#{$idCommande}</td>
+                        <td>{$account}</td>
+                        <td>{$adresse}</td>
+                        <td>{$detailComplet}</td>
+                        <td>{$total}€</td>
+                        <td class=\"text-center\">
+                            <button class=\"btn btn-status\" data-status=\"{$statut}\" disabled>
+                                {$libelleStatut}
+                            </button>
+                        </td>
+                    </tr>
+                ";
+            }
         }
     }
 
@@ -131,13 +190,13 @@
         $basket = get_basket();
         if (empty($basket)) return false;
         
-        $details = [];
         $total = 0;
+        $details = [];
 
         foreach ($basket as $product_id => $quantitie) {
             $product = get_product_by_id($product_id);
             if ($product != null) {
-                $details[] = $product['name'];
+                $details[$product_id] = $quantitie;
                 $total += $product['price'] * $quantitie;
             }
         }
@@ -158,7 +217,7 @@
             'adresse' => $adresse,
             'details' => $details,
             'total' => number_format($total, 2, '.', ''),
-            'statut' => 'waiting',
+            'statut' => 'preparing',
             'statut_paiement' => 'paye',
             'date_heure' => date('d/m/Y H:i:s')
         ];

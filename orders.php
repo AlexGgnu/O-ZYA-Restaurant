@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php afficherLignesCommandes($commandes); ?>
+                                <?php afficherLignesCommandes($commandes, 'orders'); ?>
                             </tbody>
                         </table>
                     </div>

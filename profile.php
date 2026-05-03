@@ -141,7 +141,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php afficherLignesCommandes($orders); ?>
+                                        <?php afficherLignesCommandes($orders, 'profile'); ?>
                                     </tbody>
                                 </table>
                             </div>
