@@ -1,0 +1,23 @@
+:root {
+    
+    --primary-color: #4DA3FF;        
+    --secondary-color: #2F6FE0;
+    --tertiary-color: #5C8FBF;
+
+    --primary-font-color: #EAEAEA;  
+    --secondary-font-color: #BFBFBF;
+    --tertiary-font-color: #FFFFFF;
+
+    --primary-background-color: #121212;  
+    --secondary-background-color: #1E1E1E; 
+
+    --separator-color: #2A2A2A;
+    --table-header-background-color: #1A1A1A;
+    --table-hover-background-color: #222222;
+
+    --star-color: #E6B85C;
+    --preparing-status-color: #D9B65A;
+    --waiting-status-color: #A89575;
+    --delivery-status-color: #4FA3AA;
+    --finished-status-color: #6FAF4E;
+}

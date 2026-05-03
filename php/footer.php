@@ -63,6 +63,7 @@
         }
         legacy_part();
 
+        echo '<script src="./scripts/theme.js"></script>';
         echo '</footer>';
     }
 ?>

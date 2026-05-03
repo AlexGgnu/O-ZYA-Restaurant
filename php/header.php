@@ -85,7 +85,10 @@
             ';
         }
 
-        echo '</div>';
+        echo '
+            <button id="theme-btn" class="btn btn-svg">🌙</button>
+        </div>
+        ';
     }
 
     function get_header($right_part = true, $searchbar = true) {
@@ -94,7 +97,7 @@
 
         logo_button();
         menu_container();
-        if($right_part) right_part($searchbar);
+        right_part($searchbar);
         
         echo '</section>';
         
