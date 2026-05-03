@@ -137,6 +137,73 @@
         return $availableLivreurs;
     }
 
+    function get_delivery_order_for_livreur($livreurId) {
+        $livreurId = trim($livreurId);
+        if ($livreurId === '') {
+            return null;
+        }
+
+        $commandes = lireCommandes('');
+
+        foreach ($commandes as $commande) {
+            if (!isset($commande['id_livreur']) || $commande['id_livreur'] !== $livreurId) {
+                continue;
+            }
+
+            if (!isset($commande['statut']) || $commande['statut'] === 'finished') {
+                continue;
+            }
+
+            return $commande;
+        }
+
+        return null;
+    }
+
+    function updateDeliveryOrderStatus($orderId, $livreurId, $status) {
+        $commandes = lireCommandes('');
+        $livreurId = trim($livreurId);
+
+        $found = false;
+
+        foreach ($commandes as &$commande) {
+            if (!isset($commande['id_order']) || $commande['id_order'] !== $orderId) {
+                continue;
+            }
+
+            if (!isset($commande['id_livreur']) || $commande['id_livreur'] !== $livreurId) {
+                continue;
+            }
+
+            $isTakeaway = isTakeawayOrder($commande);
+            if ($isTakeaway) {
+                continue;
+            }
+
+            $statusOptions = getOrderStatusOptions();
+            if (!isset($statusOptions[$status])) {
+                $status = 'delivery';
+            }
+
+            $commande['statut'] = $status;
+            $found = true;
+            break;
+        }
+        unset($commande);
+
+        if ($found) {
+            $fichier_commandes = __DIR__ . '/../data/orders.json';
+            $json_content = json_encode($commandes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            $result = file_put_contents($fichier_commandes, $json_content);
+
+            if ($result === false) {
+                error_log("Erreur lors de l'écriture du fichier orders.json: " . json_last_error_msg());
+            }
+        }
+
+        return $found;
+    }
+
     function updateOrderAdminData($orderId, $status, $livreurId = '') {
         $commandes = lireCommandes('');
         $livreurId = trim($livreurId);
@@ -145,6 +212,10 @@
         foreach ($commandes as &$commande) {
             if (!isset($commande['id_order']) || $commande['id_order'] !== $orderId) {
                 continue;
+            }
+
+            if (isset($commande['statut']) && $commande['statut'] === 'finished') {
+                return;
             }
 
             $isTakeaway = isTakeawayOrder($commande);
@@ -163,16 +234,10 @@
                     unset($commande['id_livreur']);
                 }
             } else {
-                if ($status !== 'delivery') {
-                    if (isset($commande['id_livreur'])) {
-                        unset($commande['id_livreur']);
-                    }
-                } else {
-                    if ($livreurId !== '') {
-                        $commande['id_livreur'] = $livreurId;
-                    } else if (!isset($commande['id_livreur'])) {
-                        $commande['id_livreur'] = '';
-                    }
+                if ($livreurId !== '') {
+                    $commande['id_livreur'] = $livreurId;
+                } else if (!isset($commande['id_livreur'])) {
+                    $commande['id_livreur'] = '';
                 }
             }
             $found = true;
@@ -342,22 +407,27 @@
                     </tr>
                 ";
             } else {
-                $statusSelectHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
-                $statusSelectHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
-                $statusSelectHtml .= '<input type="hidden" name="id_livreur" value="' . htmlspecialchars($currentLivreurId) . '">';
-                $statusSelectHtml .= '<select class="form-control" name="statut" onchange="this.form.submit()">';
+                $isFinished = ($statut === 'finished');
 
-                foreach ($statusOptions as $statusKey => $statusLabel) {
-                    $selected = ($statusKey === $statut) ? ' selected' : '';
-                    $disabled = ($statusKey === 'finished' && !$isTakeaway) ? ' disabled' : '';
-                    $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . $disabled . '>' . htmlspecialchars($statusLabel) . '</option>';
+                if ($isFinished) {
+                    $statusSelectHtml = '<button class="btn btn-status" data-status="finished" disabled>' . htmlspecialchars($libelleStatut) . '</button>';
+                } else {
+                    $statusSelectHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
+                    $statusSelectHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
+                    $statusSelectHtml .= '<input type="hidden" name="id_livreur" value="' . htmlspecialchars($currentLivreurId) . '">';
+                    $statusSelectHtml .= '<select class="form-control" name="statut" onchange="this.form.submit()">';
+
+                    foreach ($statusOptions as $statusKey => $statusLabel) {
+                        $selected = ($statusKey === $statut) ? ' selected' : '';
+                        $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . '>' . htmlspecialchars($statusLabel) . '</option>';
+                    }
+
+                    $statusSelectHtml .= '</select>';
+                    $statusSelectHtml .= '</form>';
                 }
 
-                $statusSelectHtml .= '</select>';
-                $statusSelectHtml .= '</form>';
-
                 $livreurHtml = '<span>-</span>';
-                if ($isDeliveryOrder) {
+                if ($isDeliveryOrder && !$isFinished) {
                     $livreurHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
                     $livreurHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
                     $livreurHtml .= '<input type="hidden" name="statut" value="' . htmlspecialchars($statut) . '">';
