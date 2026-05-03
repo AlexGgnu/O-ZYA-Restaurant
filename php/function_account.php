@@ -43,6 +43,7 @@
         $_SESSION['role'] = $role;
         $_SESSION['logged_in'] = true;
 
+        if ($redirection !== "/") $redirection = '/' . $redirection . '.php';
         header("Location: " . $redirection);
     }
     function get_access($autorized_role, $redirect = false) {
@@ -107,7 +108,7 @@
         }
     }
 
-    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = '/' . $_GET['redirection'] . '.php';
+    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = $_GET['redirection'];
     else $redirection = "/";
 
     if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in($redirection);

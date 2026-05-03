@@ -60,8 +60,8 @@
 
     function getOrderStatusOptions() {
         return [
-            'waiting' => 'En attente',
             'preparing' => 'En cours de préparation',
+            'waiting' => 'En attente de livraison',
             'delivery' => 'En cours de livraison',
             'finished' => 'Livrée',
         ];
@@ -69,19 +69,19 @@
 
     function getTakeawayStatusOptions() {
         return [
-            'waiting' => 'En attente de récupération',
             'preparing' => 'En cours de préparation',
+            'waiting' => 'En attente de récupération',
             'finished' => 'Récupéré',
         ];
     }
 
     function isTakeawayOrder($commande) {
-        if (!isset($commande['adresse'])) {
-            return true;
-        }
+        if (!isset($commande['adresse'])) return true;
 
-        $adresse = trim(strtolower($commande['adresse']));
-        return $adresse === '' || $adresse === 'à emporter' || $adresse === 'à emporté';
+        $adresse = trim(mb_strtolower($commande['adresse']));
+        if ($adresse === '' || $adresse === 'à emporter' || $adresse === 'à emporté') return true;
+        
+        return false;
     }
 
     function isDeliveryOrder($commande) {
@@ -110,7 +110,7 @@
             }
 
             $role = strtolower($account['role']);
-            if ($role !== 'delivery' && $role !== 'livreur') {
+            if ($role !== 'delivery') {
                 continue;
             }
 
@@ -182,7 +182,7 @@
 
         if ($found) {
             $fichier_commandes = __DIR__ . '/../data/orders.json';
-            $json_content = json_encode($commandes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            $json_content = json_encode($commandes, JSON_PRETTY_PRINT);
             $result = file_put_contents($fichier_commandes, $json_content);
             
             if ($result === false) {
@@ -349,7 +349,8 @@
 
                 foreach ($statusOptions as $statusKey => $statusLabel) {
                     $selected = ($statusKey === $statut) ? ' selected' : '';
-                    $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . '>' . htmlspecialchars($statusLabel) . '</option>';
+                    $disabled = ($statusKey === 'finished' && !$isTakeaway) ? ' disabled' : '';
+                    $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . $disabled . '>' . htmlspecialchars($statusLabel) . '</option>';
                 }
 
                 $statusSelectHtml .= '</select>';
