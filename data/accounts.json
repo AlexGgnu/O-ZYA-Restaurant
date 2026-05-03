@@ -22,6 +22,61 @@
         "role": "admin"
     },
     {
+        "id": "d8f21a4c7b901",
+        "gender": "homme",
+        "lastname": "MARTIN",
+        "firstname": "Lucas",
+        "email": "lucas.martin.delivery@gmail.com",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0612347001",
+        "address": "12 rue des Acacias, 75017 Paris",
+        "role": "delivery"
+    },
+    {
+        "id": "d8f21a4c7b902",
+        "gender": "femme",
+        "lastname": "DURAND",
+        "firstname": "In\u00e8s",
+        "email": "ines.durand.delivery@gmail.com",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0612347002",
+        "address": "8 avenue de la R\u00e9publique, 69003 Lyon",
+        "role": "delivery"
+    },
+    {
+        "id": "d8f21a4c7b903",
+        "gender": "homme",
+        "lastname": "BERTRAND",
+        "firstname": "Yanis",
+        "email": "yanis.bertrand.delivery@gmail.com",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0612347003",
+        "address": "24 boulevard Victor Hugo, 33000 Bordeaux",
+        "role": "delivery"
+    },
+    {
+        "id": "d8f21a4c7b904",
+        "gender": "femme",
+        "lastname": "MOREAU",
+        "firstname": "Chlo\u00e9",
+        "email": "chloe.moreau.delivery@gmail.com",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0612347004",
+        "address": "19 rue Nationale, 59800 Lille",
+        "role": "delivery"
+    },
+    {
+        "id": "d8f21a4c7b905",
+        "gender": "homme",
+        "lastname": "LEFEBVRE",
+        "firstname": "Sami",
+        "email": "sami.lefebvre.delivery@gmail.com",
+        "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
+        "phone": "0612347005",
+        "address": "3 quai de la Loire, 44000 Nantes",
+        "role": "delivery"
+    },
+    {
         "id": "69c14f0fe5cef",
         "gender": "homme",
         "lastname": "NOOK",
