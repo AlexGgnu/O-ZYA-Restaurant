@@ -1,7 +1,5 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    if (session_status() === PHP_SESSION_NONE) session_start();
 
     function get_basket() {
         if(!isset($_SESSION['basket']) || !is_array($_SESSION['basket'])) return [];

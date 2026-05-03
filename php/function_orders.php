@@ -126,7 +126,7 @@
     }
 
     function save_order() {
-        if (!is_login()) return false;
+        if (!is_logged()) return false;
 
         $basket = get_basket();
         if (empty($basket)) return false;

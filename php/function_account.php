@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    if(session_status() == PHP_SESSION_NONE) session_start();
 
     function is_logged() {
         if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) return true;
@@ -62,13 +62,13 @@
 
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"]) {
-                header("Location: /registration.php?error=" . urlencode("Email deja utilise"));
+                header("Location: /registration.php?redirection=" . urlencode($redirection) . "&error=" . urlencode("Email deja utilise"));
                 exit();
             }
         }
 
         if (!password_verify($_POST["confirme-pwd"], $hash_password)) {
-            header("Location: /registration.php?error=" . urlencode("Les mots de passe ne correspondent pas"));
+            header("Location: /registration.php?redirection=" . urlencode($redirection) . "&error=" . urlencode("Les mots de passe ne correspondent pas"));
             exit();
         }
 
@@ -102,12 +102,12 @@
         }
 
         if (!$founded_account) {
-            header("Location: /connection.php?error=" . urlencode("Email ou mot de passe incorrect"));
+            header("Location: /connection.php?redirection=" . urlencode($redirection) . "&error=" . urlencode("Email ou mot de passe incorrect"));
             exit();
         }
     }
 
-    if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = '/' . $_GET['redirection'] . '.php';
+    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = '/' . $_GET['redirection'] . '.php';
     else $redirection = "/";
 
     if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in($redirection);
