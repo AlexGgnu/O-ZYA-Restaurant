@@ -185,6 +185,10 @@
                 $status = 'delivery';
             }
 
+            if ($status === 'finished') {
+                $status = isset($commande['statut']) ? $commande['statut'] : 'delivery';
+            }
+
             $commande['statut'] = $status;
             $found = true;
             break;
@@ -419,7 +423,8 @@
 
                     foreach ($statusOptions as $statusKey => $statusLabel) {
                         $selected = ($statusKey === $statut) ? ' selected' : '';
-                        $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . '>' . htmlspecialchars($statusLabel) . '</option>';
+                        $disabled = ($statusKey === 'finished' && !$isTakeaway) ? ' disabled' : '';
+                        $statusSelectHtml .= '<option value="' . htmlspecialchars($statusKey) . '"' . $selected . $disabled . '>' . htmlspecialchars($statusLabel) . '</option>';
                     }
 
                     $statusSelectHtml .= '</select>';
