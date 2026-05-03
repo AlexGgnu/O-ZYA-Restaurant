@@ -1,5 +1,7 @@
 <?php
     require_once(__DIR__ . '/function_basket.php');
+    require_once(__DIR__ . '/function_orders.php');
+    require_once(__DIR__ . '/function_account.php');
     require_once(__DIR__ . '/getapikey.php');
 
     function get_payment_error_message() {
@@ -70,6 +72,7 @@
         $status = get_payment_status_from_query();
 
         if (is_payment_success($status)) {
+            save_order();
             empty_basket();
             header('Location: /');
             exit();

@@ -5,6 +5,9 @@
     
     require_once('./php/header.php');
     require_once('./php/footer.php');
+
+    if (isset($_POST['delivery_type'])) $_SESSION['delivery_type'] = $_POST['delivery_type'];
+    $delivery_type = isset($_SESSION['delivery_type']) ? $_SESSION['delivery_type'] : 'takeaway';
     
     $promo_code = get_promo_code_from_post();
     $basket = get_basket();
@@ -58,6 +61,19 @@
                         </form>
 
                         <div class="flex-1"></div>
+
+                        <form method="POST">
+                            <div class="flex-col gap-10">
+                                <label class="font-600" for="delivery_type">Mode de livraison</label>
+                                <div class="flex-row items-center gap-14">
+                                    <select id="delivery_type" name="delivery_type" class="form-control">
+                                        <option value="takeaway" <?php echo $delivery_type === 'takeaway' ? 'selected' : ''; ?>>À emporter</option>
+                                        <option value="delivery" <?php echo $delivery_type === 'delivery' ? 'selected' : ''; ?>>En livraison</option>
+                                    </select>
+                                    <button class="btn btn-primary" type="submit">Confirmer</button>
+                                </div>
+                            </div>
+                        </form>
 
                         <?php if (is_logged()) { ?>
                             <form class="flex-col gap-10" action='<?php echo $basket_is_empty ? '' : htmlspecialchars($params['action_url']); ?>' method='POST'>
