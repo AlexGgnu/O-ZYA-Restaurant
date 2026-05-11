@@ -6,12 +6,6 @@
 
     $livreurId = isset($_SESSION['uuid']) ? $_SESSION['uuid'] : '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id']) && $_POST['order_id'] !== '') {
-        $orderId = $_POST['order_id'];
-        updateDeliveryOrderStatus($orderId, $livreurId, 'finished');
-        header('Location: ./delivery.php');
-        exit();
-    }
 
     $commande = get_delivery_order_for_livreur($livreurId);
     $client = null;
@@ -36,6 +30,7 @@
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
         <link rel="stylesheet" href="./styles/main.css">
+        <script src="./scripts/delivery.js" defer></script>
     </head>
     <body>
         <main class="justify-center sm-p-0">
