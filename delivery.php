@@ -5,8 +5,24 @@
     get_access("delivery", true);
 
     $livreurId = isset($_SESSION['uuid']) ? $_SESSION['uuid'] : '';
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && 
+    strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false) {
+    
+    header('Content-Type: application/json');
+    $data = json_decode(file_get_contents('php://input'), true);
+    $orderId = isset($data['order_id']) ? trim($data['order_id']) : '';
 
-
+    if ($orderId === '' || $livreurId === '') {
+        echo json_encode(['success' => false, 'message' => 'Données manquantes']);
+        exit();
+    }
+    
+    $result = updateDeliveryOrderStatus($orderId, $livreurId, 'finished');
+    echo json_encode(['success' => $result]);
+    exit();
+    }
+    
     $commande = get_delivery_order_for_livreur($livreurId);
     $client = null;
     $mapsUrl = 'https://www.google.com/maps';
@@ -19,6 +35,7 @@
         $mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($commande['adresse']);
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr-FR">
