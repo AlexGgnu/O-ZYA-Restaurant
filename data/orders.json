@@ -2,7 +2,7 @@
     {
         "id_order": "69f716d7d53e6",
         "id_client": "69c14f0fe5cef",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "US_DI_01": 3
         },
@@ -14,7 +14,7 @@
     {
         "id_order": "69f7189d909c0",
         "id_client": "69c14f0fe5cef",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "ES_DI_01": 1,
             "US_DI_02": 2
@@ -27,7 +27,7 @@
     {
         "id_order": "69f719b1a88f3",
         "id_client": "69c14dac77a47",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "FR_DI_04": 1
         },
@@ -39,7 +39,7 @@
     {
         "id_order": "69f739aa3a25c",
         "id_client": "69c14eabe22f6",
-        "adresse": "7 boulevard du march\u00e9, 87000 Limoges",
+        "adresse": "7 boulevard du marché, 87000 Limoges",
         "details": {
             "FR_DI_03": 1,
             "US_DE_03": 1,
@@ -68,7 +68,7 @@
     {
         "id_order": "69f74116a92b7",
         "id_client": "69c14eabe22f6",
-        "adresse": "\u00c0 Emport\u00e9",
+        "adresse": "À Emporté",
         "details": {
             "US_DI_01": 2
         },
@@ -80,15 +80,15 @@
     {
         "id_order": "69f7433cbae50",
         "id_client": "69c14eabe22f6",
-        "adresse": "7 boulevard du march\u00e9, 87000 Limoges",
+        "adresse": "7 boulevard du marché, 87000 Limoges",
         "details": {
             "US_DI_03": 1,
             "US_DI_06": 1
         },
         "total": "38.39",
-        "statut": "waiting",
+        "statut": "finished",
         "statut_paiement": "paye",
         "date_heure": "03\/05\/2026 12:44:44",
-        "id_livreur": ""
+        "id_livreur": "d8f21a4c7b905"
     }
 ]

@@ -185,10 +185,6 @@
                 $status = 'delivery';
             }
 
-            if ($status === 'finished') {
-                $status = isset($commande['statut']) ? $commande['statut'] : 'delivery';
-            }
-
             $commande['statut'] = $status;
             $found = true;
             break;
