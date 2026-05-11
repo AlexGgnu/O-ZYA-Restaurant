@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/products.js" defer></script>
     </head>
     <body>
         <?php echo get_header(); ?>
@@ -54,14 +55,12 @@
                     <img class="w-full object-contain object-center filter-drop-shadow" src="<?php echo get_special_dish_data()['image'] ?>" alt="<?php echo get_special_dish_data()['name'] ?>">
                 </div>
             </section>
-
+            
             <section id="successed__dishes" class="flex-col justify-center w-full h-content sm-h-fit sm-pv-40">
                 <h1 class="mb-24 ml-40">Ils font notre succès</h1>
 
                 <div class="cards__wrapper">
                     <div class="cards__track gap-24 ph-40 lg-grid-cols-2 sm-grid-cols-1">
-                        <?php echo render_successed_dishes(); ?>
-                    </div>
                 </div>
             </section>
         </main>
