@@ -69,11 +69,15 @@
                 <div class="flex flex-row gap-20">
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" minlength="8" required>
+                        <input type="password" id="password" name="password" minlength="8" maxlength="20" required>
+                        <button type="button" id="togglePassword">👁</button>
+                        <p id="passwordCounter">0 / 20</p>
                     </div>
                     <div class="form-group">
                         <label for="confirme-pwd">Confirmer</label>
-                        <input type="password" id="confirme-pwd" name="confirme-pwd" minlength="8" required>
+                        <input type="password" id="confirme-pwd" name="confirme-pwd" minlength="8" maxlength="20" required>
+                        <button type="button" id="toggleConfirmPassword">👁</button>
+                        <p id="confirmPassword_counter">0 / 20</p>
                     </div>
                 </div>
                 
@@ -100,5 +104,6 @@
         </main>
         
         <?php echo get_footer(true); ?>
+        <script src="./scripts/validation.js"></script>
     </body>
 </html>

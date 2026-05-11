@@ -57,5 +57,6 @@
         </main>
 
         <?php echo get_footer(true); ?>
+        <script src="./scripts/validation.js"></script>
     </body>
 </html>

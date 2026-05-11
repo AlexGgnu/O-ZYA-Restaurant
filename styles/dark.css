@@ -1,23 +1,37 @@
 :root {
-    
-    --primary-color: #4DA3FF;        
+
+    --primary-color: #4DA3FF;
     --secondary-color: #2F6FE0;
     --tertiary-color: #5C8FBF;
 
-    --primary-font-color: #EAEAEA;  
-    --secondary-font-color: #BFBFBF;
+    --primary-font-color: #F5F5F5;
+    --secondary-font-color: #D6D6D6;
     --tertiary-font-color: #FFFFFF;
 
-    --primary-background-color: #121212;  
-    --secondary-background-color: #1E1E1E; 
+    --primary-background-color: #280707;
+    --secondary-background-color: #1E1E1E;
 
-    --separator-color: #2A2A2A;
+    --separator-color: #2B2B2B;
     --table-header-background-color: #1A1A1A;
-    --table-hover-background-color: #222222;
+    --table-hover-background-color: #242424;
 
-    --star-color: #E6B85C;
+    --star-color: #F7C45C;
     --preparing-status-color: #D9B65A;
-    --waiting-status-color: #A89575;
+    --waiting-status-color: #9B8A6B;
     --delivery-status-color: #4FA3AA;
     --finished-status-color: #6FAF4E;
+}
+
+body{
+    color: #FFFFFF;
+}
+
+input, textarea {
+    background-color: #2A2A2A;
+    color: white;
+    border: 2px solid #444;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #AAAAAA;
 }
