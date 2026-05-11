@@ -5,14 +5,24 @@
     get_access("delivery", true);
 
     $livreurId = isset($_SESSION['uuid']) ? $_SESSION['uuid'] : '';
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && 
+    strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false) {
+    
+    header('Content-Type: application/json');
+    $data = json_decode(file_get_contents('php://input'), true);
+    $orderId = isset($data['order_id']) ? trim($data['order_id']) : '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id']) && $_POST['order_id'] !== '') {
-        $orderId = $_POST['order_id'];
-        updateDeliveryOrderStatus($orderId, $livreurId, 'finished');
-        header('Location: ./delivery.php');
+    if ($orderId === '' || $livreurId === '') {
+        echo json_encode(['success' => false, 'message' => 'Données manquantes']);
         exit();
     }
-
+    
+    $result = updateDeliveryOrderStatus($orderId, $livreurId, 'finished');
+    echo json_encode(['success' => $result]);
+    exit();
+    }
+    
     $commande = get_delivery_order_for_livreur($livreurId);
     $client = null;
     $mapsUrl = 'https://www.google.com/maps';
@@ -26,6 +36,7 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
@@ -36,6 +47,7 @@
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
         <link rel="stylesheet" href="./styles/main.css">
+        <script src="./scripts/delivery.js" defer></script>
     </head>
     <body>
         <main class="justify-center sm-p-0">
@@ -67,10 +79,13 @@
                     </div>
                     <div class="flex-col gap-16">
                         <a href="<?php echo htmlspecialchars($mapsUrl); ?>" target="_blank" class="btn btn-primary pv-16">Ouvrir Maps</a>
-                        <form method="POST">
-                            <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($commande['id_order']); ?>">
-                            <button type="submit" class="btn btn-primary pv-16">Terminer la livraison</button>
-                        </form>
+                        <button 
+                        id="btn-terminer" 
+                        class="btn btn-primary pv-16"
+                        data-order-id="<?php echo htmlspecialchars($commande['id_order']); ?>">
+                        Terminer la livraison
+                        </button>
+                        <p id="msg-livraison" style="display:none; text-align:center; margin-top:8px;"></p>
                     </div>
                 <?php } else { ?>
                     <h1 class="text-primary text-center font-bold">Aucune commande attribuée</h1>
