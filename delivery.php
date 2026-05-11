@@ -67,10 +67,13 @@
                     </div>
                     <div class="flex-col gap-16">
                         <a href="<?php echo htmlspecialchars($mapsUrl); ?>" target="_blank" class="btn btn-primary pv-16">Ouvrir Maps</a>
-                        <form method="POST">
-                            <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($commande['id_order']); ?>">
-                            <button type="submit" class="btn btn-primary pv-16">Terminer la livraison</button>
-                        </form>
+                        <button 
+                        id="btn-terminer" 
+                        class="btn btn-primary pv-16"
+                        data-order-id="<?php echo htmlspecialchars($commande['id_order']); ?>">
+                        Terminer la livraison
+                        </button>
+                        <p id="msg-livraison" style="display:none; text-align:center; margin-top:8px;"></p>
                     </div>
                 <?php } else { ?>
                     <h1 class="text-primary text-center font-bold">Aucune commande attribuée</h1>
