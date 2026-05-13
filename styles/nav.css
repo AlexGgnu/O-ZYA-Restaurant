@@ -1,3 +1,4 @@
+/* MARK: - Header */
 header {
     position: sticky;
     top: 0;
@@ -20,16 +21,14 @@ nav {
     color: var(--accent-font-color);
 }
 
-#logo, #logo img {
-    height: 100%;
-}
+.brand, .brand img { height: 100%; }
 
-#nav-links {
+.nav-links {
     visibility: hidden;
     opacity: 0;
 }
 
-#menu-toggle {
+.menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,11 +38,93 @@ nav {
     height: var(--header-height);
     cursor: pointer;
 }
-#menu-toggle span {
+.menu-toggle span {
     display: block;
     width: calc(var(--header-height) / 3);
     height: 3px;
     background-color: var(--accent-font-color);
     border-radius: 2px;
     transition: all 0.3s ease;
+}
+
+/* MARK: - Footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    color: #FFFFFF;
+    background-color: var(--accent-background-color);
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 16px 0;
+}
+.footer__content > div { width: 100%; }
+
+.footer__content__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.footer__content__brand a { width: 200px; }
+.footer__content__brand img {
+    width: 100%;
+    height: auto;
+}
+.footer__content__brand button { width: fit-content; }
+.footer__content__brand button svg { width: 24px; height: 24px; }
+
+.footer__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+.footer__links__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.legacy {
+    width: 100%;
+    font-size: 0.8rem;
+    text-align: center;
+    opacity: 0.6;
+}
+
+/* MARK: - Media Queries */
+@media (min-width: 768px) {
+    .footer__content { flex-direction: row; }
+    .legacy { text-align: right; }
+}
+
+@media (min-width: 1024px) {
+    .footer__links {
+        flex-direction: row;
+        align-items: start;
+        justify-content: start;
+        gap: 80px;
+    }
+    .footer__links__wrapper {
+        align-items: start;
+        justify-content: start;
+        text-align: start;
+    }
 }

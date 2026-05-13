@@ -85,6 +85,16 @@
 }
 
 /* MARK: - Media Queries */
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
     #hero { height: var(--viewport-height); }
+
+    #special__dish {
+        flex-direction: row;
+        gap: 80px;
+    }
+    #special__dish__content {
+        flex: 1;
+        align-items: flex-start;
+    }
+    #special__dish__content > h1 { text-align: left; }
 }

@@ -15,8 +15,8 @@
     --secondary-background-color: #FFFFFF;
     --accent-background-color: var(--secondary-accent-color);
 
-    /* --separator-color: #DDDDDD;
-    --table-header-background-color: #F5F5F5;
+    --separator-color: #DDDDDD;
+    /* --table-header-background-color: #F5F5F5;
     --table-hover-background-color: #FAFAFA;
 
     --star-color: #DB9F36;
@@ -56,8 +56,8 @@
         --secondary-background-color: #000000;
         --accent-background-color: var(--secondary-color);
 
-        /* --separator-color: #241E1E;
-        --table-header-background-color: #0B0909;
+        --separator-color: #241E1E;
+        /* --table-header-background-color: #0B0909;
         --table-hover-background-color: #060505; */
 
         /* --star-color: #BC882F;
@@ -92,8 +92,7 @@ a { text-decoration: none; color: inherit; }
 
 button {
     border: none;
-    background-color:
-    transparent;
+    background-color: transparent;
     color: inherit;
 }
 button[disabled] {
@@ -103,6 +102,7 @@ button[disabled] {
 }
 
 hr {
+    width: 100%;
     border: 0;
     border-top: 1px solid var(--separator-color);
 }
@@ -110,18 +110,3 @@ hr {
 p, span { font-family: "Inter", sans-serif; }
 
 ul { list-style: none; }
-
-
-/* MARK: - Media Queries */
-/* @media (max-width: 1024px) {
-    @keyframes spin {
-        from { transform: translateX(50%) rotate(0deg); }
-        to { transform: translateX(50%) rotate(360deg); }
-    }
-}
-@media (max-width: 480px) {
-    @keyframes spin {
-        from { transform: translateX(66.66%) rotate(0deg); }
-        to { transform: translateX(66.66%) rotate(360deg); }
-    }
-} */

@@ -112,8 +112,6 @@ function createSuccessedDish(successedDishes, productsData) {
     if (!successedDishes) return;
 
     const cardsTrack = successedDishes.querySelector('.cards__track');
-    console.log("Successed dishes data: ", productsData);
-
     productsData.forEach(product => {
         const card = createCard(product);
         cardsTrack.appendChild(card);

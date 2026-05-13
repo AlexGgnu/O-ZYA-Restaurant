@@ -31,6 +31,15 @@
     background: var(--tertiary-color);
 }
 
+.btn-inverse {
+    color: var(--primary-background-color);
+    border: 3px solid var(--primary-background-color);
+}
+.btn-inverse:hover {
+    color: var(--accent-font-color);
+    background: var(--primary-background-color);
+}
+
 /* MARK: - Cards */
 .cards__wrapper {
     position: relative;
@@ -89,4 +98,14 @@
     object-fit: contain;
     object-position: center;
     filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.80));
+}
+
+/* MARK: - Media Queries */
+@media (min-width: 1024px) {
+    .cards__track {
+        display: flex;
+        flex-wrap: nowrap;
+        grid-template-columns: unset;
+
+    }
 }

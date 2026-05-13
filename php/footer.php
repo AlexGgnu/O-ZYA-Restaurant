@@ -48,7 +48,7 @@
 
     function legacy_part() {
         echo '
-            <section class="legacy w-full pv-16 text-right sm-text-center">
+            <section class="legacy w-full">
                 <p>Copyright © 2026 O\'ZYA Restaurant • Tous droits réservés</p>
             </section>
         ';
