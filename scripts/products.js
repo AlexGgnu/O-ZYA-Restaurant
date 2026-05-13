@@ -1,44 +1,46 @@
-let allProductsData = null;
-
 function createCountrySection(country) {
     const countrySection = document.createElement('section');
-    countrySection.classList.add('w-full');
-    countrySection.innerHTML = `<h1 class="mb-24 ml-40">${country}</h1> `;
+    countrySection.innerHTML = `<h1>${country}</h1> `;
 
     const cardsWrapper = document.createElement('div');
     cardsWrapper.classList.add('cards__wrapper');
     countrySection.appendChild(cardsWrapper);
 
     const cardsTrack = document.createElement('div');
-    cardsTrack.classList.add('cards__track', 'flex-row', 'gap-24', 'ph-40');
     cardsWrapper.appendChild(cardsTrack);
 
     return countrySection;
 }
 
-function createCard(product) {
+function createBuyButton(productData) {
+    return `
+        <a class="btn btn-primary" href="/api/basket.php?add=${productData.id}">
+            JE COMMANDE • ${productData.price}€
+        </a>
+    `
+}
+
+function createCard(productData) {
     const card = document.createElement('div');
     card.classList.add('dish__card');
     card.innerHTML = `
-        <h3>${product.name}</h3>
-        <img class="w-full min-h-0 object-contain object-center filter-drop-shadow" src="${product.image}" alt="${product.name}">
-        <p class="text-sm text-center">${product.shortDescription}</p>
-        <a class="btn btn-primary" href="./php/function_basket.php?dish_id=${product.id}">
-            JE COMMANDE • ${product.price}€
-        </a>
+        <h3>${productData.name}</h3>
+        <img src="${productData.image}" alt="${productData.name}">
+        <p>${productData.shortDescription}</p>
+        ${createBuyButton(productData)}
     `;
 
     return card;
 }
 
-function renderCategory(productsCategory) {
+function renderCategory(productsCategory, productsData) {
     const productsCard = document.getElementById("products__card");
     if (!productsCard) return;
 
     productsCard.innerHTML = '';
 
-    for (const country in allProductsData.products) {
-        const selectedProducts = allProductsData.products[country][productsCategory];
+    for (const country in productsData.products) {
+        const selectedProducts = productsData.products[country][productsCategory];
 
         if (selectedProducts && selectedProducts.length > 0) {
             const countrySection = createCountrySection(country);
@@ -70,29 +72,82 @@ function setupFilters() {
     });
 }
 
+
+
+
+
+
+
+function createProductsPage(productsData) {
+    if (!productsData) return;
+
+    renderCategory('dishes', productsData);
+    setupFilters();
+}
+
+
+function createSpecialDish(specialDish, productData) {
+    if (!specialDish) return;
+
+    const specialDishContent = specialDish.querySelector('#special__dish__content');
+    if (specialDishContent) {
+        specialDishContent.appendChild(document.createElement('div')).innerHTML = `
+            <div>
+                <h2>${productData.name}</h2>
+                <p>${productData.longDescription}</p>
+            </div>
+            ${createBuyButton(productData)}
+         `;
+
+    }
+
+    const specialDishImage = specialDish.querySelector('#special__dish__img');
+    if (specialDishImage) {
+        specialDishImage.src = productData.image;
+        specialDishImage.alt = productData.name;
+    }
+}
+
+function createSuccessedDish(successedDishes, productsData) {
+    if (!successedDishes) return;
+
+    const cardsTrack = successedDishes.querySelector('.cards__track');
+    console.log("Successed dishes data: ", productsData);
+
+    productsData.forEach(product => {
+        const card = createCard(product);
+        cardsTrack.appendChild(card);
+    });
+}
+
 async function initProducts() {
+    const specialDish = document.getElementById('special__dish');
     const successedDishes = document.getElementById('successed__dishes');
     const productsCard = document.getElementById("products__card");
 
     try {
-        const response = await fetch("./data/products.json");
-        allProductsData = await response.json();
+        if (specialDish) {
+            const specialDishData = await get_products_data('getSpecialDish');
+            
+            if (specialDishData) { createSpecialDish(specialDish, specialDishData); }
+            else { specialDish.style.display = 'none'; }
+        }
 
         if (successedDishes) {
-            const cardsTrack = successedDishes.querySelector('.cards__track');
-            const allProducts = Object.values(allProductsData.products).flatMap(country => Object.values(country).flat()).flat();
-            const successedProducts = allProducts.filter(product => product.isSuccessed === true);
+            const successedDishesData = await get_products_data('getSuccessedDishes');
 
-            successedProducts.forEach(product => {
-                const card = createCard(product);
-                cardsTrack.appendChild(card);
-            });
-        } else if (productsCard) {
-            renderCategory('dishes');
-            setupFilters();
+            if (successedDishesData) { createSuccessedDish(successedDishes, successedDishesData); }
+            else { successedDishes.style.display = 'none'; }
+        }
+
+        if (productsCard) {
+            const productsData = await get_products_data('getProducts');
+            
+            if (productsData) { createProductsPage(productsData); }
+            else { productsCard.style.display = 'none'; }
         }
     } catch (error) {
-        console.error("[ERROR] - Products data loading: ", error);
+        console.error("[ERROR] - Products data loading: ", error.message);
     }
 }
 
