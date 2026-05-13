@@ -1,6 +1,6 @@
 /* MARK: - Header */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,24 +22,24 @@ nav {
 
 .brand, .brand img { height: 100%; }
 
-.nav-links, .user-links-wrapper {
+.nav-links, .user-links {
+    transform: translateX(100%);
+    transition: transform .3s ease-in-out;
+}
+header[data-menu-state="open"] .nav-links,
+header[data-menu-state="open"] .user-links { transform: translateX(0); }
+
+.nav-links {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 40px;
     position: absolute;
     top: var(--header-height);
     left: 0;
     width: 100%;
     height: var(--viewport-height);
-    transform: translateX(100%);
-    transition: transform .3s ease-in-out;
-}
-header[data-menu-state="open"] .nav-links,
-header[data-menu-state="open"] .user-links-wrapper { transform: translateX(0); }
-
-.nav-links {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-size: 1.3rem;
     font-weight: bold;
     background-color: var(--secondary-background-color);
@@ -55,16 +55,19 @@ header[data-menu-state="open"] .user-links-wrapper { transform: translateX(0); }
     border-bottom: 3px solid var(--accent-font-color);
     transition: width 0.3s ease-in-out;
 }
-.nav-links a:hover::after, .nav-links a.active__menu::after { width: 100%; }
+.nav-links a:hover::after, .nav-links a#active__menu::after { width: 100%; }
 
-.user-links-wrapper { align-items: self-end; }
-.user-links-content {
+.user-links {
     display: inline-flex;
+    align-items: center;
     gap: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     padding: 20px;
 }
-.user-links-content a.btn-primary { width: 100%; }
+.user-links a.btn-primary { width: 100%; }
 .light-theme, .dark-theme { display: none; }
 html[color-scheme="light"] .dark-theme { display: block; }
 html[color-scheme="dark"] .light-theme { display: block; }
@@ -160,6 +163,26 @@ footer {
 
 /* MARK: - Media Queries */
 @media (min-width: 768px) {
+    nav { justify-content: space-between; }
+
+    .nav-links, .user-links { transform: none; }
+    .nav-links {
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: var(--header-height);
+    }
+
+    .user-links {
+        position: relative;
+        padding: 0;
+        width: auto;
+    }
+    .user-links a.btn-primary { width: max-content; }
+
+    #menu-toggle { display: none; }
+
     .footer__content { flex-direction: row; }
     .legacy { text-align: right; }
 }

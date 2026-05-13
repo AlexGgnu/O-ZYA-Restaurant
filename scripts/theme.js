@@ -25,5 +25,4 @@ function toggleColorScheme() {
 
 let colorScheme = getCookie("color-scheme") || "light";
 html.setAttribute('color-scheme', colorScheme);
-console.log(colorSchemeToggle);
 if (colorSchemeToggle) colorSchemeToggle.addEventListener("click", toggleColorScheme);
