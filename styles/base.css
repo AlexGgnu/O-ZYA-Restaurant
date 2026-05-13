@@ -4,7 +4,7 @@
     /* Colors */
     --primary-accent-color: #0476D9;
     --secondary-accent-color: #044BD9;
-    --tertiary-color: #71A8D9;
+    --tertiary-accent-color: #71A8D9;
 
     --primary-font-color: #000000;
     --accent-font-color: var(--primary-accent-color);
@@ -14,6 +14,7 @@
     --primary-background-color: #F2E5D5;
     --secondary-background-color: #FFFFFF;
     --accent-background-color: var(--secondary-accent-color);
+    --secondary-accent-background-color: var(--tertiary-accent-color);
 
     --separator-color: #DDDDDD;
     /* --table-header-background-color: #F5F5F5;
@@ -31,10 +32,6 @@
     
     /* Sizes */
     --max-width-form: 500px;
-    --radius-xs: 6px;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-hg: 16px;
     
     /* 
     Screen size breakpoints:
@@ -45,15 +42,13 @@
 }
 html[color-scheme="dark"] {
     --primary-accent-color: #71A8D9;
-    --secondary-color: #3372F0;
-    --tertiary-color: #2E5C84;
+    --secondary-accent-color: #3372F0;
+    --tertiary-accent-color: #2E5C84;
 
     --primary-font-color: #FFFFFF;
-    --accent-font-color: var(--primary-accent-color);
 
     --primary-background-color: #281D10;
     --secondary-background-color: #000000;
-    --accent-background-color: var(--secondary-color);
 
     --separator-color: #241E1E;
         /* --table-header-background-color: #0B0909;
@@ -74,8 +69,8 @@ html[color-scheme="dark"] {
     font-family: "Playpen Sans", cursive;
     scrollbar-width: thin;
     -webkit-scrollbar-width: thin;
-    scrollbar-color: var(--tertiary-color) transparent;
-    -webkit-scrollbar-color: var(--tertiary-color) transparent;
+    scrollbar-color: var(--tertiary-accent-color) transparent;
+    -webkit-scrollbar-color: var(--tertiary-accent-color) transparent;
 }
 
 body {

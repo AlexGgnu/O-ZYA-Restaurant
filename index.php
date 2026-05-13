@@ -12,6 +12,7 @@
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
         <link rel="stylesheet" href="./styles/global.css">
+        <link rel="stylesheet" href="./styles/home.css">
 
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>

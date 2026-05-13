@@ -2,22 +2,6 @@
     header('Content-Type: application/json');
     $productsData = file_get_contents( __DIR__ . '/../data/products.json');
 
-    function getProductsByCountry($productsData, $country) {
-        $products = [];
-
-        foreach ($productsData['products'] as $countryName => $countryProducts) {
-            if (strtolower($countryName) === strtolower($country)) {
-                foreach ($countryProducts as $category => $items) {
-                    foreach ($items as $item) {
-                        $products[] = $item;
-                    }
-                }
-            }
-        }
-
-        return $products;
-    }
-
     function getSpecialDish($productsData) {
         foreach ($productsData['products'] as $countryProducts) {
             foreach ($countryProducts as $category => $items) {
@@ -49,10 +33,8 @@
     }
 
 
-    if ($_GET['action'] === 'getProductsByCountry' && isset($_GET['country'])) {
-        $country = $_GET['country'];
-        $products = getProductsByCountry(json_decode($productsData, true), $country);
-        echo json_encode($products);
+    if ($_GET['action'] === 'getAllProducts') {
+        echo $productsData;
     } elseif ($_GET['action'] === 'getSpecialDish') {
         $specialDish = getSpecialDish(json_decode($productsData, true));
         echo json_encode($specialDish);

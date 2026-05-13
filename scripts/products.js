@@ -1,17 +1,3 @@
-function createCountrySection(country) {
-    const countrySection = document.createElement('section');
-    countrySection.innerHTML = `<h1>${country}</h1> `;
-
-    const cardsWrapper = document.createElement('div');
-    cardsWrapper.classList.add('cards__wrapper');
-    countrySection.appendChild(cardsWrapper);
-
-    const cardsTrack = document.createElement('div');
-    cardsWrapper.appendChild(cardsTrack);
-
-    return countrySection;
-}
-
 function createBuyButton(productData) {
     return `
         <a class="btn btn-primary" href="/api/basket.php?add=${productData.id}">
@@ -31,6 +17,21 @@ function createCard(productData) {
     `;
 
     return card;
+}
+
+function createCountrySection(country) {
+    const countrySection = document.createElement('section');
+    countrySection.innerHTML = `<h1>${country}</h1> `;
+
+    const cardsWrapper = document.createElement('div');
+    cardsWrapper.classList.add('cards__wrapper');
+    countrySection.appendChild(cardsWrapper);
+
+    const cardsTrack = document.createElement('div');
+    cardsTrack.classList.add('cards__track');
+    cardsWrapper.appendChild(cardsTrack);
+
+    return countrySection;
 }
 
 function renderCategory(productsCategory, productsData) {
@@ -56,7 +57,7 @@ function renderCategory(productsCategory, productsData) {
     }
 }
 
-function setupFilters() {
+function setupFilters(productsData) {
     const filterButtons = document.querySelectorAll('.filter__button');
     
     filterButtons.forEach(button => {
@@ -67,24 +68,17 @@ function setupFilters() {
             const clickedBtnAttr = clickedBtn.getAttribute('data-products-category');
 
             clickedBtn.classList.add('active');
-            if (clickedBtnAttr) renderCategory(clickedBtnAttr);
+            if (clickedBtnAttr) renderCategory(clickedBtnAttr, productsData);
         });
     });
 }
-
-
-
-
-
-
 
 function createProductsPage(productsData) {
     if (!productsData) return;
 
     renderCategory('dishes', productsData);
-    setupFilters();
+    setupFilters(productsData);
 }
-
 
 function createSpecialDish(specialDish, productData) {
     if (!specialDish) return;
@@ -139,7 +133,7 @@ async function initProducts() {
         }
 
         if (productsCard) {
-            const productsData = await get_products_data('getProducts');
+            const productsData = await get_products_data('getAllProducts');
             
             if (productsData) { createProductsPage(productsData); }
             else { productsCard.style.display = 'none'; }
