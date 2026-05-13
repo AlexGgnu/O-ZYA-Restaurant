@@ -43,20 +43,19 @@
         - Desktop: 1024px and above
     */
 }
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-accent-color: #71A8D9;
-        --secondary-color: #3372F0;
-        --tertiary-color: #2E5C84;
+html[color-scheme="dark"] {
+    --primary-accent-color: #71A8D9;
+    --secondary-color: #3372F0;
+    --tertiary-color: #2E5C84;
 
-        --primary-font-color: #FFFFFF;
-        --accent-font-color: var(--primary-accent-color);
+    --primary-font-color: #FFFFFF;
+    --accent-font-color: var(--primary-accent-color);
 
-        --primary-background-color: #281D10;
-        --secondary-background-color: #000000;
-        --accent-background-color: var(--secondary-color);
+    --primary-background-color: #281D10;
+    --secondary-background-color: #000000;
+    --accent-background-color: var(--secondary-color);
 
-        --separator-color: #241E1E;
+    --separator-color: #241E1E;
         /* --table-header-background-color: #0B0909;
         --table-hover-background-color: #060505; */
 
@@ -65,8 +64,8 @@
         --waiting-status-color: #56492E;
         --delivery-status-color: #3D898F;
         --finished-status-color: #669645; */
-    }
 }
+
 
 * {
     padding: 0;
@@ -86,7 +85,9 @@ body {
     flex-direction: column;
     color: var(--primary-font-color);
     background-color: var(--primary-background-color);
+    overflow-x: hidden;
 }
+body:has(header:is([data-menu-state="open"])) { overflow: hidden; }
 
 a { text-decoration: none; color: inherit; }
 
@@ -108,5 +109,4 @@ hr {
 }
 
 p, span { font-family: "Inter", sans-serif; }
-
 ul { list-style: none; }
