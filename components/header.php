@@ -22,7 +22,7 @@
                         </svg>
                     </a>
 
-                    <a class="btn btn-primary" href="./profile.php">' . (is_logged() ? ($current_page === "profile" ? "Se déconnecter" : "Mon profil") : "Se connecter") . '</a>
+                    <a class="btn btn-primary" href="' . (is_logged() ? ($current_page === "profile" ? "/api/account.php?auth_method=log_out" : "./profile.php") : "./connection.php") . '">' . (is_logged() ? ($current_page === "profile" ? "Se déconnecter" : "Mon profil") : "Se connecter") . '</a>
 
                     <button id="color-scheme-toggle" class="btn btn-svg">
                         <svg class="light-theme" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">

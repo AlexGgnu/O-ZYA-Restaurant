@@ -21,13 +21,13 @@ async function get_products_data(action) {
 }
 
 // MARK: - Basket Endpoint
-function get_basket_url(action, uuid) {
+function get_basket_url(action, value) {
     const baseUrl = window.location.origin;
-    return `${baseUrl}/api/basket.php?${action}=${uuid}`;
+    return `${baseUrl}/api/basket.php?${action}=${value}`;
 }
 
-async function post_bascket_data(action) {
-    const url = get_basket_url(action);
+async function fetch_bascket_data(action, value) {
+    const url = get_basket_url(action, value);
 
     try {
         const response = await fetch(url, { method: "GET" });
@@ -37,7 +37,7 @@ async function post_bascket_data(action) {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Products data endpoint: ", error.message);
+        console.error("[ERROR] - Basket endpoint: ", error.message);
         throw error;
     }
 }

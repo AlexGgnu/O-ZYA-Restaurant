@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>O'ZYA Restaurant - La carte</title>
+        <title>La carte - O'ZYA Restaurant</title>
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
         <link rel="stylesheet" href="./styles/global.css">

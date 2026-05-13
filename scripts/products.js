@@ -1,9 +1,21 @@
 function createBuyButton(productData) {
     return `
-        <a class="btn btn-primary" href="/api/basket.php?add=${productData.id}">
+        <button class="buy__button btn btn-primary" data-products-id="${productData.id}">
             JE COMMANDE • ${productData.price}€
-        </a>
+        </button>
     `
+}
+function setupBuyButton() {
+    const buyButton = document.querySelectorAll('.buy__button');
+    
+    buyButton.forEach(button => {
+        button.addEventListener('click', async (element) => {
+            const clickedBtn = element.currentTarget;
+            
+            const response = await fetch_bascket_data('add', clickedBtn.getAttribute('data-products-id'));
+            console.log(response); // TODO: Create message card
+        });
+    });
 }
 
 function createCard(productData) {
@@ -135,9 +147,11 @@ async function initProducts() {
         if (productsCard) {
             const productsData = await get_products_data('getAllProducts');
             
-            if (productsData) { createProductsPage(productsData); }
+            if (productsData) createProductsPage(productsData);
             else { productsCard.style.display = 'none'; }
         }
+
+        setupBuyButton()
     } catch (error) {
         console.error("[ERROR] - Products data loading: ", error.message);
     }

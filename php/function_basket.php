@@ -1,13 +1,6 @@
 <?php
     if (session_status() === PHP_SESSION_NONE) session_start();
 
-    require_once(__DIR__ . '/function_products.php');
-
-    function get_basket() {
-        if(!isset($_SESSION['basket']) || !is_array($_SESSION['basket'])) return [];
-        return $_SESSION['basket'];
-    }
-
     function get_coupons() {
         if (!file_exists(__DIR__ . '/../data/promocodes.json')) {
             return [];
@@ -157,15 +150,6 @@
         ";
     }
 
-    function add_to_basket($dish_id) {
-        $basket = get_basket();
-        
-        if(isset($basket[$dish_id])) $basket[$dish_id]++;
-        else $basket[$dish_id] = 1;
-
-        $_SESSION['basket'] = $basket;
-    }
-
     function remove_from_basket($dish_id) {
         $basket = get_basket();
         
@@ -178,10 +162,6 @@
         }
 
         $_SESSION['basket'] = $basket;
-    }
-
-    function empty_basket() {
-        $_SESSION['basket'] = [];
     }
 
     if (isset($_GET['dish_id'])) {

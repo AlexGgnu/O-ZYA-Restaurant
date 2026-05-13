@@ -53,8 +53,8 @@ main { margin-top: var(--header-height); }
     gap: 12px;
     margin-top: 20px;
 }
-#special__dish__content > div h2 { color: var(--accent-background-color) }
-#special__dish__content > div a { width: fit-content; }
+#special__dish__content > div h2 { color: var(--accent-font-color) }
+#special__dish__content > div button { width: fit-content; }
 
 #special__dish__image {
     position: relative;

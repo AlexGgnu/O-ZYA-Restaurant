@@ -1,15 +1,10 @@
 <?php
     require_once('./php/function_account.php');
 
-    require_once('./php/header.php');
-    require_once('./php/footer.php');
-
     if(is_logged()) header("Location: /");
 
     $error_message = '';
-    if (isset($_GET['error']) && $_GET['error'] != '') {
-        $error_message = htmlspecialchars(urldecode($_GET['error']));
-    }
+    if (isset($_GET['error']) && $_GET['error'] != '') $error_message = htmlspecialchars(urldecode($_GET['error']));
 
     if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = $_GET['redirection'];
     else $redirection = "/";
@@ -24,11 +19,11 @@
         <title>Connexion - O'ZYA Restaurant</title>
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
-        <link rel="stylesheet" href="./styles/main.css">
+        <link rel="stylesheet" href="./styles/global.css">
     </head>
 
     <body>
-        <?php echo get_header(false, false); ?>
+        <?php include_once('./components/header.php'); ?>
 
         <main class="justify-center sm-p-0">
             <form class="form-card sm-flex-1 sm-justify-center sm-rounded-none" method="post" action="./php/function_account.php?auth_method=log_in&redirection=<?php echo urlencode($redirection); ?>">
@@ -56,7 +51,8 @@
             </form>
         </main>
 
-        <?php echo get_footer(true); ?>
+        <?php include_once('./components/footer.php'); ?>
+
         <script src="./scripts/validation.js"></script>
     </body>
 </html>
