@@ -54,14 +54,14 @@
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"]) {
                 $_SESSION['error'] = urlencode("Email deja utilise");
-                header("Location: /registration.php?redirection=" . urlencode($redirection));
+                header("Location: /sign_up.php?redirection=" . urlencode($redirection));
                 exit();
             }
         }
 
         if (!password_verify($_POST["confirme-pwd"], $hash_password)) {
             $_SESSION['error'] = urlencode("Les mots de passe ne correspondent pas");
-            header("Location: /registration.php?redirection=" . urlencode($redirection));
+            header("Location: /sign_up.php?redirection=" . urlencode($redirection));
             exit();
         }
 
@@ -82,7 +82,7 @@
 
         create_session($new_account_data['id'], $new_account_data['role'], $redirection);
     }
-    function log_in($redirection = "/") {
+    function sign_in($redirection = "/") {
         $accounts_data = get_accounts_data();
 
         foreach ($accounts_data as $account) {
@@ -93,15 +93,15 @@
         }
 
         $_SESSION['error'] = urlencode("Email ou mot de passe incorrect");
-        header("Location: /connection.php?redirection=" . urlencode($redirection));
+        header("Location: /sign_in.php?redirection=" . urlencode($redirection));
         exit();
     }
 
-    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = $_GET['redirection'];
+    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = str_replace(['/', '.php', '.html'], "", $_GET['redirection']);
     else $redirection = "/";
 
     if (isset($_GET['auth_method']) && !empty($_GET['auth_method'])) {
-        if($_GET['auth_method'] == "log_in") log_in($redirection);
+        if($_GET['auth_method'] == "sign_in") sign_in($redirection);
         else if($_GET['auth_method'] == "sign_up") sign_up($redirection);
         else if($_GET['auth_method'] == "log_out") log_out();
     }

@@ -111,7 +111,7 @@
                     <button class="btn btn-primary" type="submit">S'inscrire</button>
 
                     <p>
-                        Déjà un compte ? <a href="./connection.php<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "?redirection=" . urlencode($_GET['redirection']); ?>">Se connecter</a>
+                        Déjà un compte ? <a href="./sign_in.php<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "?redirection=" . urlencode($_GET['redirection']); ?>">Se connecter</a>
                     </p>
                 </div>
                 

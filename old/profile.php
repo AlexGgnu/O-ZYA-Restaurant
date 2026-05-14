@@ -8,7 +8,7 @@
         $account_data = get_account_by_id($_SESSION['uuid']);
         $orders = get_orders_by_user($_SESSION['uuid']);
     } else {
-        header("Location: ./connection.php");
+        header("Location: ./sign_in.php");
         exit();
     }
 ?>

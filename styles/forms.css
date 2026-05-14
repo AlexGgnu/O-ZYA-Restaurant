@@ -55,11 +55,18 @@ input:focus, textarea:focus {
     justify-content: space-between;
     align-items: center;
 }
+.form__group.col__group { flex-direction: column; }
 .form__group > div:has(input[type="radio"]) {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     gap: 8px;
+}
+.form__group > div textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 100px;
 }
 
 .form__group > label { width: max-content; }
@@ -80,37 +87,44 @@ input:focus, textarea:focus {
     font-size: 0.8rem;
     color: var(--separator-color);
 }
+.form__group > div textarea + p.form__counter { bottom: 12px; }
 .form__group .btn {
     width: max-content;
     height: 100%;
 }
 
-.form__group div:has(input[type="password"]) + button .hidden-eye { display: block; }
-.form__group div:has(input[type="password"]) + button .show-eye { display: none; }
+.form__group div:has(input[type="password"]) + button .hidden-eye,
+.form__group input[type="password"] + button .hidden-eye { display: block; }
+.form__group div:has(input[type="password"]) + button .show-eye,
+.form__group input[type="password"] + button .show-eye { display: none; }
 
-.form__group div:has(input[type="text"]) + button .hidden-eye { display: none; }
-.form__group div:has(input[type="text"]) + button .show-eye { display: block; }
+.form__group div:has(input[type="text"]) + button .hidden-eye, 
+.form__group input[type="text"] + button .hidden-eye { display: none; }
+.form__group div:has(input[type="text"]) + button .show-eye, 
+.form__group input[type="text"] + button .show-eye { display: block; }
 
-.form__card > div button { width: 100%; }
+.form__card > button[type="submit"], .form__card > div button[type="submit"] { width: 100%; }
 .form__card > div p { font-size: 0.9rem; }
 .form__card > div p a {
     font-weight: bold;
     color: var(--accent-font-color);
 }
 
-
-
-
-
-
-/* main textarea {
-    resize: vertical;
-    min-height: 100px;
+/* MARK: - Rating Input */
+#rating__wrapper.row__group {
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
-.form-group-line input, .form-group-line select, .form-group-line textarea {
-    padding: 8px;
-    font-size: 0.9rem;
-} */
+
+#rating__wrapper .btn-svg { position: relative; }
+#rating__wrapper .btn-svg svg {
+    position: absolute;
+    color: var(--separator-color);
+    transition: opacity .3s ease-in-out;
+}
+#rating__wrapper .btn-svg svg.checked-star { color: var(--star-color); }
+#rating__wrapper .btn-svg[data-checked="false"] .checked-star { opacity: 0; }
 
 /* MARK: - Notation Page */
 @media (min-width: 768px) {

@@ -24,7 +24,7 @@
         <?php include_once('./components/header.php'); ?>
 
         <main>
-            <form class="form__card" method="post" action="/api/account.php?auth_method=log_in<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "&redirection=" . urlencode($_GET['redirection']); ?>">
+            <form class="form__card" method="post" action="/api/account.php?auth_method=sign_in<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "&redirection=" . urlencode($_GET['redirection']); ?>">
                 <h1>Connexion</h1>
 
                 <div>
@@ -35,7 +35,7 @@
 
                     <div class="form__group row__group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="••••••••" minlength="8" required />
+                        <input type="password" id="password" name="password" minlength="8" required />
                         
                             <button type="button" class="btn btn-primary btn-svg toggle-password" data-target="password">
                                 <svg class="hidden-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor">
@@ -52,11 +52,11 @@
                     <button class="btn btn-primary" type="submit" disabled>Se connecter</button>
 
                     <p>
-                        Pas encore de compte ? <a href="./registration.php<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "?redirection=" . urlencode($_GET['redirection']); ?>">S'inscrire</a>
+                        Pas encore de compte ? <a href="./sign_up.php<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "?redirection=" . urlencode($_GET['redirection']); ?>">S'inscrire</a>
                     </p>
                 </div>
 
-                <?php 
+                <?php
                     if (isset($_SESSION['error']) && $_SESSION['error'] != '') {
                         echo '<p class="error">' . htmlspecialchars(urldecode($_SESSION['error'])) . '</p>';
                         unset($_SESSION['error']);

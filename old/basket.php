@@ -91,7 +91,7 @@
                                 <input class="btn btn-primary" type='submit' value="Valider et payer" <?php echo $basket_is_empty ? 'disabled' : ''; ?>>
                             </form>
                         <?php } else { ?>
-                            <a class="btn btn-primary" href="./connection.php?redirection=basket">Se connecter pour commander</a>
+                            <a class="btn btn-primary" href="./sign_in.php?redirection=basket">Se connecter pour commander</a>
                         <?php } ?>
                     </div>
                 </section>

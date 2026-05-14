@@ -21,8 +21,8 @@
     --table-hover-background-color: #FAFAFA; */
 
     --error-color: #BF0000;
-    /* --star-color: #DB9F36;
-    --preparing-status-color: #F6CF71;
+    --star-color: #DB9F36;
+    /* --preparing-status-color: #F6CF71;
     --waiting-status-color: #D8C6A3;
     --delivery-status-color: #66C5CC;
     --finished-status-color: #87C55F; */
@@ -53,8 +53,8 @@ html[color-scheme="dark"] {
     --table-hover-background-color: #FAFAFA; */
 
     --error-color: #BF0000;
-    /* --star-color: #DB9F36;
-    --preparing-status-color: #F6CF71;
+    --star-color: #BC882F;
+    /* --preparing-status-color: #F6CF71;
     --waiting-status-color: #D8C6A3;
     --delivery-status-color: #66C5CC;
     --finished-status-color: #87C55F; */
