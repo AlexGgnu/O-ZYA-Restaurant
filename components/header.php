@@ -3,6 +3,22 @@
 
     $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
 
+    if(is_logged()) {
+        if($current_page === "profile") {
+            $link_label = "Se déconnecter";
+            $link = "/api/account.php?auth_method=log_out";
+        } else {
+            $link_label = "Mon profil";
+            $link = "./profile.php";
+        }
+    } else {
+        $link_label = "Se connecter";
+        $link = "./sign_in.php";
+    }
+
+    if($current_page === "sign_in" || $current_page === "sign_up") $auth_page = true;
+    else $auth_page = false;
+
     echo '
         <header data-menu-state="closed">
             <nav>
@@ -24,7 +40,7 @@
                         </svg>
                     </a>
 
-                    <a class="btn btn-primary" href="' . (is_logged() ? ($current_page === "profile" ? "/api/account.php?auth_method=log_out" : "./profile.php") : "./sign_in.php") . '">' . (is_logged() ? ($current_page === "profile" ? "Se déconnecter" : "Mon profil") : "Se connecter") . '</a>
+                    <a class="btn btn-primary ' . ($auth_page ? 'hidden' : '') . '" href="' . $link . '">' . $link_label . '</a>
 
                     <button id="color-scheme-toggle" class="btn btn-svg">
                         <svg class="light-theme" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">

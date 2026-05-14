@@ -68,6 +68,7 @@ header[data-menu-state="open"] .user-links { transform: translateX(0); }
     padding: 20px;
 }
 .user-links a.btn-primary { width: 100%; }
+.user-links a.btn-primary.hidden { visibility: hidden; }
 .light-theme, .dark-theme { display: none; }
 html[color-scheme="light"] .dark-theme { display: block; }
 html[color-scheme="dark"] .light-theme { display: block; }
