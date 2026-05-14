@@ -18,9 +18,10 @@
 
     --separator-color: #DDDDDD;
     /* --table-header-background-color: #F5F5F5;
-    --table-hover-background-color: #FAFAFA;
+    --table-hover-background-color: #FAFAFA; */
 
-    --star-color: #DB9F36;
+    --error-color: #BF0000;
+    /* --star-color: #DB9F36;
     --preparing-status-color: #F6CF71;
     --waiting-status-color: #D8C6A3;
     --delivery-status-color: #66C5CC;
@@ -29,9 +30,6 @@
     /* Heights */
     --header-height: 80px;
     --viewport-height: calc(100svh - var(--header-height));
-    
-    /* Sizes */
-    --max-width-form: 500px;
     
     /* 
     Screen size breakpoints:
@@ -51,14 +49,15 @@ html[color-scheme="dark"] {
     --secondary-background-color: #000000;
 
     --separator-color: #241E1E;
-        /* --table-header-background-color: #0B0909;
-        --table-hover-background-color: #060505; */
+    /* --table-header-background-color: #F5F5F5;
+    --table-hover-background-color: #FAFAFA; */
 
-        /* --star-color: #BC882F;
-        --preparing-status-color: #886411;
-        --waiting-status-color: #56492E;
-        --delivery-status-color: #3D898F;
-        --finished-status-color: #669645; */
+    --error-color: #BF0000;
+    /* --star-color: #DB9F36;
+    --preparing-status-color: #F6CF71;
+    --waiting-status-color: #D8C6A3;
+    --delivery-status-color: #66C5CC;
+    --finished-status-color: #87C55F; */
 }
 
 
@@ -84,12 +83,23 @@ body {
 }
 body:has(header:is([data-menu-state="open"])) { overflow: hidden; }
 
-a { text-decoration: none; color: inherit; }
+a {
+    text-decoration: none;
+    color: inherit;
+    user-select: none;
+    -webkit-user-selected: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
 button {
     border: none;
     background-color: transparent;
     color: inherit;
+    user-select: none;
+    -webkit-user-selected: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 button[disabled] {
     opacity: 0.5;
@@ -105,3 +115,10 @@ hr {
 
 p, span { font-family: "Inter", sans-serif; }
 ul { list-style: none; }
+
+.error { color: var(--error-color); }
+input.error, select.error, textarea.error,
+input.error:focus, select.error:focus, textarea.error:focus {
+    color: inherit;
+    border-color: var(--error-color);
+}

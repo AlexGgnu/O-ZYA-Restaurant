@@ -1,4 +1,6 @@
 <?php
+    if(!function_exists("is_logged")) require_once(__DIR__ . '/../api/account.php');
+
     echo '
         <footer>
             <section class="footer__content">

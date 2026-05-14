@@ -1,7 +1,3 @@
-<?php
-    require_once('./php/function_account.php');
-?>
-
 <!DOCTYPE html>
 <html lang="fr-FR">
     <head>
