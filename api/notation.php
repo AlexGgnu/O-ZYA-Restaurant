@@ -2,12 +2,12 @@
     if(session_status() === PHP_SESSION_NONE) session_start();
     if(!function_exists("is_logged")) require_once(__DIR__ . '/account.php');
 
-    $file_notations_path = __DIR__ . '/../data/notations.json';
-    if(!file_exists($file_notations_path)) file_put_contents($file_notations_path, json_encode([], JSON_PRETTY_PRINT));
+    $notations_file_path = __DIR__ . '/../data/notations.json';
+    if(!file_exists($notations_file_path)) file_put_contents($notations_file_path, json_encode([], JSON_PRETTY_PRINT));
 
     function get_notations_data() {
-        global $file_notations_path;
-        $content = file_get_contents($file_notations_path);
+        global $notations_file_path;
+        $content = file_get_contents($notations_file_path);
         $data = json_decode($content, true);
 
         if (is_array($data)) return $data;
@@ -15,7 +15,7 @@
     }
 
     function save_notation() {
-        global $file_notations_path;
+        global $notations_file_path;
         $notations = get_notations_data();
 
         if (!is_logged() || !isset($_SESSION['uuid'])) {
@@ -53,7 +53,7 @@
         ];
         $notations[] = $new_notation;
 
-        file_put_contents($file_notations_path, json_encode($notations, JSON_PRETTY_PRINT));
+        file_put_contents($notations_file_path, json_encode($notations, JSON_PRETTY_PRINT));
 
         header('Location: /notation.php');
         exit();

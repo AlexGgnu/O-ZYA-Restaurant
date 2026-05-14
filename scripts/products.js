@@ -80,7 +80,10 @@ function setupFilters(productsData) {
             const clickedBtnAttr = clickedBtn.getAttribute('data-products-category');
 
             clickedBtn.classList.add('active');
-            if (clickedBtnAttr) renderCategory(clickedBtnAttr, productsData);
+            if (clickedBtnAttr) {
+                renderCategory(clickedBtnAttr, productsData);
+                setupBuyButton()
+            }
         });
     });
 }
@@ -133,22 +136,22 @@ async function initProducts() {
         if (specialDish) {
             const specialDishData = await get_products_data('getSpecialDish');
             
-            if (specialDishData) { createSpecialDish(specialDish, specialDishData); }
-            else { specialDish.style.display = 'none'; }
+            if (specialDishData) createSpecialDish(specialDish, specialDishData);
+            else specialDish.style.display = 'none';
         }
 
         if (successedDishes) {
             const successedDishesData = await get_products_data('getSuccessedDishes');
 
-            if (successedDishesData) { createSuccessedDish(successedDishes, successedDishesData); }
-            else { successedDishes.style.display = 'none'; }
+            if (successedDishesData) createSuccessedDish(successedDishes, successedDishesData);
+            else successedDishes.style.display = 'none';
         }
 
         if (productsCard) {
             const productsData = await get_products_data('getAllProducts');
             
             if (productsData) createProductsPage(productsData);
-            else { productsCard.style.display = 'none'; }
+            else productsCard.style.display = 'none';
         }
 
         setupBuyButton()

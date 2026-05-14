@@ -1,6 +1,5 @@
 <?php
     require_once('./api/account.php');
-    if(!is_logged()) header("Location: /sign_in.php?redirection=" . urlencode(str_replace(['/', '.php'], "", $_SERVER['REQUEST_URI'])));
 
     $firstname = get_account_by_id($_SESSION['uuid'])['firstname'] ?? '';
     if(isset($_SESSION['comment_temp'])) {
@@ -28,7 +27,7 @@
         <?php include_once('./components/header.php');?>
         
         <main>
-            <form class="form__card" method="post" action="/api/notation.php?add=true">
+            <form class="form__card" method="POST" action="/api/notation.php?add">
                 <h1>À vous la parole <?php echo htmlspecialchars($firstname); ?></h1>
 
                 <div id="rating__wrapper" class="form__group row__group">

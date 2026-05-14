@@ -26,45 +26,6 @@
     opacity: 0.9;
 }
 
-/* MARK: - Forms */
-.rating-form.form-card label, .rating-form.form-card h2 { font-size: 1.1rem; }
-
-.form-group-line, .form-group-line__input-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    gap: 16px;
-}
-@media (max-width: 480px) {
-    .form-group-line { gap: 4px; }
-    .form-group-line {
-        flex-direction: column;
-        align-items: stretch;
-    }
-}
-
-
-/* MARK: - Stars (index & notation pages) */
-.rating-stars {
-    font-size: 2rem;
-    color: var(--star-color);
-    letter-spacing: 5px;
-    cursor: pointer;
-}
-
-
-@media (max-width: 480px) {
-    .form-group-line {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .form-group-line__input-wrapper {
-        width: 100%;
-    }
-}
-
 /* MARK: - Scrollable container */
 .scrollable-wrapper {
     position: relative;

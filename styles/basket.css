@@ -1,0 +1,116 @@
+main {
+    justify-content: flex-start;
+    gap: 40px;
+    min-height: 0;
+    padding: 20px 40px;
+    background: transparent;
+}
+main > h1 { width: 100%; }
+
+#basket__container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    border: none;
+}
+
+#basket__container > section {
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+}
+#basket__container > section > h2 {
+    width: 100%;
+    text-align: center;
+    color: var(--accent-font-color);
+}
+
+/* MARK: - Basket items Section */
+#scrollable__wrapper, #scrollable__container {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#scrollable__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.basket__item, .basket__item__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.basket__item { justify-content: space-between; }
+.basket__item__info {
+    gap: 20px;
+    text-align: left;
+}
+
+.basket__item__info > img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.basket__item__quantity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.basket__item__quantity > button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+}
+
+/* MARK: - Basket summary Section */
+#basket__summary.hidden { display: none; }
+
+#basket__summary form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+#basket__summary .col__group { gap: 12px; }
+#basket__summary > .btn, #basket__summary form > .btn { width: 100%; }
+
+#spacer {
+    height: 50px;
+    visibility: hidden;
+}
+
+#delivery_type { width: 100%; }
+#delivery_type:has(option[value=""]:checked) { color: var(--separator-color); }
+#delivery_type option { color: var(--primary-font-color); }
+
+#price__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+#promo__container { color: var(--separator-color); }
+
+/* MARK: - Media Queries */
+@media (min-width: 768px) {
+    #basket__container { flex-direction: row; }
+    #basket__container > section {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+    }
+}

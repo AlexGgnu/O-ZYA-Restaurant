@@ -17,7 +17,7 @@ input, select, textarea {
     border: 3px solid var(--secondary-accent-background-color);
     border-radius: 12px;
 }
-input:focus, textarea:focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-background-color);
 }
@@ -70,7 +70,7 @@ input:focus, textarea:focus {
 }
 
 .form__group > label { width: max-content; }
-.form__group:has(input:required) > label::after {
+.form__group:has(input:required) > label::after, .form__group:has(select:required) > label::after, .form__group:has(textarea:required) > label::after {
     content: '*';
     color: var(--error-color);
 }
@@ -142,7 +142,7 @@ input:focus, textarea:focus {
 }
 
 @media (min-width: 1024px) {
-    .form__card { width: max-content; }
+    .form__card { min-width: max-content; }
 
     .query__group {
         flex-direction: row;

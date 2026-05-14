@@ -21,12 +21,12 @@ async function get_products_data(action) {
 }
 
 // MARK: - Basket Endpoint
-function get_basket_url(action, value) {
+function get_basket_url(action, value = undefined) {
     const baseUrl = window.location.origin;
-    return `${baseUrl}/api/basket.php?${action}=${value}`;
+    return `${baseUrl}/api/basket.php?${action}${value !== undefined ? `=${encodeURIComponent(value)}` : ''}`;
 }
 
-async function fetch_bascket_data(action, value) {
+async function fetch_bascket_data(action, value = undefined) {
     const url = get_basket_url(action, value);
 
     try {

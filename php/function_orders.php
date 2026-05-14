@@ -3,25 +3,6 @@
     require_once(__DIR__ . '/function_basket.php');
     require_once(__DIR__ . '/function_account.php');
 
-    function lireCommandes($fichier) {
-        if ($fichier == '') {
-            $fichier = __DIR__ . '/../data/orders.json';
-        }
-
-        if (!file_exists($fichier)) {
-            return [];
-        }
-
-        $json = file_get_contents($fichier);
-        $commandes = json_decode($json, true);
-
-        if (is_array($commandes)) {
-            return $commandes;
-        } else {
-            return [];
-        }
-    }
-
     function getLibelleStatut($statut, $isTakeaway = false) {
         if ($isTakeaway) {
             if ($statut == 'preparing') {
@@ -463,52 +444,5 @@
         }
     }
 
-    function save_order() {
-        if (!is_logged()) return false;
-
-        $basket = get_basket();
-        if (empty($basket)) return false;
-        
-        $total = 0;
-        $details = [];
-
-        foreach ($basket as $product_id => $quantitie) {
-            $product = get_product_by_id($product_id);
-            if ($product != null) {
-                $details[$product_id] = $quantitie;
-                $total += $product['price'] * $quantitie;
-            }
-        }
-
-        $total += 2.99;
-
-        $adresse = 'À Emporté';
-        $delivery_type = isset($_SESSION['delivery_type']) ? $_SESSION['delivery_type'] : 'takeaway';
-        
-        if ($delivery_type === 'delivery') {
-            $account = get_account_by_id($_SESSION['uuid']);
-            if ($account != null && isset($account['address']) && !empty($account['address'])) $adresse = $account['address'];
-        }
-
-        $nouvelle_commande = [
-            'id_order' => strtolower(uniqid()),
-            'id_client' => $_SESSION['uuid'],
-            'adresse' => $adresse,
-            'details' => $details,
-            'total' => number_format($total, 2, '.', ''),
-            'statut' => 'preparing',
-            'statut_paiement' => 'paye',
-            'date_heure' => date('d/m/Y H:i:s')
-        ];
-
-        $fichier_commandes = __DIR__ . '/../data/orders.json';
-        $commandes = lireCommandes($fichier_commandes);
-        $commandes[] = $nouvelle_commande;
-
-        $json = json_encode($commandes, JSON_PRETTY_PRINT);
-        file_put_contents($fichier_commandes, $json);
-
-        return true;
-    }
 
 ?>

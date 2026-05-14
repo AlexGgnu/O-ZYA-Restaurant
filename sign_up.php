@@ -24,7 +24,7 @@
         <?php include_once('./components/header.php'); ?>
 
         <main>
-            <form class="form__card" method="post" action="/api/account.php?auth_method=sign_up<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "&redirection=" . urlencode($_GET['redirection']); ?>">
+            <form class="form__card" method="POST" action="/api/account.php?auth_method=sign_up<?php if(isset($_GET['redirection']) && !empty($_GET['redirection'])) echo "&redirection=" . urlencode($_GET['redirection']); ?>">
                 <h1>Inscription</h1>
                 
                 <div>
@@ -48,24 +48,24 @@
                     <div class="query__group">
                         <div class="form__group row__group">
                             <label for="lastname">Nom</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Nook" required />
+                            <input type="text" id="lastname" name="lastname" placeholder="Nook" autocomplete="family-name" required />
                         </div>
                         <div class="form__group row__group">
                             <label for="firstname">Prénom</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="Tom" required />
+                            <input type="text" id="firstname" name="firstname" placeholder="Tom" autocomplete="given-name" required />
                         </div>
                     </div>
 
                     <div class="form__group row__group">
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="exemple@mail.com" required />
+                        <input type="email" id="email" name="email" placeholder="exemple@mail.com" autocomplete="email" required />
                     </div>
 
                     <div class="query__group">
                         <div class="form__group row__group">
                             <label for="password">Mot de passe</label>
                             <div>
-                                <input type="password" id="password" name="password" minlength="8" required />
+                                <input type="password" id="password" name="password" minlength="8" autocomplete="new-password" required />
                                 <p id="password__counter" class="form__counter"><span>0</span> / 8 min.</p>
                             </div>
 
@@ -81,7 +81,7 @@
                         <div class="form__group row__group">
                             <label for="confirme-pwd">Confirmer</label>
                             <div>
-                                <input type="password" id="confirme-pwd" name="confirme-pwd" minlength="8" required />
+                                <input type="password" id="confirme-pwd" name="confirme-pwd" minlength="8" autocomplete="new-password" required />
                                 <p id="confirme-pwd__counter" class="form__counter"><span>0</span> / 8 min.</p>
                             </div>
 
@@ -98,12 +98,12 @@
                     
                     <div class="form__group row__group">
                         <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" minlength="10" maxlength="14" required />
+                        <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" minlength="10" maxlength="14" autocomplete="tel" required />
                     </div>
                     
                     <div class="form__group row__group">
                         <label class="required-field" for="address">Adresse</label>
-                        <input type="text" id="address" name="address" placeholder="123 Rue de la Paix, 75001 Paris" required />
+                        <input type="text" id="address" name="address" placeholder="123 Rue de la Paix, 75001 Paris" autocomplete="street-address" required />
                     </div>
                 </div>
 

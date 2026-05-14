@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const inputs = document.querySelectorAll("input[required], textarea[required]");
+const inputs = document.querySelectorAll("input[required], input#promotion__code, select[required], textarea[required]");
 const ratingInput = document.getElementById("rating__input");
 const ratingButtons = document.querySelectorAll(".rating__button");
 const togglePasswordButtons = document.querySelectorAll(".toggle-password");
@@ -26,8 +26,10 @@ function isAllValid() {
             return phone_pattern.test(input.value);
         } else if(input.tagName.toLowerCase() === 'textarea') {
             return input.value.trim().length >= 200;
+        } else if (input.tagName.toLowerCase() === 'select') {
+            return input.value !== "" && input.value !== null;
         } else {
-            return input.value.trim() !== "";
+            return input.value.trim() !== "" || input.id === "promotion__code"; // NOTE: Allow empty value for promotion code as it's optional
         }
     });
 }
@@ -45,9 +47,11 @@ inputs.forEach((input, index) => {
             if (value.length > 14) value = value.slice(0, -1); // NOTE: Limit to 14 characters (expl: 06 12 34 56 78)
 
             input.value = value;
+        } else if (input.id === "promotion__code") {
+            input.value = input.value.toUpperCase().replace(/\s/g, ''); // NOTE: Convert to uppercase and remove spaces
         }
 
-        submitButton.disabled = !isAllValid();
+        if (submitButton) submitButton.disabled = !isAllValid();
     });
 
     input.addEventListener('keydown', (event) => {
@@ -101,7 +105,7 @@ ratingButtons.forEach(button => {
 form.addEventListener('submit', (event) => {
     if (!isAllValid()) {
         event.preventDefault();
-        submitButton.disabled = true;
+        if(submitButton) submitButton.disabled = true;
 
         let p = document.createElement("p");
         p.classList.add("error");
