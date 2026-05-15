@@ -35,8 +35,8 @@
                 <section id="basket__items" class="form__card">
                     <h2>Articles commandés</h2>
 
-                    <div id="scrollable__wrapper">
-                        <div id="scrollable__container"></div>
+                    <div class="scrollable__wrapper">
+                        <div class="scrollable__container"></div>
                     </div>
                 </section>
                 

@@ -74,7 +74,8 @@
             "password" => $hash_password,
             "phone" => $_POST["phone"],
             "address" => $_POST["address"],
-            "role" => "client"
+            "role" => "client",
+            "state" => "unblocked"
         ];
 
         array_push($accounts_data, $new_account_data);

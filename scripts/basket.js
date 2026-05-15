@@ -1,4 +1,4 @@
-const basketItemsContainer = document.querySelector('#basket__items #scrollable__container');
+const basketItemsContainer = document.querySelector('#basket__items .scrollable__container');
 const basketSummary = document.getElementById('basket__summary');
 const deliveryOptions = document.querySelectorAll('select#delivery_type option');
 const subtotalElement = document.getElementById('subtotal__price');
