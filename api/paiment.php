@@ -4,10 +4,7 @@
     if(!function_exists('save_order')) require_once(__DIR__ . '/order.php');
 
     function get_payment_return_url() {
-        $protocol = 'http';
-        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') $protocol = 'https';
-
-        return $protocol . '://' . $_SERVER['HTTP_HOST'] . '/api/paiment.php?payment_return=1';
+        return  $_SERVER['HTTP_REFERER'] . 'api/paiment.php?payment_return=1';
     }
 
     function generate_transaction_id() {

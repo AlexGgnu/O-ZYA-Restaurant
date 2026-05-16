@@ -63,7 +63,7 @@
 @media (min-width: 768px) {
     #admin__main { height: var(--viewport-height); }
     #accounts__container { height: 100%; }
-
+    #accounts__container > h2 { text-align: left; }
     
     .account__card {
         flex-direction: row;

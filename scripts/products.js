@@ -12,7 +12,7 @@ function setupBuyButton() {
         button.addEventListener('click', async (element) => {
             const clickedBtn = element.currentTarget;
             
-            const response = await fetch_bascket_data('add', clickedBtn.getAttribute('data-products-id'));
+            const response = await fetch_basket_data('add', clickedBtn.getAttribute('data-products-id'));
             console.log(response); // TODO: Create message card
         });
     });

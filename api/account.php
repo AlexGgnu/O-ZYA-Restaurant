@@ -4,7 +4,7 @@
     $account_file_path = __DIR__ . "/../data/accounts.json";
     if (!file_exists($account_file_path)) file_put_contents($account_file_path, json_encode([], JSON_PRETTY_PRINT));
 
-    // MARK: - Authentication management
+    // MARK: - Access management
     function is_logged() {
         if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) return true;
         else return false;
@@ -98,6 +98,44 @@
         exit();
     }
 
+    // MARK: - Account management
+    function toggle_account_state($account_id) {
+        global $account_file_path;
+        $accounts_data = get_accounts_data();
+        $is_toggled = false;
+
+        foreach ($accounts_data as &$account) { // NOTE: '&' is used to modify the original array element
+            if ($account["id"] == $account_id) {
+                $account["state"] = $account["state"] === "blocked" ? "unblocked" : "blocked";
+                $is_toggled = true;
+                break;
+            }
+        }
+
+        if($is_toggled) file_put_contents($account_file_path, json_encode($accounts_data, JSON_PRETTY_PRINT));
+        return $account["state"];
+    }
+    function update_account_role($account_id, $new_role) {
+        global $account_file_path;
+        $accounts_data = get_accounts_data();
+        $is_updated = false;
+        $valid_roles = ["client", "employee", "delivery", "admin"];
+
+        foreach ($accounts_data as &$account) { // NOTE: '&' is used to modify the original array element
+            if ($account["id"] == $account_id) {
+                if (in_array($new_role, $valid_roles)) {
+                    $account["role"] = $new_role;
+                    $is_updated = true;
+                }
+                break;
+            }
+        }
+        
+        if($is_updated) file_put_contents($account_file_path, json_encode($accounts_data, JSON_PRETTY_PRINT));
+        return $is_updated;
+    }
+
+    // MARK: - API management
     if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = str_replace(['/', '.php', '.html'], "", $_GET['redirection']);
     else $redirection = "/";
 
@@ -105,5 +143,36 @@
         if($_GET['auth_method'] == "sign_in") sign_in($redirection);
         else if($_GET['auth_method'] == "sign_up") sign_up($redirection);
         else if($_GET['auth_method'] == "log_out") log_out();
+    } else if (get_access("admin") && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
+        if(isset($_POST['action']) && $_POST['action'] == "toggle_state") {
+            $title = "Erreur";
+            $message = "Impossible de mettre à jour l'état du compte. Veuillez réessayer.";
+            $new_state = null;
+
+            if($new_state = toggle_account_state($_POST["account_id"])) {
+                $title = "Modification réussie";
+                $message = "L'état du compte a été mis à jour avec succès.";
+            }
+            error_log("Account ID: " . $_POST["account_id"] . " - New state: " . $new_state);
+                    
+            echo json_encode([
+                "title" => $title,
+                "message" => $message,
+                "new_state" => $new_state
+            ]);
+        } else if ($_POST['action'] == "update_role") {
+            $title = "Erreur";
+            $message = "Impossible de mettre à jour le rôle du compte. Veuillez réessayer.";
+
+            if(update_account_role($_POST["account_id"], $_POST["value"])) {
+                $title = "Modification réussie";
+                $message = "Le rôle du compte a été mis à jour avec succès.";
+            }
+
+            echo json_encode([
+                "title" => $title,
+                "message" => $message
+            ]);
+        }
     }
 ?>

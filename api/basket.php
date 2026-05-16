@@ -116,6 +116,7 @@
         ];
     }
 
+    // MARK: - API endpoints
     if(isset($_GET['add'])) {
         $title = "Ajouté avec succès";
         $message = "L'article à été ajouté avec succès au panier";

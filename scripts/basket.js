@@ -40,8 +40,8 @@ function setupQuantityButtons() {
             const productId = clickedButton.getAttribute('data-product-id');
 
             try {
-                if (action === 'increase') await fetch_bascket_data('add', productId);
-                else if (action === 'decrease') await fetch_bascket_data('remove', productId);
+                if (action === 'increase') await fetch_basket_data('add', productId);
+                else if (action === 'decrease') await fetch_basket_data('remove', productId);
 
                 load_basket_items();
             } catch (error) {
@@ -73,7 +73,7 @@ function setupDeliveryOptionChange(products, reduction) {
         console.log("Selected delivery option: ", selectedOption);
 
         try {
-            await fetch_bascket_data('update_delivery', selectedOption);
+            await fetch_basket_data('update_delivery', selectedOption);
             createBasketSummary(products, selectedOption, reduction);
         } catch (error) {
             console.error(`[ERROR] - Updating delivery type: `, error.message); // TODO: Create message card
@@ -90,7 +90,7 @@ function setupPromotionButton(products, deliveryType) {
 
         if(promoCode) {
             try {
-                const reduction = await fetch_bascket_data('promo_code', promoCode);
+                const reduction = await fetch_basket_data('promo_code', promoCode);
                 if(reduction) createBasketSummary(products, deliveryType, reduction);
             } catch (error) {
                 console.error(`[ERROR] - Applying promotion: `, error.message); // TODO: Create message card
@@ -122,7 +122,7 @@ function createBasketSummary(products, deliveryType = "", reduction = 0) {
 // MARK: - Initial loading
 async function load_basket_items() {
     try {
-        const basketItems = await fetch_bascket_data('get');
+        const basketItems = await fetch_basket_data('get');
 
         if (basketItems.items && basketItems.items.length > 0) {
             createBasketItems(basketItems.items);

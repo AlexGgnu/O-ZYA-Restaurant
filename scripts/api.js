@@ -1,3 +1,29 @@
+// MARK: - Accounts Endpoint
+function get_accounts_url() {
+    const baseUrl = window.location.origin;
+    return `${baseUrl}/api/account.php`;
+}
+
+async function fetch_accounts_data(accountId, action, value = undefined) {
+    const url = get_accounts_url();
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `account_id=${encodeURIComponent(accountId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(value)}`
+        });
+
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("[ERROR] - Accounts data endpoint: ", error.message);
+        throw error;
+    }
+}
+
 // MARK: - Products Endpoint
 function get_products_url(action) {
     const baseUrl = window.location.origin;
@@ -26,7 +52,7 @@ function get_basket_url(action, value = undefined) {
     return `${baseUrl}/api/basket.php?${action}${value !== undefined ? `=${encodeURIComponent(value)}` : ''}`;
 }
 
-async function fetch_bascket_data(action, value = undefined) {
+async function fetch_basket_data(action, value = undefined) {
     const url = get_basket_url(action, value);
 
     try {

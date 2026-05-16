@@ -55,6 +55,7 @@
         return $successedDishes;
     }
 
+    // MARK: - API endpoints
     if(isset($_GET['action'])) {
         if ($_GET['action'] === 'getAllProducts') {
             echo json_encode(get_products_data());

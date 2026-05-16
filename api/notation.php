@@ -59,5 +59,6 @@
         exit();
     }
 
+    // MARK: - API endpoints
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['add'])) save_notation();
 ?>
