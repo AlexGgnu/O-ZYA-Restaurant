@@ -36,7 +36,7 @@ input:focus, select:focus, textarea:focus {
     background-color: var(--secondary-background-color);
     border-top: 1px solid var(--separator-color);
 }
-.form__card > h1 { color: var(--accent-font-color); }
+.form__card > h2 { color: var(--accent-font-color); }
 .query__group, .form__card > div {
     display: flex;
     flex-direction: column;

@@ -10,9 +10,9 @@
         else return false;
     }
     function get_access($autorized_role, $redirect = false) {
-        if (!is_logged() || $_SESSION["role"] !== $autorized_role && $_SESSION["role"] !== "admin") {
+        if (!is_logged() || !in_array($_SESSION["role"], $autorized_role)) {
             if($redirect) header("Location: /");
-            return false;
+            else return false;
         } else return true;
     }
     
@@ -177,7 +177,7 @@
             "title" => $title,
             "message" => $message
         ]);
-    } else if (get_access("admin") && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
+    } else if (get_access(["admin"]) && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
         if(isset($_POST['action']) && $_POST['action'] == "toggle_state") {
             $title = "Erreur";
             $message = "Impossible de mettre à jour l'état du compte. Veuillez réessayer.";

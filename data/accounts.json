@@ -116,7 +116,7 @@
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
         "phone": "06 87 65 43 21",
         "address": "7 boulevard du march\u00e9, 87000 Limoges",
-        "role": "client",
+        "role": "employee",
         "state": "unblocked"
     }
 ]

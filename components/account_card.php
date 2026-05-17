@@ -24,7 +24,7 @@
                         </svg>
                         <span>Bloquer</span>
                     </button>
-                    <select class="account__role update__role__button">
+                    <select name="role" class="account__role update__role__button">
                         <option value="client" ' . ($account["role"] === "client" ? "selected" : "") . '>Client</option>
                         <option value="employee" ' . ($account["role"] === "employee" ? "selected" : "") . '>Employé</option>
                         <option value="delivery" ' . ($account["role"] === "delivery" ? "selected" : "") . '>Livreur</option>

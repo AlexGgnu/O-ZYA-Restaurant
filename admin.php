@@ -1,7 +1,7 @@
 <?php
     if(!function_exists("get_access") || !function_exists("get_accounts_data")) require_once('./api/account.php');
 
-    get_access("admin", true);
+    get_access(["admin"], true);
     $accounts_data = get_accounts_data();
 ?>
 

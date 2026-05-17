@@ -115,7 +115,8 @@
 
 /* MARK: - Order Table */
 table {
-    width: max-content;
+    width: 100%;
+    min-width: max-content;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -138,8 +139,8 @@ td .order__status[data-status="unknown"] {
 }
 td .order__status[data-status="unpaid"], td .order__status[data-status="cancelled"] { --status-order-color: var(--error-color); }
 td .order__status[data-status="paid"] { --status-order-color: var(--success-background-color); }
-td .order__status[data-status="preparing"] { --status-order-color: var(--warning-background-color); }
-td .order__status[data-status="ready"] { --status-order-color: var(--info-background-color); }
+td .order__status[data-status="waiting"], td .order__status[data-status="preparing"] { --status-order-color: var(--info-background-color); }
+td .order__status[data-status="ready"] { --status-order-color: var(--warning-background-color); }
 td .order__status[data-status="delivered"] { --status-order-color: var(--delivered-background-color); }
 
 /* MARK: - Scrollable Container */

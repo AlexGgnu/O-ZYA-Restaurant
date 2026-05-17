@@ -1,0 +1,28 @@
+main {
+    justify-content: flex-start;
+    gap: 40px;
+    min-height: 0;
+    padding: 20px 40px;
+    background: transparent;
+}
+main > h1 { width: 100%; }
+
+#orders__container {
+    min-width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+}
+
+.scrollable__container { position: relative; }
+td .order__status { border: none; }
+
+@media (min-width: 768px) {
+    main { height: var(--viewport-height); }
+    #orders__container { height: 100%; }
+
+    .form__card > h2 {
+        width: 100%;
+        text-align: left;
+    }
+}

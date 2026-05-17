@@ -6,6 +6,16 @@
     $orders_file_path = __DIR__ . '/../data/orders.json';
     if(!file_exists($orders_file_path) || filesize($orders_file_path) === 0) file_put_contents($orders_file_path, json_encode([], JSON_PRETTY_PRINT));
 
+    $order_status = [
+        'unpaid' => 'Non payé',
+        'paid' => 'Payé',
+        'waiting' => 'En attente de préparation',
+        'preparing' => 'En préparation',
+        'ready' => 'En attente {de livraison|de récupération}',
+        'delivered' => '{livré|récupéré}',
+        'cancelled' => 'Annulé'
+    ];
+
     // MARK: - Data handling
     function get_orders_data() {
         global $orders_file_path;
@@ -42,16 +52,16 @@
         
         if ($delivery_type === 'delivery') {
             $account = get_account_by_id($_SESSION['uuid']);
-            if ($account != null && isset($account['address']) && !empty($account['address'])) $adresse = $account['address'];
-        } else $adresse = '';
+            if ($account != null && isset($account['address']) && !empty($account['address'])) $address = $account['address'];
+        } else $address = '';
 
         $new_orders = [
             'id_order' => strtolower(uniqid()),
             'id_client' => $_SESSION['uuid'],
-            'adresse' => $adresse,
+            'address' => $address,
             'details' => $basket_items,
             'total' => number_format($total, 2, '.', ''),
-            'statut' => 'payé',
+            'status' => 'paid',
             'date_heure' => date('Y-m-d H:i:s')
         ];
 
@@ -59,4 +69,27 @@
         array_push($orders_data, $new_orders);
         file_put_contents($orders_file_path, json_encode($orders_data, JSON_PRETTY_PRINT));
     }
+
+    function update_order_status($order_id, $new_status) {
+        global $orders_file_path;
+
+        $orders = get_orders_data();
+        $is_updated = false;
+
+        foreach ($orders as &$order) {
+            if ($order['id_order'] === $order_id) {
+                if($order['status'] !== 'delivered' && $order['status'] !== 'cancelled') {
+                    $order['status'] = $new_status;
+                    $is_updated = true;
+                }
+                break;
+            }
+        }
+
+        if ($is_updated) file_put_contents($orders_file_path, json_encode($orders, JSON_PRETTY_PRINT));
+        return json_encode(['success' => true, 'status' => $order['status']]);
+    }
+
+    // MARK: - API Endpoint handling
+    if($_POST['action'] === 'update_status' && isset($_POST['order_id']) && isset($_POST['value'])) echo update_order_status($_POST['order_id'], $_POST['value']);
 ?>

@@ -1,12 +1,13 @@
 <?php
     if(!function_exists('is_logged') || !function_exists('get_access')) require_once(__DIR__ . '/../api/account.php');
     if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data')) require_once(__DIR__ . '/../api/order.php');
+    if(!isset($order_status)) require_once(__DIR__ . '/../api/order.php');
 
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
 
     if(is_logged() && $current_page === 'profile') $orders = get_orders_by_user($_SESSION['uuid']);
-    else if (is_logged() && get_access("admin", true) && $current_page === 'orders') $orders = get_orders_by_user($_SESSION['uuid']);
+    else if (is_logged() && get_access(["employee", "admin"], true) && $current_page === 'orders') $orders = get_orders_data();
     else $orders = [];
 
     // MARK: - Helper functions
@@ -20,26 +21,55 @@
         return $result;
     }
     function format_order_status($order) {
-        $status = $order['statut'];
-        $address = $order['adresse'];
+        global $current_page;
+        global $order_status;
 
-        switch ($status) {
-            case 'unpaid':
-                return '<span class="order__status" data-status="unpaid">Non payé</span>';
-            case 'paid':
-                return '<span class="order__status" data-status="paid">Payé</span>';
-            case 'waiting':
-                return '<span class="order__status" data-status="waiting">En attente de préparation</span>';
-            case 'preparing':
-                return '<span class="order__status" data-status="preparing">En préparation</span>';
-            case 'ready':
-                return '<span class="order__status" data-status="ready">En attente ' . (empty($address) ? 'du livreur' : 'de récupération') . '</span>';
-            case 'delivered':
-                return '<span class="order__status" data-status="delivered">Livré</span>';
-            case 'cancelled':
-                return '<span class="order__status" data-status="cancelled">Annulé</span>';
-            default:
-                return '<span class="order__status" data-status="unknown">' . htmlspecialchars($status) . '</span>';
+        $status = $order['status'];
+        $address = $order['address'];
+
+        if(($current_page ==='profile' && array_key_exists($status, $order_status)) || $status === 'delivered' || $status === 'cancelled') {
+            switch ($status) {
+                case 'unpaid':
+                    return '<span class="order__status" data-status="unpaid">' . $order_status['unpaid'] . '</span>';
+                case 'paid':
+                    return '<span class="order__status" data-status="paid">' . $order_status['paid'] . '</span>';
+                case 'waiting':
+                    return '<span class="order__status" data-status="waiting">' . $order_status['waiting'] . '</span>';
+                case 'preparing':
+                    return '<span class="order__status" data-status="preparing">' . $order_status['preparing'] . '</span>';
+                case 'ready':
+                    return '<span class="order__status" data-status="ready">' . (!empty($order['address']) ? preg_replace('/\{.*?\}/', 'de livraison', $order_status['ready']) : preg_replace('/\{.*?\}/', 'de récupération', $order_status['ready'])) . '</span>';
+                case 'delivered':
+                    return '<span class="order__status" data-status="delivered">' . (!empty($order['address']) ? preg_replace('/\{.*?\}/', 'Livré', $order_status['delivered']) : preg_replace('/\{.*?\}/', 'Récupéré', $order_status['delivered'])) . '</span>';
+                case 'cancelled':
+                    return '<span class="order__status" data-status="cancelled">' . $order_status['cancelled'] . '</span>';
+                default:
+                    return '<span class="order__status" data-status="unknown">' . htmlspecialchars($status) . '</span>';
+            }
+        } else if ($current_page === 'orders' && array_key_exists($status, $order_status)) {
+            if($status === 'paid') $status = 'waiting';
+
+            $result = '<select class="order__status" data-status="' . htmlspecialchars($status) . '">';
+            foreach ($order_status as $key => $status_option) {
+                $isSelected = $status === $key;
+
+                if($key === 'unpaid' && $status !== 'unpaid') continue;
+                else if($key === 'paid' && $status !== 'paid') continue;
+                
+                if (!empty($order['address']) && $key === 'delivered' && $status !== 'delivered') $isDisabled = true;
+                else if (!empty($order['address']) && $key === 'cancelled' && $status === 'delivered') $isDisabled = true;
+                else $isDisabled = false;
+
+                if($key === 'ready') $status_option = !empty($order['address']) ? preg_replace('/\{.*?\}/', 'de livraison', $status_option) : preg_replace('/\{.*?\}/', 'de récupération', $status_option);
+                else if($key === 'delivered') $status_option = !empty($order['address']) ? preg_replace('/\{.*?\}/', 'Livré', $status_option) : preg_replace('/\{.*?\}/', 'Récupéré', $status_option);
+
+                $result .= '<option name="status" value="' . htmlspecialchars($key) . '"' . ($isSelected ? ' selected' : '') . ($isDisabled ? ' disabled' : '') . '>' . htmlspecialchars($status_option) . '</option>';
+            }
+            $result .= '</select>';
+
+            return $result;
+        } else {
+            return '<span class="order__status" data-status="' . htmlspecialchars($status) . '">' . htmlspecialchars($status) . '</span>';
         }
     }
 
@@ -71,17 +101,17 @@
         global $current_page;
 
         return '
-            <tr>
+            <tr class="order__row" data-order-id="' . htmlspecialchars($order['id_order']) . '">
                 <td>' . htmlspecialchars($order['id_order']) . '</td>
                 <td>' . htmlspecialchars($order['date_heure']) . '</td>'
                 .
                 ($current_page === 'orders' ? '<td>' . htmlspecialchars(get_account_by_id($order['id_client'])['lastname']) . ' ' . htmlspecialchars(get_account_by_id($order['id_client'])['firstname']) . '</td>' : '')
                 .
-                ($current_page === 'orders' ? '<td>' . htmlspecialchars($order['adresse'] ?? 'À emporter') . '</td>' : '')
+                ($current_page === 'orders' ? '<td>' . (!empty($order['address']) ? htmlspecialchars($order['address']) : 'À emporter') . '</td>' : '')
                 .
                 '<td>' . format_order_details($order['details']) . '</td>
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>
-                <td class="col__centered">' . format_order_status($order) . '</td>'
+                <td class="status__cell col__centered">' . format_order_status($order) . '</td>'
                 .
                 ($current_page === 'orders' ? '<td class="col__centered">' . htmlspecialchars($order['livreur'] ?? '-') . '</td>' : '')
                 .

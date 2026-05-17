@@ -2,13 +2,26 @@
     {
         "id_order": "6a09bbd63252a",
         "id_client": "69c14f0fe5cef",
-        "adresse": "",
+        "address": "",
         "details": {
             "ES_DI_01": 1,
             "US_DI_02": 4
         },
         "total": "98.10",
-        "statut": "paid",
+        "status": "delivered",
         "date_heure": "2026-05-17 13:00:06"
+    },
+    {
+        "id_order": "6a09d6f71edc5",
+        "id_client": "69c14dac77a47",
+        "address": "1 avenue du Parc, 95000 Cergy",
+        "details": {
+            "US_DE_02": 1,
+            "US_SI_01": 2,
+            "IT_SI_01": 1
+        },
+        "total": "28.00",
+        "status": "cancelled",
+        "date_heure": "2026-05-17 14:55:51"
     }
 ]

@@ -14,7 +14,7 @@ async function updateProfileInfo(inputs) {
 
         console.log('Profile info updated successfully:', response); // TODO: Create message card
     } catch (error) {
-        console.error('Error updating profile info:', error.message); // TODO: Create message card
+        console.error('[ERROR] - updating profile info:', error.message); // TODO: Create message card
     }
 }
 

@@ -2,7 +2,7 @@
     require_once('./php/function_account.php');
     require_once('./php/function_orders.php');
 
-    get_access("delivery", true);
+    get_access(["delivery"], true);
 
     $livreurId = isset($_SESSION['uuid']) ? $_SESSION['uuid'] : '';
     
@@ -31,7 +31,7 @@
         $client = get_account_by_id($commande['id_client']);
     }
 
-    if (is_array($commande) && !empty($commande['adresse'])) {
+    if (is_array($commande) && !empty($commande['address'])) {
         $mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($commande['adresse']);
     }
 ?>
