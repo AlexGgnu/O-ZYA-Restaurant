@@ -1,41 +1,14 @@
 <?php
-    require_once('./php/function_account.php');
-    require_once('./php/function_orders.php');
+    if(!function_exists('get_access') || !function_exists('get_account_by_id')) require_once('./api/account.php');
+    if(!function_exists('get_assigned_order')) require_once('./api/order.php');
+    if(!function_exists('format_order_details')) require_once('./components/orders_table.php');
 
-    get_access("delivery", true);
+    get_access(["delivery"], true);
+    $assigned_order = get_assigned_order($_SESSION['uuid']);
+    if($assigned_order) $client = get_account_by_id($assigned_order['id_client']);
 
-    $livreurId = isset($_SESSION['uuid']) ? $_SESSION['uuid'] : '';
-    
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && 
-    strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false) {
-    
-    header('Content-Type: application/json');
-    $data = json_decode(file_get_contents('php://input'), true);
-    $orderId = isset($data['order_id']) ? trim($data['order_id']) : '';
-
-    if ($orderId === '' || $livreurId === '') {
-        echo json_encode(['success' => false, 'message' => 'Données manquantes']);
-        exit();
-    }
-    
-    $result = updateDeliveryOrderStatus($orderId, $livreurId, 'finished');
-    echo json_encode(['success' => $result]);
-    exit();
-    }
-    
-    $commande = get_delivery_order_for_livreur($livreurId);
-    $client = null;
-    $mapsUrl = 'https://www.google.com/maps';
-
-    if (is_array($commande) && isset($commande['id_client'])) {
-        $client = get_account_by_id($commande['id_client']);
-    }
-
-    if (is_array($commande) && !empty($commande['adresse'])) {
-        $mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($commande['adresse']);
-    }
+    $maps_base_url = 'https://www.google.com/maps/search/?api=1&query=';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -46,52 +19,55 @@
         <title>Livraison - O'ZYA Restaurant</title>
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
-        <link rel="stylesheet" href="./styles/main.css">
+        <link rel="stylesheet" href="./styles/global.css">
+        <link rel="stylesheet" href="./styles/forms.css">
+        <link rel="stylesheet" href="./styles/delivery.css">
+
+        <script src="./scripts/shared.js" defer></script>
+        <script src="./scripts/theme.js" defer></script>
+        <script src="./scripts/nav.js" defer></script>
+        <script src="./scripts/api.js" defer></script>
         <script src="./scripts/delivery.js" defer></script>
     </head>
     <body>
-        <main class="justify-center sm-p-0">
-            <div class="form-card gap-24 sm-flex-1 sm-justify-center sm-gap-40 sm-rounded-none">
-                <?php if (is_array($commande)) { ?>
-                    <h1 class="text-primary text-center font-bold">Commande #<?php echo htmlspecialchars($commande['id_order']); ?></h1>
+        <?php include_once('./components/header.php'); ?>
 
-                    <div class="flex-col gap-12">
-                        <div class="client-infos">
-                            <h2 class="font-600">Client</h2>
-                            <p>Nom : <?php echo htmlspecialchars(is_array($client) && isset($client['lastname']) ? $client['lastname'] : 'Inconnu'); ?></p>
-                            <p>Prénom : <?php echo htmlspecialchars(is_array($client) && isset($client['firstname']) ? $client['firstname'] : 'Inconnu'); ?></p>
-                            <p>Téléphone : <?php echo htmlspecialchars(is_array($client) && isset($client['phone']) ? $client['phone'] : 'Inconnu'); ?></p>
+        <main>
+            <section class="form__card">
+                <?php if (is_array($assigned_order)) { ?>
+                    <h2>Commande #<?php echo htmlspecialchars($assigned_order['id_order']); ?></h2>
+
+                    <div>
+                        <div class="form__group col__group">
+                            <h3>Infos Client</h3>
+                            <div>
+                                <?php echo '<p>' . ($client['gender'] === 'homme' ? 'Mr' : 'Mme') . ' ' . strtoupper(htmlspecialchars($client['lastname'])) . ' '. htmlspecialchars($client['firstname']) . '</p>'; ?>
+                                <?php echo '<p><span>Téléphone :</span> ' . htmlspecialchars($client['phone']) . '</p>'; ?>
+                                <?php echo '<p><span>Adresse :</span> ' . htmlspecialchars($assigned_order['address']) . '</p>'; ?>
+                            </div>
                         </div>
 
-                        <div id="client-adsress">
-                            <h2 class="font-600">Adresse</h2>
-                            <p>Adresse : <?php echo htmlspecialchars(isset($commande['adresse']) ? $commande['adresse'] : 'Inconnue'); ?></p>
-                            <p>Date : <?php echo htmlspecialchars(isset($commande['date_heure']) ? $commande['date_heure'] : 'Inconnue'); ?></p>
-                            <p>Statut : <?php echo htmlspecialchars(isset($commande['statut']) ? getLibelleStatut($commande['statut']) : 'Inconnu'); ?></p>
+                        <div class="form__group col__group">
+                            <h3>Infos Commande</h3>
+
+                            <div>
+                                <?php echo '<p><span>Menus :</span><br/>' . format_order_details($assigned_order['details']). '</p>'; ?>
+                                <?php echo '<p><span>Total :</span> ' . htmlspecialchars($assigned_order['total']) . '€</p>'; ?>
+                            </div>
                         </div>
 
-                        <div class="commentaire">
-                            <h2 class="font-600">Commande</h2>
-                            <p><?php echo htmlspecialchars(isset($commande['details']) ? formatDetailsCommande($commande['details']) : 'Aucun menu'); ?></p>
-                            <p>Total : <?php echo htmlspecialchars(isset($commande['total']) ? $commande['total'] : '0'); ?>€</p>
-                            <p>Paiement : <?php echo htmlspecialchars(isset($commande['statut_paiement']) ? getLibellePaiement($commande['statut_paiement']) : 'Non renseigné'); ?></p>
+                        <div id="delivery__buttons" class="form__group col__group">
+                            <a href="<?php echo $maps_base_url . rawurlencode($assigned_order['address']); ?>" target="_blank" class="btn btn-primary">Ouvrir Maps</a>
+                            <button id="validate__delivery__button" class="btn btn-primary" data-order-id="<?php echo htmlspecialchars($assigned_order['id_order']); ?>">Terminer la livraison</button>
                         </div>
-                    </div>
-                    <div class="flex-col gap-16">
-                        <a href="<?php echo htmlspecialchars($mapsUrl); ?>" target="_blank" class="btn btn-primary pv-16">Ouvrir Maps</a>
-                        <button 
-                        id="btn-terminer" 
-                        class="btn btn-primary pv-16"
-                        data-order-id="<?php echo htmlspecialchars($commande['id_order']); ?>">
-                        Terminer la livraison
-                        </button>
-                        <p id="msg-livraison" style="display:none; text-align:center; margin-top:8px;"></p>
                     </div>
                 <?php } else { ?>
-                    <h1 class="text-primary text-center font-bold">Aucune commande attribuée</h1>
-                    <p class="text-center">Il n'y a pas de commande attribuée pour le moment.</p>
+                    <h2>Aucune commande attribuée</h2>
+                    <p>Aucune commande n'est actuellement attribuée à votre compte</p>
                 <?php } ?>
-            </div>
+            </section>
         </main>
+
+        <?php include_once('./components/footer.php'); ?>
     </body>
 </html>

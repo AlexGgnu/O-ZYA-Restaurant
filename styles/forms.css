@@ -1,0 +1,153 @@
+/* MARK: - Global Style */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: var(--viewport-height);
+    margin-top: var(--header-height);
+    background-color: var(--secondary-background-color);
+}
+
+input, select, textarea {
+    padding: 12px 14px;
+    font-size: 1rem;
+}
+input, select, textarea {
+    border: 3px solid var(--secondary-accent-background-color);
+    border-radius: 12px;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-background-color);
+}
+select:has(option[value=""]:checked), option:disabled { color: var(--separator-color); }
+select option { color: var(--primary-font-color); }
+
+.form__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 500px;
+    height: var(--viewport-height);
+    padding: 30px;
+    text-align: center;
+    background-color: var(--secondary-background-color);
+    border-top: 1px solid var(--separator-color);
+}
+.form__card > h2 { color: var(--accent-font-color); }
+.query__group, .form__card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.form__group {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+.form__group.row__group {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.form__group.col__group { flex-direction: column; }
+.form__group > div:has(input[type="radio"]) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 8px;
+}
+.form__group > div textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 100px;
+}
+
+.form__group > label { width: max-content; }
+.form__group:has(input:required) > label::after, .form__group:has(select:required) > label::after, .form__group:has(textarea:required) > label::after {
+    content: '*';
+    color: var(--error-color);
+}
+
+.form__group > div, .form__group input {
+    flex: 1;
+    width: 100%;
+}
+.form__group > div { position: relative; }
+.form__group > div p.form__counter {
+    position: absolute;
+    bottom: 4px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: var(--separator-color);
+}
+.form__group > div textarea + p.form__counter { bottom: 12px; }
+.form__group .btn {
+    width: max-content;
+    height: 100%;
+}
+
+.form__group div:has(input[type="password"]) + button .hidden-eye,
+.form__group input[type="password"] + button .hidden-eye { display: block; }
+.form__group div:has(input[type="password"]) + button .show-eye,
+.form__group input[type="password"] + button .show-eye { display: none; }
+
+.form__group div:has(input[type="text"]) + button .hidden-eye, 
+.form__group input[type="text"] + button .hidden-eye { display: none; }
+.form__group div:has(input[type="text"]) + button .show-eye, 
+.form__group input[type="text"] + button .show-eye { display: block; }
+
+.form__card > button[type="submit"], .form__card > div button[type="submit"] { width: 100%; }
+.form__card > div p { font-size: 0.9rem; }
+.form__card > div p a {
+    font-weight: bold;
+    color: var(--accent-font-color);
+}
+
+/* MARK: - Rating Input */
+#rating__wrapper.row__group {
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+#rating__wrapper .btn-svg { position: relative; }
+#rating__wrapper .btn-svg svg {
+    position: absolute;
+    color: var(--separator-color);
+    transition: opacity .3s ease-in-out;
+}
+#rating__wrapper .btn-svg svg.checked-star { color: var(--star-color); }
+#rating__wrapper .btn-svg[data-checked="false"] .checked-star { opacity: 0; }
+
+/* MARK: - Notation Page */
+@media (min-width: 768px) {
+    main {
+        padding: 20px 0;
+        background-color: transparent;
+    }
+
+    .form__card {
+        height: max-content;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media (min-width: 1024px) {
+    .form__card { min-width: max-content; }
+
+    .query__group {
+        flex-direction: row;
+        gap: 20px;
+    }
+}

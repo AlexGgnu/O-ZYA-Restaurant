@@ -1,20 +1,7 @@
 <?php
-    require_once('./php/function_account.php');
-    require_once('./php/function_orders.php');
+    if(!function_exists("get_access")) require_once('./api/account.php');
 
-    require_once('./php/header.php');
-
-    get_access("restaurateur", true);
-
-   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    header('Content-Type: application/json');
-    $data = json_decode(file_get_contents('php://input'), true);
-    updateOrderAdminData($data['order_id'], $data['statut'], $data['id_livreur'] ?? '');
-    echo json_encode(['success' => true]);
-    exit();
-    }   
-
-    $commandes = lireCommandes('./data/orders.json');
+    get_access(["employee", "admin"], true);
 ?>
 
 <!DOCTYPE html>
@@ -26,41 +13,34 @@
         <title>Commandes - O'ZYA Restaurant</title>
 
         <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
-        <link rel="stylesheet" href="./styles/main.css">
+        <link rel="stylesheet" href="./styles/global.css">
+        <link rel="stylesheet" href="./styles/forms.css">
+        <link rel="stylesheet" href="./styles/orders.css">
 
-        <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/shared.js" defer></script>
+        <script src="./scripts/theme.js" defer></script>
+        <script src="./scripts/nav.js" defer></script>
+        <script src="./scripts/api.js" defer></script>
+        <script src="./scripts/form_validation.js" defer></script>
         <script src="./scripts/orders.js" defer></script>
     </head>
     <body>
-        <?php get_header(false, false); ?>
+        <?php include_once('./components/header.php'); ?>
 
-        <main class="flex-col gap-40 ph-40">
-            <h1 class="w-full">Commandes</h1>
+        <main>
+            <h1>Commandes</h1>
 
-            <div class="form-card flex-1 gap-24 max-w-full m-0">
-                <h2 class="text-primary font-600">Commandes à préparer</h2>
+            <section id="orders__container" class="form__card">
+                <h2>Commandes à préparer</h2>
 
-                <div class="scrollable-wrapper flex-1">
-                    <div class="scrollable-container">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr>
-                                    <th>ID Commande</th>
-                                    <th>client</th>
-                                    <th>Adresse</th>
-                                    <th>Detail</th>
-                                    <th>Total</th>
-                                    <th class="text-center">Statut</th>
-                                    <th class="text-center">Livreur</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php afficherLignesCommandes($commandes, 'orders'); ?>
-                            </tbody>
-                        </table>
+                <div class="scrollable__wrapper">
+                    <div class="scrollable__container">
+                        <?php include_once('./components/orders_table.php'); ?>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
+        
+        <?php include_once('./components/footer.php'); ?>
     </body>
 </html>

@@ -1,32 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const saveBtn = document.getElementById('btn-save-profile');
+const editButton = document.getElementById("edit__button");
+const editIcon = document.getElementById("edit__icon");
+const checkIcon = document.getElementById("check__icon");
+if (!inputs) inputs = document.querySelectorAll("#profile__info__content input");
 
-    document.querySelectorAll('.btn-svg').forEach(btn => {
-        btn.addEventListener('click', () => {
-            btn.closest('.form-group-line__input-wrapper').querySelector('input').disabled = false;
-            saveBtn.style.display = 'block';
-        });
-    });
+async function updateProfileInfo(inputs) {
+    const values = Array.from(inputs).reduce((list, input) => {
+        list[input.name] = input.value;
+        return list;
+    }, {});
 
-    saveBtn.addEventListener('click', () => {
-        fetch('./profile.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                lastname:  document.getElementById('name').value,
-                firstname: document.getElementById('firstName').value,
-                email:     document.getElementById('email').value,
-                phone:     document.getElementById('phone').value,
-                address:   document.getElementById('address').value
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.reload();
-            } else {
-                alert('Erreur lors de la mise à jour');
-            }
-        });
-    });
-});
+    try {
+        const response = await fetch_accounts_data(undefined, 'update_profile_info', values);
+
+        show_alert(response.title, response.message, response.type);
+    } catch (error) {
+        show_alert("Erreur", "Une erreur est survenue lors de la mise à jour des informations du profil. Veuillez réessayer.", "error");
+    }
+}
+
+async function toggleEditMode() {
+    inputs.forEach(input => input.disabled = !input.disabled);
+    const allInputsEnabled = Array.from(inputs).every(input => !input.disabled);
+    
+    if (allInputsEnabled) {
+        editIcon.style.display = "none";
+        checkIcon.style.display = "block";
+    } else {
+        await updateProfileInfo(inputs);
+
+        editIcon.style.display = "block";
+        checkIcon.style.display = "none";
+    }
+}
+
+if (editButton) editButton.addEventListener('click', async () => await toggleEditMode());

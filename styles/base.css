@@ -2,41 +2,65 @@
 
 :root {
     /* Colors */
-    --primary-color: #0476D9;
-    --secondary-color: #044BD9;
-    --tertiary-color: #71A8D9;
+    --primary-accent-color: #0476D9;
+    --secondary-accent-color: #044BD9;
+    --tertiary-accent-color: #71A8D9;
 
-    --primary-font-color: #0476D9;
-    --secondary-font-color: #F2E5D5;
-    --tertiary-font-color: #FFFFFF;
+    --primary-font-color: #000000;
+    --accent-font-color: var(--primary-accent-color);
 
     --primary-background-color: #F2E5D5;
     --secondary-background-color: #FFFFFF;
+    --accent-background-color: var(--secondary-accent-color);
+    --secondary-accent-background-color: var(--tertiary-accent-color);
 
     --separator-color: #DDDDDD;
     --table-header-background-color: #F5F5F5;
     --table-hover-background-color: #FAFAFA;
 
+    --error-color: #BF0000;
     --star-color: #DB9F36;
-    --preparing-status-color: #F6CF71;
-    --waiting-status-color: #D8C6A3;
-    --delivery-status-color: #66C5CC;
-    --finished-status-color: #87C55F;
-    
-    /* Sizes */
+
+    --status-order-color: var(--separator-color);
+    --success-background-color: #87C55F;
+    --warning-background-color: #F6CF71;
+    --info-background-color: #66C5CC;
+    --delivered-background-color: #6B4C9A;
+
+    /* Heights */
     --header-height: 80px;
-    --max-width-form: 500px;
-    --radius-xs: 6px;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-hg: 16px;
+    --viewport-height: calc(100svh - var(--header-height));
     
-    /*  Responsive references:
-        Mobile  : 480px;
-        Tablets : 768px;
-        Laptops : 1024px;
+    /* 
+    Screen size breakpoints:
+        - Mobile: 0 - 767px
+        - Tablet: 768px - 1023px
+        - Desktop: 1024px and above
     */
 }
+html[color-scheme="dark"] {
+    --primary-accent-color: #71A8D9;
+    --secondary-accent-color: #3372F0;
+    --tertiary-accent-color: #2E5C84;
+
+    --primary-font-color: #FFFFFF;
+
+    --primary-background-color: #281D10;
+    --secondary-background-color: #000000;
+
+    --separator-color: #241E1E;
+    --table-header-background-color: #0B0909;
+    --table-hover-background-color: #060505;
+
+    --error-color: #BF0000;
+    --star-color: #BC882F;
+
+    --success-background-color: #669645;
+    --warning-background-color: #886411;
+    --info-background-color: #3D898F;
+    --delivered-background-color: #8771a8;
+}
+
 
 * {
     padding: 0;
@@ -45,8 +69,8 @@
     font-family: "Playpen Sans", cursive;
     scrollbar-width: thin;
     -webkit-scrollbar-width: thin;
-    scrollbar-color: var(--tertiary-color) transparent;
-    -webkit-scrollbar-color: var(--tertiary-color) transparent;
+    scrollbar-color: var(--tertiary-accent-color) transparent;
+    -webkit-scrollbar-color: var(--tertiary-accent-color) transparent;
 }
 
 body {
@@ -54,30 +78,48 @@ body {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
+    color: var(--primary-font-color);
     background-color: var(--primary-background-color);
+    overflow-x: hidden;
+}
+body:has(header:is([data-menu-state="open"])) { overflow: hidden; }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    user-select: none;
+    -webkit-user-selected: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-a { text-decoration: none; color: inherit; }
+button {
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    user-select: none;
+    -webkit-user-selected: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+button[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid var(--separator-color);
+}
+
 p, span { font-family: "Inter", sans-serif; }
 ul { list-style: none; }
-hr { border: 0; border-top: 1px solid var(--separator-color); }
-button[disabled] { pointer-events: none; cursor: default; }
 
-/* MARK: - Animations */
-@keyframes spin {
-    from { transform: translateX(33.33%) rotate(0deg); }
-    to { transform: translateX(33.33%) rotate(360deg); }
-}
-
-@media (max-width: 1024px) {
-    @keyframes spin {
-        from { transform: translateX(50%) rotate(0deg); }
-        to { transform: translateX(50%) rotate(360deg); }
-    }
-}
-@media (max-width: 480px) {
-    @keyframes spin {
-        from { transform: translateX(66.66%) rotate(0deg); }
-        to { transform: translateX(66.66%) rotate(360deg); }
-    }
+.error { color: var(--error-color); }
+input.error, select.error, textarea.error,
+input.error:focus, select.error:focus, textarea.error:focus {
+    color: inherit;
+    border-color: var(--error-color);
 }

@@ -1,0 +1,74 @@
+#admin__main {
+    justify-content: flex-start;
+    gap: 40px;
+    max-height: var(--viewport-height);
+    padding: 20px 40px;
+    background: transparent;
+}
+#admin__main > h1 { width: 100%; }
+
+#accounts__container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 100%;
+    max-height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+#accounts__container > h2 {
+    width: 100%;
+    text-align: center;
+    color: var(--accent-font-color);
+}
+
+.scrollable__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* MARK: - Account Card */
+.account__card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.account__info .account__role {
+    text-transform: uppercase;
+    color: var(--separator-color);
+}
+
+.account__actions {
+    display: inline-flex;
+    justify-content: center;
+    gap: 8px;
+}
+.account__actions .btn { width: max-content; }
+.account__actions .btn span { display: none; }
+
+.account__card[data-account-state="unblocked"] .block__icon { display: block; }
+.account__card[data-account-state="unblocked"] .unblock__icon { display: none; }
+
+.account__card[data-account-state="blocked"] .block__icon { display: none; }
+.account__card[data-account-state="blocked"] .unblock__icon { display: block; }
+
+/* MARK: - Media Queries */
+@media (min-width: 768px) {
+    #admin__main { height: var(--viewport-height); }
+    #accounts__container { height: 100%; }
+    #accounts__container > h2 { text-align: left; }
+    
+    .account__card {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .account__actions .btn svg, .account__card[data-account-state] svg.block__icon, .account__card[data-account-state] svg.unblock__icon { display: none; }
+    .account__actions .btn span { display: block; }
+}

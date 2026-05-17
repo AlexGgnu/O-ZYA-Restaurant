@@ -1,22 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('btn-terminer');
-    if (!btn) return;
+const validateButton = document.getElementById('validate__delivery__button');
 
-    btn.addEventListener('click', () => {
-        const orderId = btn.dataset.orderId;
+function update_delivery_page() {
+    window.location.reload();
+}
 
-        fetch('./delivery.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ order_id: orderId })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = './delivery.php';
-            } else {
-                alert('Erreur impossible de terminer la livraison');
-            }
-        });
+// MARK: - API functions
+function initializeDeliveryButton() {
+    validateButton.addEventListener('click', async () => {
+        const orderId = validateButton.dataset.orderId;
+
+        try {
+            const response = await fetch_delivery_data(undefined, 'validate_delivery', orderId);
+            
+            if (response) update_delivery_page();
+            else show_alert("Erreur", "Une erreur est survenue lors de la validation de la livraison. Veuillez réessayer.", "error");
+        } catch (error) {
+            show_alert("Erreur", "Une erreur est survenue lors de la validation de la livraison. Veuillez réessayer.", "error");
+        }
     });
-});
+}
+
+if(validateButton) initializeDeliveryButton();

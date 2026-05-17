@@ -1,49 +1,28 @@
-let bouton = document.getElementById("theme-btn");
+const html = document.querySelector("html");
+const colorSchemeToggle = document.getElementById("color-scheme-toggle");
 
-function getCookie(nom) {
+function getCookie(cookieName) {
     let cookies = document.cookie.split("; ");
+
     for (let c of cookies) {
         let parts = c.split("=");
         let key = parts[0];
         let value = parts[1];
 
-if (key === nom) {
-    return value;
-}
+        if (key === cookieName) return value;
     }
+
     return null;
 }
 
-function mettreTheme() {
-    if (!document.getElementById("dark-mode")) {
-        let link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "./styles/dark.css";
-        link.id = "dark-mode";
-        document.head.appendChild(link);
-    }
+function toggleColorScheme() {
+    if (html.getAttribute('color-scheme') === "dark" || getCookie("color-scheme") === "dark") colorScheme = "light";
+    else colorScheme = "dark";
+
+    document.cookie = `color-scheme=${colorScheme};  path=/`;
+    html.setAttribute('color-scheme', colorScheme);
 }
 
-function enleverTheme() {
-    let link = document.getElementById("dark-mode");
-    if (link) link.remove();
-}
-
-if (bouton) {
-    bouton.addEventListener("click", function () {
-
-        let themeActuel = getCookie("theme");
-
-        if (themeActuel === "dark") {
-            document.cookie = "theme=light;  path=/";
-            enleverTheme();
-        } else {
-            document.cookie = "theme=dark; path=/";
-            mettreTheme();
-        }
-    });
-}
-
-if (getCookie("theme") === "dark") {
-    mettreTheme();
-}
+let colorScheme = getCookie("color-scheme") || "light";
+html.setAttribute('color-scheme', colorScheme);
+if (colorSchemeToggle) colorSchemeToggle.addEventListener("click", toggleColorScheme);
