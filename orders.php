@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="./styles/forms.css">
         <link rel="stylesheet" href="./styles/orders.css">
 
+        <script src="./scripts/shared.js" defer></script>
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>
         <script src="./scripts/api.js" defer></script>

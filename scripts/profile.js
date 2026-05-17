@@ -12,9 +12,9 @@ async function updateProfileInfo(inputs) {
     try {
         const response = await fetch_accounts_data(undefined, 'update_profile_info', values);
 
-        console.log('Profile info updated successfully:', response); // TODO: Create message card
+        show_alert(response.title, response.message, response.type);
     } catch (error) {
-        console.error('[ERROR] - updating profile info:', error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la mise à jour des informations du profil. Veuillez réessayer.", "error");
     }
 }
 

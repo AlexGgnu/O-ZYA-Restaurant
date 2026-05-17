@@ -45,7 +45,7 @@ function setupQuantityButtons() {
 
                 load_basket_items();
             } catch (error) {
-                console.error(`[ERROR] - Updating quantity for product ID ${productId}: `, error.message); // TODO: Create message card
+                show_alert("Erreur", "Une erreur est survenue lors de la mise à jour de la quantité du produit. Veuillez réessayer.", "error");
             }
         });
     });
@@ -76,7 +76,7 @@ function setupDeliveryOptionChange(products, reduction) {
             await fetch_basket_data('update_delivery', selectedOption);
             createBasketSummary(products, selectedOption, reduction);
         } catch (error) {
-            console.error(`[ERROR] - Updating delivery type: `, error.message); // TODO: Create message card
+            show_alert("Erreur", "Une erreur est survenue lors de la mise à jour du type de livraison. Veuillez réessayer.", "error");
         }
     });
 }
@@ -92,8 +92,9 @@ function setupPromotionButton(products, deliveryType) {
             try {
                 const reduction = await fetch_basket_data('promo_code', promoCode);
                 if(reduction) createBasketSummary(products, deliveryType, reduction);
+                else show_alert("Code promotionnel invalide", "Le code promotionnel que vous avez entré n'est pas valide. Veuillez réessayer.", "error");
             } catch (error) {
-                console.error(`[ERROR] - Applying promotion: `, error.message); // TODO: Create message card
+                show_alert("Erreur", "Une erreur est survenue lors de l'application de la promotion. Veuillez réessayer.", "error");
             }
         }
 
@@ -132,7 +133,7 @@ async function load_basket_items() {
             basketSummary.classList.add('hidden');
         }
     } catch (error) {
-        console.error("[ERROR] - Basket data loading: ", error.message);
+        show_alert("Erreur", "Une erreur est survenue lors du chargement des éléments du panier. Veuillez réessayer.", "error");
     }
 }
 

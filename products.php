@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./styles/global.css">
         <link rel="stylesheet" href="./styles/products.css">
 
+        <script src="./scripts/shared.js" defer></script>
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>
         <script src="./scripts/api.js" defer></script>

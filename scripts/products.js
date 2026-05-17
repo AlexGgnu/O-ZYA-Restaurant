@@ -13,7 +13,7 @@ function setupBuyButton() {
             const clickedBtn = element.currentTarget;
             
             const response = await fetch_basket_data('add', clickedBtn.getAttribute('data-products-id'));
-            console.log(response); // TODO: Create message card
+            show_alert(response.title, response.message, response.type);
         });
     });
 }
@@ -156,7 +156,7 @@ async function initProducts() {
 
         setupBuyButton()
     } catch (error) {
-        console.error("[ERROR] - Products data loading: ", error.message);
+        show_alert("Erreur de chargement", "Une erreur est survenue lors du chargement des données des produits. Veuillez réessayer plus tard.", "error");
     }
 }
 

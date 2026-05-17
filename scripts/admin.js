@@ -6,25 +6,24 @@ async function toggleAccountState(accountId) {
     try {
         const response = await fetch_accounts_data(accountId, 'toggle_state');
 
-        console.log(`Account state toggled for account ID: ${accountId}`, response); // TODO: Create message card
+        show_alert(response.title, response.message, response.type);
         return response["new_state"];
     } catch (error) {
-        console.error(`[ERROR] - Updating account state for account ID ${accountId}: `, error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la mise à jour de l'état du compte. Veuillez réessayer.", "error");
     }
 }
 
 async function updateAccountRole(accountId, newRole) {
     try {
         const response = await fetch_accounts_data(accountId, 'update_role', newRole);
-
-        console.log(`Role updated for account ID: ${accountId}`, response);  // TODO: Create message card
+        show_alert(response.title, response.message, response.type);
     } catch (error) {
-        console.error(`[ERROR] - Updating role for account ID ${accountId}: `, error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la mise à jour du rôle du compte. Veuillez réessayer.", "error");
     }
 }
 
 function viewAccountProfile(accountId) {
-    console.log(`Viewing profile for account ID: ${accountId}`);
+    console.log(`Viewing profile for account ID: ${accountId}`); // TODO
 }
 
 function initButtons() {

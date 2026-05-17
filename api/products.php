@@ -66,7 +66,11 @@
             $successedDishes = get_successed_dishes(get_products_data());
             echo json_encode($successedDishes);
         } else {
-            echo json_encode(['error' => 'Invalid action']);
+            echo json_encode([
+                "type" => "error",
+                "title" => "Action non reconnue",
+                "message" => "L'action demandée n'est pas reconnue. Veuillez vérifier votre requête."
+            ]);
         }
     }
 ?>

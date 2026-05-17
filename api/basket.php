@@ -20,6 +20,7 @@
         else $_SESSION['delivery_type'] = null;
 
         return [
+            "type" => "success",
             "title" => "Mode de livraison mis à jour",
             "message" => "Votre mode de livraison à été mis à jour avec succès"
         ];
@@ -111,6 +112,7 @@
         unset($_SESSION['promo_code']);
 
         return [
+            "type" => "success",
             "title" => "Panier vidé",
             "message" => "Votre panier à été vidé avec succès"
         ];
@@ -118,30 +120,34 @@
 
     // MARK: - API endpoints
     if(isset($_GET['add'])) {
+        $type = "success";
         $title = "Ajouté avec succès";
         $message = "L'article à été ajouté avec succès au panier";
         
         if(!add_to_basket($_GET['add'])) {
+            $type = "error";
             $title = "Erreur";
             $message = "Impossible d'ajouté cet article au panier";
         }
             
         echo json_encode([
+            "type" => $type,
             "title" => $title,
             "message" => $message
         ]);
     } else if(isset($_GET['remove'])) {
+        $type = "success";
         $title = "Retiré avec succès";
         $message = "L'article à été retiré du panier avec succès";
 
         if(!remove_from_basket($_GET['remove'])) {
-            echo json_encode([
-                "title" => "Erreur",
-                "message" => "Impossible de retirer cet article du panier"
-            ]);
+            $type = "error";
+            $title = "Erreur";
+            $message = "Impossible de retirer cet article du panier";
         }
         
         echo json_encode([
+            "type" => $type,
             "title" => $title,
             "message" => $message
         ]);

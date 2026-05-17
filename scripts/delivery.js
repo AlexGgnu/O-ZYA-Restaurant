@@ -13,9 +13,9 @@ function initializeDeliveryButton() {
             const response = await fetch_delivery_data(undefined, 'validate_delivery', orderId);
             
             if (response) update_delivery_page();
-            else console.error(`[ERROR] - Validation failed`); // TODO: Create message card
+            else show_alert("Erreur", "Une erreur est survenue lors de la validation de la livraison. Veuillez réessayer.", "error");
         } catch (error) {
-            console.error(`[ERROR] - Validation failed: `, error.message); // TODO: Create message card
+            show_alert("Erreur", "Une erreur est survenue lors de la validation de la livraison. Veuillez réessayer.", "error");
         }
     });
 }

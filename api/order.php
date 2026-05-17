@@ -86,8 +86,23 @@
             }
         }
 
-        if ($is_updated) file_put_contents($orders_file_path, json_encode($orders, JSON_PRETTY_PRINT));
-        return json_encode(['success' => true, 'status' => $order['status']]);
+        if(!is_updated) {
+            return json_encode([
+                "type" => "error",
+                "title" => "Mise à jour échouée",
+                "message" => "La mise à jour du statut de la commande a échoué. Assurez-vous que la commande n'est pas déjà livrée ou annulée.",
+                "status" => $order['status']
+            ]);
+        }
+        if ($is_updated) {
+            file_put_contents($orders_file_path, json_encode($orders, JSON_PRETTY_PRINT));
+            return json_encode([
+                "type" => "success",
+                "title" => "Statut mis à jour",
+                "message" => "Le statut de la commande a été mis à jour avec succès.",
+                "status" => $order['status']
+            ]);
+        }
     }
 
     function get_assigned_order($delivery_person_id) {

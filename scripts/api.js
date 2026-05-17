@@ -16,12 +16,12 @@ async function fetch_accounts_data(accountId, action, value = undefined) {
             body: `account_id=${encodeURIComponent(accountId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+        if (!response.ok) { show_alert("Erreur", "Une erreur est survenue lors de la récupération des données du compte. Veuillez réessayer.", "error"); }
 
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Accounts data endpoint: ", error.message); //TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données du compte. Veuillez réessayer.", "error");
         throw error;
     }
 }
@@ -38,12 +38,12 @@ async function get_products_data(action) {
     try {
         const response = await fetch(url, { method: "GET" });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+        if (!response.ok) { show_alert("Erreur", "Une erreur est survenue lors de la récupération des données des produits. Veuillez réessayer.", "error"); }
 
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Products data endpoint: ", error.message); //TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données des produits. Veuillez réessayer.", "error");
         throw error;
     }
 }
@@ -60,12 +60,12 @@ async function fetch_basket_data(action, value = undefined) {
     try {
         const response = await fetch(url, { method: "GET" });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+        if (!response.ok) { show_alert("Erreur", "Une erreur est survenue lors de la récupération des données du panier. Veuillez réessayer.", "error"); }
 
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Basket endpoint: ", error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données du panier. Veuillez réessayer.", "error");
         throw error;
     }
 }
@@ -88,12 +88,12 @@ async function fetch_orders_data(orderId, action, value = undefined) {
             body: `order_id=${encodeURIComponent(orderId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+        if (!response.ok) { show_alert("Erreur", "Une erreur est survenue lors de la récupération des données des commandes. Veuillez réessayer.", "error"); }
 
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Orders endpoint: ", error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données des commandes. Veuillez réessayer.", "error");
         throw error;
     }
 }
@@ -116,12 +116,12 @@ async function fetch_delivery_data(deliveryId, action, value = undefined) {
             body: `delivery_id=${encodeURIComponent(deliveryId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+        if (!response.ok) { show_alert("Erreur", "Une erreur est survenue lors de la récupération des données de livraison. Veuillez réessayer.", "error"); }
 
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error("[ERROR] - Delivery endpoint: ", error.message); // TODO: Create message card
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données de livraison. Veuillez réessayer.", "error");
         throw error;
     }
 }

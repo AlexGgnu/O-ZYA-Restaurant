@@ -1,3 +1,42 @@
+/* MARK: - Alerts */
+.alert {
+    --bottom-size: 24px;
+    --right-size: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+    position: fixed;
+    bottom: var(--bottom-size);
+    right: var(--right-size);
+    width: calc(100% - 2*var(--right-size));
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: var(--secondary-background-color);
+    box-shadow: 0 4px 15px rgba(0, 0 , 0, 0.05);
+
+    animation-name: slideInUp-Y;
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    z-index: 1000;
+}
+.alert.exit { animation-name: slideOutUp-Y; }
+
+.alert__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    color: var(--secondary-background-color);
+    border-radius: calc(infinity * 1px);
+}
+.alert__icon svg { width: 24px; height: 24px; }
+.alert__success .alert__icon { background: var(--success-background-color); }
+.alert__error .alert__icon { background: var(--error-color); }
+
 /* MARK: - Buttons */
 .btn {
     padding: 8px 12px;
@@ -164,7 +203,33 @@ td .order__status[data-status="delivered"] { --status-order-color: var(--deliver
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
+/* MARK: - Animations */
+@keyframes slideInUp-Y {
+    0% { transform: translateY(calc(100% + var(--bottom-size))); }
+    100% { transform: translateY(0); }
+}
+@keyframes slideOutUp-Y {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(calc(100% + var(--bottom-size))); }
+}
+@keyframes slideInRight-X {
+    0% { transform: translateX(calc(100% + var(--right-size))); }
+    100% { transform: translateX(0); }
+}
+@keyframes slideOutRight-X {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100% + var(--right-size))); }
+}
+
 /* MARK: - Media Queries */
+@media (min-width: 768px) {
+    .alert {
+        max-width: 400px;
+        animation-name: slideInRight-X;
+    }
+    .alert.exit { animation-name: slideOutRight-X; }
+}
+
 @media (min-width: 1024px) {
     .cards__track {
         display: flex;

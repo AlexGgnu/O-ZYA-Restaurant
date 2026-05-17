@@ -13,8 +13,8 @@ function setupStatusSelects() {
             try {
                 const response = await fetch_orders_data(orderId, 'update_status', newStatus);
 
-                if(!response.success || response.status !== newStatus) {
-                    console.log(`Failed to update order ${orderId} status`); // TODO: Create message card
+                if(response.type == "error" || response.status !== newStatus) {
+                    show_alert(response.title, response.message, response.type);
                     return;
                 }
                 
@@ -26,7 +26,7 @@ function setupStatusSelects() {
                 }
                 else if(deliverySelect) deliverySelect.disabled = true;
             } catch (error) {
-                console.error(`[ERROR] - Updating status: ${newStatus}`, error.message); // TODO: Create message card
+                show_alert("Erreur", "Une erreur est survenue lors de la mise à jour du statut de la commande. Veuillez réessayer.", "error");
             }
         });
     });
@@ -58,10 +58,10 @@ async function setupDeliveryCell() {
             try {
                 const response = await fetch_delivery_data(deliveryId, 'assign_delivery_person', orderId);
 
-                if(!response) console.log(`Failed to update order ${orderId} delivery`); // TODO: Create message card
+                if(!response) show_alert("Erreur", "Une erreur est survenue lors de l'attribution du livreur. Veuillez réessayer.", "error");
                 else update_delivery_list(deliveryCells, select, deliveryId, response);
             } catch (error) {
-                console.error(`[ERROR] - Updating delivery: ${deliveryId}`, error.message); // TODO: Create message card
+                show_alert("Erreur", "Une erreur est survenue lors de l'attribution du livreur. Veuillez réessayer.", "error");
             }
         });
     });
