@@ -90,8 +90,6 @@ main > h1 { width: 100%; }
 }
 
 #delivery_type { width: 100%; }
-#delivery_type:has(option[value=""]:checked) { color: var(--separator-color); }
-#delivery_type option { color: var(--primary-font-color); }
 
 #price__summary {
     display: flex;

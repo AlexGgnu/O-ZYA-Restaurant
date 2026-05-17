@@ -21,6 +21,8 @@ input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-background-color);
 }
+select:has(option[value=""]:checked) { color: var(--separator-color); }
+select option { color: var(--primary-font-color); }
 
 .form__card {
     display: flex;

@@ -16,7 +16,7 @@ async function fetch_accounts_data(accountId, action, value = undefined) {
             body: `account_id=${encodeURIComponent(accountId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); }
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
 
         const result = await response.json();
         return result;
@@ -38,7 +38,7 @@ async function get_products_data(action) {
     try {
         const response = await fetch(url, { method: "GET" });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); }
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
 
         const result = await response.json();
         return result;
@@ -60,7 +60,7 @@ async function fetch_basket_data(action, value = undefined) {
     try {
         const response = await fetch(url, { method: "GET" });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); }
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
 
         const result = await response.json();
         return result;
@@ -88,12 +88,40 @@ async function fetch_orders_data(orderId, action, value = undefined) {
             body: `order_id=${encodeURIComponent(orderId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
-        if (!response.ok) { throw new Error(`Response status: ${response.status}`); }
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
 
         const result = await response.json();
         return result;
     } catch (error) {
         console.error("[ERROR] - Orders endpoint: ", error.message); // TODO: Create message card
+        throw error;
+    }
+}
+
+// MARK:- delivery endpoint
+function get_delivery_url() {
+    const baseUrl = window.location.origin;
+    return `${baseUrl}/api/delivery.php`;
+}
+
+async function fetch_delivery_data(deliveryId, action, value = undefined) {
+    const url = get_delivery_url();
+    // NOTE: If value is an object, we need to serialize it before sending it in the request body.
+    const serializedValue = typeof value === 'object' ? JSON.stringify(value) : value;
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `delivery_id=${encodeURIComponent(deliveryId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
+        });
+
+        if (!response.ok) { throw new Error(`Response status: ${response.status}`); } // TODO: message card
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("[ERROR] - Delivery endpoint: ", error.message); // TODO: Create message card
         throw error;
     }
 }

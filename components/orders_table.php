@@ -49,7 +49,7 @@
         } else if ($current_page === 'orders' && array_key_exists($status, $order_status)) {
             if($status === 'paid') $status = 'waiting';
 
-            $result = '<select class="order__status" data-status="' . htmlspecialchars($status) . '">';
+            $result = '<select name="status" class="order__status" data-status="' . htmlspecialchars($status) . '">';
             foreach ($order_status as $key => $status_option) {
                 $isSelected = $status === $key;
 
@@ -113,7 +113,7 @@
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>
                 <td class="status__cell col__centered">' . format_order_status($order) . '</td>'
                 .
-                ($current_page === 'orders' ? '<td class="col__centered">' . htmlspecialchars($order['livreur'] ?? '-') . '</td>' : '')
+                ($current_page === 'orders' ? '<td class="delivery__cell col__centered"></td>' : '')
                 .
             '</tr>
         ';

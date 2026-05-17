@@ -8,7 +8,7 @@
             "US_DI_02": 4
         },
         "total": "98.10",
-        "status": "delivered",
+        "status": "paid",
         "date_heure": "2026-05-17 13:00:06"
     },
     {
@@ -21,7 +21,8 @@
             "IT_SI_01": 1
         },
         "total": "28.00",
-        "status": "cancelled",
+        "status": "paid",
+        "delivery_person_id": "d8f21a4c7b902",
         "date_heure": "2026-05-17 14:55:51"
     }
 ]
