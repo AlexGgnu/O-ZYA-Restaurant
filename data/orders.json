@@ -21,7 +21,22 @@
             "IT_SI_01": 1
         },
         "total": "28.00",
-        "status": "waiting",
-        "date_heure": "2026-05-17 14:55:51"
+        "status": "delivered",
+        "date_heure": "2026-05-17 14:55:51",
+        "delivery_person_id": "d8f21a4c7b901"
+    },
+    {
+        "id_order": "6a0a278eb09dc",
+        "id_client": "69c14dac77a47",
+        "address": "1 avenue du Parc, 95000 Cergy",
+        "details": {
+            "US_DI_01": 1,
+            "FR_DI_01": 1,
+            "US_DE_01": 1
+        },
+        "total": "50.30",
+        "status": "delivered",
+        "date_heure": "2026-05-17 20:39:42",
+        "delivery_person_id": "d8f21a4c7b901"
     }
 ]

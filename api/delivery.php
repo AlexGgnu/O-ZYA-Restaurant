@@ -45,5 +45,26 @@
         return $order['delivery_person_id'] ?? null;
     }
 
+    function validate_delivery($order_id) {
+        global $orders_file_path;
+
+        $orders = get_orders_data();
+        $is_updated = false;
+
+        foreach ($orders as &$order) {
+            if ($order['id_order'] === $order_id) {
+                if($_SESSION['uuid'] === $order['delivery_person_id']) {
+                    $order['status'] = 'delivered';
+                    $is_updated = true;
+                }
+                break;
+            }
+        }
+
+        if ($is_updated) file_put_contents($orders_file_path, json_encode($orders, JSON_PRETTY_PRINT));
+        return $is_updated;
+    }
+
     // MARK: - API Endpoints
     if (isset($_POST['action']) && $_POST['action'] === 'assign_delivery_person') echo json_encode(assign_delivery_person($_POST['value'], $_POST['delivery_id']));
+    else if (isset($_POST['action']) && $_POST['action'] === 'validate_delivery') echo json_encode(validate_delivery($_POST['value']));

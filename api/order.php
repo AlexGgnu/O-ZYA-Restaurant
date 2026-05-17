@@ -90,6 +90,17 @@
         return json_encode(['success' => true, 'status' => $order['status']]);
     }
 
+    function get_assigned_order($delivery_person_id) {
+        $orders = get_orders_data();
+
+        foreach ($orders as $order) {
+            if (isset($order['delivery_person_id']) && $order['delivery_person_id'] === $delivery_person_id && $order['status'] !== 'delivered' && $order['status'] !== 'cancelled') {
+                return $order;
+            }
+        }
+        return null;
+    }
+
     // MARK: - API Endpoint handling
     if($_POST['action'] === 'update_status' && isset($_POST['order_id']) && isset($_POST['value'])) echo update_order_status($_POST['order_id'], $_POST['value']);
 ?>

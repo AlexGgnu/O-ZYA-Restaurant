@@ -1,0 +1,20 @@
+.form__card > div {
+    gap: 40px;
+}
+
+.form__group, #delivery__buttons { gap: 16px; }
+.form__group { text-align: left; }
+.form__group > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form__group > div p {
+    font-size: 1.1rem;
+}
+.form__group span {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#delivery__buttons .btn { width: 100%; }

@@ -7,7 +7,7 @@
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
 
     if(is_logged() && $current_page === 'profile') $orders = get_orders_by_user($_SESSION['uuid']);
-    else if (is_logged() && get_access(["employee", "admin"], true) && $current_page === 'orders') $orders = get_orders_data();
+    else if (is_logged() && get_access(["employee", "admin"], false) && $current_page === 'orders') $orders = get_orders_data();
     else $orders = [];
 
     // MARK: - Helper functions
@@ -140,11 +140,13 @@
     }
     
     // MARK: - Display orders table
-    if(empty($orders)) {
-        echo '<p>Vous n\'avez pas encore passé de commande</p>';
-    } else {
-        echo '<table class="orders-table">' . generate_table_header() . '<tbody>';
-        foreach ($orders as $order) echo get_table_row($order);
-        echo ' </tbody></table>';
+    if($current_page === 'profile' || $current_page === 'orders') {
+        if(empty($orders)) {
+            echo '<p>Vous n\'avez pas encore passé de commande</p>';
+        } else {
+            echo '<table class="orders-table">' . generate_table_header() . '<tbody>';
+            foreach ($orders as $order) echo get_table_row($order);
+            echo ' </tbody></table>';
+        }        
     }
 ?>

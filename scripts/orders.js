@@ -67,5 +67,6 @@ async function setupDeliveryCell() {
     });
 }
 
+// MARK: - Initialization
 if(statusSelects.length > 0) setupStatusSelects();
 if(deliveryCells.length > 0) setupDeliveryCell();
