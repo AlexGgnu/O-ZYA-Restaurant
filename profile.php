@@ -1,10 +1,8 @@
 <?php
     if(!function_exists("is_logged") || !function_exists("get_account_by_id")) require_once('./api/account.php');
 
-    if (is_logged() && isset($_SESSION['uuid'])) {
-        $account_data = get_account_by_id($_SESSION['uuid']);
-        // $orders = get_orders_by_user($_SESSION['uuid']); --- IGNORE ---
-    } else {
+    if (is_logged() && isset($_SESSION['uuid'])) $account_data = get_account_by_id($_SESSION['uuid']);
+    else {
         header("Location: ./sign_in.php");
         exit();
     }
@@ -81,10 +79,10 @@
                     </div>
 
                     <!-- MARK: - Loyalty Account -->
-                    <div class="form__card">
+                    <div id="profile__reductions" class="form__card">
                         <h2>Vos réductions fidélité</h2>
-                        <div class="scrollable-wrapper">
-                            <div class="scrollable-container">
+                        <div class="scrollable__wrapper">
+                            <div class="scrollable__container">
                                 <!-- TODO: Display reductions code -->
                             </div>
                         </div>
@@ -96,9 +94,9 @@
                     <div class="form__card">
                         <h2>Historique des commandes</h2>
 
-                        <div class="scrollable-wrapper">
-                            <div class="scrollable-container">
-                                <!-- TODO: Display orders history -->
+                        <div class="scrollable__wrapper">
+                            <div class="scrollable__container">
+                                <?php include_once('./components/orders_table.php'); ?>
                             </div>
                         </div>
                     </div>

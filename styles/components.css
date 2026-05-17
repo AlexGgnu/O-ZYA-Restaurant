@@ -113,6 +113,35 @@
     filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.80));
 }
 
+/* MARK: - Order Table */
+table {
+    width: max-content;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid var(--separator-color);
+}
+th { background: var(--table-header-background-color); }
+tr:hover td { background: var(--table-hover-background-color); }
+td.col__centered { text-align: center; }
+
+td .order__status,
+td .order__status[data-status="unknown"] {
+    padding: 8px 12px;
+    font-weight: 600;
+    color: var(--secondary-background-color);
+    background-color: var(--status-order-color);
+    border-radius: 8px;
+}
+td .order__status[data-status="unpaid"], td .order__status[data-status="cancelled"] { --status-order-color: var(--error-color); }
+td .order__status[data-status="paid"] { --status-order-color: var(--success-background-color); }
+td .order__status[data-status="preparing"] { --status-order-color: var(--warning-background-color); }
+td .order__status[data-status="ready"] { --status-order-color: var(--info-background-color); }
+td .order__status[data-status="delivered"] { --status-order-color: var(--delivered-background-color); }
+
 /* MARK: - Scrollable Container */
 .scrollable__wrapper {
     position: relative;
@@ -126,6 +155,13 @@
     bottom: 0;
     left: 0;
     overflow-y: auto;
+}
+
+.scrollable__container table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 /* MARK: - Media Queries */

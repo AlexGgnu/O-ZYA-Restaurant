@@ -8,8 +8,6 @@
 
     --primary-font-color: #000000;
     --accent-font-color: var(--primary-accent-color);
-    /* --secondary-font-color: var(--primary-background-color);
-    --tertiary-font-color: var(--secondary-background-color); */
 
     --primary-background-color: #F2E5D5;
     --secondary-background-color: #FFFFFF;
@@ -17,15 +15,17 @@
     --secondary-accent-background-color: var(--tertiary-accent-color);
 
     --separator-color: #DDDDDD;
-    /* --table-header-background-color: #F5F5F5;
-    --table-hover-background-color: #FAFAFA; */
+    --table-header-background-color: #F5F5F5;
+    --table-hover-background-color: #FAFAFA;
 
     --error-color: #BF0000;
     --star-color: #DB9F36;
-    /* --preparing-status-color: #F6CF71;
-    --waiting-status-color: #D8C6A3;
-    --delivery-status-color: #66C5CC;
-    --finished-status-color: #87C55F; */
+
+    --status-order-color: var(--separator-color);
+    --success-background-color: #87C55F;
+    --warning-background-color: #F6CF71;
+    --info-background-color: #66C5CC;
+    --delivered-background-color: #6B4C9A;
 
     /* Heights */
     --header-height: 80px;
@@ -49,15 +49,16 @@ html[color-scheme="dark"] {
     --secondary-background-color: #000000;
 
     --separator-color: #241E1E;
-    /* --table-header-background-color: #F5F5F5;
-    --table-hover-background-color: #FAFAFA; */
+    --table-header-background-color: #0B0909;
+    --table-hover-background-color: #060505;
 
     --error-color: #BF0000;
     --star-color: #BC882F;
-    /* --preparing-status-color: #F6CF71;
-    --waiting-status-color: #D8C6A3;
-    --delivery-status-color: #66C5CC;
-    --finished-status-color: #87C55F; */
+
+    --success-background-color: #669645;
+    --warning-background-color: #886411;
+    --info-background-color: #3D898F;
+    --delivered-background-color: ##8771a8;
 }
 
 

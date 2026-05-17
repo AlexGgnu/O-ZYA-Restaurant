@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id_order": "6a09bbd63252a",
+        "id_client": "69c14f0fe5cef",
+        "adresse": "",
+        "details": {
+            "ES_DI_01": 1,
+            "US_DI_02": 4
+        },
+        "total": "98.10",
+        "statut": "paid",
+        "date_heure": "2026-05-17 13:00:06"
+    }
+]

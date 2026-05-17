@@ -106,7 +106,7 @@ main > h1 { width: 100%; }
     main { height: var(--viewport-height); }
 
     #basket__container, #basket__container > section { height: 100%; }
-    #basket__container { flex-direction: row;}
+    #basket__container { flex-direction: row; }
     #basket__container > section {
         flex: 1;
         min-width: 0;

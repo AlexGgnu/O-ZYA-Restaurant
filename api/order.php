@@ -4,20 +4,37 @@
     if(!function_exists('get_product_by_id')) require_once(__DIR__ . '/products.php');
     
     $orders_file_path = __DIR__ . '/../data/orders.json';
-    if(!file_exists($orders_file_path)) file_put_contents($orders_file_path, json_encode([], JSON_PRETTY_PRINT));
+    if(!file_exists($orders_file_path) || filesize($orders_file_path) === 0) file_put_contents($orders_file_path, json_encode([], JSON_PRETTY_PRINT));
 
+    // MARK: - Data handling
     function get_orders_data() {
         global $orders_file_path;
         $datas = file_get_contents($orders_file_path);
         return json_decode($datas, true);
     }
+    function get_orders_by_user($user_id) {
+        $orders = get_orders_data();
+        $result = [];
 
+        foreach ($orders as $order) {
+            if ($order["id_client"] == $user_id) {
+                $result[] = $order;
+            }
+        }
+
+        return $result;
+    }
+
+    // MARK: - Orders management
     function save_order($total = null) {
         global $orders_file_path;
         if (!is_logged()) return false;
 
-        $basket_items = get_basket_data()['items'];
-        if(empty($basket_items)) return false;
+        $basket_items = [];
+        foreach (get_basket_data()['items'] as $item) {
+            $product = get_product_by_id($item['id']);
+            if ($product) $basket_items[$item['id']] = $item['quantity'];
+        }
         
         if($total === null) $total = get_basket_total();
 
@@ -41,18 +58,5 @@
         $orders_data = get_orders_data();
         array_push($orders_data, $new_orders);
         file_put_contents($orders_file_path, json_encode($orders_data, JSON_PRETTY_PRINT));
-    }
-    
-    function get_orders_by_user($user_id) {
-        $orders = get_orders_data();
-        $result = [];
-
-        foreach ($orders as $order) {
-            if ($order["id_client"] == $user_id) {
-                $result[] = $order;
-            }
-        }
-
-        return $result;
     }
 ?>

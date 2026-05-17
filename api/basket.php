@@ -71,7 +71,7 @@
         return [
             "items" => $basketItemsData,
             "delivery_type" => $_SESSION['delivery_type'] ?? null,
-            "promo_code" => $_SESSION['promo_code'] ? get_promo_by_code($_SESSION['promo_code']) : null
+            "promo_code" => isset($_SESSION['promo_code']) && !empty($_SESSION['promo_code']) ? get_promo_by_code($_SESSION['promo_code']) : null
         ];
     }
     function get_basket_total() {
