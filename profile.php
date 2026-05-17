@@ -4,6 +4,14 @@
     require_once('./php/header.php');
     require_once('./php/footer.php');
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    header('Content-Type: application/json');
+    $data = json_decode(file_get_contents('php://input'), true);
+    $result = update_account($_SESSION['uuid'], $data);
+    echo json_encode(['success' => $result]);
+    exit();
+    }
+
     if (is_logged() && isset($_SESSION['uuid'])) {
         $account_data = get_account_by_id($_SESSION['uuid']);
         $orders = get_orders_by_user($_SESSION['uuid']);
@@ -24,6 +32,7 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/profile.js" defer></script>
     </head>
     <body>
         <?php echo get_header(true, false); ?>
@@ -103,6 +112,10 @@
                                 </div>
                             </div>
                         </div>
+                        <button id="btn-save-profile" class="btn btn-primary" style="display:none;">
+                        Sauvegarder
+                        </button>
+                        <p id="msg-profile" style="display:none; text-align:center;"></p>
                     </div>
 
                     <!-- MARK: - Loyalty Account -->

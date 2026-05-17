@@ -114,4 +114,22 @@
     if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_in") log_in($redirection);
     else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "sign_up") sign_up($redirection);
     else if(isset($_GET['auth_method']) && $_GET['auth_method'] == "log_out") log_out();
+
+    function update_account($uuid, $data) {
+    $accounts = get_accounts_data();
+
+    foreach ($accounts as &$account) {
+        if ($account['id'] !== $uuid) continue;
+
+        if (isset($data['lastname']))  $account['lastname']  = trim($data['lastname']);
+        if (isset($data['firstname'])) $account['firstname'] = trim($data['firstname']);
+        if (isset($data['email']))     $account['email']     = trim($data['email']);
+        if (isset($data['phone']))     $account['phone']     = trim($data['phone']);
+        if (isset($data['address']))   $account['address']   = trim($data['address']);
+
+        file_put_contents(__DIR__ . '/../data/accounts.json', json_encode($accounts, JSON_PRETTY_PRINT));
+        return true;
+    }
+    return false;
+}
 ?>
