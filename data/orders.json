@@ -21,8 +21,7 @@
             "IT_SI_01": 1
         },
         "total": "28.00",
-        "status": "paid",
-        "delivery_person_id": "d8f21a4c7b902",
+        "status": "waiting",
         "date_heure": "2026-05-17 14:55:51"
     }
 ]

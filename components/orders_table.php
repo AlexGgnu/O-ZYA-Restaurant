@@ -1,7 +1,7 @@
 <?php
     if(!function_exists('is_logged') || !function_exists('get_access')) require_once(__DIR__ . '/../api/account.php');
-    if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data')) require_once(__DIR__ . '/../api/order.php');
-    if(!isset($order_status)) require_once(__DIR__ . '/../api/order.php');
+    if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data') || !isset($order_status)) require_once(__DIR__ . '/../api/order.php');
+    if(!function_exists('get_all_delivery_people') || !function_exists('get_occupied_delivery_people')) require_once(__DIR__ . '/../api/delivery.php');
 
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
@@ -73,6 +73,26 @@
         }
     }
 
+    function format_delivery_person($order) {
+        if(!empty($order['address'])) {
+            $delivery_person = get_all_delivery_people();
+            $occupied_person = get_occupied_delivery_people();
+
+            $result = '<select name="delivery_person" class="delivery__select" data-person-id="' . htmlspecialchars($order['delivery_person_id'] ?? '') . '"' . ($order['status'] !== 'ready' ? ' disabled' : '') . '>';
+            if(!isset($order['delivery_person_id'])) $result .= '<option value="">Selectionner un livreur</option>';
+            foreach ($delivery_person as $person) {
+                $is_selected = isset($order['delivery_person_id']) && $order['delivery_person_id'] === $person['id'];
+                $is_disabled = in_array($person, $occupied_person) && !$is_selected;
+                $result .= '<option value="' . htmlspecialchars($person['id']) . '"' . ($is_selected ? ' selected' : '') . ($is_disabled ? ' disabled' : '') . '>' . htmlspecialchars($person['lastname']) . ' ' . htmlspecialchars($person['firstname']) . '</option>';
+            }
+            $result .= '</select>';
+        } else {
+            $result = '-';
+        }
+
+        return $result;
+    }
+
     // MARK: - Table generation
     function generate_table_header() {
         global $current_page;
@@ -113,7 +133,7 @@
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>
                 <td class="status__cell col__centered">' . format_order_status($order) . '</td>'
                 .
-                ($current_page === 'orders' ? '<td class="delivery__cell col__centered"></td>' : '')
+                ($current_page === 'orders' ? '<td class="delivery__cell col__centered">' . format_delivery_person($order) . '</td>' : '')
                 .
             '</tr>
         ';
