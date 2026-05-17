@@ -415,7 +415,7 @@
                     $statusSelectHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
                     $statusSelectHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
                     $statusSelectHtml .= '<input type="hidden" name="id_livreur" value="' . htmlspecialchars($currentLivreurId) . '">';
-                    $statusSelectHtml .= '<select class="form-control" name="statut" onchange="this.form.submit()">';
+                    $statusSelectHtml .= '<select class="form-control" name="statut">';
 
                     foreach ($statusOptions as $statusKey => $statusLabel) {
                         $selected = ($statusKey === $statut) ? ' selected' : '';
@@ -432,7 +432,7 @@
                     $livreurHtml = '<form method="POST" class="flex-col items-stretch gap-10">';
                     $livreurHtml .= '<input type="hidden" name="order_id" value="' . htmlspecialchars($idCommande) . '">';
                     $livreurHtml .= '<input type="hidden" name="statut" value="' . htmlspecialchars($statut) . '">';
-                    $livreurHtml .= '<select class="form-control" name="id_livreur" onchange="this.form.submit()">';
+                    $livreurHtml .= '<select class="form-control" name="id_livreur">';
                     $livreurHtml .= '<option value="">Sélectionner un livreur</option>';
 
                     if (empty($availableLivreurs)) {
