@@ -34,6 +34,7 @@ function isAllValid() {
     });
 }
 
+// MARK: - Input event listeners
 inputs.forEach((input, index) => {
     input.addEventListener('input', () => {
         if(input.type === 'password' || input.tagName.toLowerCase() === 'textarea') {
@@ -88,36 +89,44 @@ inputs.forEach((input, index) => {
     });
 });
 
-ratingButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const rating = button.getAttribute("data-rating");
-        
-        ratingButtons.forEach(btn => btn.setAttribute("data-checked", "false"));
-        ratingButtons.forEach(btn => {
-            if (btn.getAttribute("data-rating") <= rating) btn.setAttribute("data-checked", "true");
+// MARK: - Rating system
+if(ratingButtons && ratingInput) {
+    ratingButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const rating = button.getAttribute("data-rating");
+            
+            ratingButtons.forEach(btn => btn.setAttribute("data-checked", "false"));
+            ratingButtons.forEach(btn => {
+                if (btn.getAttribute("data-rating") <= rating) btn.setAttribute("data-checked", "true");
+            });
+
+            ratingInput.setAttribute("value", rating);
+            submitButton.disabled = !isAllValid();
         });
-
-        ratingInput.setAttribute("value", rating);
-        submitButton.disabled = !isAllValid();
     });
-});
+}
 
-form.addEventListener('submit', (event) => {
-    if (!isAllValid()) {
-        event.preventDefault();
-        if(submitButton) submitButton.disabled = true;
+// MARK: - Form submission
+if (form) {
+    form.addEventListener('submit', (event) => {
+        if (!isAllValid()) {
+            event.preventDefault();
+            if(submitButton) submitButton.disabled = true;
 
-        let p = document.createElement("p");
-        p.classList.add("error");
-        p.textContent = "Veuillez remplir correctement tous les champs requis";
-        form.appendChild(p);
-    }
-});
+            let p = document.createElement("p");
+            p.classList.add("error");
+            p.textContent = "Veuillez remplir correctement tous les champs requis";
+            form.appendChild(p);
+        }
+    });
+}
 
 // MARK: - Toggle password visibility
-togglePasswordButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const input = document.getElementById(button.getAttribute("data-target"));
-        if (input && (input.type === "password" || input.type === "text")) input.type = input.type === "password" ? "text" : "password";
+if (togglePasswordButtons) {
+    togglePasswordButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const input = document.getElementById(button.getAttribute("data-target"));
+            if (input && (input.type === "password" || input.type === "text")) input.type = input.type === "password" ? "text" : "password";
+        });
     });
-});
+}

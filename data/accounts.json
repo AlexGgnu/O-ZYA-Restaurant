@@ -6,7 +6,7 @@
         "firstname": "Admin",
         "email": "admin1@gmail.com",
         "password": "$2y$10$hhohrGYS1LJsmD9b4L2uL.GM8X8GdegGtVekogEJ8GxPlXI0Btohu",
-        "phone": "0600000000",
+        "phone": "06 00 00 00 00",
         "address": "123 rue de la Paix, 75001 Paris",
         "role": "admin",
         "state": "unblocked"
@@ -18,7 +18,7 @@
         "firstname": "Admin",
         "email": "admin2@gmail.com",
         "password": "$2y$10$IGCDaa3e1hDYLoFCg2qSWeVbAVSxOAlmRvxiWRzR7L5UFR\/vGKsDC",
-        "phone": "0600000000",
+        "phone": "06 00 00 00 00",
         "address": "123 rue de la Paix, 75001 Paris",
         "role": "admin",
         "state": "unblocked"
@@ -30,7 +30,7 @@
         "firstname": "Lucas",
         "email": "lucas.martin.delivery@gmail.com",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0612347001",
+        "phone": "06 12 34 70 01",
         "address": "12 rue des Acacias, 75017 Paris",
         "role": "delivery",
         "state": "unblocked"
@@ -42,7 +42,7 @@
         "firstname": "In\u00e8s",
         "email": "ines.durand.delivery@gmail.com",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0612347002",
+        "phone": "06 12 34 70 02",
         "address": "8 avenue de la R\u00e9publique, 69003 Lyon",
         "role": "delivery",
         "state": "unblocked"
@@ -54,7 +54,7 @@
         "firstname": "Yanis",
         "email": "yanis.bertrand.delivery@gmail.com",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0612347003",
+        "phone": "06 12 34 70 03",
         "address": "24 boulevard Victor Hugo, 33000 Bordeaux",
         "role": "delivery",
         "state": "unblocked"
@@ -66,7 +66,7 @@
         "firstname": "Chlo\u00e9",
         "email": "chloe.moreau.delivery@gmail.com",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0612347004",
+        "phone": "06 12 34 70 04",
         "address": "19 rue Nationale, 59800 Lille",
         "role": "client",
         "state": "unblocked"
@@ -78,7 +78,7 @@
         "firstname": "Sami",
         "email": "sami.lefebvre.delivery@gmail.com",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0612347005",
+        "phone": "06 12 34 70 05",
         "address": "3 quai de la Loire, 44000 Nantes",
         "role": "delivery",
         "state": "unblocked"
@@ -90,7 +90,7 @@
         "firstname": "Tom",
         "email": "nook.tom@gmail.com",
         "password": "$2y$10$5rgg950RHCVMDkATD7E3Ruj8xIEdUgCEw88gAnPdutDkwQRaC9qXa",
-        "phone": "06 21874365",
+        "phone": "06 21 87 43 65",
         "address": "47 boulevard du port, 95000 Cergy",
         "role": "client",
         "state": "unblocked"
@@ -102,7 +102,7 @@
         "firstname": "Matilde",
         "email": "mat.ber@yahoo.com",
         "password": "$2y$10$4PM52da5mADVf.CK6ZDh6.\/8eNvPqeMv18dptnxfDCdyDAsABeEI.",
-        "phone": "0612345678",
+        "phone": "06 12 34 56 78",
         "address": "1 avenue du Parc, 95000 Cergy",
         "role": "client",
         "state": "unblocked"
@@ -114,7 +114,7 @@
         "firstname": "Silvy",
         "email": "silvy87@etu.cyu.fr",
         "password": "$2y$10$01frbq5RRoM8Nmpf0ogsxOba4a.4w.Iwvx8zIdzPAeuzsr\/kWyDcK",
-        "phone": "0687654321",
+        "phone": "06 87 65 43 21",
         "address": "7 boulevard du march\u00e9, 87000 Limoges",
         "role": "client",
         "state": "unblocked"

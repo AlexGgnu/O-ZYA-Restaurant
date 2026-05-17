@@ -6,12 +6,14 @@ function get_accounts_url() {
 
 async function fetch_accounts_data(accountId, action, value = undefined) {
     const url = get_accounts_url();
+    // NOTE: If value is an object, we need to serialize it before sending it in the request body.
+    const serializedValue = typeof value === 'object' ? JSON.stringify(value) : value;
 
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `account_id=${encodeURIComponent(accountId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(value)}`
+            body: `account_id=${encodeURIComponent(accountId)}&action=${encodeURIComponent(action)}&value=${encodeURIComponent(serializedValue)}`
         });
 
         if (!response.ok) { throw new Error(`Response status: ${response.status}`); }

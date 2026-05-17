@@ -1,0 +1,51 @@
+main {
+    justify-content: flex-start;
+    gap: 40px;
+    min-height: 0;
+    padding: 20px 40px;
+    background: transparent;
+}
+main > h1 { width: 100%; }
+
+#profile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    border: none;
+}
+
+#profile__container .form__card {
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+}
+
+/* MARK: - Profile Info Section */
+#profile__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#profile__info__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+#profile__info__header h2 {
+    font-size: 1.3rem;
+    text-align: left;
+    color: var(--accent-font-color);
+}
+#profile__info__header #edit__button, #profile__info__header #edit__button:hover { border: none; }
+#edit__button #edit__icon { display: block; }
+#edit__button #check__icon { display: none; }
+
+#profile__info__content { gap: 20px; }
+#profile__info__content .form__group { gap: 8px; }

@@ -115,6 +115,27 @@
         if($is_toggled) file_put_contents($account_file_path, json_encode($accounts_data, JSON_PRETTY_PRINT));
         return $account["state"];
     }
+    function update_profile_info($account_id, $new_value) {
+        global $account_file_path;
+        $accounts_data = get_accounts_data();
+        $decoded_values = json_decode($new_value, true);
+        $is_updated = false;
+
+        foreach ($accounts_data as &$account) { // NOTE: '&' is used to modify the original array element
+            if ($account["id"] == $account_id) {
+                if (isset($decoded_values["lastname"]) && $account["lastname"] !== $decoded_values["lastname"]) $account["lastname"] = $decoded_values["lastname"];
+                if (isset($decoded_values["firstname"]) && $account["firstname"] !== $decoded_values["firstname"]) $account["firstname"] = $decoded_values["firstname"];
+                if (isset($decoded_values["email"]) && $account["email"] !== $decoded_values["email"]) $account["email"] = $decoded_values["email"];
+                if (isset($decoded_values["phone"]) && $account["phone"] !== $decoded_values["phone"]) $account["phone"] = $decoded_values["phone"];
+                if (isset($decoded_values["address"]) && $account["address"] !== $decoded_values["address"]) $account["address"] = $decoded_values["address"];
+                $is_updated = true;
+                break;
+            }
+        }
+        
+        if($is_updated) file_put_contents($account_file_path, json_encode($accounts_data, JSON_PRETTY_PRINT));
+        return $is_updated;
+    }
     function update_account_role($account_id, $new_role) {
         global $account_file_path;
         $accounts_data = get_accounts_data();
@@ -143,6 +164,19 @@
         if($_GET['auth_method'] == "sign_in") sign_in($redirection);
         else if($_GET['auth_method'] == "sign_up") sign_up($redirection);
         else if($_GET['auth_method'] == "log_out") log_out();
+    } else if (is_logged() && isset($_POST['action']) && $_POST['action'] == "update_profile_info") {
+        $title = "Erreur";
+        $message = "Impossible de mettre à jour les informations du profil. Veuillez réessayer.";
+
+        if(update_profile_info($_SESSION['uuid'], $_POST['value'])) {
+            $title = "Modification réussie";
+            $message = "Les informations du profil ont été mises à jour avec succès.";
+        }
+
+        echo json_encode([
+            "title" => $title,
+            "message" => $message
+        ]);
     } else if (get_access("admin") && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
         if(isset($_POST['action']) && $_POST['action'] == "toggle_state") {
             $title = "Erreur";
