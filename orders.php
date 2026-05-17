@@ -6,15 +6,13 @@
 
     get_access("restaurateur", true);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id']) && $_POST['order_id'] !== '') {
-        $orderId = $_POST['order_id'];
-        $statut = isset($_POST['statut']) ? $_POST['statut'] : 'waiting';
-        $idLivreur = isset($_POST['id_livreur']) ? $_POST['id_livreur'] : '';
-
-        updateOrderAdminData($orderId, $statut, $idLivreur);
-        header('Location: ./orders.php');
-        exit();
-    }
+   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    header('Content-Type: application/json');
+    $data = json_decode(file_get_contents('php://input'), true);
+    updateOrderAdminData($data['order_id'], $data['statut'], $data['id_livreur'] ?? '');
+    echo json_encode(['success' => true]);
+    exit();
+    }   
 
     $commandes = lireCommandes('./data/orders.json');
 ?>
@@ -31,6 +29,7 @@
         <link rel="stylesheet" href="./styles/main.css">
 
         <script src="./scripts/common.js" defer></script>
+        <script src="./scripts/orders.js" defer></script>
     </head>
     <body>
         <?php get_header(false, false); ?>
