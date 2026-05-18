@@ -2,6 +2,7 @@
     if(!function_exists('is_logged') || !function_exists('get_access')) require_once(__DIR__ . '/../api/account.php');
     if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data') || !isset($order_status)) require_once(__DIR__ . '/../api/order.php');
     if(!function_exists('get_all_delivery_people') || !function_exists('get_occupied_delivery_people')) require_once(__DIR__ . '/../api/delivery.php');
+    if(!function_exists('get_notations_data'))   require_once(__DIR__ . '/../api/notation.php');
 
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
@@ -20,6 +21,19 @@
 
         return $result;
     }
+
+    function is_order_noted($order_id) {
+    $notations = get_notations_data();
+
+    foreach ($notations as $note) {
+        if (isset($note['order_id']) && $note['order_id'] === $order_id) {
+            return true;
+        }
+    }
+
+    return false;
+    }
+
     function format_order_status($order) {
         global $current_page;
         global $order_status;
@@ -113,6 +127,8 @@
                     .
                     ($current_page === 'orders' ? '<th class="col__centered">Livreur</th>' : '')
                     .
+                    ($current_page === 'profile' ? '<th class="col__centered">Action</th>' : '')
+                    .
                 '</tr>
             </thead>
         ';
@@ -135,8 +151,26 @@
                 .
                 ($current_page === 'orders' ? '<td class="delivery__cell col__centered">' . format_delivery_person($order) . '</td>' : '')
                 .
+                ($current_page === 'profile' ? '<td class="col__centered">' . get_order_action_button($order) . '</td>' : '')
+                .
             '</tr>
         ';
+    }
+
+    function get_order_action_button($order) {
+    $order_id = $order['id_order'];
+
+    if ($order['status'] !== 'delivered') {
+        return '-';
+    }
+
+    if (is_order_noted($order_id)) {
+        return '<span class="order__status">Déjà noté</span>';
+    }
+
+    return '<a class="btn btn-primary" href="/notation.php?order_id=' . htmlspecialchars($order_id) . '">
+                Noter la commande
+            </a>';
     }
     
     // MARK: - Display orders table
