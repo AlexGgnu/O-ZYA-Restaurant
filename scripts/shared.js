@@ -1,10 +1,10 @@
 const body = document.querySelector("body");
 
 function create_alert(title, message, type) {
-    var alert = document.createElement("div");
+    let alert = document.createElement("div");
     alert.classList.add("alert", "alert__" + type);
 
-    var icon = document.createElement("div");
+    let icon = document.createElement("div");
     icon.classList.add("alert__icon");
     alert.appendChild(icon);
     if(type === "success") {
@@ -13,7 +13,7 @@ function create_alert(title, message, type) {
         icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/></svg>';
     }
 
-    var content = document.createElement("div");
+    let content = document.createElement("div");
     content.classList.add("alert__content");
     alert.appendChild(content);
     content.innerHTML = '<h3>' + title + '</h3>';
@@ -23,7 +23,7 @@ function create_alert(title, message, type) {
 }
 
 function show_alert(title, message, type) {
-    var alert = create_alert(title, message, type);
+    let alert = create_alert(title, message, type);
     body.appendChild(alert);
 
     setTimeout(() => {

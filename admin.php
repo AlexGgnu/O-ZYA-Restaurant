@@ -3,6 +3,17 @@
 
     get_access(["admin"], true);
     $accounts_data = get_accounts_data();
+    
+    $selected_account = null; 
+    if (isset($_GET['view_id'])) { 
+        foreach ($accounts_data as $account) { 
+            if ($account['id'] === $_GET['view_id']) { 
+                $selected_account = $account; 
+                break; 
+            } 
+        } 
+    }
+
 ?>
 
 <!DOCTYPE html>
