@@ -37,26 +37,41 @@
     </head>
     <body>
         <?php include_once('./components/header.php') ?>
-
         <main id="admin__main">
-            <h1>Administration</h1>
+    <h1>Administration</h1>
 
-            <section id="accounts__container" class="form__card">
-                <h2>Comptes utilisateurs</h2>
+    <?php if ($selected_account): ?>
+        <section class="form__card">
+            <a href="admin.php" class="btn btn-primary btn-svg">← Retour</a>
+            <br><br>
+            <h2><?= $selected_account['firstname'] ?> <?= $selected_account['lastname'] ?></h2>
+            <hr>
+            <p><strong>Email</strong> : <?= $selected_account['email'] ?></p>
+            <p><strong>Téléphone</strong> : <?= $selected_account['phone'] ?></p>
+            <p><strong>Adresse</strong> : <?= $selected_account['address'] ?></p>
+            <p><strong>Genre</strong> : <?= $selected_account['gender'] ?></p>
+            <p><strong>Rôle</strong> : <?= $selected_account['role'] ?></p>
+            <p><strong>Statut</strong> : <?= $selected_account['state'] === 'blocked' ? '🔴 Bloqué' : '🟢 Actif' ?></p>
+        </section>
 
-                <div class="scrollable__wrapper">
-                    <div class="scrollable__container">
-                        <?php
-                            foreach ($accounts_data as $account) {
-                                if($account["id"] !== $_SESSION["uuid"]) include('./components/account_card.php');
-                                if ($account["id"] !== $_SESSION["uuid"] && $account !== end($accounts_data)) echo "<hr />";
-                            }
-                        ?>
-                    </div>
+    <?php else: ?>
+        <section id="accounts__container" class="form__card">
+            <h2>Comptes utilisateurs</h2>
+            <div class="scrollable__wrapper">
+                <div class="scrollable__container">
+                    <?php
+                    foreach ($accounts_data as $account) {
+                        if($account["id"] !== $_SESSION["uuid"]) include('./components/account_card.php');
+                        if ($account["id"] !== $_SESSION["uuid"] && $account !== end($accounts_data)) echo "<hr />";
+                    }
+                    ?>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    <?php endif; ?>
+    </main>
+    
+    <?php include_once('./components/footer.php') ?>
 
-        <?php include_once('./components/footer.php') ?>
     </body>
 </html>
