@@ -9,8 +9,21 @@
         if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) return true;
         else return false;
     }
+    function is_blocked($account_id = null, $redirect = false) {
+        if (!is_logged()) return false;
+
+        $account = get_account_by_id($account_id ?? $_SESSION["uuid"]);
+        if ($account && isset($account["state"]) && $account["state"] === "blocked") {
+            if ($redirect) {
+                destroy_session();
+                if($redirect) header("Location: /");
+            }
+            return true;
+        } else return false;
+    }
+
     function get_access($autorized_role, $redirect = false) {
-        if (!is_logged() || !in_array($_SESSION["role"], $autorized_role)) {
+        if (!is_logged() || is_blocked($redirect = $redirect) || !in_array($_SESSION["role"], $autorized_role)) {
             if($redirect) header("Location: /");
             else return false;
         } else return true;
@@ -99,6 +112,12 @@
 
         foreach ($accounts_data as $account) {
             if ($account["email"] == $_POST["email"] && password_verify($_POST["password"], $account["password"])) {
+                if($account["state"] === "blocked") {
+                    $_SESSION['error'] = urlencode("Votre compte est bloqué");
+                    header("Location: /");
+                    exit();
+                }
+
                 create_session($account["id"], $account["role"], $redirection);
                 exit();
             }

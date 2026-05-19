@@ -1,7 +1,9 @@
 <?php
-    if(!function_exists("is_logged") || !function_exists("get_account_by_id")) require_once('./api/account.php');
+    if(!function_exists("is_logged") || !function_exists("is_blocked") || !function_exists("get_account_by_id")) require_once('./api/account.php');
 
     if (is_logged() && isset($_SESSION['uuid'])) {
+        is_blocked($_SESSION['uuid'], $redirect = true);
+
         if(get_access(["admin"], false) && isset($_GET['view_id'])) $account_data = get_account_by_id($_GET['view_id']);
         else $account_data = get_account_by_id($_SESSION['uuid']);
 

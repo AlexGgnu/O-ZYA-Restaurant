@@ -1,5 +1,10 @@
 <?php
-    require_once('./api/account.php');
+    if(!function_exists('is_blocked') || !function_exists('get_account_by_id')) require_once('./api/account.php');
+
+    if(!is_logged()) {
+        header("Location: /sign_in.php?redirection=notation");
+        exit();
+    } else is_blocked($redirect = true);
 
     $firstname = get_account_by_id($_SESSION['uuid'])['firstname'] ?? '';
     if(isset($_SESSION['comment_temp'])) {
