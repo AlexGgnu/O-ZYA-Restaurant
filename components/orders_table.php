@@ -3,6 +3,7 @@
     if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data') || !isset($order_status)) require_once(__DIR__ . '/../api/order.php');
     if(!function_exists('get_all_delivery_people') || !function_exists('get_occupied_delivery_people')) require_once(__DIR__ . '/../api/delivery.php');
     if(!function_exists('get_notations_data'))   require_once(__DIR__ . '/../api/notation.php');
+    if(!function_exists('generate_payment_params'))   require_once(__DIR__ . '/../api/paiement.php');
 
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
@@ -111,18 +112,38 @@
         $order_id = $order['id_order'];
 
         switch ($order['status']) {
+            case 'unpaid':
+                $params = generate_payment_params($order_id);
+
+                return '
+                    <form method="POST" action="' . htmlspecialchars($params['action']) . '">
+                        <input type=\'hidden\' name=\'transaction\' value=\'' . htmlspecialchars($params['transaction']) . '\'>
+                        <input type=\'hidden\' name=\'montant\' value=\'' . htmlspecialchars($params['montant']) . '\'>
+                        <input type=\'hidden\' name=\'vendeur\' value=\'' . htmlspecialchars($params['vendeur']) . '\'>
+                        <input type=\'hidden\' name=\'retour\' value=\'' . htmlspecialchars($params['retour'] . '&redirection=' . urlencode($current_page)) . '\'>
+                        <input type=\'hidden\' name=\'control\' value=\'' . htmlspecialchars($params['control']) . '\'>
+
+                        <button class="btn btn-primary" type=\'submit\' disabled>Payer</button>
+                    </form>
+                ';
+            case 'paid':
+            case 'waiting':
+                return '
+                    <button class="btn btn-primary">Modifier</button>
+                    <button class="btn btn-primary">Annuler</button>
+                ';
             case 'delivered':
                 if (is_order_noted($order_id)) return '<span class="order__status">Déjà noté</span>';
                 else return '<a class="btn btn-primary" href="/notation.php?order_id=' . htmlspecialchars($order_id) . '">Noter la commande</a>';
-            case 'cancelled':
             default:
-                return '<span class="order__status">-</span>';
+                return '-';
         }
     }
 
     // MARK: - Table generation
     function generate_table_header() {
         global $current_page;
+        global $account_data;
 
         return '
             <thead>
@@ -140,7 +161,7 @@
                     .
                     ($current_page === 'orders' ? '<th class="col__centered">Livreur</th>' : '')
                     .
-                    ($current_page === 'profile' && $account_data['id'] === $_SESSION['uuid'] ? '<th class="col__centered">Action</th>' : '')
+                    ($current_page === 'profile' && $_SESSION['uuid'] === $account_data['id'] ? '<th class="col__centered">Action</th>' : '')
                     .
                 '</tr>
             </thead>
@@ -148,6 +169,7 @@
     }
     function get_table_row($order) {
         global $current_page;
+        global $account_data;
 
         return '
             <tr class="order__row" data-order-id="' . htmlspecialchars($order['id_order']) . '">

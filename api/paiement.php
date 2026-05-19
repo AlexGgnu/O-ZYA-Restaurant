@@ -7,7 +7,7 @@
         $protocole = 'http';
         if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') $protocole = 'https';
 
-        return  $protocole . '://' . $_SERVER['HTTP_HOST'] . '/api/paiment.php?payment_return=1';
+        return  $protocole . '://' . $_SERVER['HTTP_HOST'] . '/api/paiement.php?payment_return=1';
     }
 
     function generate_transaction_id() {
@@ -22,7 +22,7 @@
         return md5($api_key . '#' . $transaction . '#' . $montant . '#' . $vendeur . '#' . $retour . '#');
     }
 
-    function get_paiment_params() {
+    function get_paiement_params() {
         $vendeur = 'MI-3_C';
         $transaction = generate_transaction_id();
         $montant = get_payment_amount();
@@ -41,15 +41,20 @@
     }
 
     if(isset($_GET['payment_return']) && $_GET['payment_return'] == '1') {
+        if(isset($_GET['redirection'])) $redirection = '/' . htmlspecialchars($_GET['redirection']) . '.php';
+        else $redirection = null;
+
         if(isset($_GET['status']) && $_GET['status'] == 'accepted') {
             save_order();
             empty_basket();
 
-            header('Location: /');
+            header('Location: ' . $redirection ?? '/');
             exit();
         } else {
             $_SESSION['error'] = urlencode('Le paiement a échoué. Veuillez réessayer.');
-            header('Location: /basket.php');
+
+
+            header('Location: ' . $redirection ?? '/basket.php');
             exit();
         }
     }

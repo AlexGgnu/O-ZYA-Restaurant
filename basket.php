@@ -1,9 +1,9 @@
 <?php
     require_once('./api/account.php');
-    require_once('./api/paiment.php');
+    require_once('./api/paiement.php');
     require_once('./api/order.php');
 
-    $params = get_paiment_params();
+    $params = get_paiement_params();
 ?>
 
 <!DOCTYPE html>
