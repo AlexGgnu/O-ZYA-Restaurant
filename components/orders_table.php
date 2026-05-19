@@ -109,21 +109,22 @@
     }
 
     function get_order_action_button($order) {
+        global $current_page;
         $order_id = $order['id_order'];
 
         switch ($order['status']) {
             case 'unpaid':
-                $params = generate_payment_params($order_id);
+                $params = get_paiement_params($order, $current_page);
 
                 return '
-                    <form method="POST" action="' . htmlspecialchars($params['action']) . '">
+                    <form method="POST" action="' . htmlspecialchars($params['action_url']) . '">
                         <input type=\'hidden\' name=\'transaction\' value=\'' . htmlspecialchars($params['transaction']) . '\'>
                         <input type=\'hidden\' name=\'montant\' value=\'' . htmlspecialchars($params['montant']) . '\'>
                         <input type=\'hidden\' name=\'vendeur\' value=\'' . htmlspecialchars($params['vendeur']) . '\'>
-                        <input type=\'hidden\' name=\'retour\' value=\'' . htmlspecialchars($params['retour'] . '&redirection=' . urlencode($current_page)) . '\'>
+                        <input type=\'hidden\' name=\'retour\' value=\'' . htmlspecialchars($params['retour']) . '\'>
                         <input type=\'hidden\' name=\'control\' value=\'' . htmlspecialchars($params['control']) . '\'>
 
-                        <button class="btn btn-primary" type=\'submit\' disabled>Payer</button>
+                        <button class="btn btn-primary" type=\'submit\'>Payer</button>
                     </form>
                 ';
             case 'paid':
