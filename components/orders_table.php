@@ -129,8 +129,8 @@
             case 'paid':
             case 'waiting':
                 return '
-                    <button class="btn btn-primary">Modifier</button>
-                    <button class="btn btn-primary">Annuler</button>
+                    <button class="modify__button btn btn-primary">Modifier</button>
+                    <button class="cancel__button btn btn-primary">Annuler</button>
                 ';
             case 'delivered':
                 if (is_order_noted($order_id)) return '<span class="order__status">Déjà noté</span>';
@@ -186,7 +186,7 @@
                 .
                 ($current_page === 'orders' ? '<td class="delivery__cell col__centered">' . format_delivery_person($order) . '</td>' : '')
                 .
-                ($current_page === 'profile' && $account_data['id'] === $_SESSION['uuid'] ? '<td class="col__centered">' . get_order_action_button($order) . '</td>' : '')
+                ($current_page === 'profile' && $account_data['id'] === $_SESSION['uuid'] ? '<td class="action__cell col__centered">' . get_order_action_button($order) . '</td>' : '')
                 .
             '</tr>
         ';

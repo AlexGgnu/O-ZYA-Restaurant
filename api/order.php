@@ -7,13 +7,13 @@
     if(!file_exists($orders_file_path) || filesize($orders_file_path) === 0) file_put_contents($orders_file_path, json_encode([], JSON_PRETTY_PRINT));
 
     $order_status = [
-        'unpaid' => 'Non payé',
-        'paid' => 'Payé',
+        'unpaid' => 'Non payée',
+        'paid' => 'Payée',
         'waiting' => 'En attente de préparation',
         'preparing' => 'En préparation',
         'ready' => 'En attente {de livraison|de récupération}',
         'delivered' => '{livré|récupéré}',
-        'cancelled' => 'Annulé'
+        'cancelled' => 'Annulée'
     ];
 
     // MARK: - Data handling
@@ -86,7 +86,7 @@
             }
         }
 
-        if(!is_updated) {
+        if (!$is_updated) {
             return json_encode([
                 "type" => "error",
                 "title" => "Mise à jour échouée",
@@ -118,4 +118,5 @@
 
     // MARK: - API Endpoint handling
     if($_POST['action'] === 'update_status' && isset($_POST['order_id']) && isset($_POST['value'])) echo update_order_status($_POST['order_id'], $_POST['value']);
+    if($_POST['action'] === 'cancel_order' && isset($_POST['order_id'])) echo update_order_status($_POST['order_id'], 'cancelled');
 ?>
