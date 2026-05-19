@@ -76,6 +76,14 @@
         $orders = get_orders_data();
         $is_updated = false;
 
+        if($new_status === 'cancelled' && in_array($orders['status'], ['preparing', 'ready', 'delivered', 'cancelled']) && !get_access(["admin"], false)) {
+            return json_encode([
+                "type" => "error",
+                "title" => "Mise à jour échouée",
+                "message" => "Vous ne pouvez pas annuler cette commande",
+            ]);
+        }
+
         foreach ($orders as &$order) {
             if ($order['id_order'] === $order_id) {
                 if($order['status'] !== 'delivered' && $order['status'] !== 'cancelled') {

@@ -43,11 +43,11 @@ async function cancelOrder(orderRow) {
         const response = await fetch_orders_data(orderId, 'cancel_order');
 
         show_alert(response.title, response.message, response.type);
-        if(response.type == "error") return;
-
+        if(response.type == "error" || response.status !== 'cancelled') return;
+        
         const statusElement = orderRow.querySelector('.order__status');
         statusElement.textContent = 'Annulée';
-        statusElement.setAttribute('data-status', 'cancelled');
+        statusElement.setAttribute('data-status', response.status);
 
         const actionCell = orderRow.querySelector('.action__cell');
         actionCell.innerHTML = '-';
