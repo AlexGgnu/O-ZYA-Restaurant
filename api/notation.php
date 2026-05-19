@@ -1,6 +1,7 @@
 <?php
     if(session_status() === PHP_SESSION_NONE) session_start();
     if(!function_exists("is_logged")) require_once(__DIR__ . '/account.php');
+    if(!function_exists("get_orders_by_user")) require_once(__DIR__ . '/order.php');
 
     $notations_file_path = __DIR__ . '/../data/notations.json';
     if(!file_exists($notations_file_path)) file_put_contents($notations_file_path, json_encode([], JSON_PRETTY_PRINT));
@@ -50,7 +51,6 @@
         exit();
     }
 
-    require_once(__DIR__ . '/order.php');
     $orders = get_orders_by_user($_SESSION['uuid']);
     $order_found = false;
     foreach ($orders as $order) {
@@ -79,7 +79,7 @@
         }
     }
 
-     $new_notation = [
+    $new_notation = [
         'id' => uniqid(),
         'id_client' => $_SESSION['uuid'],
         'order_id' => $order_id,

@@ -21,12 +21,7 @@
         global $account_file_path;
 
         $datas = file_get_contents($account_file_path);
-        $accounts = json_decode($datas, true);
-        
-        $filtered_accounts = array_filter($accounts, function($account) {
-            return isset($account['state']) && $account['state'] !== 'blocked';
-        });
-        return array_values($filtered_accounts);
+        return json_decode($datas, true);
     }
     function get_account_by_id($id) {
         $accounts_data = get_accounts_data();
