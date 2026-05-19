@@ -224,7 +224,7 @@ td .order__status[data-status="delivered"] { --status-order-color: var(--deliver
 /* MARK: - Media Queries */
 @media (min-width: 768px) {
     .alert {
-        max-width: 400px;
+        max-width: 600px;
         animation-name: slideInRight-X;
     }
     .alert.exit { animation-name: slideOutRight-X; }
