@@ -35,12 +35,6 @@
     echo '
                         </ul>
                     </div>
-                    <div class="footer__links__wrapper">
-                        <h2>Autres</h2>
-                        <ul>
-                            <li><a href="./notation.php">Je donne mon avis</a></li>
-                        </ul>
-                    </div>
                 </div>
             </section>
             
