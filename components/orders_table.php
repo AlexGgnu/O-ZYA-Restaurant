@@ -7,7 +7,7 @@
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
 
-    if(is_logged() && $current_page === 'profile') $orders = get_orders_by_user($_SESSION['uuid']);
+    if(is_logged() && $current_page === 'profile') $orders = get_orders_by_user($account_data['id'] ?? $_SESSION['uuid']);
     else if (is_logged() && get_access(["employee", "admin"], false) && $current_page === 'orders') $orders = get_orders_data();
     else $orders = [];
 
@@ -140,7 +140,7 @@
                     .
                     ($current_page === 'orders' ? '<th class="col__centered">Livreur</th>' : '')
                     .
-                    ($current_page === 'profile' ? '<th class="col__centered">Action</th>' : '')
+                    ($current_page === 'profile' && $account_data['id'] === $_SESSION['uuid'] ? '<th class="col__centered">Action</th>' : '')
                     .
                 '</tr>
             </thead>
@@ -164,7 +164,7 @@
                 .
                 ($current_page === 'orders' ? '<td class="delivery__cell col__centered">' . format_delivery_person($order) . '</td>' : '')
                 .
-                ($current_page === 'profile' ? '<td class="col__centered">' . get_order_action_button($order) . '</td>' : '')
+                ($current_page === 'profile' && $account_data['id'] === $_SESSION['uuid'] ? '<td class="col__centered">' . get_order_action_button($order) . '</td>' : '')
                 .
             '</tr>
         ';
