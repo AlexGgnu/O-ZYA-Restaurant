@@ -23,15 +23,15 @@
     }
 
     function is_order_noted($order_id) {
-    $notations = get_notations_data();
+        $notations = get_notations_data();
 
-    foreach ($notations as $note) {
-        if (isset($note['order_id']) && $note['order_id'] === $order_id) {
-            return true;
+        foreach ($notations as $note) {
+            if (isset($note['order_id']) && $note['order_id'] === $order_id) {
+                return true;
+            }
         }
-    }
 
-    return false;
+        return false;
     }
 
     function format_order_status($order) {
@@ -107,6 +107,19 @@
         return $result;
     }
 
+    function get_order_action_button($order) {
+        $order_id = $order['id_order'];
+
+        switch ($order['status']) {
+            case 'delivered':
+                if (is_order_noted($order_id)) return '<span class="order__status">Déjà noté</span>';
+                else return '<a class="btn btn-primary" href="/notation.php?order_id=' . htmlspecialchars($order_id) . '">Noter la commande</a>';
+            case 'cancelled':
+            default:
+                return '<span class="order__status">-</span>';
+        }
+    }
+
     // MARK: - Table generation
     function generate_table_header() {
         global $current_page;
@@ -157,22 +170,6 @@
         ';
     }
 
-    function get_order_action_button($order) {
-    $order_id = $order['id_order'];
-
-    if ($order['status'] !== 'delivered') {
-        return '-';
-    }
-
-    if (is_order_noted($order_id)) {
-        return '<span class="order__status">Déjà noté</span>';
-    }
-
-    return '<a class="btn btn-primary" href="/notation.php?order_id=' . htmlspecialchars($order_id) . '">
-                Noter la commande
-            </a>';
-    }
-    
     // MARK: - Display orders table
     if($current_page === 'profile' || $current_page === 'orders') {
         if(empty($orders)) {

@@ -28,7 +28,7 @@
         <?php include_once('./components/header.php');?>
         
         <main>
-            <form class="form__card" method="POST" action="/api/notation.php?add&order_id=<?php echo urlencode($_GET['order_id']); ?>">
+            <form class="form__card" method="POST" action="/api/notation.php?add">
                 <h1>À vous la parole <?php echo htmlspecialchars($firstname); ?></h1>
 
                 <div id="rating__wrapper" class="form__group row__group">
@@ -88,6 +88,7 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($_GET['order_id']); ?>">
                 <button class="btn btn-primary" type="submit" disabled>Envoyer mon avis</button>
            
                 <?php
