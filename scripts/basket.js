@@ -124,13 +124,8 @@ function createBasketSummary(products, deliveryType = "", reduction = 0) {
     const totalElement = document.getElementById('total__price');
 
     deliveryOptions.forEach(option => {
-        if(option.value === deliveryType) {
-            deliveryOptions.value = deliveryType;
-            option.selected = true;
-        } else {
-            deliveryOptions.value = "";
-            option.selected = false;
-        }
+        if(option.value === deliveryType) option.selected = true;
+        else option.selected = false;
     });
 
     const subtotal = products.reduce((total, product) => total + (product.price * product.quantity), 0);
