@@ -55,6 +55,20 @@
         return $successedDishes;
     }
 
+    function get_products_by_id($productId) {
+        $productsData = get_products_data();
+
+        foreach ($productsData['products'] as $countryProducts) {
+            foreach ($countryProducts as $category => $items) {
+                foreach ($items as $item) {
+                    if (isset($item['id']) && $item['id'] == $productId) return $item;
+                }
+            }
+        }
+
+        return null;
+    }
+
     // MARK: - API endpoints
     if(isset($_GET['action'])) {
         if ($_GET['action'] === 'getAllProducts') {
@@ -65,6 +79,23 @@
         } elseif ($_GET['action'] === 'getSuccessedDishes') {
             $successedDishes = get_successed_dishes(get_products_data());
             echo json_encode($successedDishes);
+        } else if ($_GET['action'] === 'get_product' && isset($_GET['product_id'])) {
+            $type = "error";
+            $title = "Produit non trouvé";
+            $message = "Aucun produit correspondant à l'ID fourni n'a été trouvé.";
+
+            if($productDetails = get_products_by_id($_GET['product_id'])) {
+                $type = "success";
+                $title = "Produit trouvé";
+                $message = "Le produit a été trouvé avec succès.";
+            }
+
+            echo json_encode([
+                "type" => $type,
+                "title" => $title,
+                "message" => $message,
+                "product_data" => $productDetails ?? null
+            ]);
         } else {
             echo json_encode([
                 "type" => "error",

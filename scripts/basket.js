@@ -1,14 +1,10 @@
-const basketItemsContainer = document.querySelector('#basket__items .scrollable__container');
-const basketSummary = document.getElementById('basket__summary');
-const deliveryOptions = document.querySelectorAll('select#delivery_type option');
-const subtotalElement = document.getElementById('subtotal__price');
-const promoSummaryElement = document.getElementById('promo__summary');
-const totalElement = document.getElementById('total__price');
+const isBasketPage = window.location.pathname.endsWith('basket.php');
 
 // MARK: - Basket items functions
 function createBasketItem(product) {
     const item = document.createElement('div');
     item.classList.add('basket__item');
+    item.setAttribute('data-product-id', product.id);
 
     item.innerHTML = `
         <div class="basket__item__info">
@@ -21,47 +17,67 @@ function createBasketItem(product) {
         </div>
 
         <div class="basket__item__quantity">
-            <button class="quantity__button btn btn-primary" data-action="decrease" data-product-id="${product.id}">-</button>
+            <button class="quantity__button btn btn-primary" data-action="decrease">-</button>
             <span class="quantity__value">${product.quantity}</span>
-            <button class="quantity__button btn btn-primary" data-action="increase" data-product-id="${product.id}">+</button>
+            <button class="quantity__button btn btn-primary" data-action="increase">+</button>
         </div>
     `;
 
     return item;
 }
 
-function setupQuantityButtons() {
+function setupQuantityButtons(products = undefined, productsListContainer = undefined) {
     const quantityButtons = document.querySelectorAll('.quantity__button');
 
     quantityButtons.forEach(button => {
         button.addEventListener('click', async (event) => {
             const clickedButton = event.currentTarget;
             const action = clickedButton.getAttribute('data-action');
-            const productId = clickedButton.getAttribute('data-product-id');
+            const productId = clickedButton.closest('.basket__item').getAttribute('data-product-id');
 
-            try {
-                if (action === 'increase') await fetch_basket_data('add', productId);
-                else if (action === 'decrease') await fetch_basket_data('remove', productId);
+            if(isBasketPage || !products) {
+                try {
+                    if (action === 'increase') await fetch_basket_data('add', productId);
+                    else if (action === 'decrease') await fetch_basket_data('remove', productId);
 
-                load_basket_items();
-            } catch (error) {
-                show_alert("Erreur", "Une erreur est survenue lors de la mise à jour de la quantité du produit. Veuillez réessayer.", "error");
+                    load_basket_items();
+                } catch (error) {
+                    show_alert("Erreur", "Une erreur est survenue lors de la mise à jour de la quantité du produit. Veuillez réessayer.", "error");
+                }
+            } else if(products && productsListContainer) {
+                const productIndex = products.findIndex(product => product.id == productId);
+                if (productIndex === -1) return;
+
+                const product = {...products[productIndex]}; 
+
+                if (action === 'increase') product.quantity += 1;
+                else if (action === 'decrease' && product.quantity > 0) product.quantity -= 1;
+
+                if (product.quantity === 0) {
+                    const neProductsList = products.filter(p => p.id != productId);
+                    neProductsList.forEach((p, i) => products[i] = p);
+                    products.length = neProductsList.length;
+                } else {
+                    products[productIndex] = product;
+                }
+
+                createBasketItems(products, productsListContainer);
             }
         });
     });
 }
 
-function createBasketItems(products) {
-    basketItemsContainer.innerHTML = '';
+function createBasketItems(products, container) {
+    container.innerHTML = '';
 
     products.forEach(product => {
         const item = createBasketItem(product);
 
-        basketItemsContainer.appendChild(item);
-        if (product !== products[products.length - 1]) basketItemsContainer.appendChild(document.createElement('hr'));
+        container.appendChild(item);
+        if (product !== products[products.length - 1]) container.appendChild(document.createElement('hr'));
     });
     
-    setupQuantityButtons();
+    setupQuantityButtons(products, container);
 }
 
 // MARK: - Basket summary functions
@@ -70,7 +86,6 @@ function setupDeliveryOptionChange(products, reduction) {
 
     deliverySelect.addEventListener('change', async (event) => {
         const selectedOption = event.target.value;
-        console.log("Selected delivery option: ", selectedOption);
 
         try {
             await fetch_basket_data('update_delivery', selectedOption);
@@ -103,13 +118,23 @@ function setupPromotionButton(products, deliveryType) {
 }
 
 function createBasketSummary(products, deliveryType = "", reduction = 0) {
+    const deliveryOptions = document.querySelectorAll('select#delivery_type option');
+    const subtotalElement = document.getElementById('subtotal__price');
+    const promoSummaryElement = document.getElementById('promo__summary');
+    const totalElement = document.getElementById('total__price');
+
     deliveryOptions.forEach(option => {
-        if(option.value === deliveryType) option.selected = true;
-        else option.selected = false;
+        if(option.value === deliveryType) {
+            deliveryOptions.value = deliveryType;
+            option.selected = true;
+        } else {
+            deliveryOptions.value = "";
+            option.selected = false;
+        }
     });
 
     const subtotal = products.reduce((total, product) => total + (product.price * product.quantity), 0);
-    const promo = subtotal * (reduction / 100);
+    const promo = (subtotal - reduction) < 0 ? subtotal : reduction;
     const total = subtotal - promo;
 
     subtotalElement.textContent = `${subtotal.toFixed(2)} €`;
@@ -122,19 +147,24 @@ function createBasketSummary(products, deliveryType = "", reduction = 0) {
 
 // MARK: - Initial loading
 async function load_basket_items() {
+    const basketItemsContainer = document.querySelector('#basket__items .scrollable__container');
+
     try {
         const basketItems = await fetch_basket_data('get');
 
         if (basketItems.items && basketItems.items.length > 0) {
-            createBasketItems(basketItems.items);
+            createBasketItems(basketItems.items, basketItemsContainer);
             createBasketSummary(basketItems.items, basketItems.delivery_type ?? "", basketItems.promo_code ?? 0);
         } else {
+            const basketSummary = document.getElementById('basket__summary');
+
             basketItemsContainer.innerHTML = "<p>Votre panier est vide</p>";
-            basketSummary.classList.add('hidden');
+            if(basketSummary) basketSummary.classList.add('hidden');
         }
     } catch (error) {
         show_alert("Erreur", "Une erreur est survenue lors du chargement des éléments du panier. Veuillez réessayer.", "error");
     }
 }
 
-load_basket_items();
+// MARK: - Initial setup
+if(isBasketPage) load_basket_items();

@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const alertDuration = 3000;
 
 function create_alert(title, message, type) {
     let alert = document.createElement("div");
@@ -29,6 +30,6 @@ function show_alert(title, message, type) {
     setTimeout(() => {
         alert.classList.add("exit");
         setTimeout(() => alert.remove(), 500);
-    }, 3000);
+    }, alertDuration);
     
 }

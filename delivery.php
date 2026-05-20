@@ -23,10 +23,11 @@
         <link rel="stylesheet" href="./styles/forms.css">
         <link rel="stylesheet" href="./styles/delivery.css">
 
-        <script src="./scripts/shared.js" defer></script>
+        <script src="./scripts/alerts.js" defer></script>
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>
         <script src="./scripts/api.js" defer></script>
+        
         <script src="./scripts/delivery.js" defer></script>
     </head>
     <body>

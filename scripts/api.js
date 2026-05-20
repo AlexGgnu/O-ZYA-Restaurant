@@ -27,13 +27,13 @@ async function fetch_accounts_data(accountId, action, value = undefined) {
 }
 
 // MARK: - Products Endpoint
-function get_products_url(action) {
+function get_products_url(action, product_id = undefined) {
     const baseUrl = window.location.origin;
-    return `${baseUrl}/api/products.php?action=${action}`;
+    return `${baseUrl}/api/products.php?action=${action}${action === 'get_product' && product_id ? `&product_id=${encodeURIComponent(product_id)}` : ''}`;
 }
 
-async function get_products_data(action) {
-    const url = get_products_url(action);
+async function get_products_data(action, product_id = undefined) {
+    const url = get_products_url(action, product_id);
 
     try {
         const response = await fetch(url, { method: "GET" });

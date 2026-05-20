@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="./styles/global.css">
         <link rel="stylesheet" href="./styles/forms.css">
 
-        <script src="./scripts/shared.js" defer></script>
+        <script src="./scripts/alerts.js" defer></script>
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>
         <script src="./scripts/form_validation.js" defer></script>

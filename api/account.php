@@ -3,6 +3,9 @@
 
     $account_file_path = __DIR__ . "/../data/accounts.json";
     if (!file_exists($account_file_path)) file_put_contents($account_file_path, json_encode([], JSON_PRETTY_PRINT));
+    
+    $promotions_file_path = __DIR__ . '/../data/promotions.json';
+    if(!file_exists($promotions_file_path)) file_put_contents($promotions_file_path, json_encode(['public' => []], JSON_PRETTY_PRINT));
 
     // MARK: - Access management
     function is_logged() {

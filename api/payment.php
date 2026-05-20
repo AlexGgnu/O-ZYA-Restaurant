@@ -7,14 +7,20 @@
         $protocole = 'http';
         if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') $protocole = 'https';
 
-        return  $protocole . '://' . $_SERVER['HTTP_HOST'] . '/api/paiement.php?payment_return=1';
+        return  $protocole . '://' . $_SERVER['HTTP_HOST'] . '/api/payment.php?payment_return=1';
     }
 
     function generate_transaction_id() {
         return substr(strtoupper(uniqid('TRX')), 0, 24);
     }
 
-    function get_payment_amount() {
+    function get_payment_amount($order = null) {
+        if ($order) {
+            if ($order['old_total'] && $order['old_total'] !== $order['total'] && !empty($order['old_total']) && $order['total'] > $order['old_total']) $total = $order['total'] - $order['old_total'];
+            else $total = $order['total'];
+
+            return number_format($total, 2, '.', '');
+        }
         return number_format(get_basket_total(), 2, '.', '');
     }
 
@@ -22,10 +28,10 @@
         return md5($api_key . '#' . $transaction . '#' . $montant . '#' . $vendeur . '#' . $retour . '#');
     }
 
-    function get_paiement_params($order = null, $redirection = null) {
+    function get_payment_params($order = null, $redirection = null) {
         $vendeur = 'MI-3_C';
         $transaction = generate_transaction_id();
-        $montant = $order ? $order['total'] : get_payment_amount();
+        $montant = get_payment_amount($order);
         $retour = get_payment_return_url() . ($redirection ? '&redirection=' . urlencode($redirection) : '') . ($order ? '&order_id=' . urlencode($order['id_order']) : '');
         $api_key = getAPIKey($vendeur);
         $control = get_payment_control($api_key, $transaction, $montant, $vendeur, $retour);
@@ -41,21 +47,23 @@
     }
 
     if(isset($_GET['payment_return']) && $_GET['payment_return'] == '1') {
-        if(isset($_GET['redirection'])) $redirection = '/' . htmlspecialchars($_GET['redirection']) . '.php';
+        if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = '/' . htmlspecialchars($_GET['redirection']) . '.php';
         else $redirection = null;
 
         if(isset($_GET['status']) && $_GET['status'] == 'accepted') {
             if(isset($_GET['order_id'])) update_order_status(htmlspecialchars($_GET['order_id']), 'paid');
-            else save_order();
+            else if(!empty(get_basket_data()['items'])) save_order();
 
             empty_basket();
 
-            header('Location: ' . $redirection ?? '/');
+            $redirection = $redirection !== null ? $redirection : '/';
+            header('Location: ' . $redirection);
             exit();
         } else {
-            $_SESSION['error'] = urlencode('Le paiement a échoué. Veuillez réessayer.');
+            $_SESSION['error'] = urlencode('Le payment a échoué. Veuillez réessayer.');
 
-            header('Location: ' . $redirection ?? '/basket.php');
+            $redirection = $redirection !== null ? $redirection : '/basket.php';
+            header('Location: ' . $redirection);
             exit();
         }
     }

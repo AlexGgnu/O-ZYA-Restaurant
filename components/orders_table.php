@@ -3,7 +3,7 @@
     if(!function_exists('get_orders_by_user') || !function_exists('get_orders_data') || !isset($order_status)) require_once(__DIR__ . '/../api/order.php');
     if(!function_exists('get_all_delivery_people') || !function_exists('get_occupied_delivery_people')) require_once(__DIR__ . '/../api/delivery.php');
     if(!function_exists('get_notations_data'))   require_once(__DIR__ . '/../api/notation.php');
-    if(!function_exists('generate_payment_params'))   require_once(__DIR__ . '/../api/paiement.php');
+    if(!function_exists('generate_payment_params'))   require_once(__DIR__ . '/../api/payment.php');
 
     // MARK: - Fetch orders data
     if(!isset($current_page)) $current_page = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
@@ -114,7 +114,7 @@
 
         switch ($order['status']) {
             case 'unpaid':
-                $params = get_paiement_params($order, $current_page);
+                $params = get_payment_params($order, $current_page);
 
                 return '
                     <form method="POST" action="' . htmlspecialchars($params['action_url']) . '">

@@ -1,9 +1,9 @@
 <?php
     require_once('./api/account.php');
-    require_once('./api/paiement.php');
+    require_once('./api/payment.php');
     require_once('./api/order.php');
 
-    $params = get_paiement_params();
+    $params = get_payment_params();
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +19,13 @@
         <link rel="stylesheet" href="./styles/forms.css">
         <link rel="stylesheet" href="./styles/basket.css">
 
-        <script src="./scripts/shared.js" defer></script>
+        <script src="./scripts/alerts.js" defer></script>
         <script src="./scripts/theme.js" defer></script>
         <script src="./scripts/nav.js" defer></script>
         <script src="./scripts/api.js" defer></script>
-        <script src="./scripts/basket.js" defer></script>
         <script src="./scripts/form_validation.js" defer></script>
+        
+        <script src="./scripts/basket.js" defer></script>
     </head>
     <body>
         <?php include_once('./components/header.php'); ?>

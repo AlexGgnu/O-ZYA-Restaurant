@@ -4,12 +4,12 @@
         "id_client": "69c14f0fe5cef",
         "address": "",
         "details": {
-            "ES_DI_01": 1,
-            "US_DI_02": 4
+            "US_DI_02": 2
         },
-        "total": "98.10",
+        "total": "37.80",
         "status": "paid",
-        "date_heure": "2026-05-17 13:00:06"
+        "date_heure": "2026-05-17 13:00:06",
+        "old_total": "98.10"
     },
     {
         "id_order": "6a09d6f71edc5",

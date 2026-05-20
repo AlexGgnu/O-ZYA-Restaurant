@@ -1,5 +1,5 @@
 <?php
-    if(!function_exists('is_logged')) require_once(__DIR__ . '/account.php');
+    if(!function_exists('is_logged') || !function_exists('get_account_by_id')) require_once(__DIR__ . '/account.php');
     require_once(__DIR__ . '/products.php');
 
     if(session_status() === PHP_SESSION_NONE) session_start();
@@ -27,9 +27,13 @@
     }
 
     // MARK: - Promo code management functions
-    function get_promo_by_code($code) {
+    function get_promo_code_data() {
         global $promotions_file_path;
         $promo_codes = json_decode(file_get_contents($promotions_file_path), true);
+        return $promo_codes;
+    }
+    function get_promo_by_code($code) {
+        $promo_codes = get_promo_code_data();
 
         if(is_logged()) {
             $user_uuid = $_SESSION['uuid'];
@@ -42,6 +46,33 @@
 
         $_SESSION['promo_code'] = $code;
         return $reduction ?? null;
+    }
+    function generate_promo_code($account_id, $reduction) {
+        global $promotions_file_path;
+        $promo_codes = get_promo_code_data();
+        $is_created = false;
+
+        if(get_account_by_id($account_id)) {
+            $code = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
+            $promo_codes[$account_id][$code] = number_format($reduction, 2, '.', '');
+            $is_created = true;
+        }
+
+        if($is_created) file_put_contents($promotions_file_path, json_encode($promo_codes, JSON_PRETTY_PRINT));
+        return $is_created ? $code : null;
+    }
+    function delete_promo_code($account_id, $code) {
+        global $promotions_file_path;
+        $promo_codes = get_promo_code_data();
+        $is_deleted = false;
+
+        if(get_account_by_id($account_id) && isset($promo_codes[$account_id][$code])) {
+            unset($promo_codes[$account_id][$code]);
+            $is_deleted = true;
+        }
+
+        if($is_deleted) file_put_contents($promotions_file_path, json_encode($promo_codes, JSON_PRETTY_PRINT));
+        return $is_deleted;
     }
 
     // MARK: - Basket management functions
