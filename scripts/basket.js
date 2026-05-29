@@ -96,6 +96,32 @@ function setupDeliveryOptionChange(products, reduction) {
     });
 }
 
+function setupPickupDateChange() {
+    const pickupInput = document.getElementById('pickup_datetime');
+
+    if (!pickupInput) return;
+
+    pickupInput.addEventListener('change', async (event) => {
+        const selectedDate = event.target.value;
+
+        try {
+            await fetch_basket_data('update_pickup_datetime', selectedDate);
+
+            show_alert(
+                "Date mise à jour",
+                "Votre heure de récupération a été enregistrée.",
+                "success"
+            );
+        } catch (error) {
+            show_alert(
+                "Erreur",
+                "Impossible de mettre à jour la date.",
+                "error"
+            );
+        }
+    });
+}
+
 function setupPromotionButton(products, deliveryType) {
     const promoInput = document.getElementById('promotion__code');
     const promoButton = document.getElementById('promo__button');
@@ -117,11 +143,13 @@ function setupPromotionButton(products, deliveryType) {
     });
 }
 
-function createBasketSummary(products, deliveryType = "", reduction = 0) {
+function createBasketSummary(products, deliveryType = "", reduction = 0, pickupDatetime = "") {
     const deliveryOptions = document.querySelectorAll('select#delivery_type option');
     const subtotalElement = document.getElementById('subtotal__price');
     const promoSummaryElement = document.getElementById('promo__summary');
     const totalElement = document.getElementById('total__price');
+    const pickupInput = document.getElementById('pickup_datetime');
+    pickupInput.value = pickupDatetime;
 
     deliveryOptions.forEach(option => {
         if(option.value === deliveryType) option.selected = true;
@@ -138,6 +166,7 @@ function createBasketSummary(products, deliveryType = "", reduction = 0) {
 
     setupDeliveryOptionChange(products, reduction);
     setupPromotionButton(products, deliveryType);
+    setupPickupDateChange();
 }
 
 // MARK: - Initial loading
@@ -149,7 +178,7 @@ async function load_basket_items() {
 
         if (basketItems.items && basketItems.items.length > 0) {
             createBasketItems(basketItems.items, basketItemsContainer);
-            createBasketSummary(basketItems.items, basketItems.delivery_type ?? "", basketItems.promo_code ?? 0);
+            createBasketSummary(basketItems.items, basketItems.delivery_type ?? "", basketItems.promo_code ?? 0, basketItems.pickup_datetime ?? "");
         } else {
             const basketSummary = document.getElementById('basket__summary');
 

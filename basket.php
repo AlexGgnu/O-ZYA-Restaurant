@@ -85,6 +85,11 @@
                         <input type='hidden' name='retour' value='<?php echo htmlspecialchars($params['retour']); ?>'>
                         <input type='hidden' name='control' value='<?php echo htmlspecialchars($params['control']); ?>'>
 
+                        <div class="form__group col__group">
+                            <label for="pickup_datetime">Date et heure de récupération</label>
+                            <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required/>
+                        </div>
+
                         <?php if(is_logged()) echo '<button class="btn btn-primary" type=\'submit\' disabled>Valider et payer</button>'; ?>
                     </form>
 

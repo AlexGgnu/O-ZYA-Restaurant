@@ -103,9 +103,11 @@
         return [
             "items" => $basketItemsData,
             "delivery_type" => $_SESSION['delivery_type'] ?? null,
+            "pickup_datetime" => $_SESSION['pickup_datetime'] ?? null,
             "promo_code" => isset($_SESSION['promo_code']) && !empty($_SESSION['promo_code']) ? get_promo_by_code($_SESSION['promo_code']) : null
         ];
     }
+
     function get_basket_total() {
         $basket = get_basket();
         $total = 0;
@@ -136,6 +138,16 @@
         $_SESSION['basket'] = $basket;
         return true;
     }
+
+    function update_pickup_datetime($datetime) {
+    $_SESSION['pickup_datetime'] = $datetime;
+
+    return [
+        "type" => "success",
+        "title" => "Date mise à jour",
+        "message" => "La date de récupération a été enregistrée"
+    ];
+}
 
     function empty_basket() {
         unset($_SESSION['basket']);
@@ -187,4 +199,5 @@
     else if(isset($_GET['get'])) echo json_encode(get_basket_data());
     else if(isset($_GET['update_delivery'])) echo json_encode(update_delivery_type($_GET['update_delivery']));
     else if(isset($_GET['promo_code'])) echo json_encode(get_promo_by_code($_GET['promo_code']));
+    else if(isset($_GET['update_pickup_datetime'])) echo json_encode(update_pickup_datetime($_GET['update_pickup_datetime']));
 ?>
