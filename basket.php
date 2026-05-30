@@ -46,14 +46,21 @@
                     <h2>Résumé</h2>
 
                     <form method="POST" action="<?php echo htmlspecialchars($params['action_url']); ?>">
-                        <div class="form__group col__group">
-                            <label for="delivery_type">Mode de livraison</label>
+                        <div id="delivery__options">
+                            <div class="form__group col__group">
+                                <label for="delivery_type">Mode de livraison</label>
 
-                            <select id="delivery_type" name="delivery_type" required>
-                                <option id="default__option" value="">Choisissez une option</option>
-                                <option value="takeaway">À emporter</option>
-                                <option value="delivery">En livraison</option>
-                            </select>
+                                <select id="delivery_type" name="delivery_type" required>
+                                    <option id="default__option" value="">Choisissez une option</option>
+                                    <option value="takeaway">À emporter</option>
+                                    <option value="delivery">En livraison</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group col__group">
+                                <label for="pickup_datetime">Date et heure de récupération</label>
+                                <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required/>
+                            </div>
                         </div>
 
                         <div id="spacer"></div>
@@ -84,11 +91,6 @@
                         <input type='hidden' name='vendeur' value='<?php echo htmlspecialchars($params['vendeur']); ?>'>
                         <input type='hidden' name='retour' value='<?php echo htmlspecialchars($params['retour']); ?>'>
                         <input type='hidden' name='control' value='<?php echo htmlspecialchars($params['control']); ?>'>
-
-                        <div class="form__group col__group">
-                            <label for="pickup_datetime">Date et heure de récupération</label>
-                            <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required/>
-                        </div>
 
                         <?php if(is_logged()) echo '<button class="btn btn-primary" type=\'submit\' disabled>Valider et payer</button>'; ?>
                     </form>
