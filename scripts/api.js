@@ -124,4 +124,9 @@ async function fetch_delivery_data(deliveryId, action, value = undefined) {
         show_alert("Erreur", "Une erreur est survenue lors de la récupération des données de livraison. Veuillez réessayer.", "error");
         throw error;
     }
+    
+}
+async function fetch_menu_aleatoire() {
+    const response = await fetch('./api/menu_aleatoire.php');
+    return await response.json();
 }
