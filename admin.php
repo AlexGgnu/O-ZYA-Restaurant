@@ -47,10 +47,10 @@
                 <div class="scrollable__wrapper">
                     <div class="scrollable__container">
                         <?php
-                        foreach ($accounts_data as $account) {
-                            if($account["id"] !== $_SESSION["uuid"]) include('./components/account_card.php');
-                            if ($account["id"] !== $_SESSION["uuid"] && $account !== end($accounts_data)) echo "<hr />";
-                        }
+                            foreach ($accounts_data as $account) {
+                                if($account["id"] !== $_SESSION["uuid"]) include('./components/account_card.php');
+                                if ($account["id"] !== $_SESSION["uuid"] && $account !== end($accounts_data)) echo "<hr />";
+                            }
                         ?>
                     </div>
                 </div>

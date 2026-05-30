@@ -106,11 +106,11 @@
                     </div>
 
                     <!-- MARK: - Loyalty Account -->
-                    <div id="profile__reductions" class="form__card">
-                        <h2>Vos réductions fidélité</h2>
+                    <div id="profile__promotions" class="form__card">
+                        <h2>Vos promotions</h2>
                         <div class="scrollable__wrapper">
                             <div class="scrollable__container">
-                                <!-- TODO: Display reductions code -->
+                                <?php include_once('./components/promotions_card.php'); ?>
                             </div>
                         </div>
                     </div>
