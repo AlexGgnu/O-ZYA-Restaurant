@@ -31,7 +31,7 @@
     if($account_data) {
         $promotions = get_promo_by_account_id($account_data["id"]);
 
-        if(empty($promotions)) echo '<p>Vous n\'avez pas de code promotionnel pour le moment.</p>';
+        if(empty($promotions)) echo '<p>Vous n\'avez pas de code promotionnel pour le moment</p>';
         else {
             foreach($promotions as $code => $promotion) {
                 echo render_promotion_card($code, $promotion);
