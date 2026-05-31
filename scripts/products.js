@@ -44,7 +44,19 @@ function createCountrySection(country) {
 function renderCategory(productsCategory, productsData) {
     const productsCard = document.getElementById("products__card");
     if (!productsCard) return;
+
     productsCard.innerHTML = '';
+
+    if (productsCategory === 'menus') {
+        const card1 = createCard({ id: "US_DI_01", name: "Menu USA 🇺🇸", image: "./assets/images/products/us/smash_burger.png", shortDescription: "Smash Burger + Onion Rings + Milkshake + Cheesecake", price: 28.90 });
+        const card2 = createCard({ id: "IT_DI_01", name: "Menu Italie 🇮🇹", image: "./assets/images/products/it/pizza_margherita.png", shortDescription: "Pizza Margherita + Mozza Sticks + Spritz + Tiramisu", price: 26.50 });
+        const card3 = createCard({ id: "JP_DI_02", name: "Menu Japon 🇯🇵", image: "./assets/images/products/jp/sushi_mix.png", shortDescription: "Sushi Mix + Thé Matcha + Mochi Glacé", price: 32.00 });
+        productsCard.appendChild(card1);
+        productsCard.appendChild(card2);
+        productsCard.appendChild(card3);
+        return;
+    }
+
     for (const country in productsData.products) {
         const selectedProducts = productsData.products[country][productsCategory];
         if (selectedProducts && selectedProducts.length > 0) {
