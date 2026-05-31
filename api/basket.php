@@ -32,6 +32,10 @@
         $promo_codes = json_decode(file_get_contents($promotions_file_path), true);
         return $promo_codes;
     }
+    function get_promo_by_account_id($account_id) {
+        $promo_codes = get_promo_code_data();
+        return $promo_codes[$account_id] ?? [];
+    }
     function get_promo_by_code($code) {
         $promo_codes = get_promo_code_data();
 

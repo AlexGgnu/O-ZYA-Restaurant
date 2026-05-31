@@ -1,4 +1,5 @@
 const editButton = document.getElementById("edit__button");
+const copyButtons = document.querySelectorAll(".copy__button");
 const modifyButtons = document.querySelectorAll(".modify__button");
 const cancelButtons = document.querySelectorAll(".cancel__button");
 
@@ -68,6 +69,19 @@ async function toggleEditMode() {
         editIcon.style.display = "block";
         checkIcon.style.display = "none";
     }
+}
+
+// MARK: - Promotions copy button
+function copyPromotionCode(clickedButton) {
+    const promotionCode = clickedButton.closest('.promotion__card').getAttribute('data-promo-code');
+
+    if (!promotionCode) {
+        show_alert("Erreur", "Impossible de récupérer le code promotionnel.", "error");
+        return;
+    }
+
+    navigator.clipboard.writeText(promotionCode);
+    show_alert("Code copié", `Le code promotionnel "${promotionCode}" a été copié.`, "success");
 }
 
 // MARK: - Orders cancelation button
@@ -221,13 +235,14 @@ async function modifyOrderSwitcher(orderId = undefined) {
 //MARK: - Initialize
 if (editButton) editButton.addEventListener('click', async () => await toggleEditMode());
 
+if(copyButtons) copyButtons.forEach(button => button.addEventListener('click', (event) => copyPromotionCode(event.currentTarget)));
+
 if (modifyButtons.length > 0) {
     modifyButtons.forEach(button => button.addEventListener('click', async (event) => {
         const orderId = event.target.closest('.order__row').getAttribute('data-order-id');
         await modifyOrderSwitcher(orderId);
     }));
 }
-
 if (cancelButtons.length > 0) {
     cancelButtons.forEach(button => button.addEventListener('click', async (event) => {
         const orderRow = event.target.closest('.order__row');

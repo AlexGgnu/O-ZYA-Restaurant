@@ -52,8 +52,42 @@ main > h1 { width: 100%; }
 #profile__info__content { gap: 20px; }
 #profile__info__content .form__group { gap: 8px; }
 
+/* MARK: - Promotions Section */
+#profile__container .form__card#profile__promotions {
+    height: 350px;
+    min-height: 350px;
+}
+#profile__promotions .scrollable__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.promotion__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.promotion__card .promotion__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+.promotion__card .promotion__value { color: var(--separator-color); }
+.promotion__card .promotion__actions {
+    display: inline-flex;
+    justify-content: center;
+    gap: 8px;
+}
+.promotion__card .promotion__actions .btn { width: max-content; }
+.promotion__card .promotion__actions .btn span { display: none; }
+
+    
+
 /* MARK: - Order Table */
-.scrollable__container { position: relative; }
+#profile__orders .scrollable__container { position: relative; }
 
 #modification__actions {
     display: flex;
@@ -90,8 +124,10 @@ main > h1 { width: 100%; }
         width: 100%;
         min-width: 100%;
     }
-    #profile__container .form__card#profile__reductions { max-height: 400px; }
 
-    .scrollable__container { position: absolute; }
+    .promotion__card .promotion__actions .btn svg { display: none; }
+    .promotion__card .promotion__actions .btn span { display: block; }
+
+
     #modification__actions { flex-direction: row; }
 }
