@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__ . '/basket.php');
+
 header('Content-Type: application/json');
 
 $jsonData = file_get_contents('../data/products.json');
@@ -18,6 +20,7 @@ foreach ($data['products'] as $country) {
 
 if (!empty($allProducts)) {
     $random = $allProducts[array_rand($allProducts)];
+    add_to_basket($random['id']);
     echo json_encode($random);
 } else {
     echo json_encode(["error" => "Aucun produit trouvé"]);
