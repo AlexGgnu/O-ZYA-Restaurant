@@ -61,6 +61,28 @@
             ]
         },
         "Etats-Unis": {
+            "menus": [
+                {
+                    "id": "US_ME_01",
+                    "name": "Menu New York",
+                    "image": "./assets/images/products/us/smash_burger.png",
+                    "shortDescription": "Smash Burger + Onion Rings + Cola",
+                    "longDescription": "Un smash burger classique avec des anneaux d'oignon et une canette de cola.",
+                    "price": 26.90,
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                },
+                {
+                    "id": "US_ME_02",
+                    "name": "Menu Texas",
+                    "image": "./assets/images/products/us/bbq_burger.png",
+                    "shortDescription": "BBQ Burger + Nuggets + Milkshake Vanille",
+                    "longDescription": "Un burger BBQ généreux avec des nuggets et un milkshake vanille.",
+                    "price": 29.90,
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
             "dishes": [
                 {
                     "id": "US_DI_01",
@@ -351,6 +373,18 @@
             ]
         },
         "Italie": {
+            "menus": [
+                {
+                    "id": "IT_ME_01",
+                    "name": "Menu Italie 🇮🇹",
+                    "image": "./assets/images/products/it/pizza_margherita.png",
+                    "shortDescription": "Pizza Margherita + Mozza Sticks + Spritz + Tiramisu",
+                    "longDescription": "Un menu complet pour découvrir les saveurs emblématiques de l'Italie, de l'entrée au dessert.",
+                    "price": 26.50,
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
             "dishes": [
                 {
                     "id": "IT_DI_01",
@@ -461,6 +495,18 @@
             ]
         },
         "Japon": {
+            "menus": [
+                {
+                    "id": "JP_ME_01",
+                    "name": "Menu Japon 🇯🇵",
+                    "image": "./assets/images/products/jp/sushi_mix.png",
+                    "shortDescription": "Sushi Mix + Thé Matcha + Mochi Glacé",
+                    "longDescription": "Un menu complet pour découvrir les saveurs emblématiques du Japon, de l'entrée au dessert.",
+                    "price": 32.00,
+                    "isSpecialDish": false,
+                    "isSuccessed": false
+                }
+            ],
             "dishes": [
                 {
                     "id": "JP_DI_01",
