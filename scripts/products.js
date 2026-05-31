@@ -42,7 +42,6 @@ function createCountrySection(country) {
 }
 
 function renderCategory(productsCategory, productsData) {
-    console.log("renderCategory appelé avec:", productsCategory);
     const productsCard = document.getElementById("products__card");
     if (!productsCard) return;
 
@@ -55,6 +54,7 @@ function renderCategory(productsCategory, productsData) {
         productsCard.appendChild(card1);
         productsCard.appendChild(card2);
         productsCard.appendChild(card3);
+        setupBuyButton();
         return;
     }
 
@@ -71,7 +71,6 @@ function renderCategory(productsCategory, productsData) {
         }
     }
 }
-
 function setupFilters(productsData) {
     const filterButtons = document.querySelectorAll('.filter__button');
     filterButtons.forEach(button => {
