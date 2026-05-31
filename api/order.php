@@ -7,6 +7,7 @@
     if(!file_exists($orders_file_path) || filesize($orders_file_path) === 0) file_put_contents($orders_file_path, json_encode([], JSON_PRETTY_PRINT));
 
     $order_status = [
+        'later' => 'Préparation à venir',
         'unpaid' => 'Non payée',
         'paid' => 'Payée',
         'waiting' => 'En attente de préparation',

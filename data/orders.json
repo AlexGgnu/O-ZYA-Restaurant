@@ -38,5 +38,18 @@
         "status": "delivered",
         "date_heure": "2026-05-17 20:39:42",
         "delivery_person_id": "d8f21a4c7b901"
+    },
+    {
+        "id_order": "6a1c1dec0ee55",
+        "id_client": "69c14f0fe5cef",
+        "address": "47 boulevard du port, 95000 Cergy",
+        "details": {
+            "US_ME_02": 1,
+            "MX_DI_01": 2
+        },
+        "total": "58.90",
+        "status": "paid",
+        "date_heure": "2026-05-31 11:39:24",
+        "pickup_datetime": "2026-06-05 13:39:00"
     }
 ]

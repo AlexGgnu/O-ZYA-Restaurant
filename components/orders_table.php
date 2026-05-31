@@ -41,23 +41,23 @@
 
         $status = $order['status'];
         $address = $order['address'];
+        $pickup_datetime = $order['pickup_datetime'];
 
-        if(($current_page ==='profile' && array_key_exists($status, $order_status)) || $status === 'delivered' || $status === 'cancelled') {
+        if(isset($pickup_datetime) && strtotime($pickup_datetime) > time() + 24 * 3600 && !in_array($status, ['delivered', 'cancelled'])) $status = 'later';
+        
+        if(($current_page ==='profile' && array_key_exists($status, $order_status)) || in_array($status, ['later', 'delivered', 'cancelled'])) {
             switch ($status) {
+                case 'later':
                 case 'unpaid':
-                    return '<span class="order__status" data-status="unpaid">' . $order_status['unpaid'] . '</span>';
                 case 'paid':
-                    return '<span class="order__status" data-status="paid">' . $order_status['paid'] . '</span>';
                 case 'waiting':
-                    return '<span class="order__status" data-status="waiting">' . $order_status['waiting'] . '</span>';
                 case 'preparing':
-                    return '<span class="order__status" data-status="preparing">' . $order_status['preparing'] . '</span>';
+                case 'cancelled':
+                    return '<span class="order__status" data-status="' . $status . '">' . $order_status[$status] . '</span>';
                 case 'ready':
                     return '<span class="order__status" data-status="ready">' . (!empty($order['address']) ? preg_replace('/\{.*?\}/', 'de livraison', $order_status['ready']) : preg_replace('/\{.*?\}/', 'de récupération', $order_status['ready'])) . '</span>';
                 case 'delivered':
                     return '<span class="order__status" data-status="delivered">' . (!empty($order['address']) ? preg_replace('/\{.*?\}/', 'Livré', $order_status['delivered']) : preg_replace('/\{.*?\}/', 'Récupéré', $order_status['delivered'])) . '</span>';
-                case 'cancelled':
-                    return '<span class="order__status" data-status="cancelled">' . $order_status['cancelled'] . '</span>';
                 default:
                     return '<span class="order__status" data-status="unknown">' . htmlspecialchars($status) . '</span>';
             }
@@ -68,6 +68,7 @@
             foreach ($order_status as $key => $status_option) {
                 $isSelected = $status === $key;
 
+                if($key === 'later' && $status !== 'later') continue;
                 if($key === 'unpaid' && $status !== 'unpaid') continue;
                 else if($key === 'paid' && $status !== 'paid') continue;
                 
@@ -190,7 +191,7 @@
                 .
                 ($current_page === 'orders' ? '<td>' . (!empty($order['address']) ? htmlspecialchars($order['address']) : 'À emporter') . '</td>' : '')
                 .
-                '<td>' . format_datetime($order['pickup_datetime'] ?? '-') . '</td>'
+                '<td>' . format_datetime($order['pickup_datetime']) . '</td>'
                 .
                 '<td>' . format_order_details($order['details']) . '</td>
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>
