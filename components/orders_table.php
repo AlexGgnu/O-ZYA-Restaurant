@@ -156,7 +156,8 @@
                     .
                     ($current_page === 'orders' ? '<th>Point de réception</th>' : '')
                     .
-                    '<th>Détails</th>
+                    '<th>Récupération prévue</th>
+                    <th>Détails</th>
                     <th class="col__centered">Total (€)</th>
                     <th class="col__centered">Statut</th>'
                     .
@@ -180,6 +181,8 @@
                 ($current_page === 'orders' ? '<td>' . htmlspecialchars(get_account_by_id($order['id_client'])['lastname']) . ' ' . htmlspecialchars(get_account_by_id($order['id_client'])['firstname']) . '</td>' : '')
                 .
                 ($current_page === 'orders' ? '<td>' . (!empty($order['address']) ? htmlspecialchars($order['address']) : 'À emporter') . '</td>' : '')
+                .
+                '<td>' . htmlspecialchars($order['pickup_datetime'] ?? '-') . '</td>'
                 .
                 '<td>' . format_order_details($order['details']) . '</td>
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>

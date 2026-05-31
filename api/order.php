@@ -64,6 +64,11 @@
             if ($account != null && isset($account['address']) && !empty($account['address'])) $address = $account['address'];
         } else $address = '';
 
+        $pickup_datetime = $_SESSION['pickup_datetime'] ?? null;
+        if(empty($_SESSION['pickup_datetime'])) {
+            return false;
+        }
+
         $new_orders = [
             'id_order' => strtolower(uniqid()),
             'id_client' => $_SESSION['uuid'],
@@ -71,7 +76,8 @@
             'details' => $basket_items,
             'total' => number_format($total, 2, '.', ''),
             'status' => 'paid',
-            'date_heure' => date('Y-m-d H:i:s')
+            'date_heure' => date('Y-m-d H:i:s'),
+            'pickup_datetime' => $pickup_datetime
         ];
 
         $orders_data = get_orders_data();

@@ -124,6 +124,36 @@
 
         return $total;
     }
+
+    function update_pickup_datetime($pickup_datetime) {
+    $timestamp = strtotime($pickup_datetime);
+
+    if(!$timestamp) {
+        return [
+            "type" => "error",
+            "title" => "Date invalide",
+            "message" => "La date sélectionnée est invalide"
+        ];
+    }
+
+    $minimum_time = strtotime('+30 minutes');
+
+    if($timestamp < $minimum_time) {
+        return [
+            "type" => "error",
+            "title" => "Date invalide",
+            "message" => "La récupération doit être au minimum dans 30 minutes"
+        ];
+    }
+
+    $_SESSION['pickup_datetime'] = date('Y-m-d H:i:s', $timestamp);
+
+    return [
+        "type" => "success",
+        "title" => "Date enregistrée",
+        "message" => "Date de récupération enregistrée"
+    ];
+    }
     
     function remove_from_basket($product_id) {
         if(!get_product_by_id($product_id)) return null;
@@ -139,20 +169,11 @@
         return true;
     }
 
-    function update_pickup_datetime($datetime) {
-    $_SESSION['pickup_datetime'] = $datetime;
-
-    return [
-        "type" => "success",
-        "title" => "Date mise à jour",
-        "message" => "La date de récupération a été enregistrée"
-    ];
-}
-
     function empty_basket() {
         unset($_SESSION['basket']);
         unset($_SESSION['delivery_type']);
         unset($_SESSION['promo_code']);
+        unset($_SESSION['pickup_datetime']);
 
         return [
             "type" => "success",
@@ -198,6 +219,6 @@
     else if(isset($_GET['empty'])) echo json_encode(empty_basket());
     else if(isset($_GET['get'])) echo json_encode(get_basket_data());
     else if(isset($_GET['update_delivery'])) echo json_encode(update_delivery_type($_GET['update_delivery']));
+    else if(isset($_GET['update_pickup'])) echo json_encode(update_pickup_datetime($_GET['update_pickup']));
     else if(isset($_GET['promo_code'])) echo json_encode(get_promo_by_code($_GET['promo_code']));
-    else if(isset($_GET['update_pickup_datetime'])) echo json_encode(update_pickup_datetime($_GET['update_pickup_datetime']));
 ?>

@@ -59,7 +59,7 @@
 
                             <div class="form__group col__group">
                                 <label for="pickup_datetime">Date et heure de récupération</label>
-                                <input type="datetime-local" id="pickup_datetime" name="pickup_datetime" required/>
+                                <input id="pickup_datetime" type="datetime-local" name="pickup_datetime" required>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                                 <h4 id="total__price"></h4>
                             </div>
                         </div>
-
+                        
                         <input type='hidden' name='transaction' value='<?php echo htmlspecialchars($params['transaction']); ?>'>
                         <input type='hidden' name='montant' value='<?php echo htmlspecialchars($params['montant']); ?>'>
                         <input type='hidden' name='vendeur' value='<?php echo htmlspecialchars($params['vendeur']); ?>'>
