@@ -2,13 +2,23 @@
 header('Content-Type: application/json');
 
 $jsonData = file_get_contents('../data/products.json');
-$products = json_decode($jsonData, true);
+$data = json_decode($jsonData, true);
 
-if (!empty($products)) {
-    $randomKey = array_rand($products);
-    $itemAleatoire = $products[$randomKey];
-    
-    echo json_encode($itemAleatoire);
+$allProducts = [];
+
+foreach ($data['products'] as $country) {
+    foreach ($country as $category => $items) {
+        if (is_array($items)) {
+            foreach ($items as $item) {
+                $allProducts[] = $item;
+            }
+        }
+    }
+}
+
+if (!empty($allProducts)) {
+    $random = $allProducts[array_rand($allProducts)];
+    echo json_encode($random);
 } else {
     echo json_encode(["error" => "Aucun produit trouvé"]);
 }
