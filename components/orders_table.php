@@ -142,6 +142,12 @@
     }
 
     // MARK: - Table generation
+
+    function format_datetime($datetime) {
+        if (!$datetime) return '-';
+        return date('d/m/Y H:i', strtotime($datetime));
+}
+
     function generate_table_header() {
         global $current_page;
         global $account_data;
@@ -150,7 +156,7 @@
             <thead>
                 <tr>
                     <th>ID de commande</th>
-                    <th>Date</th>'
+                    <th>Date de commande</th>'
                     .
                     ($current_page === 'orders' ? '<th>Client</th>' : '')
                     .
@@ -169,6 +175,8 @@
             </thead>
         ';
     }
+
+
     function get_table_row($order) {
         global $current_page;
         global $account_data;
@@ -176,13 +184,13 @@
         return '
             <tr class="order__row" data-order-id="' . htmlspecialchars($order['id_order']) . '">
                 <td>' . htmlspecialchars($order['id_order']) . '</td>
-                <td>' . htmlspecialchars($order['date_heure']) . '</td>'
+                <td>' . format_datetime($order['date_heure']) . '</td>'
                 .
                 ($current_page === 'orders' ? '<td>' . htmlspecialchars(get_account_by_id($order['id_client'])['lastname']) . ' ' . htmlspecialchars(get_account_by_id($order['id_client'])['firstname']) . '</td>' : '')
                 .
                 ($current_page === 'orders' ? '<td>' . (!empty($order['address']) ? htmlspecialchars($order['address']) : 'À emporter') . '</td>' : '')
                 .
-                '<td>' . htmlspecialchars($order['pickup_datetime'] ?? '-') . '</td>'
+                '<td>' . format_datetime($order['pickup_datetime'] ?? '-') . '</td>'
                 .
                 '<td>' . format_order_details($order['details']) . '</td>
                 <td class="col__centered">' . number_format($order['total'], 2, '.', '') . '€</td>
