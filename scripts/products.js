@@ -136,9 +136,12 @@ async function initProducts() {
         setupBuyButton();
 
         document.getElementById('menu__aleatoire__btn')?.addEventListener('click', async () => {
-            const dish = await fetch_menu_aleatoire();
-            if (dish && !dish.error) show_alert(dish.name, dish.shortDescription, "success");
-        });
+        const dish = await fetch_menu_aleatoire();
+        if (dish && !dish.error) {
+            const response = await fetch_basket_data('add', dish.id);
+             show_alert(dish.name, dish.shortDescription, "success");
+         }
+    });
 
     } catch (error) {
         show_alert("Erreur de chargement", "Une erreur est survenue lors du chargement des données des produits. Veuillez réessayer plus tard.", "error");
