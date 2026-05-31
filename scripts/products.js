@@ -42,6 +42,7 @@ function createCountrySection(country) {
 }
 
 function renderCategory(productsCategory, productsData) {
+    console.log("renderCategory appelé avec:", productsCategory);
     const productsCard = document.getElementById("products__card");
     if (!productsCard) return;
 
