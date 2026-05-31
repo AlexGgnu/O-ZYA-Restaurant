@@ -63,8 +63,8 @@
                             </button>
                         </li>
                     </ul>
-                    <button id="menu__aleatoire__btn" class="btn btn-primary">
-                        Menu aléatoire
+                    <button id="menu__aleatoire__btn" class="btn btn-secondary btn-svg">
+                     Menu aléatoire
                     </button>
                 </div>
             </section>

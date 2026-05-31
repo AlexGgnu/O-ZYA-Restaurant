@@ -52,6 +52,10 @@ main {
     width: 100%;
 }
 
+#menu__aleatoire__btn {
+    white-space: nowrap;
+}
+
 #products__card section > h1 { margin-left: 20px; }
 
 /* MARK: - Media Queries */
