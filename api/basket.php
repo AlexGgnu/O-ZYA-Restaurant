@@ -187,42 +187,44 @@
     }
 
     // MARK: - API endpoints
-    if(isset($_GET['add'])) {
-        $type = "success";
-        $title = "Ajouté avec succès";
-        $message = "L'article à été ajouté avec succès au panier";
-        
-        if(!add_to_basket($_GET['add'])) {
-            $type = "error";
-            $title = "Erreur";
-            $message = "Impossible d'ajouté cet article au panier";
-        }
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if(isset($_GET['add'])) {
+            $type = "success";
+            $title = "Ajouté avec succès";
+            $message = "L'article à été ajouté avec succès au panier";
             
-        echo json_encode([
-            "type" => $type,
-            "title" => $title,
-            "message" => $message
-        ]);
-    } else if(isset($_GET['remove'])) {
-        $type = "success";
-        $title = "Retiré avec succès";
-        $message = "L'article à été retiré du panier avec succès";
+            if(!add_to_basket($_GET['add'])) {
+                $type = "error";
+                $title = "Erreur";
+                $message = "Impossible d'ajouté cet article au panier";
+            }
+                
+            echo json_encode([
+                "type" => $type,
+                "title" => $title,
+                "message" => $message
+            ]);
+        } else if(isset($_GET['remove'])) {
+            $type = "success";
+            $title = "Retiré avec succès";
+            $message = "L'article à été retiré du panier avec succès";
 
-        if(!remove_from_basket($_GET['remove'])) {
-            $type = "error";
-            $title = "Erreur";
-            $message = "Impossible de retirer cet article du panier";
+            if(!remove_from_basket($_GET['remove'])) {
+                $type = "error";
+                $title = "Erreur";
+                $message = "Impossible de retirer cet article du panier";
+            }
+            
+            echo json_encode([
+                "type" => $type,
+                "title" => $title,
+                "message" => $message
+            ]);
         }
-        
-        echo json_encode([
-            "type" => $type,
-            "title" => $title,
-            "message" => $message
-        ]);
+        else if(isset($_GET['empty'])) echo json_encode(empty_basket());
+        else if(isset($_GET['get'])) echo json_encode(get_basket_data());
+        else if(isset($_GET['update_delivery'])) echo json_encode(update_delivery_type($_GET['update_delivery']));
+        else if(isset($_GET['update_pickup'])) echo json_encode(update_pickup_datetime($_GET['update_pickup']));
+        else if(isset($_GET['promo_code'])) echo json_encode(get_promo_by_code($_GET['promo_code']));
     }
-    else if(isset($_GET['empty'])) echo json_encode(empty_basket());
-    else if(isset($_GET['get'])) echo json_encode(get_basket_data());
-    else if(isset($_GET['update_delivery'])) echo json_encode(update_delivery_type($_GET['update_delivery']));
-    else if(isset($_GET['update_pickup'])) echo json_encode(update_pickup_datetime($_GET['update_pickup']));
-    else if(isset($_GET['promo_code'])) echo json_encode(get_promo_by_code($_GET['promo_code']));
 ?>

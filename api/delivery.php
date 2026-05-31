@@ -66,5 +66,7 @@
     }
 
     // MARK: - API Endpoints
-    if (isset($_POST['action']) && $_POST['action'] === 'assign_delivery_person') echo json_encode(assign_delivery_person($_POST['value'], $_POST['delivery_id']));
-    else if (isset($_POST['action']) && $_POST['action'] === 'validate_delivery') echo json_encode(validate_delivery($_POST['value']));
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if (isset($_POST['action']) && $_POST['action'] === 'assign_delivery_person') echo json_encode(assign_delivery_person($_POST['value'], $_POST['delivery_id']));
+        else if (isset($_POST['action']) && $_POST['action'] === 'validate_delivery') echo json_encode(validate_delivery($_POST['value']));
+    }

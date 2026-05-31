@@ -25,7 +25,7 @@ function isAllValid() {
             const phone_pattern = /^[0-9+\s]+$/;
             return phone_pattern.test(input.value);
         } else if(input.tagName.toLowerCase() === 'textarea') {
-            return input.value.trim().length >= 200;
+            return input.value.trim().length >= 100;
         } else if (input.tagName.toLowerCase() === 'select') {
             return input.value !== "" && input.value !== null;
         } else {

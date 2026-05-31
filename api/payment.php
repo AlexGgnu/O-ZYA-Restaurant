@@ -46,25 +46,28 @@
         ];
     }
 
-    if(isset($_GET['payment_return']) && $_GET['payment_return'] == '1') {
-        if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = '/' . htmlspecialchars($_GET['redirection']) . '.php';
-        else $redirection = null;
+    // MARK: - API endpoints
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if(isset($_GET['payment_return']) && $_GET['payment_return'] == '1') {
+            if(isset($_GET['redirection']) && !empty($_GET['redirection'])) $redirection = '/' . htmlspecialchars($_GET['redirection']) . '.php';
+            else $redirection = null;
 
-        if(isset($_GET['status']) && $_GET['status'] == 'accepted') {
-            if(isset($_GET['order_id'])) update_order_status(htmlspecialchars($_GET['order_id']), 'paid');
-            else if(!empty(get_basket_data()['items'])) save_order();
+            if(isset($_GET['status']) && $_GET['status'] == 'accepted') {
+                if(isset($_GET['order_id'])) update_order_status(htmlspecialchars($_GET['order_id']), 'paid');
+                else if(!empty(get_basket_data()['items'])) save_order();
 
-            empty_basket();
+                empty_basket();
 
-            $redirection = $redirection !== null ? $redirection : '/';
-            header('Location: ' . $redirection);
-            exit();
-        } else {
-            $_SESSION['error'] = urlencode('Le payment a échoué. Veuillez réessayer.');
+                $redirection = $redirection !== null ? $redirection : '/';
+                header('Location: ' . $redirection);
+                exit();
+            } else {
+                $_SESSION['error'] = urlencode('Le payment a échoué. Veuillez réessayer.');
 
-            $redirection = $redirection !== null ? $redirection : '/basket.php';
-            header('Location: ' . $redirection);
-            exit();
+                $redirection = $redirection !== null ? $redirection : '/basket.php';
+                header('Location: ' . $redirection);
+                exit();
+            }
         }
     }
 ?>

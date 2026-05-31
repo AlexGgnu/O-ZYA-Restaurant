@@ -1,28 +1,30 @@
 <?php
-require_once(__DIR__ . '/basket.php');
+    require_once(__DIR__ . '/basket.php');
 
-header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-$jsonData = file_get_contents('../data/products.json');
-$data = json_decode($jsonData, true);
+    $jsonData = file_get_contents('../data/products.json');
+    $data = json_decode($jsonData, true);
 
-$allProducts = [];
+    $allProducts = [];
 
-foreach ($data['products'] as $country) {
-    foreach ($country as $category => $items) {
-        if (is_array($items)) {
-            foreach ($items as $item) {
-                $allProducts[] = $item;
+    foreach ($data['products'] as $country) {
+        foreach ($country as $category => $items) {
+            if (is_array($items)) {
+                foreach ($items as $item) {
+                    $allProducts[] = $item;
+                }
             }
         }
     }
-}
 
-if (!empty($allProducts)) {
-    $random = $allProducts[array_rand($allProducts)];
-    add_to_basket($random['id']);
-    echo json_encode($random);
-} else {
-    echo json_encode(["error" => "Aucun produit trouvé"]);
-}
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if (!empty($allProducts)) {
+            $random = $allProducts[array_rand($allProducts)];
+            add_to_basket($random['id']);
+            echo json_encode($random);
+        } else {
+            echo json_encode(["error" => "Aucun produit trouvé"]);
+        }
+    }
 ?>

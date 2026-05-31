@@ -82,7 +82,7 @@ body {
     background-color: var(--primary-background-color);
     overflow-x: hidden;
 }
-body:has(header:is([data-menu-state="open"])) { overflow: hidden; }
+body:has(header:is([data-menu-state="open"])), body:has(dialog) { overflow: hidden; }
 
 a {
     text-decoration: none;

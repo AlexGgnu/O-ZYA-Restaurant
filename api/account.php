@@ -190,58 +190,23 @@
     }
 
     // MARK: - API management
-    if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = str_replace(['/', '.php', '.html'], "", $_GET['redirection']);
-    else $redirection = "/";
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if(isset($_GET['redirection']) && !empty($_GET['redirection']) && $_GET['redirection'] !== "/") $redirection = str_replace(['/', '.php', '.html'], "", $_GET['redirection']);
+        else $redirection = "/";
 
-    if (isset($_GET['auth_method']) && !empty($_GET['auth_method'])) {
-        if($_GET['auth_method'] == "sign_in") sign_in($redirection);
-        else if($_GET['auth_method'] == "sign_up") sign_up($redirection);
-        else if($_GET['auth_method'] == "log_out") log_out();
-    } else if (is_logged() && isset($_POST['action']) && $_POST['action'] == "update_profile_info") {
-        $type = "error";
-        $title = "Erreur";
-        $message = "Impossible de mettre à jour les informations du profil. Veuillez réessayer.";
-
-        if(update_profile_info($_SESSION['uuid'], $_POST['value'])) {
-            $type = "success";
-            $title = "Modification réussie";
-            $message = "Les informations du profil ont été mises à jour avec succès.";
-        }
-
-        echo json_encode([
-            "type" => $type,
-            "title" => $title,
-            "message" => $message
-        ]);
-    } else if (get_access(["admin"]) && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
-        if(isset($_POST['action']) && $_POST['action'] == "toggle_state") {
+        if (isset($_GET['auth_method']) && !empty($_GET['auth_method'])) {
+            if($_GET['auth_method'] == "sign_in") sign_in($redirection);
+            else if($_GET['auth_method'] == "sign_up") sign_up($redirection);
+            else if($_GET['auth_method'] == "log_out") log_out();
+        } else if (is_logged() && isset($_POST['action']) && $_POST['action'] == "update_profile_info") {
             $type = "error";
             $title = "Erreur";
-            $message = "Impossible de mettre à jour l'état du compte. Veuillez réessayer.";
-            $new_state = null;
+            $message = "Impossible de mettre à jour les informations du profil. Veuillez réessayer.";
 
-            if($new_state = toggle_account_state($_POST["account_id"])) {
+            if(update_profile_info($_SESSION['uuid'], $_POST['value'])) {
                 $type = "success";
                 $title = "Modification réussie";
-                $message = "L'état du compte a été mis à jour avec succès.";
-            }
-            error_log("Account ID: " . $_POST["account_id"] . " - New state: " . $new_state);
-                    
-            echo json_encode([
-                "type" => $type,
-                "title" => $title,
-                "message" => $message,
-                "new_state" => $new_state
-            ]);
-        } else if ($_POST['action'] == "update_role") {
-            $type = "error";
-            $title = "Erreur";
-            $message = "Impossible de mettre à jour le rôle du compte. Veuillez réessayer.";
-
-            if(update_account_role($_POST["account_id"], $_POST["value"])) {
-                $type = "success";
-                $title = "Modification réussie";
-                $message = "Le rôle du compte a été mis à jour avec succès.";
+                $message = "Les informations du profil ont été mises à jour avec succès.";
             }
 
             echo json_encode([
@@ -249,6 +214,43 @@
                 "title" => $title,
                 "message" => $message
             ]);
+        } else if (get_access(["admin"]) && isset($_POST['account_id']) && !empty($_POST['account_id']) && get_account_by_id($_POST['account_id']) !== null) {
+            if(isset($_POST['action']) && $_POST['action'] == "toggle_state") {
+                $type = "error";
+                $title = "Erreur";
+                $message = "Impossible de mettre à jour l'état du compte. Veuillez réessayer.";
+                $new_state = null;
+
+                if($new_state = toggle_account_state($_POST["account_id"])) {
+                    $type = "success";
+                    $title = "Modification réussie";
+                    $message = "L'état du compte a été mis à jour avec succès.";
+                }
+                error_log("Account ID: " . $_POST["account_id"] . " - New state: " . $new_state);
+                        
+                echo json_encode([
+                    "type" => $type,
+                    "title" => $title,
+                    "message" => $message,
+                    "new_state" => $new_state
+                ]);
+            } else if ($_POST['action'] == "update_role") {
+                $type = "error";
+                $title = "Erreur";
+                $message = "Impossible de mettre à jour le rôle du compte. Veuillez réessayer.";
+
+                if(update_account_role($_POST["account_id"], $_POST["value"])) {
+                    $type = "success";
+                    $title = "Modification réussie";
+                    $message = "Le rôle du compte a été mis à jour avec succès.";
+                }
+
+                echo json_encode([
+                    "type" => $type,
+                    "title" => $title,
+                    "message" => $message
+                ]);
+            }
         }
     }
 ?>

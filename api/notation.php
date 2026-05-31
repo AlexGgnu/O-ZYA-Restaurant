@@ -1,6 +1,6 @@
 <?php
     if(session_status() === PHP_SESSION_NONE) session_start();
-    if(!function_exists("is_logged")) require_once(__DIR__ . '/account.php');
+    if(!function_exists("is_logged") || !function_exists("get_account_by_id")) require_once(__DIR__ . '/account.php');
     if(!function_exists("get_orders_by_user")) require_once(__DIR__ . '/order.php');
 
     $notations_file_path = __DIR__ . '/../data/notations.json';
@@ -90,5 +90,34 @@
     }
 
     // MARK: - API endpoints
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['add']) && isset($_POST['order_id'])) save_notation();
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if (isset($_GET['add']) && isset($_POST['order_id'])) save_notation();
+        else if (isset($_GET['get'])) {
+            $notations = get_notations_data();
+
+            if ($_GET['get'] === 'all') {
+                foreach ($notations as &$notation) {
+                    $client = get_account_by_id($notation['id_client']);
+                    $notation['client_name'] = $client ? $client['firstname'] . ' ' . $client['lastname'] : 'Utilisateur inconnu';
+                }
+                
+                echo json_encode($notations);
+            } else if($_GET['get'] === 'random') {
+                if (count($notations) === 0) {
+                    echo json_encode([]);
+                    exit();
+                }
+
+                $random_index = array_rand($notations);
+                $random_notation = $notations[$random_index];
+                
+                $client = get_account_by_id($random_notation['id_client']);
+                $random_notation['client_name'] = $client ? $client['firstname'] . ' ' . $client['lastname'] : 'Utilisateur inconnu';
+                
+                echo json_encode([$random_notation]);
+            } else echo json_encode($notations);
+
+            exit();
+        }
+    }
 ?>

@@ -126,6 +126,30 @@ async function fetch_delivery_data(deliveryId, action, value = undefined) {
     }
     
 }
+
+// MARK: - Notation Endpoint
+function get_notation_url(action, value = undefined) {
+    const baseUrl = window.location.origin;
+    return `${baseUrl}/api/notation.php?${action}${value !== undefined ? `=${encodeURIComponent(value)}` : ''}`;
+}
+async function fetch_notation_data(action, value = undefined) {
+    const url = get_notation_url(action, value);
+
+    try {
+        const response = await fetch(url, { method: "GET" });
+
+        if (!response.ok) show_alert("Erreur", "Une erreur est survenue lors de la récupération des données de notation.", "error");
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("Error fetching notation data:", error);
+        show_alert("Erreur", "Une erreur est survenue lors de la récupération des données de notation.", "error");
+        throw error;
+    }
+}
+
+// MARK: - Menu Aléatoire Endpoint
 async function fetch_menu_aleatoire() {
     const response = await fetch('./api/menu_aleatoire.php');
     return await response.json();

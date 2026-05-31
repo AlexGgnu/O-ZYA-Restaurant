@@ -192,42 +192,44 @@
     }
 
     // MARK: - API Endpoint handling
-    if(isset($_POST['action']) && $_POST['action'] === 'get_order_details' && isset($_POST['order_id'])) {
-        $type = 'error';
-        $title = 'Commande introuvable';
-        $message = 'La commande demandée est introuvable';
-        $order = null;
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if(isset($_POST['action']) && $_POST['action'] === 'get_order_details' && isset($_POST['order_id'])) {
+            $type = 'error';
+            $title = 'Commande introuvable';
+            $message = 'La commande demandée est introuvable';
+            $order = null;
 
-        if($order = get_order_by_id($_POST['order_id'])) {
-            $type = 'success';
-            $title = 'Détails de la commande';
-            $message = "La commande a été trouvée avec succès";
+            if($order = get_order_by_id($_POST['order_id'])) {
+                $type = 'success';
+                $title = 'Détails de la commande';
+                $message = "La commande a été trouvée avec succès";
+            }
+
+            echo json_encode([
+                "type" => $type,
+                "title" => $title,
+                "message" => $message,
+                "order_data" => $order
+            ]);
+        } else if(isset($_POST['action']) && $_POST['action'] === 'update_order' && isset($_POST['order_id']) && isset($_POST['value'])) {
+            $type = "error";
+            $title = "Modification échouée";
+            $message = "La modification de la commande a échoué. Assurez-vous que la commande n'est pas déjà livrée ou annulée.";
+
+            $new_details = json_decode($_POST['value'], true)['new_details'];
+            if(update_order($_POST['order_id'], $new_details)) {
+                $type = "success";
+                $title = "Commande modifiée";
+                $message = "La commande a été modifiée avec succès.";
+            }
+
+            echo json_encode([
+                "type" => $type,
+                "title" => $title,
+                "message" => $message
+            ]);
         }
-
-        echo json_encode([
-            "type" => $type,
-            "title" => $title,
-            "message" => $message,
-            "order_data" => $order
-        ]);
-    } else if(isset($_POST['action']) && $_POST['action'] === 'update_order' && isset($_POST['order_id']) && isset($_POST['value'])) {
-        $type = "error";
-        $title = "Modification échouée";
-        $message = "La modification de la commande a échoué. Assurez-vous que la commande n'est pas déjà livrée ou annulée.";
-
-        $new_details = json_decode($_POST['value'], true)['new_details'];
-        if(update_order($_POST['order_id'], $new_details)) {
-            $type = "success";
-            $title = "Commande modifiée";
-            $message = "La commande a été modifiée avec succès.";
-        }
-
-        echo json_encode([
-            "type" => $type,
-            "title" => $title,
-            "message" => $message
-        ]);
+        else if(isset($_POST['action']) && $_POST['action'] === 'update_status' && isset($_POST['order_id']) && isset($_POST['value'])) echo update_order_status($_POST['order_id'], $_POST['value']);
+        else if(isset($_POST['action']) && $_POST['action'] === 'cancel_order' && isset($_POST['order_id'])) echo update_order_status($_POST['order_id'], 'cancelled');
     }
-    else if(isset($_POST['action']) && $_POST['action'] === 'update_status' && isset($_POST['order_id']) && isset($_POST['value'])) echo update_order_status($_POST['order_id'], $_POST['value']);
-    else if(isset($_POST['action']) && $_POST['action'] === 'cancel_order' && isset($_POST['order_id'])) echo update_order_status($_POST['order_id'], 'cancelled');
 ?>

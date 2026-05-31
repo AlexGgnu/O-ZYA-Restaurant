@@ -70,38 +70,40 @@
     }
 
     // MARK: - API endpoints
-    if(isset($_GET['action'])) {
-        if ($_GET['action'] === 'getAllProducts') {
-            echo json_encode(get_products_data());
-        } elseif ($_GET['action'] === 'getSpecialDish') {
-            $specialDish = get_special_dish(get_products_data());
-            echo json_encode($specialDish);
-        } elseif ($_GET['action'] === 'getSuccessedDishes') {
-            $successedDishes = get_successed_dishes(get_products_data());
-            echo json_encode($successedDishes);
-        } else if ($_GET['action'] === 'get_product' && isset($_GET['product_id'])) {
-            $type = "error";
-            $title = "Produit non trouvé";
-            $message = "Aucun produit correspondant à l'ID fourni n'a été trouvé.";
+    if($_SERVER['SCRIPT_FILENAME'] === __FILE__) {
+        if(isset($_GET['action'])) {
+            if ($_GET['action'] === 'getAllProducts') {
+                echo json_encode(get_products_data());
+            } elseif ($_GET['action'] === 'getSpecialDish') {
+                $specialDish = get_special_dish(get_products_data());
+                echo json_encode($specialDish);
+            } elseif ($_GET['action'] === 'getSuccessedDishes') {
+                $successedDishes = get_successed_dishes(get_products_data());
+                echo json_encode($successedDishes);
+            } else if ($_GET['action'] === 'get_product' && isset($_GET['product_id'])) {
+                $type = "error";
+                $title = "Produit non trouvé";
+                $message = "Aucun produit correspondant à l'ID fourni n'a été trouvé.";
 
-            if($productDetails = get_products_by_id($_GET['product_id'])) {
-                $type = "success";
-                $title = "Produit trouvé";
-                $message = "Le produit a été trouvé avec succès.";
+                if($productDetails = get_products_by_id($_GET['product_id'])) {
+                    $type = "success";
+                    $title = "Produit trouvé";
+                    $message = "Le produit a été trouvé avec succès.";
+                }
+
+                echo json_encode([
+                    "type" => $type,
+                    "title" => $title,
+                    "message" => $message,
+                    "product_data" => $productDetails ?? null
+                ]);
+            } else {
+                echo json_encode([
+                    "type" => "error",
+                    "title" => "Action non reconnue",
+                    "message" => "L'action demandée n'est pas reconnue. Veuillez vérifier votre requête."
+                ]);
             }
-
-            echo json_encode([
-                "type" => $type,
-                "title" => $title,
-                "message" => $message,
-                "product_data" => $productDetails ?? null
-            ]);
-        } else {
-            echo json_encode([
-                "type" => "error",
-                "title" => "Action non reconnue",
-                "message" => "L'action demandée n'est pas reconnue. Veuillez vérifier votre requête."
-            ]);
         }
     }
 ?>

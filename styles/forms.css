@@ -112,22 +112,6 @@ select option { color: var(--primary-font-color); }
     color: var(--accent-font-color);
 }
 
-/* MARK: - Rating Input */
-#rating__wrapper.row__group {
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
-
-#rating__wrapper .btn-svg { position: relative; }
-#rating__wrapper .btn-svg svg {
-    position: absolute;
-    color: var(--separator-color);
-    transition: opacity .3s ease-in-out;
-}
-#rating__wrapper .btn-svg svg.checked-star { color: var(--star-color); }
-#rating__wrapper .btn-svg[data-checked="false"] .checked-star { opacity: 0; }
-
 /* MARK: - Notation Page */
 @media (min-width: 768px) {
     main {
